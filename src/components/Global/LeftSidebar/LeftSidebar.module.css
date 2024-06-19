@@ -1,0 +1,17 @@
+.leftSidebarStyle {
+}
+
+.menuClosed {
+	display: none;
+	overflow: hidden;
+}
+
+@media screen and (min-width: 992px) {
+	.leftSidebarStyle {
+		position: fixed;
+		z-index: 105;
+		top: calc(var(--bs-app-header-height) - 10px) !important;
+		bottom: 0;
+		left: 0;
+	}
+}

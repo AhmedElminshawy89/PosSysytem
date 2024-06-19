@@ -1,0 +1,12 @@
+.rightAsideStyle {
+}
+
+@media screen and (min-width: 992px) {
+	.rightAsideStyle {
+		position: fixed;
+		z-index: 99;
+		top: 105px;
+		bottom: 0;
+		right: 0;
+	}
+}

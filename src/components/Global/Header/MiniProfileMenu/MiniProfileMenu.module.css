@@ -1,0 +1,7 @@
+.showMiniProfileMenu {
+	z-index: 107;
+	position: fixed;
+	inset: 0 0 auto auto;
+	margin: 0;
+	transform: translate(-78.75px, 70px);
+}

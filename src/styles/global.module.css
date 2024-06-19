@@ -1,0 +1,24 @@
+.globalStyle {
+}
+
+.mainApp {
+}
+
+@media screen and (min-width: 992px) {
+	.globalStyle {
+		margin-right: calc(
+			var(--bs-app-aside-width) + var(--bs-app-aside-gap-start, 0px) +
+				var(--bs-app-aside-gap-end, 0px)
+		);
+		margin-left: calc(
+			var(--bs-app-sidebar-width) + var(--bs-app-sidebar-gap-start, 0px) +
+				var(--bs-app-sidebar-gap-end, 0px)
+		);
+		/* margin-top: var(--bs-app-header-height); */
+		margin-top: 0;
+	}
+
+	.mainApp {
+		margin-right: 0 !important;
+	}
+}
