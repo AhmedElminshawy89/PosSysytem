@@ -3,8 +3,10 @@ import classes from "../../styles/global.module.css";
 import PosToolbar from "../../components/PosComponents/PosToolbar";
 import PosItems from "../../components/PosComponents/PosItems/PostItems";
 import PosOrder from "../../components/PosComponents/PosOrder/PosOrder";
+import { useSelector } from "react-redux";
 
 const Pos = () => {
+  const activeTab = useSelector((state) => state.activeTabPos.activeTab);
   return (
     <div
       className={`app-main flex-column flex-row-fluid" id="kt_app_main ${classes.mainApp}`}
@@ -17,8 +19,12 @@ const Pos = () => {
             class="app-container container-fluid"
           >
             <div className="d-flex flex-column flex-xl-row">
-              <PosItems />
-              <PosOrder />
+              {activeTab==="newOrder"&&(
+                <>
+                <PosItems />
+                <PosOrder />
+                </>
+              )}
             </div>
           </div>
         </div>

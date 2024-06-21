@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PagesOutlet />}>
           {/* <Route path="/" element={<MainPage />} /> */}
-          <Route path="/sales/pos" element={<Pos />} />
+          <Route path="/ordermanage/order/pos_invoice" element={<Pos />} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}

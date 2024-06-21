@@ -1,73 +1,43 @@
-const menuDataItems = [
-    { title: "Default", link: "/" },
-    { title: "eCommerce", link: "/" },
-    { title: "Projects", link: "/" },
-    { title: "Online Courses", link: "/" },
-    { title: "Marketing", link: "/" },
-    { title: "Bidding", link: "/" },
-    { title: "POS System", link: "/pos" },
-    { title: "Call Center", link: "/" },
-    { title: "Logistics", link: "/" },
-    { title: "Website Analytics", link: "/" },
-    { title: "Finance Performance", link: "/" },
-    { title: "Store Analytics", link: "/" },
-    { title: "Social", link: "/" },
-    { title: "Delivery", link: "/" },
-    { title: "Crypto", link: "/" },
-    { title: "School", link: "/" },
-    { title: "Podcast", link: "/" },
-    { title: "Landing", link: "/" },
-];
-
-const help = [
-    { title: "Components", link: "/" },
-    { title: "Documentation", link: "/" },
-    { title: "Layout Builder", link: "/" },
-    { title: "Changelog v8.2.3", link: "/" },
-
-];
-
-const products = [
-    { title: "Create Product", link: "/products/create-product" },
-    { title: "All Product", link: "/products/all-products" },
-    { title: "Print Labels", link: "/products/print-labels" },
-    { title: "Count Stock", link: "/products/count-stock" },
-    { title: "Category", link: "/products/category" },
-    { title: "Brand", link: "/products/brand" },
-    { title: "Unit", link: "/products/unit" },
-];
-
-const adjustment = [
-    { title: "Create Adjustment", link: "/adjustment/create-adjustment" },
-    { title: "All Adjustments", link: "/adjustment/all-adjustments" },
-];
-
-const quotations = [
-    { title: "Create Quotation", link: "/quotations/create-quotation" },
-    { title: "All Quotations", link: "/quotations/all-quotations" },
-];
-
-const purchases = [
-    { title: "Create Purchase", link: "/purchases/create-purchase" },
-    { title: "All Purchases", link: "/purchases/all-purchases" },
-];
-
-const sales = [
-    { title: "Create Sale", link: "/sales/create-sale" },
-    { title: "All Sales", link: "/sales/all-sales" },
-    { title: "POS", link: "/sales/pos" },
-    { title: "Shipments", link: "/sales/shipments" },
-];
-
-const accounting = [
-    { title: "List Accounts", link: "/accounting/list-accounts" },
-    { title: "Transfer Money", link: "/accounting/transfer-money" },
-    { title: "Create Expense", link: "/accounting/create-expense" },
-    { title: "All Expenses", link: "/accounting/all-expenses" },
-    { title: "Create Deposite", link: "/accounting/create-deposite" },
-    { title: "List Deposite", link: "/accounting/list-deposite" },
-    { title: "Expense Category", link: "/accounting/expense-Category" },
-    { title: "Deposit Category", link: "/accounting/deposit-Category" },
-];
-
-export { menuDataItems, help, adjustment, products, purchases, quotations, sales, accounting };
+const Order_Management = [
+    { title: "POS", link: "/ordermanage/order/pos_invoice" },
+    { title: "Order List", link: "/ordermanage/order/orderlist" },
+    { title: "Pending Orders", link: "/ordermanage/order/pendingorder" },
+    { title: "Pre Order Time Slots", link: "/ordermanage/order/preorderdatelist" },
+    { title: "Pre Order List", link: "/ordermanage/order/preorderlist" },
+    { title: "Completed Orders", link: "/ordermanage/order/completelist" },
+    { title: "Cancelled Orders", link: "/ordermanage/order/cancellist" },
+    { title: "Station Dashboard", link: "/ordermanage/order/allkitchen" },
+    { title: "Counter Dashboard", link: "/ordermanage/order/counterboard" },
+    { title: "Counter List", link: "/ordermanage/order/counterlist" },
+    { title: "POS Setting", link: "/ordermanage/order/possetting" },
+    { title: "Sound Setting", link: "/ordermanage/order/soundsetting" },
+]
+const Reservation = [
+    { title: "Reservation", link: "/reservation/reservation/index" },
+    { title: "Add Booking", link: "/reservation/reservation/tablebooking" },
+    { title: "Unavailable Day", link: "/reservation/reservation/unavailablelist" },
+    { title: "Reservation Setting", link: "/reservation/reservation/setting" },
+    { title: "Catering Inquiry", link: "/reservation/reservation/cateringinquiry" },
+]
+const Purchases_Management = [
+    { title: "Purchase Item", link: "/purchase/purchase/index" },
+    { title: "Add Purchase", link: "/purchase/purchase/create" },
+    { title: "Purchase Return", link: "/purchase/purchase/return_form" },
+    { title: "Return Invoice", link: "/purchase/purchase/return_invoice" },
+    { title: "Supplier Manage", link: "/purchase/supplierlist/index" },
+    { title: "Supplier Ledger", link: "/purchase/supplierlist/supplier_ledger_report" },
+    { title: "Out-of-Stock Ingredients", link: "/purchase/purchase/stock_out_ingredients" },
+]
+const Reports = [
+    { title: "Purchase Report", link: "/report/reports/index" },
+    { title: "Stock Report (Food Items)", link: "/purchase/purchase/create" },
+    { title: "Stock Report (Station)", link: "/report/reports/ingredientwise" },
+    { title: "Sales Report", link: "/report/reports/ingredientwise" },
+]
+const Production_Management = [
+    { title: "Set Production Unit", link: "/production/production/productionunit" },
+    { title: "Production Set List", link: "/production/production/index" },
+    { title: "Add Production", link: "/production/production/create" },
+    { title: "Production Setting", link: "/production/production/possetting" },
+]
+export { Order_Management,Reservation,Purchases_Management,Reports,Production_Management};

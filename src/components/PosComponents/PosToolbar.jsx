@@ -1,6 +1,15 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setActiveTab } from "../../redux/PosSlice";
 
 const PosToolbar = () => {
+  const activeTab = useSelector((state) => state.activeTabPos.activeTab);
+  const dispatch = useDispatch();
+
+  const handleTabClick = (tabName) => {
+    dispatch(setActiveTab(tabName));
+  };
+
   return (
     <div id="kt_app_toolbar" className="app-toolbar pt-6 pb-2">
       <div
@@ -24,21 +33,67 @@ const PosToolbar = () => {
               <li className="breadcrumb-item text-muted">Dashboards</li>
             </ul>
           </div>
-          <div className="d-flex align-items-center gap-2 gap-lg-3">
-            <a
-              className="btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
-              data-bs-toggle="modal"
-              data-bs-target="#kt_modal_view_users"
+          <div className="d-flex align-items-center gap-2 gap-lg-3 flex-wrap">
+            <p
+              className={
+                activeTab === "newOrder"
+                  ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                  : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+              }
+              onClick={() => handleTabClick("newOrder")}
             >
-              Add Member
-            </a>
-            <a
-              className="btn btn-flex btn-primary h-40px fs-7 fw-bold"
-              data-bs-toggle="modal"
-              data-bs-target="#kt_modal_create_campaign"
+              New Order
+            </p>
+            <p
+              className={
+                activeTab === "ongoingOrder"
+                  ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                  : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+              }
+              onClick={() => handleTabClick("ongoingOrder")}
             >
-              New Campaign
-            </a>
+              On Going Order
+            </p>
+            <p
+              className={
+                activeTab === "StationStatus"
+                  ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                  : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+              }
+              onClick={() => handleTabClick("StationStatus")}
+            >
+              Station Status
+            </p>
+            <p
+              className={
+                activeTab === "QROrder"
+                  ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                  : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+              }
+              onClick={() => handleTabClick("QROrder")}
+            >
+              QR Order
+            </p>
+            <p
+              className={
+                activeTab === "OnlineOrder"
+                  ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                  : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+              }
+              onClick={() => handleTabClick("OnlineOrder")}
+            >
+              Online Order
+            </p>
+            <p
+              className={
+                activeTab === "TodayOrder"
+                  ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                  : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+              }
+              onClick={() => handleTabClick("TodayOrder")}
+            >
+              Today Order
+            </p>
           </div>
         </div>
       </div>
