@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import classes from "./LeftSidebar.module.css";
 import {
-  Order_Management, Production_Management, Purchases_Management, Reports, Reservation,
+  Order_Management,
+  Production_Management,
+  Purchases_Management,
+  Reports,
+  Reservation,
 } from "../../../data/menu-data/dataMenu";
 import MenuItem from "./MenuItem/MenuItem";
 import Menu from "./Menu/Menu";
@@ -12,10 +17,14 @@ import MenuFoodCategory from "./Menu/MenuFoodCategory";
 const LeftSidebar = () => {
   const [isDasboardMenuItemOpen, setIsDasboardMenuItemOpen] = useState(false);
   const [isHelpMenuItemOpen, setIsHelpMenuItemOpen] = useState(false);
+
+  const location = useLocation();
+  const isPosInvoiceRoute = location.pathname === "/ordermanage/order/pos_invoice";
+
   return (
     <div
       id="kt_app_sidebar"
-      className={`app-sidebar flex-column ${classes.leftSidebarStyle}`}
+      className={`app-sidebar flex-column ${classes.leftSidebarStyle} ${isPosInvoiceRoute ? "d-none" : ""}`}
       data-kt-drawer="true"
       data-kt-drawer-name="app-sidebar"
       data-kt-drawer-activate="{default: true, lg: false}"
@@ -63,10 +72,16 @@ const LeftSidebar = () => {
             </Link>
             <Menu menuItems={Order_Management} title="Order Management" />
             <Menu menuItems={Reservation} title="Reservation" />
-            <Menu menuItems={Purchases_Management} title="Purchases Management" />
-            <MenuReports/>
-			<MenuFoodCategory/>
-            <Menu menuItems={Production_Management} title="Production Management" />
+            <Menu
+              menuItems={Purchases_Management}
+              title="Purchases Management"
+            />
+            <MenuReports />
+            <MenuFoodCategory />
+            <Menu
+              menuItems={Production_Management}
+              title="Production Management"
+            />
           </div>
         </div>
       </div>

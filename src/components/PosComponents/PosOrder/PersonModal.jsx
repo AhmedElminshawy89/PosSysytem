@@ -12,7 +12,7 @@ const customStyles = {
     width: "80%",
     maxWidth: "900px",
     maxHeight: "100vh",
-    overflowY: "auto", 
+    overflowY: "auto",
   },
 };
 
@@ -317,182 +317,182 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
       )}
       {selectedTab === "secondFloor" && (
         <form>
-        <div className="d-flex gap-8 flex-wrap align-items-center justify-content-center">
-          <div>
-            <div className="mb-5 d-flex align-items-center justify-content-between">
-              <div>
-                <div className="d-flex gap-4 align-items-center">
-                  <input type="checkbox" id="selectTable" />
-                  <label
-                    htmlFor="selectTable"
-                    className="select-modal-pos-table"
-                  >
-                    Select This Table
-                  </label>
+          <div className="d-flex gap-8 flex-wrap align-items-center justify-content-center">
+            <div>
+              <div className="mb-5 d-flex align-items-center justify-content-between">
+                <div>
+                  <div className="d-flex gap-4 align-items-center">
+                    <input type="checkbox" id="selectTable" />
+                    <label
+                      htmlFor="selectTable"
+                      className="select-modal-pos-table"
+                    >
+                      Select This Table
+                    </label>
+                  </div>
+                  <div className="mr-25">
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Table</p>
+                      <p>1</p>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Seat</p>
+                      <p>2</p>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Available</p>
+                      <p>2</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="mr-25">
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Table</p>
-                    <p>1</p>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Seat</p>
-                    <p>2</p>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Available</p>
-                    <p>2</p>
-                  </div>
+                <div>
+                  <img src={img} alt="" />
                 </div>
               </div>
-              <div>
-                <img src={img} alt="" />
+              <div className="table">
+                <table className="table-order">
+                  <thead>
+                    <th>Order</th>
+                    <th>Time</th>
+                    <th>Person</th>
+                    <th className="pr-14">Action</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="no-customer">
+                        No Customer
+                      </td>
+                    </tr>{" "}
+                  </tbody>
+                </table>
+              </div>
+              <div className="d-flex gap-2 align-items-center">
+                <input type="number" placeholder="Person" />{" "}
+                <p className="add-customer-odrer-pos person-model-plus">+</p>
               </div>
             </div>
-            <div className="table">
-              <table className="table-order">
-                <thead>
-                  <th>Order</th>
-                  <th>Time</th>
-                  <th>Person</th>
-                  <th className="pr-14">Action</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td colspan="4" class="no-customer">
-                      No Customer
-                    </td>
-                  </tr>{" "}
-                </tbody>
-              </table>
+            <div>
+              <div className="mb-5 d-flex align-items-center justify-content-between">
+                <div>
+                  <div className="d-flex gap-4 align-items-center">
+                    <input type="checkbox" id="selectTable" />
+                    <label
+                      htmlFor="selectTable"
+                      className="select-modal-pos-table"
+                    >
+                      Select This Table
+                    </label>
+                  </div>
+                  <div className="mr-25">
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Table</p>
+                      <p>1</p>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Seat</p>
+                      <p>2</p>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Available</p>
+                      <p>2</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <img src={img} alt="" />
+                </div>
+              </div>
+              <div className="table">
+                <table className="table-order">
+                  <thead>
+                    <th>Order</th>
+                    <th>Time</th>
+                    <th>Person</th>
+                    <th className="pr-14">Action</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="no-customer">
+                        No Customer
+                      </td>
+                    </tr>{" "}
+                  </tbody>
+                </table>
+              </div>
+              <div className="d-flex gap-2 align-items-center">
+                <input type="number" placeholder="Person" />{" "}
+                <p className="add-customer-odrer-pos person-model-plus">+</p>
+              </div>
             </div>
-            <div className="d-flex gap-2 align-items-center">
-              <input type="number" placeholder="Person" />{" "}
-              <p className="add-customer-odrer-pos person-model-plus">+</p>
+            <div>
+              <div className="mb-5 d-flex align-items-center justify-content-between">
+                <div>
+                  <div className="d-flex gap-4 align-items-center">
+                    <input type="checkbox" id="selectTable" />
+                    <label
+                      htmlFor="selectTable"
+                      className="select-modal-pos-table"
+                    >
+                      Select This Table
+                    </label>
+                  </div>
+                  <div className="mr-25">
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Table</p>
+                      <p>1</p>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Seat</p>
+                      <p>2</p>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p>Available</p>
+                      <p>2</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <img src={img} alt="" />
+                </div>
+              </div>
+              <div className="table">
+                <table className="table-order">
+                  <thead>
+                    <th>Order</th>
+                    <th>Time</th>
+                    <th>Person</th>
+                    <th className="pr-14">Action</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" class="no-customer">
+                        No Customer
+                      </td>
+                    </tr>{" "}
+                  </tbody>
+                </table>
+              </div>
+              <div className="d-flex gap-2 align-items-center">
+                <input type="number" placeholder="Person" />{" "}
+                <p className="add-customer-odrer-pos person-model-plus">+</p>
+              </div>
             </div>
           </div>
-          <div>
-            <div className="mb-5 d-flex align-items-center justify-content-between">
-              <div>
-                <div className="d-flex gap-4 align-items-center">
-                  <input type="checkbox" id="selectTable" />
-                  <label
-                    htmlFor="selectTable"
-                    className="select-modal-pos-table"
-                  >
-                    Select This Table
-                  </label>
-                </div>
-                <div className="mr-25">
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Table</p>
-                    <p>1</p>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Seat</p>
-                    <p>2</p>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Available</p>
-                    <p>2</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <img src={img} alt="" />
-              </div>
-            </div>
-            <div className="table">
-              <table className="table-order">
-                <thead>
-                  <th>Order</th>
-                  <th>Time</th>
-                  <th>Person</th>
-                  <th className="pr-14">Action</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td colspan="4" class="no-customer">
-                      No Customer
-                    </td>
-                  </tr>{" "}
-                </tbody>
-              </table>
-            </div>
-            <div className="d-flex gap-2 align-items-center">
-              <input type="number" placeholder="Person" />{" "}
-              <p className="add-customer-odrer-pos person-model-plus">+</p>
-            </div>
-          </div>
-          <div>
-            <div className="mb-5 d-flex align-items-center justify-content-between">
-              <div>
-                <div className="d-flex gap-4 align-items-center">
-                  <input type="checkbox" id="selectTable" />
-                  <label
-                    htmlFor="selectTable"
-                    className="select-modal-pos-table"
-                  >
-                    Select This Table
-                  </label>
-                </div>
-                <div className="mr-25">
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Table</p>
-                    <p>1</p>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Seat</p>
-                    <p>2</p>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                    <p>Available</p>
-                    <p>2</p>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <img src={img} alt="" />
-              </div>
-            </div>
-            <div className="table">
-              <table className="table-order">
-                <thead>
-                  <th>Order</th>
-                  <th>Time</th>
-                  <th>Person</th>
-                  <th className="pr-14">Action</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td colspan="4" class="no-customer">
-                      No Customer
-                    </td>
-                  </tr>{" "}
-                </tbody>
-              </table>
-            </div>
-            <div className="d-flex gap-2 align-items-center">
-              <input type="number" placeholder="Person" />{" "}
-              <p className="add-customer-odrer-pos person-model-plus">+</p>
-            </div>
-          </div>
-        </div>
-        <button
-          type="button"
-          onClick={closeModal}
-          className="btn btn-flex btn-outline btn-color-gray-700 mr-15 btn-active-color-primary bg-body mt-10 h-40px fs-7 fw-bold"
-        >
-          Close
-        </button>
-        <button
-          type="submit"
-          onClick={closeModal}
-          className="btn btn-flex btn-primary h-40px fs-7 fw-bold mt-10"
-        >
-          Save
-        </button>
-      </form>
+          <button
+            type="button"
+            onClick={closeModal}
+            className="btn btn-flex btn-outline btn-color-gray-700 mr-15 btn-active-color-primary bg-body mt-10 h-40px fs-7 fw-bold"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            onClick={closeModal}
+            className="btn btn-flex btn-primary h-40px fs-7 fw-bold mt-10"
+          >
+            Save
+          </button>
+        </form>
       )}
     </Modal>
   );

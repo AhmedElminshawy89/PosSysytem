@@ -4,9 +4,11 @@ import PosToolbar from "../../components/PosComponents/PosToolbar";
 import PosItems from "../../components/PosComponents/PosItems/PostItems";
 import PosOrder from "../../components/PosComponents/PosOrder/PosOrder";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const Pos = () => {
   const activeTab = useSelector((state) => state.activeTabPos.activeTab);
+
   return (
     <div
       className={`app-main flex-column flex-row-fluid" id="kt_app_main ${classes.mainApp}`}
