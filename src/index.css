@@ -398,7 +398,7 @@ code {
   padding-left: 20px;
 }
 .max-w-200{
-  max-width: 200px !important;
+  max-width: 200px ;
 }
 .line-seperate-calc-price-table{
   height: 4px;
@@ -508,4 +508,25 @@ code {
   width: 80%;
   gap: 8px;
   margin-bottom: 8px;
+}
+@media screen and (max-width:486px) {
+  .overall-img-pos {
+    width: 100% !important;
+    object-fit: cover;
+    object-position: center;
+    height: auto !important;
+}
+.max-w-200{
+  max-width: 100% !important;
+}
+.flex-wrap-btns-pos{
+  flex-wrap: wrap;
+}
+.w-87{
+  width: 100% !important;
+}
+.width-full-btn-mobile{
+  width: 100%;
+  height: 50px;
+}
 }

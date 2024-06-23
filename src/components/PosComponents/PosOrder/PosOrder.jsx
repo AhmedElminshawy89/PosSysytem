@@ -12,7 +12,7 @@ const PosOrder = () => {
       name: "T-Bone Steak",
       img: "/assets/media/stock/food/img-2.jpg",
       variant: "1 Person",
-      price: 66.0,
+      price: 15.0,
       quantity: 2,
     },
     {
@@ -233,10 +233,10 @@ const PosOrder = () => {
               </span>
             </div>
           </div>
-          <div className="mt-5 d-flex gap-3">
+          <div className="mt-5 d-flex gap-3 flex-wrap-btns-pos">
             <span className=" w-100 d-flex justify-content-end ">
               <button
-                className="btn btn-primary "
+                className="btn btn-primary width-full-btn-mobile"
                 onClick={() => setIsCalculatorOpen(true)}
               >
                 <CgCalculator className="fs-1" />

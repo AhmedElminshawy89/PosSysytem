@@ -114,9 +114,19 @@ const CalculatorModal = ({ isOpen, onRequestClose }) => {
                       color: "white",
                       width: "211%",
                     }
-                  : [".","0", "1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(
-                      btn
-                    )
+                  : [
+                      ".",
+                      "0",
+                      "1",
+                      "2",
+                      "3",
+                      "4",
+                      "5",
+                      "6",
+                      "7",
+                      "8",
+                      "9",
+                    ].includes(btn)
                   ? { backgroundColor: "white" }
                   : {}
               }
