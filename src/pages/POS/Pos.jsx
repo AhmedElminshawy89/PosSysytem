@@ -21,10 +21,10 @@ const Pos = () => {
             class="app-container container-fluid"
           >
             <div className="d-flex flex-column flex-xl-row">
-              {activeTab==="newOrder"&&(
+              {activeTab === "newOrder" && (
                 <>
-                <PosItems />
-                <PosOrder />
+                  <PosItems />
+                  <PosOrder />
                 </>
               )}
             </div>

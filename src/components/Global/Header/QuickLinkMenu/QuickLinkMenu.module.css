@@ -5,3 +5,25 @@
 	margin: 0px;
 	transform: translate(-202.5px, 70px);
 }
+
+.quickLinkTable {
+	width: 100%;
+	min-width: 600px;
+	border-collapse: collapse;
+	position: relative;
+	right: 140px;
+  }
+  
+  .quickLinkTable td {
+	padding: 10px;
+	text-align: start;
+  }
+  
+  .row1 {
+	background-color: #f9f9f9;
+  }
+  
+  .row2 {
+	background-color: #e9e9e9;
+  }
+  

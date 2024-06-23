@@ -1,8 +1,12 @@
-import React from "react";
+import {useState} from "react";
 import classes from "./RightAside.module.css";
-
+import CustomerModal from '../../../components/PosComponents/PosOrder/AddCustomer'
 const RightAside = () => {
+	const [modalIsOpen, setModalIsOpen] = useState(false);
+	const openModal = () => setModalIsOpen(true);
+	const closeModal = () => setModalIsOpen(false);
 	return (
+		<>
 		<div
 			id="kt_app_aside"
 			className={`app-aside flex-column ${classes.rightAsideStyle}`}
@@ -34,11 +38,11 @@ const RightAside = () => {
 					<i className="ki-outline ki-calendar fs-2x"></i>
 				</a>
 				<a
-					href="account/overview.html"
 					className="btn btn-icon btn-color-warning bg-hover-body h-45px w-45px flex-shrink-0"
 					data-bs-toggle="tooltip"
 					title="Profile"
 					data-bs-custom-className="tooltip-inverse"
+					onClick={openModal}
 				>
 					<i className="ki-outline ki-address-book fs-2x"></i>
 				</a>
@@ -62,6 +66,8 @@ const RightAside = () => {
 				</a>
 			</div>
 		</div>
+		<CustomerModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
+		</>
 	);
 };
 
