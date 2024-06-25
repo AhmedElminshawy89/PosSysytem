@@ -25,10 +25,10 @@ const LeftSidebar = ({ isMinimized, isSidebarActive }) => {
         className={`app-sidebar flex-column ${classes.leftSidebarStyle}
           ${isMinimized ? ` app-sidebar-minimize` : ""}
             ${
-                  isSidebarActive
-                    ? "app-sidebar flex-column drawer drawer-start drawer-on"
-                    : ""
-          }`}
+              isSidebarActive
+                ? "app-sidebar flex-column drawer drawer-start drawer-on"
+                : ""
+            }`}
         data-kt-drawer="true"
         data-kt-drawer-name="app-sidebar"
         data-kt-drawer-activate="{default: true, lg: false}"

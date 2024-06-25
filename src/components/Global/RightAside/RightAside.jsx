@@ -1,6 +1,7 @@
 import {useState} from "react";
 import classes from "./RightAside.module.css";
 import CustomerModal from '../../../components/PosComponents/PosOrder/AddCustomer'
+import { Link } from "react-router-dom";
 const RightAside = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const openModal = () => setModalIsOpen(true);
@@ -46,15 +47,15 @@ const RightAside = () => {
 				>
 					<i className="ki-outline ki-address-book fs-2x"></i>
 				</a>
-				<a
-					href="apps/ecommerce/catalog/products.html"
+				<Link 
+					to="/ordermanage/order/orderlist"
 					className="btn btn-icon btn-color-success bg-hover-body h-45px w-45px flex-shrink-0"
 					data-bs-toggle="tooltip"
 					title="Messages"
 					data-bs-custom-className="tooltip-inverse"
 				>
 					<i className="ki-outline ki-tablet-ok fs-2x"></i>
-				</a>
+				</Link>
 				<a
 					href="apps/inbox/listing.html"
 					className="btn btn-icon btn-color-dark bg-hover-body h-45px w-45px flex-shrink-0"

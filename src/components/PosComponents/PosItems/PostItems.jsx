@@ -50,7 +50,7 @@ const PosItems = () => {
     <div className="d-flex flex-row-fluid me-xl-9 mb-10 mb-xl-0 flex-1-5-pos-items">
       <div className="card card-flush card-p-0 bg-transparent border-0 w-full-pos-item-sys">
         <div className="card-body">
-          <ul className="nav nav-pills d-flex nav-pills-custom gap-3 mb-6 scroll-items-pos">
+          <ul className="nav nav-pills d-flex nav-pills-custom gap-3 mb-6 scroll-items-pos form-search-pos-item">
             {PosData.map((item) => (
               <CategoryCard
                 selectedCard={selectedCard}
@@ -68,7 +68,7 @@ const PosItems = () => {
           </ul>
           <form
             data-kt-search-element="form"
-            className="d-none d-lg-block w-100 position-relative mb-5 mb-lg-0"
+            className="d-none d-lg-block w-100 position-relative mb-5 mb-lg-0 form-search-pos-item"
             autoComplete="off"
           >
             <input type="hidden" />

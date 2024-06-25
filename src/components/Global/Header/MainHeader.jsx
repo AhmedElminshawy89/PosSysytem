@@ -61,7 +61,9 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
         >
           <div
             id="kt_app_sidebar_toggle"
-            className="app-sidebar-toggle btn btn-sm btn-icon bg-body btn-color-gray-500 btn-active-color-primary w-30px h-30px ms-n2 me-4 d-none d-lg-flex"
+            className="app-sidebar-toggle
+             btn btn-sm btn-icon bg-body btn-color-gray-500 
+             btn-active-color-primary w-40px h-40px ms-n2 me-4 d-none d-lg-flex"
             data-kt-toggle="true"
             data-kt-toggle-state="active"
             data-kt-toggle-target="body"
@@ -83,7 +85,7 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
             <img
               alt="Logo"
               src={image}
-              className="h-25px theme-light-show"
+              className="h-40px theme-light-show"
             />
             <img
               alt="Logo"
@@ -156,7 +158,8 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
                 />
               </div>
             ) : (
-              <div className="d-flex align-items-center gap-2 gap-lg-3 tabs-pos-system flex-wrap">
+              <div className="d-flex align-items-center gap-2 gap-lg-3 tabs-pos-system flex-wrap
+              special-style-today-order">
                 <p
                   className={`text-nowrap ${
                     activeTab === "newOrder"
@@ -210,7 +213,7 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
                   <p className="count-pos-tabs-sys">0</p>
                 </p>
                 <p
-                  className={`text-nowrap special-style-today-order ${
+                  className={`text-nowrap ${
                     activeTab === "TodayOrder"
                       ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
                       : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"

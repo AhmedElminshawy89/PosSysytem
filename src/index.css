@@ -223,10 +223,12 @@ code {
 }
 
 .app-sidebar-minimize {
-  width: 80px !important;
+  width: 88px !important;
 }
 
-
+.pl-td-pos-order{
+  padding-left: 23px !important;
+}
 @media screen and (max-width: 992px) {
   .app-sidebar-visible {
     display: flex !important;
@@ -246,8 +248,12 @@ code {
   display: block;
 }
 
-.app-sidebar-minimize .menu-title {
-  display: none;
+.app-sidebar-minimize .menu-title,
+.app-sidebar-minimize .menu-arrow{
+  display: none !important;
+}
+.app-sidebar-minimize .menu-icon{
+  padding-bottom: 15px;
 }
 
 .menu-item .menu-link:hover .app-sidebar {
@@ -283,9 +289,10 @@ code {
       margin-bottom: -64px !important;
   }
 }
-@media screen and (max-width:1152px) {
+@media screen and (max-width:1363px) {
   .special-style-today-order{
-    margin-left: 4rem;
+    margin-left: 3.8rem;
+    margin-top: 10px;
   }
 }
 
@@ -344,7 +351,7 @@ code {
 }
 .category-items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   gap: 15px;
   overflow-x: hidden;
 }
@@ -393,13 +400,34 @@ code {
   object-position: center;
   height: 178px;
 }
+.overall-img-pos-card{
+  width: 100% !important;
+  object-fit: cover;
+  object-position: center;
+  height: 178px;
+  max-width: 200px;
+}
 
 .pl-form-group-pos-order{
   padding-left: 20px;
 }
 .max-w-200{
-  max-width: 200px ;
+  max-width: 220px ;
 }
+.portrait-img {
+  width: auto;
+  height: 200px !important;
+}
+
+.two-line-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
 .line-seperate-calc-price-table{
   height: 4px;
   color: #17c653;
@@ -420,10 +448,14 @@ code {
 .width-seperate-calc-price-table{
   width: 104%;
 }
-.width--calc-price-table{
-  width: 30%;
+.width--calc-price-table {
+  min-width: 28% !important;
   border-bottom-right-radius: 16px;
+  margin-right: -28px; 
+  width: auto !important;
+  text-wrap: nowrap !important;
 }
+
 .th-thead-pos-order{
   position: relative;
 }
@@ -516,6 +548,18 @@ code {
     object-position: center;
     height: auto !important;
 }
+
+.MiniProfileMenu_showMiniProfileMenu__Q\+kjZ {
+  z-index: 107;
+  position: fixed;
+  inset: 0 0 auto auto;
+  margin: 0;
+  transform: translate(-3.75px, 246px) !important;
+  -webkit-transform: translate(-3.75px, 246px) !important;
+  -moz-transform: translate(-3.75px, 246px) !important;
+  -ms-transform: translate(-3.75px, 246px) !important;
+  -o-transform: translate(-3.75px, 246px) !important;
+}
 .max-w-200{
   max-width: 100% !important;
 }
@@ -529,4 +573,19 @@ code {
   width: 100%;
   height: 50px;
 }
+}
+.form-search-pos-item{
+  padding: 0 13px !important;
+}
+.required-field-form-order{
+  color: red;
+  font-size: 22px;
+  font-weight: 700;
+}
+.required-field-form-order-modal{
+  font-size: 22px;
+  font-weight: 700;
+}
+.mr--15{
+  margin-left: -15px !important;
 }

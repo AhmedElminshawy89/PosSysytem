@@ -20,96 +20,96 @@ const QuickLinkMenu = ({ isQuickLinkMenuOpen, setIsQuickLinkMenuOpen }) => {
       <table className={classes.quickLinkTable}>
 		<thead>
 			<tr className={classes.row2}>
-				<th >Operations</th>
-				<th>Keyboard Shortcut</th>
-				<th >Operations</th>
-				<th>Keyboard Shortcut</th>
+				<th className="text-center">Operations</th>
+				<th className="text-center">Keyboard Shortcut</th>
+				<th className="text-center">Operations</th>
+				<th className="text-center">Keyboard Shortcut</th>
 			</tr>
 		</thead>
         <tbody>
 		<tr className={classes.row1}>
-                <td>New Order Tab</td>
-                <td>Shift+N</td>
-                <td>On Going Tab</td>
-                <td>Shift+G</td>
+                <td className="text-center">New Order Tab</td>
+                <td className="text-center">Shift+N</td>
+                <td className="text-center">On Going Tab</td>
+                <td className="text-center">Shift+G</td>
             </tr>
             <tr className={classes.row2}>
-                <td>Today Order Tab</td>
-                <td>Shift+T</td>
-                <td>Online Order Tab</td>
-                <td>Shift+O</td>
+                <td className="text-center">Today Order Tab</td>
+                <td className="text-center">Shift+T</td>
+                <td className="text-center">Online Order Tab</td>
+                <td className="text-center">Shift+O</td>
             </tr>
             <tr className={classes.row1}>
-                <td>Place Order</td>
-                <td>Shift+P</td>
-                <td>Quick Order</td>
-                <td>Shift+Q</td>
+                <td className="text-center">Place Order</td>
+                <td className="text-center">Shift+P</td>
+                <td className="text-center">Quick Order</td>
+                <td className="text-center">Shift+Q</td>
             </tr>
             <tr className={classes.row2}>
-                <td>Search Product</td>
-                <td>Shift+S</td>
-                <td>Select Customer</td>
-                <td>Shift+C</td>
+                <td className="text-center">Search Product</td>
+                <td className="text-center">Shift+S</td>
+                <td className="text-center">Select Customer</td>
+                <td className="text-center">Shift+C</td>
             </tr>
             <tr className={classes.row1}>
-                <td>Select Customer Type</td>
-                <td>Shift+Y</td>
-                <td>Edit Discount:</td>
-                <td>Shift+D</td>
+                <td className="text-center">Select Customer Type</td>
+                <td className="text-center">Shift+Y</td>
+                <td className="text-center">Edit Discount:</td>
+                <td className="text-center">Shift+D</td>
             </tr>
             <tr className={classes.row2}>
-                <td>Edit Service Charge</td>
-                <td>Shift+R</td>
-                <td>Select Waiter</td>
-                <td>Shift+W</td>
+                <td className="text-center">Edit Service Charge</td>
+                <td className="text-center">Shift+R</td>
+                <td className="text-center">Select Waiter</td>
+                <td className="text-center">Shift+W</td>
             </tr>
             <tr className={classes.row1}>
-                <td>Select Table</td>
-                <td>Shift+B</td>
-                <td>Cooking Time</td>
-                <td>Alt+K</td>
+                <td className="text-center">Select Table</td>
+                <td className="text-center">Shift+B</td>
+                <td className="text-center">Cooking Time</td>
+                <td className="text-center">Alt+K</td>
             </tr>
             <tr className={classes.row2}>
-                <td>Search Table</td>
-                <td>Alt+T</td>
-                <td>Go Edit</td>
-                <td>Shift+E</td>
+                <td className="text-center">Search Table</td>
+                <td className="text-center">Alt+T</td>
+                <td className="text-center">Go Edit</td>
+                <td className="text-center">Shift+E</td>
             </tr>
             <tr className={classes.row1}>
-                <td>Search Today Order</td>
-                <td>Shift+X</td>
-                <td>Search Online Order</td>
-                <td>Shift+V</td>
+                <td className="text-center">Search Today Order</td>
+                <td className="text-center">Shift+X</td>
+                <td className="text-center">Search Online Order</td>
+                <td className="text-center">Shift+V</td>
             </tr>
             <tr className={classes.row2}>
-                <td>Update Search Product</td>
-                <td>Alt+S</td>
-                <td>Update Select Customer</td>
-                <td>Alt+C</td>
+                <td className="text-center">Update Search Product</td>
+                <td className="text-center">Alt+S</td>
+                <td className="text-center">Update Select Customer</td>
+                <td className="text-center">Alt+C</td>
             </tr>
             <tr className={classes.row1}>
-                <td>Update Select Customer Type</td>
-                <td>Alt+Y</td>
-                <td>Update Discount:</td>
-                <td>Alt+D</td>
+                <td className="text-center">Update Select Customer Type</td>
+                <td className="text-center">Alt+Y</td>
+                <td className="text-center">Update Discount:</td>
+                <td className="text-center">Alt+D</td>
             </tr>
             <tr className={classes.row2}>
-                <td>Update Service Charge:</td>
-                <td>Alt+R</td>
-                <td>Update Select Table</td>
-                <td>Alt+B</td>
+                <td className="text-center">Update Service Charge:</td>
+                <td className="text-center">Alt+R</td>
+                <td className="text-center">Update Select Table</td>
+                <td className="text-center">Alt+B</td>
             </tr>
             <tr className={classes.row1}>
-                <td>Update Submit Form</td>
-                <td>Alt+U</td>
-                <td>Select Payment Type</td>
-                <td>Alt+M</td>
+                <td className="text-center">Update Submit Form</td>
+                <td className="text-center">Alt+U</td>
+                <td className="text-center">Select Payment Type</td>
+                <td className="text-center">Alt+M</td>
             </tr>
             <tr className={classes.row2}>
-                <td>Pay & Print Bill</td>
-                <td>Alt+P</td>
-                <td>Paid Amount Typing</td>
-                <td>Alt+A</td>
+                <td className="text-center">Pay & Print Bill</td>
+                <td className="text-center">Alt+P</td>
+                <td className="text-center">Paid Amount Typing</td>
+                <td className="text-center">Alt+A</td>
             </tr>
         </tbody>
       </table>

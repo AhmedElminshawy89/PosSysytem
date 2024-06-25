@@ -4,23 +4,24 @@ import FormOrder from "./FormOrder";
 import { FaStickyNote } from "react-icons/fa";
 import { CgCalculator } from "react-icons/cg";
 import CalculatorModal from "./CalculatorModal"; // استيراد المودال
+import AddNote from "./AddNote";
 
 const PosOrder = () => {
   const [items, setItems] = useState([
     {
       id: 1,
-      name: "T-Bone Steak",
-      img: "/assets/media/stock/food/img-2.jpg",
-      variant: "1 Person",
-      price: 15.0,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
       quantity: 2,
     },
     {
       id: 2,
-      name: "Whopper Burger",
-      img: "https://fitmencook.com/wp-content/uploads/2023/03/Burger-King-Cheese-Whopper-Burger-Recipe11.jpg.webp",
-      variant: "1 Person",
-      price: 12.0,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
       quantity: 2,
     },
   ]);
@@ -46,21 +47,24 @@ const PosOrder = () => {
       .reduce((acc, item) => acc + item.price * item.quantity, 0)
       .toFixed(2);
   };
+  const [modalPersonIsOpen, setModalPersonIsOpen] = useState(false);
+  const openModalPerson = () => setModalPersonIsOpen(true);
+  const closeModalPerson = () => setModalPersonIsOpen(false);
 
   const subtotal = calculateTotal();
-  const discount = 8.0;
+  const discount = 30.0;
+  const serviceChargeRate = 0.15;
   const taxRate = 0.12;
+  const serviceCharge = (subtotal * serviceChargeRate).toFixed(2);
   const tax = (subtotal * taxRate).toFixed(2);
-  const total = (subtotal - discount + parseFloat(tax)).toFixed(2);
+  const total = (subtotal - discount + parseFloat(serviceCharge) + parseFloat(tax)).toFixed(2);
 
   return (
     <div className="flex-row-auto w-xl-450px pos-order-equal-toolpar flex-1-pos-items">
       <FormOrder />
       <div className="card card-flush bg-body mt-10" id="kt_pos_form">
         <div className="card-header pt-5">
-          <h3 className="card-title fw-bold text-gray-800 fs-2qx">
-            Current Order
-          </h3>
+          <h3 className="card-title fw-bold text-gray-800 fs-2qx">Current Order</h3>
           <div className="card-toolbar">
             <button
               className="btn fs-4 fw-bold py-4"
@@ -73,20 +77,21 @@ const PosOrder = () => {
         </div>
         <div className="card-body pt-0">
           <div className="table-responsive mb-8">
-            <table className="table align-middle gs-0 gy-4 my-0">
+          <table className="table align-middle gs-0 gy-4 my-0">
               <thead>
                 <tr>
                   <th className="w-20px"></th>
-                  <th className="min-w-175px th-thead-pos-order fw-bold fs-3">
+                  <th className="min-w-175px th-thead-pos-order fw-bold fs-3 pl-td-pos-order">
                     Item
                   </th>
-                  <th className="w-60px th-thead-pos-order fw-bold fs-3">
+                  <th className="w-60px th-thead-pos-order fw-bold fs-3 text-center">
                     Price
                   </th>
-                  <th className="w-125px th-thead-pos-order fw-bold fs-3">
+                  <th className="w-125px th-thead-pos-order  text-center fw-bold fs-3">
                     Quantity
                   </th>
-                  <th className="w-60px fw-bold fs-3">Total</th>
+                  <th></th>
+                  <th className="w-60px fw-bold fs-3 text-start ps-0">Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -109,7 +114,7 @@ const PosOrder = () => {
                           <span className="text-hover-primary cursor-pointer">
                             {item.name}
                           </span>
-                          <FaStickyNote className="text-success cursor-pointer ml-1" />{" "}
+                          <FaStickyNote className="text-success cursor-pointer ml-1" onClick={openModalPerson}/>{" "}
                           <br />
                           <span className="fs-6">variant: {item.variant}</span>
                         </span>
@@ -120,13 +125,13 @@ const PosOrder = () => {
                         className="fw-bold text-primary fs-2 d-flex gap-1"
                         data-kt-pos-element="item-total"
                       >
-                        <p style={{ color: "darkgray" }}>L.E</p>
+                        <p style={{ color: "darkgray" }} className="pe-1">LE</p>
                         <p style={{ color: "darkgray" }}>
                           {item.price.toFixed(2)}
                         </p>
                       </span>
                     </td>
-                    <td className="pe-0">
+                    <td className="pe-0 ">
                       <div className="position-relative">
                         <button
                           type="button"
@@ -151,12 +156,19 @@ const PosOrder = () => {
                         </button>
                       </div>
                     </td>
-                    <td className="text-end">
+                    <td className="text-center pe-3">
                       <span
-                        className="fw-bold text-primary fs-2 d-flex gap-1"
+                        className="fw-bold fs-2"
+                        style={{ color: "darkgray" }}
+                      >
+                        LE
+                      </span>
+                    </td>
+                    <td className="text-center">
+                      <span
+                        className="fw-bold text-primary fs-2  mr--15 text-nowrap"
                         data-kt-pos-element="item-total"
                       >
-                        <p style={{ color: "darkgray" }}>L.E</p>
                         {(item.price * item.quantity).toFixed(2)}
                       </span>
                     </td>
@@ -165,64 +177,41 @@ const PosOrder = () => {
               </tbody>
             </table>
           </div>
+          
           <hr className="line-seperate-calc-price-table" />
-          <div className="d-flex flex-stack rounded-3 p-6">
-            <div
-              className="fs-6 fw-bold total-pos-order-calc"
-              style={{ color: "darkgray" }}
-            >
+          <div className="d-flex flex-stack rounded-3">
+            <div className="fs-6 fw-bold total-pos-order-calc" style={{ color: "darkgray" }}>
               <span className="d-block lh-1 mb-2" style={{ fontSize: "18px" }}>
                 Subtotal
               </span>
               <span className="d-block mb-2" style={{ fontSize: "18px" }}>
-                Discounts
+                Discount
               </span>
               <span className="d-block mb-2" style={{ fontSize: "18px" }}>
-                Service Charge(15%)
+                Service Charge (15%)
               </span>
               <span className="d-block mb-9" style={{ fontSize: "18px" }}>
-                Tax Charge(12%)
+                Tax Charge (12%)
               </span>
             </div>
-            <div
-              className="fs-6 fw-bold  text-end"
-              style={{ color: "darkgray" }}
-            >
-              <span
-                className="d-block lh-1 mb-2"
-                data-kt-pos-element="total"
-                style={{ fontSize: "18px" }}
-              >
-                <span>L.E</span>{" "}
-                <span className="text-primary">{subtotal}</span>
+            <div className="fs-2 fw-bold text-end" style={{ color: "darkgray" }}>
+              <span className="d-block lh-1 mb-2" data-kt-pos-element="total" style={{ fontSize: "18px" }}>
+                <span className="fs-2">LE</span> <span className="fs-2 text-primary">{subtotal}</span>
               </span>
-              <span
-                className="d-block mb-2"
-                data-kt-pos-element="discount"
-                style={{ fontSize: "18px" }}
-              >
-                <span>L.E</span>{" "}
-                <span className="text-primary">{discount.toFixed(2)}</span>
+              <span className="d-block mb-2" data-kt-pos-element="discount" style={{ fontSize: "18px" }}>
+                <span className="fs-2">LE</span> <span className="fs-2 text-primary">{discount.toFixed(2)}</span>
               </span>
-              <span
-                className="d-block mb-2"
-                data-kt-pos-element="tax"
-                style={{ fontSize: "18px" }}
-              >
-                <span>L.E</span> <span className="text-primary">{tax}</span>
+              <span className="d-block mb-2" data-kt-pos-element="service-charge" style={{ fontSize: "18px" }}>
+                <span className="fs-2">LE</span> <span className="fs-2 text-primary">{serviceCharge}</span>
               </span>
-              <span
-                className="d-block mb-9"
-                data-kt-pos-element="tax"
-                style={{ fontSize: "18px" }}
-              >
-                <span>L.E</span> <span className="text-primary">{tax}</span>
+              <span className="d-block mb-9" data-kt-pos-element="tax" style={{ fontSize: "18px" }}>
+                <span className="fs-2">LE</span> <span className="fs-2 text-primary">{tax}</span>
               </span>
             </div>
           </div>
-          <div className="d-flex gap-3 width-seperate-calc-price-table">
+          <div className="d-flex gap-3 width-separate-calc-price-table">
             <div className="fs-6 fw-bold text-white total-pos-order-cat bg-success p-4">
-              <span className="d-block fs-2qx lh-1">Grand Total: </span>
+              <span className="d-block fs-2qx lh-1">Grand Total:</span>
             </div>
             <div className="fs-6 fw-bold text-white text-start bg-success p-4 width--calc-price-table">
               <span
@@ -234,7 +223,7 @@ const PosOrder = () => {
             </div>
           </div>
           <div className="mt-5 d-flex gap-3 flex-wrap-btns-pos">
-            <span className=" w-100 d-flex justify-content-end ">
+            <span className="w-100 d-flex justify-content-end">
               <button
                 className="btn btn-primary width-full-btn-mobile"
                 onClick={() => setIsCalculatorOpen(true)}
@@ -242,10 +231,10 @@ const PosOrder = () => {
                 <CgCalculator className="fs-1" />
               </button>
             </span>
-            <button className="btn btn-quick-order-pos  w-100 py-4" style={{textWrap:'nowrap'}}>
+            <button className="btn btn-quick-order-pos w-100 py-4" style={{ textWrap: "nowrap" }}>
               Quick Order
             </button>
-            <button className="btn fs-1 w-87 py-4 btn-place-order-pos"  style={{textWrap:'nowrap'}}>
+            <button className="btn fs-1 w-87 py-4 btn-place-order-pos" style={{ textWrap: "nowrap" }}>
               Place Order
             </button>
           </div>
@@ -254,6 +243,10 @@ const PosOrder = () => {
       <CalculatorModal
         isOpen={isCalculatorOpen}
         onRequestClose={() => setIsCalculatorOpen(false)}
+      />
+            <AddNote
+        closeModal={closeModalPerson}
+        modalIsOpen={modalPersonIsOpen}
       />
     </div>
   );

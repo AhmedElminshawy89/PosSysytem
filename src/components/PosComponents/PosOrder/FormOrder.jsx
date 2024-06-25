@@ -58,7 +58,7 @@ const FormOrder = () => {
         <div className="d-flex flex-column flex-md-row">
           <div className="form-group-form-order">
             <label htmlFor="customerName" className="form-label">
-              Customer Name
+              Customer Name<span className="required-field-form-order">*</span>
             </label>
             <Select
               id="customerName"
@@ -71,7 +71,7 @@ const FormOrder = () => {
           </div>
           <div className="form-group-form-order pl-form-group-pos-order">
             <label htmlFor="customerType" className="form-label">
-              Customer Type
+              Customer Type<span className="required-field-form-order">*</span>
             </label>
             <Select
               id="customerType"
@@ -122,7 +122,7 @@ const FormOrder = () => {
               <div className="d-flex flex-column flex-md-row">
                 <div className="form-group-form-order">
                   <label htmlFor="waiter" className="form-label">
-                    Waiter
+                    Waiter<span className="required-field-form-order">*</span>
                   </label>
                   <Select
                     id="waiter"
@@ -135,7 +135,7 @@ const FormOrder = () => {
                 </div>
                 <div className="form-group-form-order  pl-form-group-pos-order">
                   <label htmlFor="table" className="form-label">
-                    Table
+                    Table<span className="required-field-form-order">*</span>
                   </label>
                   <div className="d-flex gap-4 align-items-center">
                     <p
@@ -161,7 +161,7 @@ const FormOrder = () => {
               <div className="d-flex flex-column flex-md-row">
                 <div className="form-group-form-order">
                   <label htmlFor="waiter" className="form-label">
-                    Waiter
+                    Waiter<span className="required-field-form-order">*</span>
                   </label>
                   <Select
                     id="waiter"
@@ -172,7 +172,7 @@ const FormOrder = () => {
                     className="select-form-order-pos"
                   />
                 </div>
-                <div className="form-group-form-order pl-form-group-pos-order">
+                <div className="form-group-form-order pl-form-group-pos-order mt-3">
                   <label htmlFor="cookingTime" className="form-label">
                     Cooking Time
                   </label>

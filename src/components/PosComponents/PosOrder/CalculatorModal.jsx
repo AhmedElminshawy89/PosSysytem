@@ -17,7 +17,7 @@ const customStyles = {
 };
 
 const CalculatorModal = ({ isOpen, onRequestClose }) => {
-  const [input, setInput] = useState("0");
+  const [input, setInput] = useState("");
 
   const handleButtonClick = (value) => {
     if (value === "=") {
