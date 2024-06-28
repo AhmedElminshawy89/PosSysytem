@@ -5,6 +5,11 @@ import PosItems from "../../components/PosComponents/PosItems/PostItems";
 import PosOrder from "../../components/PosComponents/PosOrder/PosOrder";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import OnGoingOrder from "./Tabs/OnGoingOrder/OnGoingOrder";
+import StationStatus from "./Tabs/StationStatus/StationStatus";
+import QROrder from "./Tabs/QROrder/QROrder";
+import OnlineOrder from "./Tabs/OnlineOrder";
+import TodayOrder from "./TodayOrder";
 
 const Pos = () => {
   const activeTab = useSelector((state) => state.activeTabPos.activeTab);
@@ -28,6 +33,11 @@ const Pos = () => {
                 </>
               )}
             </div>
+            {activeTab === "ongoingOrder" && <OnGoingOrder/>}
+            {activeTab === "StationStatus" && <StationStatus/>}
+            {activeTab === "QROrder" && <QROrder/>}
+            {activeTab === "OnlineOrder" && <OnlineOrder/>}
+            {activeTab === "TodayOrder" && <TodayOrder/>}
           </div>
         </div>
       </div>

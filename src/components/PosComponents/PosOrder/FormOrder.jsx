@@ -4,7 +4,7 @@ import PersonModal from "./PersonModal";
 
 const FormOrder = () => {
   const [customerType, setCustomerType] = useState(null);
-  const [modalPersonIsOpen, setModalPersonIsOpen] = useState(false);
+  const [modalPersonIsOpen2, setModalPersonIsOpen2] = useState(false);
 
   const customerNameOptions = [
     { value: "John Doe", label: "John Doe" },
@@ -49,12 +49,12 @@ const FormOrder = () => {
     setCustomerType(selectedOption);
   };
 
-  const openModalPerson = () => setModalPersonIsOpen(true);
-  const closeModalPerson = () => setModalPersonIsOpen(false);
+  const openModalPerson2 = () => setModalPersonIsOpen2(true);
+  const closeModalPerson2 = () => setModalPersonIsOpen2(false);
 
   return (
     <>
-      <form action="" className="form-order form-border-pos">
+      <div  className="form-order form-border-pos">
         <div className="d-flex flex-column flex-md-row">
           <div className="form-group-form-order">
             <label htmlFor="customerName" className="form-label">
@@ -140,7 +140,7 @@ const FormOrder = () => {
                   <div className="d-flex gap-4 align-items-center">
                     <p
                       className="add-customer-odrer-pos-person"
-                      onClick={openModalPerson}
+                      onClick={openModalPerson2}
                     >
                       Person
                     </p>
@@ -217,10 +217,10 @@ const FormOrder = () => {
             </>
           )}
         </div>
-      </form>
+      </div>
       <PersonModal
-        modalIsOpen={modalPersonIsOpen}
-        closeModal={closeModalPerson}
+        modalIsOpen={modalPersonIsOpen2}
+        closeModal={closeModalPerson2}
       />
     </>
   );

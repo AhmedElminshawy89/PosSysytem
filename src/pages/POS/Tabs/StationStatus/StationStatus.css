@@ -1,0 +1,79 @@
+  
+  .orders {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .order-card-station-status{
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    border-radius: 5px;
+    /* overflow: hidden; */
+        box-shadow: 0 2px 8px 0px #ddd;
+  }
+  
+  .station-status-info {
+    background-color: #e64545; 
+    color: white;
+    position: relative;
+    transition: max-height 0.3s ease;
+    max-height: 100px; 
+  }
+  
+  .header-section {
+    padding: 25px;
+  }
+  .btn-arrow-show-status{
+    width: 35px;
+    background-color: #fff !important;
+    color: #e64545 !important;
+    height: 35px;
+    border-radius: 50%;
+    line-height: 1;
+    position: absolute;
+    bottom: -15px;
+    transform: translate(-50%, 0);
+    left: 50%;
+    box-shadow: 0 2px 8px 0px #ddd;
+
+  }
+  .flex-header-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .expand-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    transition: transform 0.3s ease;
+  }
+  
+  .expand-button:focus {
+    outline: none;
+  }
+  
+  .details-section {
+    background-color: white;
+    color: black;
+    max-height: 0;
+    opacity:0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.1s ease;
+    -webkit-transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.1s ease;
+    -moz-transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.1s ease;
+    -ms-transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.1s ease;
+    -o-transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.1s ease;
+}
+  
+  .details-section.show {
+    padding: 25px;
+    max-height: 130px;
+    opacity:1;
+  }
+  
+  

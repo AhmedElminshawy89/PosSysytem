@@ -16,7 +16,7 @@ const customStyles = {
   },
 };
 const CustomerModal = ({ modalIsOpen, closeModal }) => {
-  const [chooseType, setChooseType] = useState("");
+  const [chooseType, setChooseType] = useState("Apartment");
   const handleType = (text) => {
     setChooseType(text);
   };
@@ -28,16 +28,20 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
       contentLabel="Add Customer Modal"
       ariaHideApp={true}
     >
-      <h2 className="mb-5">Account Details</h2>
+      <h2 className="mb-5">Add Customer</h2>
       <form className="customer-form">
         <div className="form-group">
           <div className="form-row">
             <div className="form-column">
-              <label htmlFor="firstName">First Name *</label>
+              <label htmlFor="firstName">
+                First Name<span className="required-field-form-order">*</span>
+              </label>
               <input type="text" id="firstName" name="firstName" required />
             </div>
             <div className="form-column">
-              <label htmlFor="lastName">Last Name *</label>
+              <label htmlFor="lastName">
+                Last Name<span className="required-field-form-order">*</span>
+              </label>
               <input type="text" id="lastName" name="lastName" required />
             </div>
           </div>
@@ -45,7 +49,10 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
         <div className="form-group">
           <div className="form-row">
             <div className="form-column">
-              <label htmlFor="emailAddress">Email Address *</label>
+              <label htmlFor="emailAddress">
+                Email Address
+                <span className="required-field-form-order">*</span>
+              </label>
               <input
                 type="email"
                 id="emailAddress"
@@ -54,11 +61,13 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
               />
             </div>
             <div className="form-column">
-              <label htmlFor="phone">Phone *</label>
+              <label htmlFor="phone">
+                Phone<span className="required-field-form-order">*</span>
+              </label>
               <input type="tel" id="phone" name="phone" required />
             </div>
-            <div className="form-column">
-              {/* <label htmlFor="phone"></label> */}
+            {/* <div className="form-column">
+              <label htmlFor="phone"></label>
               <input
                 type="tel"
                 id="phone"
@@ -66,11 +75,14 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
                 required
                 className="mt-7"
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="form-group">
-          <label htmlFor="password">Create account password *</label>
+          <label htmlFor="password">
+            Create account password
+            <span className="required-field-form-order">*</span>
+          </label>
           <input type="password" id="password" name="password" required />
         </div>
         <div>
@@ -86,7 +98,7 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
             <div className="form-column">
               <label htmlFor="addressTitle" className="form-label">
                 Address Title
-                <span className="required-field-form-order-modal">*</span>
+                <span className="required-field-form-order">*</span>
               </label>
               <input
                 type="text"
@@ -109,7 +121,7 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
           <div className="form-row">
             <div className="form-column">
               <label htmlFor="state" className="form-label">
-                State<span className="required-field-form-order-modal">*</span>
+                State<span className="required-field-form-order">*</span>
               </label>
               <select id="state" name="state">
                 <option value="giza">Giza</option>
@@ -127,7 +139,7 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
           <div className="form-row">
             <div className="form-column">
               <label className="form-label">
-                Type<span className="required-field-form-order-modal">*</span>
+                Type<span className="required-field-form-order">*</span>
               </label>
               <div className="flex-type-form-modal">
                 <p
@@ -153,7 +165,7 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
             <div className="form-column">
               <label htmlFor="streetName" className="form-label">
                 Street Name
-                <span className="required-field-form-order-modal">*</span>
+                <span className="required-field-form-order">*</span>
               </label>
               <input type="text" id="streetName" name="streetName" required />
             </div>
@@ -164,14 +176,14 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
             <div className="form-column">
               <label className="form-label" htmlFor="building">
                 Building
-                <span className="required-field-form-order-modal">*</span>
+                <span className="required-field-form-order">*</span>
               </label>
               <input type="text" id="building" name="building" />
             </div>
             <div className="form-column">
               <label className="form-label" htmlFor="apartmentNo">
                 Apartment No.
-                <span className="required-field-form-order-modal">*</span>
+                <span className="required-field-form-order">*</span>
               </label>
               <input type="text" id="apartmentNo" name="apartmentNo" />
             </div>
@@ -179,13 +191,13 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
         </div>
       </form>
       <div className="d-flex justify-content-end">
-        <button
+        {/* <button
           type="button"
           onClick={closeModal}
           className="btn-cancel-modal-pos-add-customer  me-8"
         >
           Close
-        </button>
+        </button> */}
         <button
           type="submit"
           onClick={closeModal}

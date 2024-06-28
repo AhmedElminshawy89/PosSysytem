@@ -74,17 +74,17 @@ const LeftSidebar = ({ isMinimized, isSidebarActive }) => {
                   <div className={`menu-sub menu-sub-accordion`}></div>
                 </div>
               </Link>
-              <Menu menuItems={Order_Management} title="Order Management" />
+              <Menu menuItems={Order_Management} title="Order" />
               <Menu menuItems={Reservation} title="Reservation" />
               <Menu
                 menuItems={Purchases_Management}
-                title="Purchases Management"
+                title="Purchases"
               />
               <MenuReports />
               <MenuFoodCategory />
               <Menu
                 menuItems={Production_Management}
-                title="Production Management"
+                title="Production"
               />
             </div>
           </div>

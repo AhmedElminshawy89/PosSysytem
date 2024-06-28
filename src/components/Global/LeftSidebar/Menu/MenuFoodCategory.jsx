@@ -58,7 +58,7 @@ const MenuFoodCategory = () => {
         <span className="menu-icon">
         <FaCube className="fs-2" />
         </span>
-        <span className="menu-title">Food Management</span>
+        <span className="menu-title">Food</span>
         <span className="menu-arrow"></span>
       </span>
       <div

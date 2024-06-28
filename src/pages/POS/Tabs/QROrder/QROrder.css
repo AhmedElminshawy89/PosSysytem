@@ -1,0 +1,116 @@
+/* QROrder.css */
+
+.qr-order-container {
+    font-family: Arial, sans-serif;
+    overflow: auto;
+  }
+  
+  .buttons-container {
+    margin-bottom: 10px;
+  }
+  
+  .btn-QrOrder {
+    margin-right: 5px;
+    padding: 5px 14px;
+    font-size: 14px;
+    border:1px solid #007bff !important;
+    background-color: transparent;
+    color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all ease-in-out .2s;
+    -webkit-transition: all ease-in-out .2s;
+    -moz-transition: all ease-in-out .2s;
+    -ms-transition: all ease-in-out .2s;
+    -o-transition: all ease-in-out .2s;
+}
+  
+  .btn-QrOrder:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .tableQROrder {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+  }
+  
+  .tableQROrder thead th {
+    border-top: 1px solid #ddd;
+    padding: 8px;
+    background-color: #fff;
+    text-align: left;
+  }
+  
+  .tableQROrder tbody td {
+    border-top: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .tableQROrder tfoot td {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 8px;
+    background-color: #fff;
+  }
+  .custom-input-order-qr{
+    border: 1px solid #5555;
+    width: 100%;
+    padding: 5px 14px;
+    border-radius: 4px;
+    font-size: 14px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+  @media screen and (max-width:767px) {
+    .custom-input-order-qr-width{
+        width: 100%;
+      }
+  }
+  .no-data {
+    text-align: center;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .pagination span {
+    margin-right: 10px;
+  }
+  
+  .pagination button {
+    margin-left: 5px;
+  }
+  
+  @media (max-width: 768px) {
+    .tableQROrder {
+      overflow-x: scroll; /* Ensure horizontal scroll on smaller screens */
+    }
+  
+    .tableQROrder td,
+    .tableQROrder th {
+      white-space: nowrap; /* Prevent text wrapping in table cells */
+      min-width: 100px; /* Set a minimum width for cells */
+    }
+  }
+.Column-show-hidden{
+  background-color: #fff;
+    position: absolute;
+    width: 100%;
+    padding: 6px;
+    color: #000;
+    font-size: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0px 5px 4px 2px #eee;
+    z-index: 555555;
+    max-width: 175px;
+}

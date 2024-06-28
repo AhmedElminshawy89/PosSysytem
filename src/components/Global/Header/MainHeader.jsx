@@ -16,7 +16,7 @@ import { setActiveTab } from "../../../redux/PosSlice";
 import { FaRegKeyboard } from "react-icons/fa";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import { AiFillCloseSquare } from "react-icons/ai";
-import image from '../../../data/Img/logo.jpg'
+import image from "../../../data/Img/logo.jpg";
 const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
   const [isQuickLinkMenuOpen, setIsQuickLinkMenuOpen] = useState(false);
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
@@ -38,9 +38,9 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
       element.requestFullscreen();
     } else if (element.mozRequestFullScreen) {
       element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) { 
+    } else if (element.webkitRequestFullscreen) {
       element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) { 
+    } else if (element.msRequestFullscreen) {
       element.msRequestFullscreen();
     }
   };
@@ -81,24 +81,22 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
           >
             <i className="ki-outline ki-abstract-14 fs-2"></i>
           </div>
-          <Link to={'/'} className="app-sidebar-logo">
-            <img
-              alt="Logo"
-              src={image}
-              className="h-40px theme-light-show"
-            />
-            <img
-              alt="Logo"
-              src="/assets/media/logos/demo39-dark.svg"
-              className="h-25px theme-dark-show"
-            />
+          <Link to={"/"} className="app-sidebar-logo">
+            <span className="logo-lg">
+              <img alt="Logo" src={image} className="theme-light-show logo" />
+            </span>
+            {/* <img
+        alt="Logo"
+        src="/assets/media/logos/demo39-dark.svg"
+        className="h-25px theme-dark-show"
+    /> */}
           </Link>
         </div>
         <div
           className="app-navbar flex-grow-1 justify-content-end align-items-center"
           id="kt_app_header_navbar"
         >
-          <div className="app-navbar-item d-flex align-items-center flex-lg-grow-1">
+          <div className="app-navbar-item d-flex align-items-center flex-lg-grow-1 ps-5">
             {!POSPage ? (
               <div
                 id="kt_header_search"
@@ -158,8 +156,10 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
                 />
               </div>
             ) : (
-              <div className="d-flex align-items-center gap-2 gap-lg-3 tabs-pos-system flex-wrap
-              special-style-today-order">
+              <div
+                className="d-flex align-items-center gap-2 gap-lg-3 tabs-pos-system flex-wrap
+              special-style-today-order"
+              >
                 <p
                   className={`text-nowrap ${
                     activeTab === "newOrder"
@@ -232,7 +232,7 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
                 id="kt_drawer_chat_toggle"
                 onClick={handleExitFullScreen}
               >
-                <AiFillCloseSquare className="fs-1"/>
+                <AiFillCloseSquare className="fs-1" />
                 {/* <span className="position-absolute top-0 start-100 translate-middle badge badge-circle badge-danger w-15px h-15px ms-n4 mt-3">
                   5
                 </span> */}
@@ -243,7 +243,7 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
                 className="btn btn-icon btn-custom btn-color-gray-600 btn-active-color-primary w-35px h-35px w-md-40px h-md-40px"
                 onClick={handleFullScreen}
               >
-                <BsArrowsFullscreen className="fs-1"/>
+                <BsArrowsFullscreen className="fs-1" />
               </div>
             </div>
             <div className="app-navbar-item ms-2 ms-lg-6">
@@ -259,7 +259,7 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
                   setIsQuickLinkMenuOpen(false);
                 }}
               >
-                 <FaRegKeyboard className="fs-1"/>
+                <FaRegKeyboard className="fs-1" />
               </div>
               <QuickLinkMenu
                 isQuickLinkMenuOpen={isQuickLinkMenuOpen}

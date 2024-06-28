@@ -5,6 +5,12 @@ import { FaStickyNote } from "react-icons/fa";
 import { CgCalculator } from "react-icons/cg";
 import CalculatorModal from "./CalculatorModal"; // استيراد المودال
 import AddNote from "./AddNote";
+import PersonModal from "./PersonModal";
+import Select from "react-select";
+import Swal from "sweetalert2";
+import { TbWorld } from "react-icons/tb";
+import { toast } from "react-toastify";
+import CookingTimeInput from "./CookingTimeInput";
 
 const PosOrder = () => {
   const [items, setItems] = useState([
@@ -18,6 +24,70 @@ const PosOrder = () => {
     },
     {
       id: 2,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
+      quantity: 2,
+    },
+    {
+      id: 3,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
+      quantity: 2,
+    },
+    {
+      id: 4,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
+      quantity: 2,
+    },
+    {
+      id: 5,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
+      quantity: 2,
+    },
+    {
+      id: 6,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
+      quantity: 2,
+    },
+    {
+      id: 7,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
+      quantity: 2,
+    },
+    {
+      id: 8,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
+      quantity: 2,
+    },
+    {
+      id: 9,
+      name: "Beef Stew (Kabab Halla)",
+      img: "/assets/media/stock/food/img-1.jpg",
+      variant: "1 Piece",
+      price: 150.5,
+      quantity: 2,
+    },
+    {
+      id: 10,
       name: "Beef Stew (Kabab Halla)",
       img: "/assets/media/stock/food/img-1.jpg",
       variant: "1 Piece",
@@ -57,37 +127,395 @@ const PosOrder = () => {
   const taxRate = 0.12;
   const serviceCharge = (subtotal * serviceChargeRate).toFixed(2);
   const tax = (subtotal * taxRate).toFixed(2);
-  const total = (subtotal - discount + parseFloat(serviceCharge) + parseFloat(tax)).toFixed(2);
+  const total = (
+    subtotal -
+    discount +
+    parseFloat(serviceCharge) +
+    parseFloat(tax)
+  ).toFixed(2);
+
+  const [customerType, setCustomerType] = useState(null);
+  const [modalPersonIsOpen2, setModalPersonIsOpen2] = useState(false);
+  const [customerName, setCustomerName] = useState(null);
+  const [waiter, setWaiter] = useState(null);
+  const [table, setTable] = useState(null);
+
+  const [customerNameSelected, setCustomerNameSelected] = useState(false);
+  const [customerTypeSelected, setCustomerTypeSelected] = useState(false);
+  const [waiterSelected, setWaiterSelected] = useState(false);
+  const [tableSelected, setTableSelected] = useState(false);
+
+  const handleCustomerName = (selectedOption) => {
+    setCustomerName(selectedOption);
+    setCustomerNameSelected(false); // Update selected state
+  };
+
+  const handleCustomerTypeChange = (selectedOption) => {
+    setCustomerType(selectedOption);
+    setCustomerTypeSelected(false); // Update selected state
+  };
+
+  const handleWaiter = (selectedOption) => {
+    setWaiter(selectedOption);
+    setWaiterSelected(false); // Update selected state
+  };
+
+  const handleTable = (selectedOption) => {
+    setTable(selectedOption);
+    setTableSelected(false); // Update selected state
+  };
+
+  const customerNameOptions = [
+    { value: "John Doe", label: "John Doe" },
+    { value: "Jane Smith", label: "Jane Smith" },
+  ];
+
+  const serviceChargeTypeOptions = [
+    { value: "None", label: "None" },
+    { value: "Local", label: "Local" },
+    { value: "Tourist", label: "Tourist" },
+  ];
+
+  const customerTypeOptions = [
+    { value: "Dine In", label: "Dine In" },
+    { value: "Online Customer", label: "Online Customer" },
+    { value: "Third Party Platform", label: "Third Party Platform" },
+    { value: "Take Away / Pickup", label: "Take Away / Pickup" },
+    { value: "QR Customer", label: "QR Customer" },
+  ];
+
+  const deliveryCompanyOptions = [
+    { value: "option1", label: "option1" },
+    { value: "option2", label: "option2" },
+  ];
+
+  const thirdPartyOrderOptions = [
+    { value: "option1", label: "option1" },
+    { value: "option2", label: "option2" },
+  ];
+
+  const TableOption = [
+    { value: "1", label: "1" },
+    { value: "2", label: "2" },
+    { value: "3", label: "3" },
+    { value: "G8-B", label: "G8-B" },
+    { value: "4", label: "4" },
+    { value: "G8-A", label: "G8-A" },
+    { value: "G8-C", label: "G8-C" },
+  ];
+
+  // const handleCustomerTypeChange = (selectedOption) => {
+  //   setCustomerType(selectedOption);
+  //   setCustomerType(false)
+  // };
+  // const handleCustomerName = (selectedOption) => {
+  //   setCustomerName(selectedOption);
+  //   setCustomerName(false)
+  // };
+  // const handleWaiter = (selectedOption) => {
+  //   setWaiter(selectedOption);
+  //   setWaiter(false)
+  // };
+  // const handleTable = (selectedOption) => {
+  //   setTable(selectedOption);
+  //   setTable(false)
+  // };
+
+  const openModalPerson2 = () => setModalPersonIsOpen2(true);
+  const closeModalPerson2 = () => setModalPersonIsOpen2(false);
+
+  const handlePlaceOrder = () => {
+    if (!customerType) {
+      Swal.fire({
+        icon: "warning",
+        title: "Order Failed!!!",
+        text: "Order incomplete due to some reason. Please Try Again. Thank You!!",
+      });
+      return;
+    }
+
+    const showError = (message) => {
+      toast.warning(message);
+    };
+
+    if (
+      customerType.value === "Dine In" ||
+      customerType.value === "QR Customer"
+    ) {
+      if (!customerName) {
+        showError("Please Select Customer Name!!!");
+        setCustomerNameSelected(true);
+        return;
+      } else {
+        setCustomerNameSelected(false);
+      }
+      if (!waiter) {
+        showError("Please select a Waiter!");
+        setWaiterSelected(true);
+        return;
+      } else {
+        setWaiterSelected(false);
+      }
+      if (!table) {
+        showError("Please select a Table!");
+        setTableSelected(true);
+        return;
+      } else {
+        setTableSelected(false);
+      }
+    }
+
+    if (
+      customerType.value === "Online Customer" ||
+      customerType.value === "Take Away / Pickup"
+    ) {
+      if (!customerName) {
+        showError("Please Select Customer Name!!!");
+        setCustomerNameSelected(true);
+        return;
+      } else {
+        setCustomerNameSelected(false);
+      }
+      if (!waiter) {
+        showError("Please select a Waiter!");
+        setWaiterSelected(true);
+        return;
+      } else {
+        setWaiterSelected(false);
+      }
+    }
+    if (customerType.value === "Third Party Platform") {
+      if (!customerName) {
+        showError("Please Select Customer Name!!!");
+        setCustomerNameSelected(true);
+        return;
+      } else {
+        setCustomerNameSelected(false);
+      }
+    }
+
+    Swal.fire({
+      icon: "success",
+      title: "Success!",
+      text: "Order placed successfully.",
+    });
+  };
 
   return (
-    <div className="flex-row-auto w-xl-450px pos-order-equal-toolpar flex-1-pos-items">
-      <FormOrder />
+    <div
+      className="flex-row-auto w-xl-450px pos-order-equal-toolpar"
+      style={{ flexBasis: "40%" }}
+    >
+      <div className="form-order form-border-pos">
+        <div className="d-flex flex-column flex-md-row">
+          <div className="form-group-form-order">
+            <label htmlFor="customerName" className="form-label">
+              Customer Name<span className="required-field-form-order">*</span>
+            </label>
+            <Select
+              id="customerName"
+              name="customerName"
+              options={customerNameOptions}
+              isSearchable={true}
+              placeholder={`Select...`}
+              className={`select-form-order-pos ${
+                customerNameSelected ? "border-red-warn" : ""
+              }`}
+              onChange={handleCustomerName}
+            />
+          </div>
+          <div className="form-group-form-order pl-form-group-pos-order">
+            <label htmlFor="customerType" className="form-label">
+              Customer Type<span className="required-field-form-order">*</span>
+            </label>
+            <Select
+              id="customerType"
+              name="customerType"
+              options={customerTypeOptions}
+              isSearchable={true}
+              placeholder={`Select...`}
+              className="select-form-order-pos"
+              onChange={handleCustomerTypeChange}
+            />
+          </div>
+        </div>
+
+        {customerType && (
+          <>
+            {customerType.value === "Third Party Platform" && (
+              <div className="d-flex flex-column flex-md-row">
+                <div className="form-group-form-order">
+                  <label htmlFor="thirdPartyOrderID" className="form-label">
+                    Third-party Order ID
+                  </label>
+                  <Select
+                    id="thirdPartyOrderID"
+                    name="thirdPartyOrderID"
+                    options={thirdPartyOrderOptions}
+                    isSearchable={true}
+                    placeholder={`Select...`}
+                    className="select-form-order-pos"
+                  />
+                </div>
+                <div className="form-group-form-order  pl-form-group-pos-order">
+                  <label htmlFor="deliveryCompany" className="form-label">
+                    Delivery Company
+                  </label>
+                  <Select
+                    id="deliveryCompany"
+                    name="deliveryCompany"
+                    options={deliveryCompanyOptions}
+                    isSearchable={true}
+                    placeholder={`Select...`}
+                    className="select-form-order-pos"
+                  />
+                </div>
+              </div>
+            )}
+            {(customerType.value === "Dine In" ||
+              customerType.value === "QR Customer") && (
+              <div className="d-flex flex-column flex-md-row">
+                <div className="form-group-form-order">
+                  <label htmlFor="waiter" className="form-label">
+                    Waiter<span className="required-field-form-order">*</span>
+                  </label>
+                  <Select
+                    id="waiter"
+                    name="waiter"
+                    options={thirdPartyOrderOptions}
+                    isSearchable={true}
+                    placeholder={`Select...`}
+                    className={`select-form-order-pos ${
+                      waiterSelected ? "border-red-warn" : ""
+                    }`}
+                    onChange={handleWaiter}
+                  />
+                </div>
+                <div className="form-group-form-order  pl-form-group-pos-order">
+                  <label htmlFor="table" className="form-label">
+                    Table<span className="required-field-form-order">*</span>
+                  </label>
+                  <div className="d-flex gap-4 align-items-center">
+                    <p
+                      className="add-customer-odrer-pos-person"
+                      onClick={openModalPerson2}
+                    >
+                      Person
+                    </p>
+                    <Select
+                      id="table"
+                      name="table"
+                      options={TableOption}
+                      isSearchable={true}
+                      placeholder={`Select...`}
+                      className={`select-form-order-pos mb-4 ${
+                        tableSelected ? "border-red-warn" : ""
+                      }`}
+                      onChange={handleTable}
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            {(customerType.value === "Online Customer" ||
+              customerType.value === "Take Away / Pickup") && (
+              <div className="d-flex flex-column flex-md-row">
+                <div className="form-group-form-order">
+                  <label htmlFor="waiter" className="form-label">
+                    Waiter<span className="required-field-form-order">*</span>
+                  </label>
+                  <Select
+                    id="waiter"
+                    name="waiter"
+                    options={thirdPartyOrderOptions}
+                    isSearchable={true}
+                    placeholder={`Select...`}
+                    className={`select-form-order-pos ${
+                      waiterSelected ? "border-red-warn" : ""
+                    }`}
+                    onChange={handleWaiter}
+                  />
+                </div>
+                <div className="form-group-form-order pl-form-group-pos-order mt-3">
+                  <label htmlFor="cookingTime" className="form-label">
+                    Cooking Time
+                  </label>
+                  <CookingTimeInput />
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
+        <div className="d-flex flex-column flex-md-row">
+          <div className="form-group-form-order">
+            <label htmlFor="serviceChargeType" className="form-label">
+              Service Charge Type
+            </label>
+            <Select
+              id="serviceChargeType"
+              name="serviceChargeType"
+              options={serviceChargeTypeOptions}
+              isSearchable={true}
+              placeholder={`Select...`}
+              className="select-form-order-pos"
+            />
+          </div>
+          {customerType && (
+            <>
+              {(customerType.value === "Dine In" ||
+                customerType.value === "QR Customer") && (
+                <div className="form-group-form-order pl-form-group-pos-order">
+                  <label htmlFor="cookingTime" className="form-label">
+                    Cooking Time
+                  </label>
+                  <input
+                    type="time"
+                    className="select-form-order-pos input-form-order"
+                  />
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </div>
       <div className="card card-flush bg-body mt-10" id="kt_pos_form">
         <div className="card-header pt-5">
-          <h3 className="card-title fw-bold text-gray-800 fs-2qx">Current Order</h3>
+          <h3 className="card-title fw-bold text-gray-800 fs-1">
+            Current Order
+          </h3>
           <div className="card-toolbar">
             <button
-              className="btn fs-4 fw-bold py-4"
-              style={{ color: "red" }}
+              className="btn btn-warn fs-4 fw-bold py-3"
+              style={{
+                backgroundColor: "#ffd9d9", // Light red background color
+                fontSize: "1rem", // Font size 1rem
+                color: "red", // Text color red
+                padding: "10px",
+                height: "39px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
               onClick={() => setItems([])}
             >
-              Cancel
+              Cancel Order
             </button>
           </div>
         </div>
         <div className="card-body pt-0">
-          <div className="table-responsive mb-8">
-          <table className="table align-middle gs-0 gy-4 my-0">
+          <div className="table-responsive scrollable-table">
+            <table className="table align-middle gs-0 gy-4 my-0">
               <thead>
                 <tr>
                   <th className="w-20px"></th>
-                  <th className="min-w-175px th-thead-pos-order fw-bold fs-3 pl-td-pos-order">
+                  <th className="min-w-175px th-thead-pos-order fw-bold fs-3">
                     Item
                   </th>
                   <th className="w-60px th-thead-pos-order fw-bold fs-3 text-center">
                     Price
                   </th>
-                  <th className="w-125px th-thead-pos-order  text-center fw-bold fs-3">
+                  <th className="w-125px th-thead-pos-order text-center fw-bold fs-3">
                     Quantity
                   </th>
                   <th></th>
@@ -110,11 +538,14 @@ const PosOrder = () => {
                           className="w-50px h-50px rounded-3 me-3"
                           alt=""
                         />
-                        <span className="fw-bold text-gray-800  fs-3 me-1">
+                        <span className="fw-bold text-gray-800 fs-3 me-1">
                           <span className="text-hover-primary cursor-pointer">
                             {item.name}
                           </span>
-                          <FaStickyNote className="text-success cursor-pointer ml-1" onClick={openModalPerson}/>{" "}
+                          <FaStickyNote
+                            className="text-success cursor-pointer ml-1"
+                            onClick={openModalPerson}
+                          />{" "}
                           <br />
                           <span className="fs-6">variant: {item.variant}</span>
                         </span>
@@ -125,34 +556,42 @@ const PosOrder = () => {
                         className="fw-bold text-primary fs-2 d-flex gap-1"
                         data-kt-pos-element="item-total"
                       >
-                        <p style={{ color: "darkgray" }} className="pe-1">LE</p>
+                        <p style={{ color: "darkgray" }} className="pe-1">
+                          LE
+                        </p>
                         <p style={{ color: "darkgray" }}>
                           {item.price.toFixed(2)}
                         </p>
                       </span>
                     </td>
-                    <td className="pe-0 ">
-                      <div className="position-relative">
+                    <td className="pe-0">
+                      <div className="position-relative d-flex justify-content-center align-items-center flex-column">
                         <button
                           type="button"
-                          className="btn btn-icon btn-sm btn-light btn-icon-gray-500"
+                          className="btn btn-icon btn-sm btn-icon-gray-500 btn-icrease-decrease-order-table"
                           onClick={() => handleQuantityChange(item.id, -1)}
                         >
-                          <i className="ki-outline ki-minus fs-2x"></i>
+                          <i
+                            className="ki-outline ki-minus"
+                            style={{ fontSize: "16px" }}
+                          ></i>
                         </button>
                         <input
                           type="text"
-                          className="form-control border-0 text-center p-0 fs-3 fw-bold text-gray-800 w-30px"
+                          className="form-control border-0 text-center p-0 fs-2 fw-bold text-gray-800 w-30px"
                           placeholder="Amount"
                           value={item.quantity}
                           readOnly
                         />
                         <button
                           type="button"
-                          className="btn btn-icon btn-sm btn-light btn-icon-gray-500"
+                          className="btn btn-icon btn-sm btn-icon-gray-500 btn-icrease-decrease-order-table"
                           onClick={() => handleQuantityChange(item.id, 1)}
                         >
-                          <i className="ki-outline ki-plus fs-2x"></i>
+                          <i
+                            className="ki-outline ki-plus"
+                            style={{ fontSize: "16px" }}
+                          ></i>
                         </button>
                       </div>
                     </td>
@@ -166,7 +605,7 @@ const PosOrder = () => {
                     </td>
                     <td className="text-center">
                       <span
-                        className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                        className="fw-bold text-primary fs-2 mr--15 text-nowrap"
                         data-kt-pos-element="item-total"
                       >
                         {(item.price * item.quantity).toFixed(2)}
@@ -177,10 +616,246 @@ const PosOrder = () => {
               </tbody>
             </table>
           </div>
-          
-          <hr className="line-seperate-calc-price-table" />
-          <div className="d-flex flex-stack rounded-3">
-            <div className="fs-6 fw-bold total-pos-order-calc" style={{ color: "darkgray" }}>
+
+          <div className="table-responsive mb-8 mt--5px">
+            <table className="table align-middle gs-0 gy-4 my-0">
+              <thead>
+                <tr>
+                  <th className="w-20px"></th>
+                  <th className="min-w-175px  fw-bold fs-3"></th>
+                  <th className="w-60px  fw-bold fs-3 text-center"></th>
+                  <th className="w-125px   text-center fw-bold fs-3"></th>
+                  <th></th>
+                  <th className="w-60px fw-bold fs-3 text-start ps-0"></th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr
+                  style={{ backgroundColor: "white" }}
+                  className="line-seperate-calc-price-table"
+                >
+                  <td className="pb-0"></td>
+                  <td className="pe-0 pb-0"></td>
+                  <td className="text-end pb-0">
+                    <span
+                      className="fw-bold text-primary fs-2"
+                      data-kt-pos-element="item-total"
+                    >
+                      <p style={{ color: "darkgray" }}>Subtotal</p>
+                    </span>
+                  </td>
+                  <td className="pe-0 pb-0"></td>
+                  <td className="text-center pb-0 pe-3">
+                    <span
+                      className="fw-bold fs-2"
+                      style={{ color: "darkgray" }}
+                    >
+                      LE
+                    </span>
+                  </td>
+                  <td className="text-center pb-0">
+                    <span
+                      className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                      data-kt-pos-element="item-total"
+                    >
+                      {subtotal}
+                    </span>
+                  </td>
+                </tr>
+                <tr style={{ backgroundColor: "white" }}>
+                  <td className="pb-0 pt-0"></td>
+                  <td className="pe-0 pb-0 pt-0"></td>
+                  <td className="text-end pb-0 pt-0">
+                    <span
+                      className="fw-bold text-primary fs-2"
+                      data-kt-pos-element="item-total"
+                    >
+                      <p style={{ color: "darkgray" }}>Subtotal</p>
+                    </span>
+                  </td>
+                  <td className="pe-0 pb-0 pt-0"></td>
+                  <td className="text-center pb-0 pe-3 pt-0">
+                    <span
+                      className="fw-bold fs-2"
+                      style={{ color: "darkgray" }}
+                    >
+                      LE
+                    </span>
+                  </td>
+                  <td className="text-center pb-0 pt-0">
+                    <span
+                      className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                      data-kt-pos-element="item-total"
+                    >
+                      {subtotal}
+                    </span>
+                  </td>
+                </tr>
+                <tr style={{ backgroundColor: "white" }}>
+                  <td className="pb-0  pt-0"></td>
+                  {/* <td className="pe-0"></td> */}
+                  <td className="text-end pb-0  pt-0" colSpan={"2"}>
+                    <span
+                      className="fw-bold text-primary fs-2"
+                      data-kt-pos-element="item-total"
+                    >
+                      <p style={{ color: "darkgray" }}>Service Charge (15%)</p>
+                    </span>
+                  </td>
+                  <td className="pe-0  pb-0  pt-0"></td>
+                  <td className="text-center pe-3 pb-0  pt-0">
+                    <span
+                      className="fw-bold fs-2"
+                      style={{ color: "darkgray" }}
+                    >
+                      LE
+                    </span>
+                  </td>
+                  <td className="text-center pb-0  pt-0">
+                    <span
+                      className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                      data-kt-pos-element="item-total"
+                    >
+                      {serviceCharge}
+                    </span>
+                  </td>
+                </tr>
+                <tr style={{ backgroundColor: "white" }}>
+                  <td className="pb-0 pt-0"></td>
+                  {/* <td className="pe-0"></td> */}
+                  <td className="text-end pb-0 pt-0" colSpan={"2"}>
+                    <span
+                      className="fw-bold text-primary fs-2"
+                      data-kt-pos-element="item-total"
+                    >
+                      <p style={{ color: "darkgray" }}>Tax Charge (12%)</p>
+                    </span>
+                  </td>
+                  <td className="pe-0 pb-0 pt-0"></td>
+                  <td className="text-center pe-3 pb-0 pt-0">
+                    <span
+                      className="fw-bold fs-2"
+                      style={{ color: "darkgray" }}
+                    >
+                      LE
+                    </span>
+                  </td>
+                  <td className="text-center pb-0  pt-0">
+                    <span
+                      className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                      data-kt-pos-element="item-total"
+                    >
+                      {tax}
+                    </span>
+                  </td>
+                </tr>
+                <tr style={{ backgroundColor: "#17c653" }}>
+                  <td className=" all-total-words-pos-order"></td>
+                  <td className="text-end" colSpan={2}>
+                    <span className="fw-bold text-white d-block fs-2qx lh-1 text-nowrap">
+                      Grand Total:
+                    </span>
+                  </td>
+                  <td className=" all-total-pos-order text-center" colSpan={3}>
+                    <span className="fw-bold text-white d-block fs-2qx lh-1 text-nowrap">
+                      LE {subtotal}
+                    </span>
+                  </td>
+                </tr>
+                <tr style={{ backgroundColor: "#fff" }}>
+                  <td className=" all-total-words-pos-order"></td>
+                  <td className="d-flex justify-content-end">
+                    <p className="btn-quick-order-pos btn-calculator-pos-order"
+                        onClick={() => setIsCalculatorOpen(true)}
+                        >
+                        <CgCalculator className="fs-1" />
+                        </p>
+                  </td>
+                  <td className="text-end max-w-210px pe-1 ps-0" colSpan={1}>
+                    <p className="btn-quick-order-pos " onClick={handlePlaceOrder}>Quick Order</p>
+                  </td>
+                  <td className="text-center pe-0 ps-0" colSpan={3}>
+                    <p className="btn-place-order-pos" onClick={handlePlaceOrder}>Place Order</p>
+                  </td>
+                </tr>
+                {/* <tr>
+                  <td className="text-center" colSpan={6}>
+                    <div className="d-flex justify-content-end gap-3">
+                      <button
+                        className="btn btn-primary width-full-btn-mobile"
+                        type="text"
+                        onClick={() => setIsCalculatorOpen(true)}
+                      >
+                        <CgCalculator className="fs-1" />
+                      </button>
+                      <button
+                        className="btn btn-quick-order-pos w-100 py-4"
+                        style={{ textWrap: "nowrap" }}
+                        onClick={handlePlaceOrder}
+                      >
+                        Quick Order
+                      </button>
+                      <button
+                        className="btn fs-1 w-87 py-4 btn-place-order-pos"
+                        style={{ textWrap: "nowrap" }}
+                      >
+                        Place Order
+                      </button>
+                    </div>
+                  </td>
+                </tr> */}
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+      <CalculatorModal
+        isOpen={isCalculatorOpen}
+        onRequestClose={() => setIsCalculatorOpen(false)}
+      />
+      <AddNote closeModal={closeModalPerson} modalIsOpen={modalPersonIsOpen} />
+      <PersonModal
+        modalIsOpen={modalPersonIsOpen2}
+        closeModal={closeModalPerson2}
+      />
+    </div>
+  );
+};
+
+export default PosOrder;
+{
+  /* <div className="mt-5 d-flex gap-3 flex-wrap-btns-pos">
+<span className="w-100 d-flex justify-content-end">
+  <button
+    className="btn btn-primary width-full-btn-mobile"
+    onClick={() => setIsCalculatorOpen(true)}
+  >
+    <CgCalculator className="fs-1" />
+  </button>
+</span>
+<button
+  className="btn btn-quick-order-pos w-100 py-4"
+  style={{ textWrap: "nowrap" }}
+>
+  Quick Order
+</button>
+<button
+  className="btn fs-1 w-87 py-4 btn-place-order-pos"
+  style={{ textWrap: "nowrap" }}
+>
+  Place Order
+</button>
+</div> */
+}
+{
+  /* <hr className="line-seperate-calc-price-table" /> */
+}
+{
+  /* <div className="d-flex flex-stack rounded-3">
+            <div
+              className="fs-6 fw-bold total-pos-order-calc"
+              style={{ color: "darkgray" }}
+            >
               <span className="d-block lh-1 mb-2" style={{ fontSize: "18px" }}>
                 Subtotal
               </span>
@@ -194,62 +869,203 @@ const PosOrder = () => {
                 Tax Charge (12%)
               </span>
             </div>
-            <div className="fs-2 fw-bold text-end" style={{ color: "darkgray" }}>
-              <span className="d-block lh-1 mb-2" data-kt-pos-element="total" style={{ fontSize: "18px" }}>
-                <span className="fs-2">LE</span> <span className="fs-2 text-primary">{subtotal}</span>
-              </span>
-              <span className="d-block mb-2" data-kt-pos-element="discount" style={{ fontSize: "18px" }}>
-                <span className="fs-2">LE</span> <span className="fs-2 text-primary">{discount.toFixed(2)}</span>
-              </span>
-              <span className="d-block mb-2" data-kt-pos-element="service-charge" style={{ fontSize: "18px" }}>
-                <span className="fs-2">LE</span> <span className="fs-2 text-primary">{serviceCharge}</span>
-              </span>
-              <span className="d-block mb-9" data-kt-pos-element="tax" style={{ fontSize: "18px" }}>
-                <span className="fs-2">LE</span> <span className="fs-2 text-primary">{tax}</span>
-              </span>
-            </div>
-          </div>
-          <div className="d-flex gap-3 width-separate-calc-price-table">
-            <div className="fs-6 fw-bold text-white total-pos-order-cat bg-success p-4">
-              <span className="d-block fs-2qx lh-1">Grand Total:</span>
-            </div>
-            <div className="fs-6 fw-bold text-white text-start bg-success p-4 width--calc-price-table">
+            <div
+              className="fs-2 fw-bold text-end"
+              style={{ color: "darkgray" }}
+            >
               <span
-                className="d-block fs-2qx lh-1"
-                data-kt-pos-element="grant-total"
+                className="d-block lh-1 mb-2"
+                data-kt-pos-element="total"
+                style={{ fontSize: "18px" }}
               >
-                L.E {total}
+                <span className="fs-2">LE</span>{" "}
+                <span className="fs-2 text-primary">{subtotal}</span>
+              </span>
+              <span
+                className="d-block mb-2"
+                data-kt-pos-element="discount"
+                style={{ fontSize: "18px" }}
+              >
+                <span className="fs-2">LE</span>{" "}
+                <span className="fs-2 text-primary">{discount.toFixed(2)}</span>
+              </span>
+              <span
+                className="d-block mb-2"
+                data-kt-pos-element="service-charge"
+                style={{ fontSize: "18px" }}
+              >
+                <span className="fs-2">LE</span>{" "}
+                <span className="fs-2 text-primary">{serviceCharge}</span>
+              </span>
+              <span
+                className="d-block mb-9"
+                data-kt-pos-element="tax"
+                style={{ fontSize: "18px" }}
+              >
+                <span className="fs-2">LE</span>{" "}
+                <span className="fs-2 text-primary">{tax}</span>
               </span>
             </div>
-          </div>
-          <div className="mt-5 d-flex gap-3 flex-wrap-btns-pos">
-            <span className="w-100 d-flex justify-content-end">
-              <button
-                className="btn btn-primary width-full-btn-mobile"
-                onClick={() => setIsCalculatorOpen(true)}
-              >
-                <CgCalculator className="fs-1" />
-              </button>
-            </span>
-            <button className="btn btn-quick-order-pos w-100 py-4" style={{ textWrap: "nowrap" }}>
-              Quick Order
-            </button>
-            <button className="btn fs-1 w-87 py-4 btn-place-order-pos" style={{ textWrap: "nowrap" }}>
-              Place Order
-            </button>
-          </div>
-        </div>
-      </div>
-      <CalculatorModal
-        isOpen={isCalculatorOpen}
-        onRequestClose={() => setIsCalculatorOpen(false)}
-      />
-            <AddNote
-        closeModal={closeModalPerson}
-        modalIsOpen={modalPersonIsOpen}
-      />
-    </div>
-  );
-};
+          </div> */
+}
 
-export default PosOrder;
+// <tfoot>
+// <tr
+//   style={{ backgroundColor: "white" }}
+//   className="line-seperate-calc-price-table"
+// >
+//   <td className="pb-0"></td>
+//   <td className="pe-0 pb-0"></td>
+//   <td className="text-end pb-0">
+//     <span
+//       className="fw-bold text-primary fs-2"
+//       data-kt-pos-element="item-total"
+//     >
+//       <p style={{ color: "darkgray" }}>Subtotal</p>
+//     </span>
+//   </td>
+//   <td className="pe-0 pb-0"></td>
+//   <td className="text-center pb-0 pe-3">
+//     <span
+//       className="fw-bold fs-2"
+//       style={{ color: "darkgray" }}
+//     >
+//       LE
+//     </span>
+//   </td>
+//   <td className="text-center pb-0">
+//     <span
+//       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+//       data-kt-pos-element="item-total"
+//     >
+//       {subtotal}
+//     </span>
+//   </td>
+// </tr>
+// <tr style={{ backgroundColor: "white" }}>
+//   <td className="pb-0 pt-0"></td>
+//   <td className="pe-0 pb-0 pt-0"></td>
+//   <td className="text-end pb-0 pt-0">
+//     <span
+//       className="fw-bold text-primary fs-2"
+//       data-kt-pos-element="item-total"
+//     >
+//       <p style={{ color: "darkgray" }}>Subtotal</p>
+//     </span>
+//   </td>
+//   <td className="pe-0 pb-0 pt-0"></td>
+//   <td className="text-center pb-0 pe-3 pt-0">
+//     <span
+//       className="fw-bold fs-2"
+//       style={{ color: "darkgray" }}
+//     >
+//       LE
+//     </span>
+//   </td>
+//   <td className="text-center pb-0 pt-0">
+//     <span
+//       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+//       data-kt-pos-element="item-total"
+//     >
+//       {subtotal}
+//     </span>
+//   </td>
+// </tr>
+// <tr style={{ backgroundColor: "white" }}>
+//   <td className="pb-0  pt-0"></td>
+//   {/* <td className="pe-0"></td> */}
+//   <td className="text-end pb-0  pt-0" colSpan={"2"}>
+//     <span
+//       className="fw-bold text-primary fs-2"
+//       data-kt-pos-element="item-total"
+//     >
+//       <p style={{ color: "darkgray" }}>Service Charge (15%)</p>
+//     </span>
+//   </td>
+//   <td className="pe-0  pb-0  pt-0"></td>
+//   <td className="text-center pe-3 pb-0  pt-0">
+//     <span
+//       className="fw-bold fs-2"
+//       style={{ color: "darkgray" }}
+//     >
+//       LE
+//     </span>
+//   </td>
+//   <td className="text-center pb-0  pt-0">
+//     <span
+//       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+//       data-kt-pos-element="item-total"
+//     >
+//       {serviceCharge}
+//     </span>
+//   </td>
+// </tr>
+// <tr style={{ backgroundColor: "white" }}>
+//   <td className="pb-0 pt-0"></td>
+//   {/* <td className="pe-0"></td> */}
+//   <td className="text-end pb-0 pt-0" colSpan={"2"}>
+//     <span
+//       className="fw-bold text-primary fs-2"
+//       data-kt-pos-element="item-total"
+//     >
+//       <p style={{ color: "darkgray" }}>Tax Charge (12%)</p>
+//     </span>
+//   </td>
+//   <td className="pe-0 pb-0 pt-0"></td>
+//   <td className="text-center pe-3 pb-0 pt-0">
+//     <span
+//       className="fw-bold fs-2"
+//       style={{ color: "darkgray" }}
+//     >
+//       LE
+//     </span>
+//   </td>
+//   <td className="text-center pb-0  pt-0">
+//     <span
+//       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+//       data-kt-pos-element="item-total"
+//     >
+//       {tax}
+//     </span>
+//   </td>
+// </tr>
+// <tr style={{ backgroundColor: "#17c653" }}>
+//   <td className=" all-total-words-pos-order"></td>
+//   <td className="text-end" colSpan={2}>
+//     <span className="fw-bold text-white d-block fs-2qx lh-1 text-nowrap">
+//       Grand Total:
+//     </span>
+//   </td>
+//   <td className=" all-total-pos-order text-center" colSpan={3}>
+//     <span className="fw-bold text-white d-block fs-2qx lh-1 text-nowrap">
+//       LE {subtotal}
+//     </span>
+//   </td>
+// </tr>
+// <tr>
+//   <td className="text-center" colSpan={6}>
+//     <div className="d-flex justify-content-end gap-3">
+//       <button
+//         className="btn btn-primary width-full-btn-mobile"
+//         type="text"
+//         onClick={() => setIsCalculatorOpen(true)}
+//       >
+//         <CgCalculator className="fs-1" />
+//       </button>
+//       <button
+//         className="btn btn-quick-order-pos w-100 py-4"
+//         style={{ textWrap: "nowrap" }}
+//         onClick={handlePlaceOrder}
+//       >
+//         Quick Order
+//       </button>
+//       <button
+//         className="btn fs-1 w-87 py-4 btn-place-order-pos"
+//         style={{ textWrap: "nowrap" }}
+//       >
+//         Place Order
+//       </button>
+//     </div>
+//   </td>
+// </tr>
+// </tfoot>

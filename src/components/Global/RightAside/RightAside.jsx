@@ -29,7 +29,7 @@ const RightAside = () => {
 				data-kt-scroll-wrappers="#kt_app_aside_wrapper"
 				data-kt-scroll-offset="5px"
 			>
-				<a
+				{/* <a
 					href="apps/calendar.html"
 					className="btn btn-icon btn-color-primary bg-hover-body h-45px w-45px flex-shrink-0"
 					data-bs-toggle="tooltip"
@@ -37,7 +37,7 @@ const RightAside = () => {
 					data-bs-custom-className="tooltip-inverse"
 				>
 					<i className="ki-outline ki-calendar fs-2x"></i>
-				</a>
+				</a> */}
 				<a
 					className="btn btn-icon btn-color-warning bg-hover-body h-45px w-45px flex-shrink-0"
 					data-bs-toggle="tooltip"
@@ -56,7 +56,7 @@ const RightAside = () => {
 				>
 					<i className="ki-outline ki-tablet-ok fs-2x"></i>
 				</Link>
-				<a
+				{/* <a
 					href="apps/inbox/listing.html"
 					className="btn btn-icon btn-color-dark bg-hover-body h-45px w-45px flex-shrink-0"
 					data-bs-toggle="tooltip"
@@ -64,7 +64,7 @@ const RightAside = () => {
 					data-bs-custom-className="tooltip-inverse"
 				>
 					<i className="ki-outline ki-calendar-add fs-2x"></i>
-				</a>
+				</a> */}
 			</div>
 		</div>
 		<CustomerModal modalIsOpen={modalIsOpen} closeModal={closeModal} />

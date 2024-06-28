@@ -11,7 +11,7 @@ const PosToolbar = () => {
       >
         <div className="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
           <div className="page-title d-flex flex-column justify-content-center gap-1 me-3">
-            <h1 className="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
+            <h1 className="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-2 m-0">
               POS System
             </h1>
             <ul className="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
@@ -23,7 +23,7 @@ const PosToolbar = () => {
               <li className="breadcrumb-item">
                 <span className="bullet bg-gray-500 w-5px h-2px"></span>
               </li>
-              <li className="breadcrumb-item text-muted">Dashboards</li>
+              <li className="breadcrumb-item text-muted">POS</li>
             </ul>
           </div>
         </div>

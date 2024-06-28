@@ -4,10 +4,10 @@ const CategoryItemCard = ({ img, title, time, price }) => {
   return (
     <div className="card p-3 max-w-200">
       <div className="card-body text-center">
-        <img src={img} className="rounded-3 mb-4 overall-img-pos-card portrait-img" alt="" />
+        <img src={img} className="rounded-3 mb-3 overall-img-pos-card portrait-img" alt="" />
         <div className="mb-2">
           <div className="text-start">
-            <span className="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-3 fs-xl-1 two-line-title">
+            <span className="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-4 fs-xl-3 two-line-title">
               {title}
             </span>
             {/* <span className="text-gray-500 fw-semibold d-block fs-6 mt-n1">
@@ -16,8 +16,8 @@ const CategoryItemCard = ({ img, title, time, price }) => {
           </div>
         </div>
         <span className="text-success text-end fw-bold fs-1 d-flex align-items-center justify-content-center gap-2">
-          <p style={{ color: 'darkgray' }}>LE</p>
-          <p>{price}</p>
+        <p style={{ color: 'darkgray', margin: 0 }}>LE</p>
+          <p style={{ margin: 0 }}>{price}</p>
         </span>
       </div>
     </div>

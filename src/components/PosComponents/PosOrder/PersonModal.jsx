@@ -10,7 +10,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     width: "80%",
-    maxWidth: "900px",
+    // maxWidth: "1000px",
     maxHeight: "100vh",
     overflowY: "auto",
   },
@@ -35,7 +35,7 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
         <ul className="nav nav-tabs">
           <li className="nav-item">
             <button
-              className={`nav-link ${
+              className={`nav-link fs-2 ${
                 selectedTab === "groundFloor" ? "active" : ""
               }`}
               onClick={() => handleTabChange("groundFloor")}
@@ -45,7 +45,7 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
           </li>
           <li className="nav-item">
             <button
-              className={`nav-link ${
+              className={`nav-link fs-2 ${
                 selectedTab === "vipFloor" ? "active" : ""
               }`}
               onClick={() => handleTabChange("vipFloor")}
@@ -55,7 +55,7 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
           </li>
           <li className="nav-item">
             <button
-              className={`nav-link ${
+              className={`nav-link fs-2 ${
                 selectedTab === "secondFloor" ? "active" : ""
               }`}
               onClick={() => handleTabChange("secondFloor")}
@@ -67,31 +67,31 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
       </div>
       {selectedTab === "groundFloor" && (
         <form>
-          <div className="d-flex gap-8 flex-wrap align-items-center justify-content-center">
+          <div className="grid-person-modal">
             <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
-                  <div className="d-flex gap-4 align-items-center">
+                  <div className="d-flex gap-4 align-items-center mb-1">
                     <input type="checkbox" id="selectTable" />
                     <label
                       htmlFor="selectTable"
-                      className="select-modal-pos-table"
+                      className="select-modal-pos-table fs-3"
                     >
                       Select This Table
                     </label>
                   </div>
                   <div className="mr-25">
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Table</p>
-                      <p>1</p>
+                      <p className="fs-3">Table</p>
+                      <p className="fs-3">1</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Seat</p>
-                      <p>2</p>
+                      <p className="fs-3">Seat</p>
+                      <p className="fs-3">2</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Available</p>
-                      <p>2</p>
+                      <p className="fs-3">Available</p>
+                      <p className="fs-3">2</p>
                     </div>
                   </div>
                 </div>
@@ -102,14 +102,14 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
               <div className="table">
                 <table className="table-order">
                   <thead>
-                    <th>Order</th>
-                    <th>Time</th>
-                    <th>Person</th>
-                    <th className="pr-14">Action</th>
+                    <th className="text-center fs-3 fw-bold">Order</th>
+                    <th className="text-center fs-3 fw-bold">Time</th>
+                    <th className="text-center fs-3 fw-bold">Person</th>
+                    <th className="text-center fs-3 fw-bold">Action</th>
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" class="no-customer">
+                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
                         No Customer
                       </td>
                     </tr>{" "}
@@ -117,34 +117,34 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" />{" "}
-                <p className="add-customer-odrer-pos person-model-plus">+</p>
+                <input type="number" placeholder="Person" className="fs-2"/>{" "}
+                <p className="btn btn-primary py-2 mt-3">+</p>
               </div>
             </div>
             <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
-                  <div className="d-flex gap-4 align-items-center">
+                  <div className="d-flex gap-4 align-items-center mb-1">
                     <input type="checkbox" id="selectTable" />
                     <label
                       htmlFor="selectTable"
-                      className="select-modal-pos-table"
+                      className="select-modal-pos-table fs-3"
                     >
                       Select This Table
                     </label>
                   </div>
                   <div className="mr-25">
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Table</p>
-                      <p>1</p>
+                      <p className="fs-3">Table</p>
+                      <p className="fs-3">1</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Seat</p>
-                      <p>2</p>
+                      <p className="fs-3">Seat</p>
+                      <p className="fs-3">2</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Available</p>
-                      <p>2</p>
+                      <p className="fs-3">Available</p>
+                      <p className="fs-3">2</p>
                     </div>
                   </div>
                 </div>
@@ -155,14 +155,14 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
               <div className="table">
                 <table className="table-order">
                   <thead>
-                    <th>Order</th>
-                    <th>Time</th>
-                    <th>Person</th>
-                    <th className="pr-14">Action</th>
+                    <th className="text-center fs-3 fw-bold">Order</th>
+                    <th className="text-center fs-3 fw-bold">Time</th>
+                    <th className="text-center fs-3 fw-bold">Person</th>
+                    <th className="text-center fs-3 fw-bold">Action</th>
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" class="no-customer">
+                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
                         No Customer
                       </td>
                     </tr>{" "}
@@ -170,34 +170,33 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" />{" "}
-                <p className="add-customer-odrer-pos person-model-plus">+</p>
+                <input type="number" placeholder="Person" className="fs-2"/>{" "}
+                <p className="btn btn-primary py-2 mt-3">+</p>
               </div>
-            </div>
-            <div>
+            </div>            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
-                  <div className="d-flex gap-4 align-items-center">
+                  <div className="d-flex gap-4 align-items-center mb-1">
                     <input type="checkbox" id="selectTable" />
                     <label
                       htmlFor="selectTable"
-                      className="select-modal-pos-table"
+                      className="select-modal-pos-table fs-3"
                     >
                       Select This Table
                     </label>
                   </div>
                   <div className="mr-25">
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Table</p>
-                      <p>1</p>
+                      <p className="fs-3">Table</p>
+                      <p className="fs-3">1</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Seat</p>
-                      <p>2</p>
+                      <p className="fs-3">Seat</p>
+                      <p className="fs-3">2</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Available</p>
-                      <p>2</p>
+                      <p className="fs-3">Available</p>
+                      <p className="fs-3">2</p>
                     </div>
                   </div>
                 </div>
@@ -208,14 +207,14 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
               <div className="table">
                 <table className="table-order">
                   <thead>
-                    <th>Order</th>
-                    <th>Time</th>
-                    <th>Person</th>
-                    <th className="pr-14">Action</th>
+                    <th className="text-center fs-3 fw-bold">Order</th>
+                    <th className="text-center fs-3 fw-bold">Time</th>
+                    <th className="text-center fs-3 fw-bold">Person</th>
+                    <th className="text-center fs-3 fw-bold">Action</th>
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" class="no-customer">
+                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
                         No Customer
                       </td>
                     </tr>{" "}
@@ -223,34 +222,33 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" />{" "}
-                <p className="add-customer-odrer-pos person-model-plus">+</p>
+                <input type="number" placeholder="Person" className="fs-2"/>{" "}
+                <p className="btn btn-primary py-2 mt-3">+</p>
               </div>
-            </div>
-            <div>
+            </div>            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
-                  <div className="d-flex gap-4 align-items-center">
+                  <div className="d-flex gap-4 align-items-center mb-1">
                     <input type="checkbox" id="selectTable" />
                     <label
                       htmlFor="selectTable"
-                      className="select-modal-pos-table"
+                      className="select-modal-pos-table fs-3"
                     >
                       Select This Table
                     </label>
                   </div>
                   <div className="mr-25">
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Table</p>
-                      <p>1</p>
+                      <p className="fs-3">Table</p>
+                      <p className="fs-3">1</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Seat</p>
-                      <p>2</p>
+                      <p className="fs-3">Seat</p>
+                      <p className="fs-3">2</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Available</p>
-                      <p>2</p>
+                      <p className="fs-3">Available</p>
+                      <p className="fs-3">2</p>
                     </div>
                   </div>
                 </div>
@@ -261,14 +259,14 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
               <div className="table">
                 <table className="table-order">
                   <thead>
-                    <th>Order</th>
-                    <th>Time</th>
-                    <th>Person</th>
-                    <th className="pr-14">Action</th>
+                    <th className="text-center fs-3 fw-bold">Order</th>
+                    <th className="text-center fs-3 fw-bold">Time</th>
+                    <th className="text-center fs-3 fw-bold">Person</th>
+                    <th className="text-center fs-3 fw-bold">Action</th>
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" class="no-customer">
+                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
                         No Customer
                       </td>
                     </tr>{" "}
@@ -276,18 +274,70 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" />{" "}
-                <p className="add-customer-odrer-pos person-model-plus">+</p>
+                <input type="number" placeholder="Person" className="fs-2"/>{" "}
+                <p className="btn btn-primary py-2 mt-3">+</p>
+              </div>
+            </div>            <div>
+              <div className="mb-5 d-flex align-items-center justify-content-between">
+                <div>
+                  <div className="d-flex gap-4 align-items-center mb-1">
+                    <input type="checkbox" id="selectTable" />
+                    <label
+                      htmlFor="selectTable"
+                      className="select-modal-pos-table fs-3"
+                    >
+                      Select This Table
+                    </label>
+                  </div>
+                  <div className="mr-25">
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p className="fs-3">Table</p>
+                      <p className="fs-3">1</p>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p className="fs-3">Seat</p>
+                      <p className="fs-3">2</p>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
+                      <p className="fs-3">Available</p>
+                      <p className="fs-3">2</p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <img src={img} alt="" />
+                </div>
+              </div>
+              <div className="table">
+                <table className="table-order">
+                  <thead>
+                    <th className="text-center fs-3 fw-bold">Order</th>
+                    <th className="text-center fs-3 fw-bold">Time</th>
+                    <th className="text-center fs-3 fw-bold">Person</th>
+                    <th className="text-center fs-3 fw-bold">Action</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                        No Customer
+                      </td>
+                    </tr>{" "}
+                  </tbody>
+                </table>
+              </div>
+              <div className="d-flex gap-2 align-items-center">
+                <input type="number" placeholder="Person" className="fs-2"/>{" "}
+                <p className="btn btn-primary py-2 mt-3">+</p>
               </div>
             </div>
           </div>
-          <button
+          {/* <button
             type="button"
             onClick={closeModal}
             className="btn btn-flex btn-outline btn-color-gray-700 mr-15 btn-active-color-primary bg-body mt-10 h-40px fs-7 fw-bold"
           >
             Close
-          </button>
+          </button> */}
           <button
             type="submit"
             onClick={closeModal}
@@ -299,13 +349,13 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
       )}
       {selectedTab === "vipFloor" && (
         <form>
-          <button
+          {/* <button
             type="button"
             onClick={closeModal}
             className="btn btn-flex btn-outline btn-color-gray-700 mr-15 btn-active-color-primary bg-body mt-10 h-40px fs-7 fw-bold"
           >
             Close
-          </button>
+          </button> */}
           <button
             type="submit"
             onClick={closeModal}
@@ -317,31 +367,31 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
       )}
       {selectedTab === "secondFloor" && (
         <form>
-          <div className="d-flex gap-8 flex-wrap align-items-center justify-content-center">
-            <div>
+          <div className="grid-person-modal">
+          <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
-                  <div className="d-flex gap-4 align-items-center">
+                  <div className="d-flex gap-4 align-items-center mb-1">
                     <input type="checkbox" id="selectTable" />
                     <label
                       htmlFor="selectTable"
-                      className="select-modal-pos-table"
+                      className="select-modal-pos-table fs-3"
                     >
                       Select This Table
                     </label>
                   </div>
                   <div className="mr-25">
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Table</p>
-                      <p>1</p>
+                      <p className="fs-3">Table</p>
+                      <p className="fs-3">1</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Seat</p>
-                      <p>2</p>
+                      <p className="fs-3">Seat</p>
+                      <p className="fs-3">2</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Available</p>
-                      <p>2</p>
+                      <p className="fs-3">Available</p>
+                      <p className="fs-3">2</p>
                     </div>
                   </div>
                 </div>
@@ -352,14 +402,14 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
               <div className="table">
                 <table className="table-order">
                   <thead>
-                    <th>Order</th>
-                    <th>Time</th>
-                    <th>Person</th>
-                    <th className="pr-14">Action</th>
+                    <th className="text-center fs-3 fw-bold">Order</th>
+                    <th className="text-center fs-3 fw-bold">Time</th>
+                    <th className="text-center fs-3 fw-bold">Person</th>
+                    <th className="text-center fs-3 fw-bold">Action</th>
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" class="no-customer">
+                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
                         No Customer
                       </td>
                     </tr>{" "}
@@ -367,34 +417,33 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" />{" "}
-                <p className="add-customer-odrer-pos person-model-plus">+</p>
+                <input type="number" placeholder="Person" className="fs-2"/>{" "}
+                <p className="btn btn-primary py-2 mt-3">+</p>
               </div>
-            </div>
-            <div>
+            </div>            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
-                  <div className="d-flex gap-4 align-items-center">
+                  <div className="d-flex gap-4 align-items-center mb-1">
                     <input type="checkbox" id="selectTable" />
                     <label
                       htmlFor="selectTable"
-                      className="select-modal-pos-table"
+                      className="select-modal-pos-table fs-3"
                     >
                       Select This Table
                     </label>
                   </div>
                   <div className="mr-25">
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Table</p>
-                      <p>1</p>
+                      <p className="fs-3">Table</p>
+                      <p className="fs-3">1</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Seat</p>
-                      <p>2</p>
+                      <p className="fs-3">Seat</p>
+                      <p className="fs-3">2</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Available</p>
-                      <p>2</p>
+                      <p className="fs-3">Available</p>
+                      <p className="fs-3">2</p>
                     </div>
                   </div>
                 </div>
@@ -405,14 +454,14 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
               <div className="table">
                 <table className="table-order">
                   <thead>
-                    <th>Order</th>
-                    <th>Time</th>
-                    <th>Person</th>
-                    <th className="pr-14">Action</th>
+                    <th className="text-center fs-3 fw-bold">Order</th>
+                    <th className="text-center fs-3 fw-bold">Time</th>
+                    <th className="text-center fs-3 fw-bold">Person</th>
+                    <th className="text-center fs-3 fw-bold">Action</th>
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" class="no-customer">
+                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
                         No Customer
                       </td>
                     </tr>{" "}
@@ -420,34 +469,33 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" />{" "}
-                <p className="add-customer-odrer-pos person-model-plus">+</p>
+                <input type="number" placeholder="Person" className="fs-2"/>{" "}
+                <p className="btn btn-primary py-2 mt-3">+</p>
               </div>
-            </div>
-            <div>
+            </div>            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
-                  <div className="d-flex gap-4 align-items-center">
+                  <div className="d-flex gap-4 align-items-center mb-1">
                     <input type="checkbox" id="selectTable" />
                     <label
                       htmlFor="selectTable"
-                      className="select-modal-pos-table"
+                      className="select-modal-pos-table fs-3"
                     >
                       Select This Table
                     </label>
                   </div>
                   <div className="mr-25">
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Table</p>
-                      <p>1</p>
+                      <p className="fs-3">Table</p>
+                      <p className="fs-3">1</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Seat</p>
-                      <p>2</p>
+                      <p className="fs-3">Seat</p>
+                      <p className="fs-3">2</p>
                     </div>
                     <div className="d-flex align-items-center justify-content-between mr-25 style-datails-table-modal">
-                      <p>Available</p>
-                      <p>2</p>
+                      <p className="fs-3">Available</p>
+                      <p className="fs-3">2</p>
                     </div>
                   </div>
                 </div>
@@ -458,14 +506,14 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
               <div className="table">
                 <table className="table-order">
                   <thead>
-                    <th>Order</th>
-                    <th>Time</th>
-                    <th>Person</th>
-                    <th className="pr-14">Action</th>
+                    <th className="text-center fs-3 fw-bold">Order</th>
+                    <th className="text-center fs-3 fw-bold">Time</th>
+                    <th className="text-center fs-3 fw-bold">Person</th>
+                    <th className="text-center fs-3 fw-bold">Action</th>
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" class="no-customer">
+                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
                         No Customer
                       </td>
                     </tr>{" "}
@@ -473,18 +521,18 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" />{" "}
-                <p className="add-customer-odrer-pos person-model-plus">+</p>
+                <input type="number" placeholder="Person" className="fs-2"/>{" "}
+                <p className="btn btn-primary py-2 mt-3">+</p>
               </div>
             </div>
           </div>
-          <button
+          {/* <button
             type="button"
             onClick={closeModal}
             className="btn btn-flex btn-outline btn-color-gray-700 mr-15 btn-active-color-primary bg-body mt-10 h-40px fs-7 fw-bold"
           >
             Close
-          </button>
+          </button> */}
           <button
             type="submit"
             onClick={closeModal}

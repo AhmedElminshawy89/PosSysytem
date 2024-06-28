@@ -1,0 +1,75 @@
+.header {
+    /* display: flex;
+    align-items: center;
+    gap: 10px; */
+    margin-bottom: 20px;
+  }
+  
+  .order-select,
+  .table-select {
+    width: 200px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .orders {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .order-card {
+    /* display: flex;
+    align-items: center; */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    gap: 10px;
+    background-color: #f9f9f9;
+    max-width: 300px;
+    width: 100%;
+  }
+  @media screen and (max-width:767px) {
+    .order-card {
+        max-width: 100%;
+      }
+      .width-full-btns-going{
+        width: 100%;
+      }
+  }
+  
+  .order-info p {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .action-checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .action-button {
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    background-color: #1b84ff;
+    color: #fff !important;
+  }
+  .btn-order-delete-ondoing{
+    background-color: #E5343D;
+  }
+.width-fit-content{
+    width: fit-content !important;
+    background-color: #1b84ff !important;
+    color: #fff !important;
+}

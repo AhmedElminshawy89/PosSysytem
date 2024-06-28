@@ -7,7 +7,7 @@ const PosItems = () => {
   const [selectedCard, setSelectedCard] = useState("Lunch");
   const [selectedCategoryItems, setSelectedCategoryItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [dataAvailable, setDataAvailable] = useState(true); // State to track if data is available
+  const [dataAvailable, setDataAvailable] = useState(true);
 
   useEffect(() => {
     const initialSelectedCategoryItems = PosData.filter(
@@ -47,8 +47,8 @@ const PosItems = () => {
   }, [searchTerm, selectedCard]);
 
   return (
-    <div className="d-flex flex-row-fluid me-xl-9 mb-10 mb-xl-0 flex-1-5-pos-items">
-      <div className="card card-flush card-p-0 bg-transparent border-0 w-full-pos-item-sys">
+    <div className="d-flex flex-row-fluid me-xl-9 mb-10 mb-xl-0" style={{flexBasis:'60%'}}>
+      <div className="card card-flush card-p-0 bg-transparent border- w-full-pos-item-sys pt-5">
         <div className="card-body">
           <ul className="nav nav-pills d-flex nav-pills-custom gap-3 mb-6 scroll-items-pos form-search-pos-item">
             {PosData.map((item) => (

@@ -20,12 +20,12 @@ const Menu = ({ title, menuItems, NestedMenu, NestedTitle }) => {
         }}
       >
         <span className="menu-icon">
-          {title === "Order Management" && <FaFirstOrder className="fs-2" />}
+          {title === "Order" && <FaFirstOrder className="fs-2" />}
           {title === "Reservation" && <FaTags className="fs-2" />}
-          {title === "Purchases Management" && (
+          {title === "Purchases" && (
             <IoCartOutline className="fs-2" />
           )}
-          {title === "Production Management" && <FaProductHunt className="fs-2" />}
+          {title === "Production" && <FaProductHunt className="fs-2" />}
         </span>
         <span className="menu-title">{title}</span>
         <span className="menu-arrow"></span>

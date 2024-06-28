@@ -1,5 +1,4 @@
 import Modal from "react-modal";
-import "./CustomerModal.css";
 
 const customStyles = {
   content: {
@@ -13,7 +12,7 @@ const customStyles = {
     maxWidth: "600px",
   },
 };
-const AddNote = ({ modalIsOpen, closeModal }) => {
+const CancelOrder = ({ modalIsOpen, closeModal }) => {
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -22,10 +21,14 @@ const AddNote = ({ modalIsOpen, closeModal }) => {
       contentLabel="Add Customer Modal"
       ariaHideApp={true}
     >
-      <h2 className="mb-5 text-center">Food Note</h2>
+      <h2 className="mb-5 text-center">Cancel Order</h2>
       <form className="customer-form">
-        <div className="form-group">
-              <label htmlFor="firstName">Food Note</label>
+      <div className="form-group mt-5 mb-0 d-flex align-items-center gap-4">
+              <label htmlFor="firstName" className="form-label">Order ID</label>
+              <span className="form-label">12</span>
+        </div>
+        <div className="form-group mt-0">
+              <label htmlFor="firstName" className="form-label">Cancel Reason</label>
               <textarea type="text" id="FoodNote" name="FoodNote" required rows={4}/>
         </div>
       </form>
@@ -42,11 +45,11 @@ const AddNote = ({ modalIsOpen, closeModal }) => {
           onClick={closeModal}
           className="btn-form-pos-add-customer"
         >
-          Update Note
+          Submit
         </button>
       </div>
     </Modal>
   );
 };
 
-export default AddNote;
+export default CancelOrder;
