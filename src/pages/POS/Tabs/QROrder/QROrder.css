@@ -114,3 +114,29 @@
     z-index: 555555;
     max-width: 175px;
 }
+.action-icons{
+  display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.action-icon{
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.delete-qr,.accept{
+  background-color: rgb(255, 217, 217);
+  color: red;
+}
+.edit,.print,.view{
+  background-color:#007bff;  color: #fff;
+}
+
+.border-billing{
+  border: 1px solid #007bff;
+  color: #007bff;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 14px;
+}

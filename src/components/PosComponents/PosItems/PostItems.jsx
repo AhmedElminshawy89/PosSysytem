@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { PosData } from "../../../data/Pos-data/posData";
 import CategoryCard from "./CategoryCard/CategoryCard";
 import CategoryItemsContainer from "./CategoryItemsContainer/CategoryItemsContainer";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const PosItems = () => {
   const [selectedCard, setSelectedCard] = useState("Lunch");
   const [selectedCategoryItems, setSelectedCategoryItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [dataAvailable, setDataAvailable] = useState(true);
+
+  const searchInputRef = useRef(null); // إنشاء مرجع لحقل البحث
 
   useEffect(() => {
     const initialSelectedCategoryItems = PosData.filter(
@@ -46,8 +49,14 @@ const PosItems = () => {
     }
   }, [searchTerm, selectedCard]);
 
+  useHotkeys("shift+s", () => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  });
+
   return (
-    <div className="d-flex flex-row-fluid me-xl-9 mb-10 mb-xl-0" style={{flexBasis:'60%'}}>
+    <div className="d-flex flex-row-fluid me-xl-9 mb-10 mb-xl-0" style={{ flexBasis: '60%' }}>
       <div className="card card-flush card-p-0 bg-transparent border- w-full-pos-item-sys pt-5">
         <div className="card-body">
           <ul className="nav nav-pills d-flex nav-pills-custom gap-3 mb-6 scroll-items-pos form-search-pos-item">
@@ -58,11 +67,7 @@ const PosItems = () => {
                 img={item.cardData.img}
                 numOfOptions={item.cardData.numOfOptions}
                 title={item.cardData.title}
-                key={
-                  item.cardData.img +
-                  item.cardData.title +
-                  item.cardData.numOfOptions
-                }
+                key={item.cardData.img + item.cardData.title + item.cardData.numOfOptions}
               />
             ))}
           </ul>
@@ -81,6 +86,7 @@ const PosItems = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search..."
               data-kt-search-element="input"
+              ref={searchInputRef} // تعيين المرجع لحقل البحث
             />
             <span
               className="search-spinner position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5"

@@ -54,7 +54,8 @@ const OnGoingOrder = () => {
     const location = "Egypt";
     const date = new Date().toLocaleDateString();
     const items = [
-      { name: "طبق مورج - Chicken Butter", desc: "Fried", quantity: "1 Person", price: "LE 230" },
+      { name: "1 Chicken Butter", desc: "Fried", quantity: "1 Person", price: "2000 x 1" },
+      { name: "1 Piece", desc: "Fried", quantity: "1 Person", price: "LE 2" },
     ];
     const subtotal = "LE 230";
     const vat = "LE 32.2";
@@ -76,24 +77,21 @@ const OnGoingOrder = () => {
       unit: "mm",
       format: "a4",
     });
-
-    // Set font size and styles
+    doc.addFileToVFS("Amiri-Regular.ttf", "Amiri-Regular.ttf");
+    doc.addFont("Amiri-Regular.ttf", "Amiri", "normal");
+    doc.setFont("Amiri");
     doc.setFontSize(12);
 
-    // Header section
     doc.setFont("helvetica", "bold");
     doc.text(restaurantName, 110, 20, { align: "center" });
     doc.text(location, 105, 30, { align: "center" });
 
-    // Date section
     doc.setFont("helvetica", "normal");
     doc.text(`Date: ${date}`, 15, 40, { align: "left" });
 
-    // Line separator
     doc.setLineWidth(0.5);
     doc.line(10, 45, 200, 45);
 
-    // Invoice items table
     const columns = ["Item", "", "", "Total"];
     const rows = items.map(item => [
       item.name,
@@ -114,8 +112,6 @@ const OnGoingOrder = () => {
         3: { fontStyle: "normal", align: "right" }
       }
     });
-
-    // Total section
 
     let currentY = doc.autoTable.previous.finalY + 10;
     doc.setFont("helvetica", "bold");
@@ -156,12 +152,10 @@ const OnGoingOrder = () => {
     doc.text(`Total payment:`, 15, currentY);
     doc.text(totalPayment, 158, currentY);
 
-    // Billing information section
     currentY += 20;
     doc.text(`Billing To: ${billingTo}`, 15, currentY);
     doc.text(`Bill By: ${billBy}`, 158, currentY);
 
-    // Footer section
     currentY += 10;
     doc.text(`${table}`, 158, currentY);
     currentY += 7;

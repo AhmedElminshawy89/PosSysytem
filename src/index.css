@@ -354,7 +354,12 @@ code {
     margin-top: 8px;
   }
   .app-main{
-    margin-top: 100px;
+    margin-top: 40px;
+  }
+}
+@media screen and (max-width:1216px) {
+  .app-main{
+    margin-top: 100px !important;
   }
 }
 @media screen and (max-width:992px) {
@@ -834,6 +839,10 @@ code {
 }
 .swal2-confirm {
   background-color: #1b84ff !important;
+  font-size: 20px !important;
+}
+.swal2-deny {
+  background-color: #999!important;
   font-size: 20px !important;
 }.Toastify__toast-body > div:last-child{
   font-size: 18px;

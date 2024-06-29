@@ -17,6 +17,7 @@ import { FaRegKeyboard } from "react-icons/fa";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import { AiFillCloseSquare } from "react-icons/ai";
 import image from "../../../data/Img/logo.jpg";
+import { useHotkeys } from "react-hotkeys-hook";
 const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
   const [isQuickLinkMenuOpen, setIsQuickLinkMenuOpen] = useState(false);
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
@@ -49,6 +50,12 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
       document.exitFullscreen();
     }
   };
+  useHotkeys('shift+n', () => handleTabClick('newOrder'));
+  useHotkeys('shift+g', () => handleTabClick('ongoingOrder'));
+  useHotkeys('shift+t', () => handleTabClick('TodayOrder'));
+  useHotkeys('shift+o', () => handleTabClick('OnlineOrder'));
+  useHotkeys('shift+u', () => handleTabClick('StationStatus'));
+  useHotkeys('shift+r', () => handleTabClick('QROrder'));
   return (
     <div
       id="kt_app_header"

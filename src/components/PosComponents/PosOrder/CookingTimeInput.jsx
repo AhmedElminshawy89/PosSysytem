@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const CookingTimeInput = () => {
   const [showChooseTime, setShowChooseTime] = useState(false);
@@ -46,6 +47,8 @@ const CookingTimeInput = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  useHotkeys('Alt + K' , ()=>setShowChooseTime(true))
 
   return (
     <div>
