@@ -16,7 +16,7 @@ const Pos = () => {
 
   return (
     <div
-      className={`app-main flex-column flex-row-fluid" id="kt_app_main ${classes.mainApp}`}
+      className={`app-main mt-appmain flex-column flex-row-fluid" id="kt_app_main ${classes.mainApp}`}
     >
       <div className="d-flex flex-column flex-column-fluid">
         <PosToolbar />

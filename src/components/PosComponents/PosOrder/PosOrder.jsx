@@ -13,6 +13,8 @@ import { toast } from "react-toastify";
 import CookingTimeInput from "./CookingTimeInput";
 import jsPDF from "jspdf";
 import { useHotkeys } from "react-hotkeys-hook";
+import PaymentModal from "../../../pages/POS/Tabs/OnGoingOrder/CompleteOrder";
+import { useNavigate } from "react-router-dom";
 const PosOrder = () => {
   const [items, setItems] = useState([
     {
@@ -137,6 +139,7 @@ const PosOrder = () => {
 
   const [customerType, setCustomerType] = useState(null);
   const [modalPersonIsOpen2, setModalPersonIsOpen2] = useState(false);
+  const [modalPaymentIsOpen2, setModalPaymentIsOpen2] = useState(false);
   const [customerName, setCustomerName] = useState(null);
   const [waiter, setWaiter] = useState(null);
   const [table, setTable] = useState(null);
@@ -205,144 +208,129 @@ const PosOrder = () => {
     { value: "G8-C", label: "G8-C" },
   ];
 
-  // const handleCustomerTypeChange = (selectedOption) => {
-  //   setCustomerType(selectedOption);
-  //   setCustomerType(false)
-  // };
-  // const handleCustomerName = (selectedOption) => {
-  //   setCustomerName(selectedOption);
-  //   setCustomerName(false)
-  // };
-  // const handleWaiter = (selectedOption) => {
-  //   setWaiter(selectedOption);
-  //   setWaiter(false)
-  // };
-  // const handleTable = (selectedOption) => {
-  //   setTable(selectedOption);
-  //   setTable(false)
-  // };
-
   const openModalPerson2 = () => setModalPersonIsOpen2(true);
   const closeModalPerson2 = () => setModalPersonIsOpen2(false);
-  const generateInvoice = () => {
-    const restaurantName = "Token NO:04";
-    const location = "Diana Martin";
-    const date = new Date().toLocaleDateString();
-    const items = [
-      { name: "1 Chicken Butter", desc: "Fried", quantity: "1 Person", price: "2000 x 1" },
-      { name: "1 Piece", desc: "Fried", quantity: "1 Person", price: "LE 2" },
-    ];
-    const subtotal = "LE 230";
-    const vat = "LE 32.2";
-    const serviceCharge = "LE 13.11";
-    const discount = "LE 0";
-    const grandTotal = "LE 275.31";
-    const totalDue = "LE 275.31";
-    const changeDue = "LE 0";
-    const totalPayment = "LE 275.31";
-    const billingTo = "Christina VANCE";
-    const billBy = "Super Admin";
-    const table = "Table:";
-    const orderNumber = "Order No.: 12";
-    const thankYou = "Thank you very much";
-    const poweredBy = "Powered By: Brandmarks, www.brandmarks360.com";
+  const closeModalPayment2 = () => setModalPaymentIsOpen2(false);
+  const navigate = useNavigate()
+  // const generateInvoice = () => {
+  //   const restaurantName = "Token NO:04";
+  //   const location = "Diana Martin";
+  //   const date = new Date().toLocaleDateString();
+  //   const items = [
+  //     {
+  //       name: "1 Chicken Butter",
+  //       desc: "Fried",
+  //       quantity: "1 Person",
+  //       price: "2000 x 1",
+  //     },
+  //     { name: "1 Piece", desc: "Fried", quantity: "1 Person", price: "LE 2" },
+  //   ];
+  //   const subtotal = "LE 230";
+  //   const vat = "LE 32.2";
+  //   const serviceCharge = "LE 13.11";
+  //   const discount = "LE 0";
+  //   const grandTotal = "LE 275.31";
+  //   const totalDue = "LE 275.31";
+  //   const changeDue = "LE 0";
+  //   const totalPayment = "LE 275.31";
+  //   const billingTo = "Christina VANCE";
+  //   const billBy = "Super Admin";
+  //   const table = "Table:";
+  //   const orderNumber = "Order No.: 12";
+  //   const thankYou = "Thank you very much";
+  //   const poweredBy = "Powered By: Brandmarks, www.brandmarks360.com";
 
-    const doc = new jsPDF({
-      orientation: "portrait",
-      unit: "mm",
-      format: "a4",
-    });
-    doc.addFileToVFS("Amiri-Regular.ttf", "Amiri-Regular.ttf");
-    doc.addFont("Amiri-Regular.ttf", "Amiri", "normal");
-    doc.setFont("Amiri");
-    doc.setFontSize(12);
+  //   const doc = new jsPDF({
+  //     orientation: "portrait",
+  //     unit: "mm",
+  //     format: "a4",
+  //   });
+  //   doc.addFileToVFS("Amiri-Regular.ttf", "Amiri-Regular.ttf");
+  //   doc.addFont("Amiri-Regular.ttf", "Amiri", "normal");
+  //   doc.setFont("Amiri");
+  //   doc.setFontSize(12);
 
-    doc.setFont("helvetica", "bold");
-    doc.text(restaurantName, 110, 20, { align: "center" });
-    doc.text(location, 105, 30, { align: "center" });
+  //   doc.setFont("helvetica", "bold");
+  //   doc.text(restaurantName, 110, 20, { align: "center" });
+  //   doc.text(location, 105, 30, { align: "center" });
 
-    doc.setFont("helvetica", "normal");
-    doc.text(`Date: ${date}`, 15, 40, { align: "left" });
+  //   doc.setFont("helvetica", "normal");
+  //   doc.text(`Date: ${date}`, 15, 40, { align: "left" });
 
-    doc.setLineWidth(0.5);
-    doc.line(10, 45, 200, 45);
+  //   doc.setLineWidth(0.5);
+  //   doc.line(10, 45, 200, 45);
 
-    const columns = ["Item", "", "", "Total"];
-    const rows = items.map(item => [
-      item.name,
-      '',
-      '',
-      item.price
-    ]);
+  //   const columns = ["Item", "", "", "Total"];
+  //   const rows = items.map((item) => [item.name, "", "", item.price]);
 
-    doc.autoTable({
-      startY: 50,
-      head: [columns],
-      body: rows,
-      theme: "plain",
-      columnStyles: {
-        0: { fontStyle: "bold" },
-        1: { fontStyle: "normal" },
-        2: { fontStyle: "normal" },
-        3: { fontStyle: "normal", align: "right" }
-      }
-    });
+  //   doc.autoTable({
+  //     startY: 50,
+  //     head: [columns],
+  //     body: rows,
+  //     theme: "plain",
+  //     columnStyles: {
+  //       0: { fontStyle: "bold" },
+  //       1: { fontStyle: "normal" },
+  //       2: { fontStyle: "normal" },
+  //       3: { fontStyle: "normal", align: "right" },
+  //     },
+  //   });
 
-    let currentY = doc.autoTable.previous.finalY + 10;
-    doc.setFont("helvetica", "bold");
-    doc.text("", 15, currentY);
-    doc.text("", 120, currentY);
-    doc.setLineWidth(0.5);
-    currentY += 7;
-    doc.text(`Subtotal:`, 15, currentY);
-    doc.text(subtotal, 158, currentY);
+  //   let currentY = doc.autoTable.previous.finalY + 10;
+  //   doc.setFont("helvetica", "bold");
+  //   doc.text("", 15, currentY);
+  //   doc.text("", 120, currentY);
+  //   doc.setLineWidth(0.5);
+  //   currentY += 7;
+  //   doc.text(`Subtotal:`, 15, currentY);
+  //   doc.text(subtotal, 158, currentY);
 
-    currentY += 7;
-    doc.text(`Vat(14.00%):`, 15, currentY);
-    doc.text(vat, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`Vat(14.00%):`, 15, currentY);
+  //   doc.text(vat, 158, currentY);
 
-    currentY += 7;
-    doc.text(`Service Charge:`, 15, currentY);
-    doc.text(serviceCharge, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`Service Charge:`, 15, currentY);
+  //   doc.text(serviceCharge, 158, currentY);
 
-    currentY += 7;
-    doc.text(`Discount:`, 15, currentY);
-    doc.text(discount, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`Discount:`, 15, currentY);
+  //   doc.text(discount, 158, currentY);
 
-    currentY += 7;
-    doc.setFont("helvetica", "bold");
-    doc.text(`Grand Total:`, 15, currentY);
-    doc.text(grandTotal, 158, currentY);
+  //   currentY += 7;
+  //   doc.setFont("helvetica", "bold");
+  //   doc.text(`Grand Total:`, 15, currentY);
+  //   doc.text(grandTotal, 158, currentY);
 
-    currentY += 7;
-    doc.setFont("helvetica", "normal");
-    doc.text(`Total Due:`, 15, currentY);
-    doc.text(totalDue, 158, currentY);
+  //   currentY += 7;
+  //   doc.setFont("helvetica", "normal");
+  //   doc.text(`Total Due:`, 15, currentY);
+  //   doc.text(totalDue, 158, currentY);
 
-    currentY += 7;
-    doc.text(`Change Due:`, 15, currentY);
-    doc.text(changeDue, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`Change Due:`, 15, currentY);
+  //   doc.text(changeDue, 158, currentY);
 
-    currentY += 7;
-    doc.text(`Total payment:`, 15, currentY);
-    doc.text(totalPayment, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`Total payment:`, 15, currentY);
+  //   doc.text(totalPayment, 158, currentY);
 
-    currentY += 20;
-    doc.text(`Billing To: ${billingTo}`, 15, currentY);
-    doc.text(`Bill By: ${billBy}`, 158, currentY);
+  //   currentY += 20;
+  //   doc.text(`Billing To: ${billingTo}`, 15, currentY);
+  //   doc.text(`Bill By: ${billBy}`, 158, currentY);
 
-    currentY += 10;
-    doc.text(`${table}`, 158, currentY);
-    currentY += 7;
-    doc.text(`${orderNumber}`, 158, currentY);
-    currentY += 7;
-    doc.text(`${thankYou}`, 105, currentY, { align: "center" });
-    currentY += 7;
-    doc.text(`${poweredBy}`, 105, currentY, { align: "center" });
+  //   currentY += 10;
+  //   doc.text(`${table}`, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`${orderNumber}`, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`${thankYou}`, 105, currentY, { align: "center" });
+  //   currentY += 7;
+  //   doc.text(`${poweredBy}`, 105, currentY, { align: "center" });
 
-    doc.autoPrint();
-    doc.output("dataurlnewwindow");
-  };
+  //   doc.autoPrint();
+  //   doc.output("dataurlnewwindow");
+  // };
   const handlePlaceOrder = () => {
     if (!customerType) {
       Swal.fire({
@@ -414,16 +402,101 @@ const PosOrder = () => {
     }
 
     Swal.fire({
-      icon: 'success',
-      title: 'Order Placed Successfully!!',
-      text: 'Do you Want to Print Token No.???',
+      icon: "success",
+      title: "Order Placed Successfully!!",
+      text: "Do you Want to Print Token No.???",
       showDenyButton: true,
       showCancelButton: false,
-      denyButtonText: 'No',
-      confirmButtonText: 'Yes',
+      denyButtonText: "No",
+      confirmButtonText: "Yes",
     }).then((result) => {
       if (result.isConfirmed) {
-        generateInvoice()
+        // generateInvoice();
+        window.open('/ordermanage/order/placeorder/posorderinvoice/19', '_blank');
+      }
+    });
+  };
+  const handleQuickOrder = () => {
+    if (!customerType) {
+      Swal.fire({
+        icon: "warning",
+        title: "Order Failed!!!",
+        text: "Order incomplete due to some reason. Please Try Again. Thank You!!",
+      });
+      return;
+    }
+
+    const showError = (message) => {
+      toast.warning(message);
+    };
+
+    if (
+      customerType.value === "Dine In" ||
+      customerType.value === "QR Customer"
+    ) {
+      if (!customerName) {
+        showError("Please Select Customer Name!!!");
+        setCustomerNameSelected(true);
+        return;
+      } else {
+        setCustomerNameSelected(false);
+      }
+      if (!waiter) {
+        showError("Please select a Waiter!");
+        setWaiterSelected(true);
+        return;
+      } else {
+        setWaiterSelected(false);
+      }
+      if (!table) {
+        showError("Please select a Table!");
+        setTableSelected(true);
+        return;
+      } else {
+        setTableSelected(false);
+      }
+    }
+
+    if (
+      customerType.value === "Online Customer" ||
+      customerType.value === "Take Away / Pickup"
+    ) {
+      if (!customerName) {
+        showError("Please Select Customer Name!!!");
+        setCustomerNameSelected(true);
+        return;
+      } else {
+        setCustomerNameSelected(false);
+      }
+      if (!waiter) {
+        showError("Please select a Waiter!");
+        setWaiterSelected(true);
+        return;
+      } else {
+        setWaiterSelected(false);
+      }
+    }
+    if (customerType.value === "Third Party Platform") {
+      if (!customerName) {
+        showError("Please Select Customer Name!!!");
+        setCustomerNameSelected(true);
+        return;
+      } else {
+        setCustomerNameSelected(false);
+      }
+    }
+
+    Swal.fire({
+      icon: "success",
+      title: "Order Placed Successfully!!",
+      text: "Do you Want to Print Token No.???",
+      showDenyButton: true,
+      showCancelButton: false,
+      denyButtonText: "No",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setModalPaymentIsOpen2(true);
       }
     });
   };
@@ -431,27 +504,25 @@ const PosOrder = () => {
   const selectRef2 = useRef(null);
   const selectRef3 = useRef(null);
   const selectRef4 = useRef(null);
-  useHotkeys('shift+p', () => handlePlaceOrder());
-  useHotkeys('shift+q', () => handlePlaceOrder());
-  useHotkeys('shift+c', () => {
+  useHotkeys("shift+p", () => handlePlaceOrder());
+  useHotkeys("shift+q", () => handlePlaceOrder());
+  useHotkeys("shift+c", () => {
     if (selectRef.current) {
       selectRef.current.focus();
       if (selectRef.current.onMenuOpen) {
         selectRef.current.onMenuOpen();
       }
     }
-    
   });
-  useHotkeys('shift+e', () => {
+  useHotkeys("shift+e", () => {
     if (selectRef4.current) {
       selectRef4.current.focus();
       if (selectRef4.current.onMenuOpen) {
         selectRef4.current.onMenuOpen();
       }
     }
-    
   });
-  useHotkeys('shift+y', () => {
+  useHotkeys("shift+y", () => {
     if (selectRef2.current) {
       selectRef2.current.focus();
       if (selectRef2.current.onMenuOpen) {
@@ -459,7 +530,7 @@ const PosOrder = () => {
       }
     }
   });
-  useHotkeys('shift+w', () => {
+  useHotkeys("shift+w", () => {
     if (selectRef3.current) {
       selectRef3.current.focus();
       if (selectRef3.current.onMenuOpen) {
@@ -467,7 +538,7 @@ const PosOrder = () => {
       }
     }
   });
-  
+
   return (
     <div
       className="flex-row-auto w-xl-450px pos-order-equal-toolpar"
@@ -490,7 +561,7 @@ const PosOrder = () => {
               }`}
               onChange={handleCustomerName}
               ref={selectRef}
-              />
+            />
           </div>
           <div className="form-group-form-order pl-form-group-pos-order">
             <label htmlFor="customerType" className="form-label">
@@ -687,7 +758,7 @@ const PosOrder = () => {
                   <th className="w-60px th-thead-pos-order fw-bold fs-3 text-center">
                     Price
                   </th>
-                  <th className="w-125px th-thead-pos-order text-center fw-bold fs-3">
+                  <th className="w-80px th-thead-pos-order text-center fw-bold fs-3">
                     Quantity
                   </th>
                   <th></th>
@@ -937,45 +1008,30 @@ const PosOrder = () => {
                 <tr style={{ backgroundColor: "#fff" }}>
                   <td className=" all-total-words-pos-order"></td>
                   <td className="d-flex justify-content-end">
-                    <p className="btn-quick-order-pos btn-calculator-pos-order"
-                        onClick={() => setIsCalculatorOpen(true)}
-                        >
-                        <CgCalculator className="fs-1" />
-                        </p>
+                    <p
+                      className="btn-quick-order-pos btn-calculator-pos-order"
+                      onClick={() => setIsCalculatorOpen(true)}
+                    >
+                      <CgCalculator className="fs-1" />
+                    </p>
                   </td>
                   <td className="text-end max-w-210px pe-1 ps-0" colSpan={1}>
-                    <p className="btn-quick-order-pos " onClick={handlePlaceOrder}>Quick Order</p>
+                    <p
+                      className="btn-quick-order-pos "
+                      onClick={handleQuickOrder}
+                    >
+                      Quick Order
+                    </p>
                   </td>
                   <td className="text-center pe-0 ps-0" colSpan={3}>
-                    <p className="btn-place-order-pos" onClick={handlePlaceOrder}>Place Order</p>
+                    <p
+                      className="btn-place-order-pos"
+                      onClick={handlePlaceOrder}
+                    >
+                      Place Order
+                    </p>
                   </td>
                 </tr>
-                {/* <tr>
-                  <td className="text-center" colSpan={6}>
-                    <div className="d-flex justify-content-end gap-3">
-                      <button
-                        className="btn btn-primary width-full-btn-mobile"
-                        type="text"
-                        onClick={() => setIsCalculatorOpen(true)}
-                      >
-                        <CgCalculator className="fs-1" />
-                      </button>
-                      <button
-                        className="btn btn-quick-order-pos w-100 py-4"
-                        style={{ textWrap: "nowrap" }}
-                        onClick={handlePlaceOrder}
-                      >
-                        Quick Order
-                      </button>
-                      <button
-                        className="btn fs-1 w-87 py-4 btn-place-order-pos"
-                        style={{ textWrap: "nowrap" }}
-                      >
-                        Place Order
-                      </button>
-                    </div>
-                  </td>
-                </tr> */}
               </tfoot>
             </table>
           </div>
@@ -990,254 +1046,12 @@ const PosOrder = () => {
         modalIsOpen={modalPersonIsOpen2}
         closeModal={closeModalPerson2}
       />
+      <PaymentModal
+        modalIsOpen={modalPaymentIsOpen2}
+        closeModal={closeModalPayment2}
+      />
     </div>
   );
 };
 
 export default PosOrder;
-{
-  /* <div className="mt-5 d-flex gap-3 flex-wrap-btns-pos">
-<span className="w-100 d-flex justify-content-end">
-  <button
-    className="btn btn-primary width-full-btn-mobile"
-    onClick={() => setIsCalculatorOpen(true)}
-  >
-    <CgCalculator className="fs-1" />
-  </button>
-</span>
-<button
-  className="btn btn-quick-order-pos w-100 py-4"
-  style={{ textWrap: "nowrap" }}
->
-  Quick Order
-</button>
-<button
-  className="btn fs-1 w-87 py-4 btn-place-order-pos"
-  style={{ textWrap: "nowrap" }}
->
-  Place Order
-</button>
-</div> */
-}
-{
-  /* <hr className="line-seperate-calc-price-table" /> */
-}
-{
-  /* <div className="d-flex flex-stack rounded-3">
-            <div
-              className="fs-6 fw-bold total-pos-order-calc"
-              style={{ color: "darkgray" }}
-            >
-              <span className="d-block lh-1 mb-2" style={{ fontSize: "18px" }}>
-                Subtotal
-              </span>
-              <span className="d-block mb-2" style={{ fontSize: "18px" }}>
-                Discount
-              </span>
-              <span className="d-block mb-2" style={{ fontSize: "18px" }}>
-                Service Charge (15%)
-              </span>
-              <span className="d-block mb-9" style={{ fontSize: "18px" }}>
-                Tax Charge (12%)
-              </span>
-            </div>
-            <div
-              className="fs-2 fw-bold text-end"
-              style={{ color: "darkgray" }}
-            >
-              <span
-                className="d-block lh-1 mb-2"
-                data-kt-pos-element="total"
-                style={{ fontSize: "18px" }}
-              >
-                <span className="fs-2">LE</span>{" "}
-                <span className="fs-2 text-primary">{subtotal}</span>
-              </span>
-              <span
-                className="d-block mb-2"
-                data-kt-pos-element="discount"
-                style={{ fontSize: "18px" }}
-              >
-                <span className="fs-2">LE</span>{" "}
-                <span className="fs-2 text-primary">{discount.toFixed(2)}</span>
-              </span>
-              <span
-                className="d-block mb-2"
-                data-kt-pos-element="service-charge"
-                style={{ fontSize: "18px" }}
-              >
-                <span className="fs-2">LE</span>{" "}
-                <span className="fs-2 text-primary">{serviceCharge}</span>
-              </span>
-              <span
-                className="d-block mb-9"
-                data-kt-pos-element="tax"
-                style={{ fontSize: "18px" }}
-              >
-                <span className="fs-2">LE</span>{" "}
-                <span className="fs-2 text-primary">{tax}</span>
-              </span>
-            </div>
-          </div> */
-}
-
-// <tfoot>
-// <tr
-//   style={{ backgroundColor: "white" }}
-//   className="line-seperate-calc-price-table"
-// >
-//   <td className="pb-0"></td>
-//   <td className="pe-0 pb-0"></td>
-//   <td className="text-end pb-0">
-//     <span
-//       className="fw-bold text-primary fs-2"
-//       data-kt-pos-element="item-total"
-//     >
-//       <p style={{ color: "darkgray" }}>Subtotal</p>
-//     </span>
-//   </td>
-//   <td className="pe-0 pb-0"></td>
-//   <td className="text-center pb-0 pe-3">
-//     <span
-//       className="fw-bold fs-2"
-//       style={{ color: "darkgray" }}
-//     >
-//       LE
-//     </span>
-//   </td>
-//   <td className="text-center pb-0">
-//     <span
-//       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
-//       data-kt-pos-element="item-total"
-//     >
-//       {subtotal}
-//     </span>
-//   </td>
-// </tr>
-// <tr style={{ backgroundColor: "white" }}>
-//   <td className="pb-0 pt-0"></td>
-//   <td className="pe-0 pb-0 pt-0"></td>
-//   <td className="text-end pb-0 pt-0">
-//     <span
-//       className="fw-bold text-primary fs-2"
-//       data-kt-pos-element="item-total"
-//     >
-//       <p style={{ color: "darkgray" }}>Subtotal</p>
-//     </span>
-//   </td>
-//   <td className="pe-0 pb-0 pt-0"></td>
-//   <td className="text-center pb-0 pe-3 pt-0">
-//     <span
-//       className="fw-bold fs-2"
-//       style={{ color: "darkgray" }}
-//     >
-//       LE
-//     </span>
-//   </td>
-//   <td className="text-center pb-0 pt-0">
-//     <span
-//       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
-//       data-kt-pos-element="item-total"
-//     >
-//       {subtotal}
-//     </span>
-//   </td>
-// </tr>
-// <tr style={{ backgroundColor: "white" }}>
-//   <td className="pb-0  pt-0"></td>
-//   {/* <td className="pe-0"></td> */}
-//   <td className="text-end pb-0  pt-0" colSpan={"2"}>
-//     <span
-//       className="fw-bold text-primary fs-2"
-//       data-kt-pos-element="item-total"
-//     >
-//       <p style={{ color: "darkgray" }}>Service Charge (15%)</p>
-//     </span>
-//   </td>
-//   <td className="pe-0  pb-0  pt-0"></td>
-//   <td className="text-center pe-3 pb-0  pt-0">
-//     <span
-//       className="fw-bold fs-2"
-//       style={{ color: "darkgray" }}
-//     >
-//       LE
-//     </span>
-//   </td>
-//   <td className="text-center pb-0  pt-0">
-//     <span
-//       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
-//       data-kt-pos-element="item-total"
-//     >
-//       {serviceCharge}
-//     </span>
-//   </td>
-// </tr>
-// <tr style={{ backgroundColor: "white" }}>
-//   <td className="pb-0 pt-0"></td>
-//   {/* <td className="pe-0"></td> */}
-//   <td className="text-end pb-0 pt-0" colSpan={"2"}>
-//     <span
-//       className="fw-bold text-primary fs-2"
-//       data-kt-pos-element="item-total"
-//     >
-//       <p style={{ color: "darkgray" }}>Tax Charge (12%)</p>
-//     </span>
-//   </td>
-//   <td className="pe-0 pb-0 pt-0"></td>
-//   <td className="text-center pe-3 pb-0 pt-0">
-//     <span
-//       className="fw-bold fs-2"
-//       style={{ color: "darkgray" }}
-//     >
-//       LE
-//     </span>
-//   </td>
-//   <td className="text-center pb-0  pt-0">
-//     <span
-//       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
-//       data-kt-pos-element="item-total"
-//     >
-//       {tax}
-//     </span>
-//   </td>
-// </tr>
-// <tr style={{ backgroundColor: "#17c653" }}>
-//   <td className=" all-total-words-pos-order"></td>
-//   <td className="text-end" colSpan={2}>
-//     <span className="fw-bold text-white d-block fs-2qx lh-1 text-nowrap">
-//       Grand Total:
-//     </span>
-//   </td>
-//   <td className=" all-total-pos-order text-center" colSpan={3}>
-//     <span className="fw-bold text-white d-block fs-2qx lh-1 text-nowrap">
-//       LE {subtotal}
-//     </span>
-//   </td>
-// </tr>
-// <tr>
-//   <td className="text-center" colSpan={6}>
-//     <div className="d-flex justify-content-end gap-3">
-//       <button
-//         className="btn btn-primary width-full-btn-mobile"
-//         type="text"
-//         onClick={() => setIsCalculatorOpen(true)}
-//       >
-//         <CgCalculator className="fs-1" />
-//       </button>
-//       <button
-//         className="btn btn-quick-order-pos w-100 py-4"
-//         style={{ textWrap: "nowrap" }}
-//         onClick={handlePlaceOrder}
-//       >
-//         Quick Order
-//       </button>
-//       <button
-//         className="btn fs-1 w-87 py-4 btn-place-order-pos"
-//         style={{ textWrap: "nowrap" }}
-//       >
-//         Place Order
-//       </button>
-//     </div>
-//   </td>
-// </tr>
-// </tfoot>

@@ -3,7 +3,9 @@
 
 .stickyHeader {
 }
-
+.widthFull{
+	width: 100%;
+}
 @media screen and (min-width: 992px) {
 	.separator {
 		margin-right: 80px !important;

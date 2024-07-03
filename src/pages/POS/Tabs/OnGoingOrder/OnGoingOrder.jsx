@@ -48,126 +48,128 @@ const OnGoingOrder = () => {
   const closeModalCancel = () => {
     setModalCancelIsOpen(false);
   };
-
   const generateInvoice = () => {
-    const restaurantName = "Demo Restaurant Your Slogan";
-    const location = "Egypt";
-    const date = new Date().toLocaleDateString();
-    const items = [
-      { name: "1 Chicken Butter", desc: "Fried", quantity: "1 Person", price: "2000 x 1" },
-      { name: "1 Piece", desc: "Fried", quantity: "1 Person", price: "LE 2" },
-    ];
-    const subtotal = "LE 230";
-    const vat = "LE 32.2";
-    const serviceCharge = "LE 13.11";
-    const discount = "LE 0";
-    const grandTotal = "LE 275.31";
-    const totalDue = "LE 275.31";
-    const changeDue = "LE 0";
-    const totalPayment = "LE 275.31";
-    const billingTo = "Christina VANCE";
-    const billBy = "Super Admin";
-    const table = "Table:";
-    const orderNumber = "Order No.: 12";
-    const thankYou = "Thank you very much";
-    const poweredBy = "Powered By: Brandmarks, www.brandmarks360.com";
-
-    const doc = new jsPDF({
-      orientation: "portrait",
-      unit: "mm",
-      format: "a4",
-    });
-    doc.addFileToVFS("Amiri-Regular.ttf", "Amiri-Regular.ttf");
-    doc.addFont("Amiri-Regular.ttf", "Amiri", "normal");
-    doc.setFont("Amiri");
-    doc.setFontSize(12);
-
-    doc.setFont("helvetica", "bold");
-    doc.text(restaurantName, 110, 20, { align: "center" });
-    doc.text(location, 105, 30, { align: "center" });
-
-    doc.setFont("helvetica", "normal");
-    doc.text(`Date: ${date}`, 15, 40, { align: "left" });
-
-    doc.setLineWidth(0.5);
-    doc.line(10, 45, 200, 45);
-
-    const columns = ["Item", "", "", "Total"];
-    const rows = items.map(item => [
-      item.name,
-      '',
-      '',
-      item.price
-    ]);
-
-    doc.autoTable({
-      startY: 50,
-      head: [columns],
-      body: rows,
-      theme: "plain",
-      columnStyles: {
-        0: { fontStyle: "bold" },
-        1: { fontStyle: "normal" },
-        2: { fontStyle: "normal" },
-        3: { fontStyle: "normal", align: "right" }
-      }
-    });
-
-    let currentY = doc.autoTable.previous.finalY + 10;
-    doc.setFont("helvetica", "bold");
-    doc.text("", 15, currentY);
-    doc.text("", 120, currentY);
-    doc.setLineWidth(0.5);
-    currentY += 7;
-    doc.text(`Subtotal:`, 15, currentY);
-    doc.text(subtotal, 158, currentY);
-
-    currentY += 7;
-    doc.text(`Vat(14.00%):`, 15, currentY);
-    doc.text(vat, 158, currentY);
-
-    currentY += 7;
-    doc.text(`Service Charge:`, 15, currentY);
-    doc.text(serviceCharge, 158, currentY);
-
-    currentY += 7;
-    doc.text(`Discount:`, 15, currentY);
-    doc.text(discount, 158, currentY);
-
-    currentY += 7;
-    doc.setFont("helvetica", "bold");
-    doc.text(`Grand Total:`, 15, currentY);
-    doc.text(grandTotal, 158, currentY);
-
-    currentY += 7;
-    doc.setFont("helvetica", "normal");
-    doc.text(`Total Due:`, 15, currentY);
-    doc.text(totalDue, 158, currentY);
-
-    currentY += 7;
-    doc.text(`Change Due:`, 15, currentY);
-    doc.text(changeDue, 158, currentY);
-
-    currentY += 7;
-    doc.text(`Total payment:`, 15, currentY);
-    doc.text(totalPayment, 158, currentY);
-
-    currentY += 20;
-    doc.text(`Billing To: ${billingTo}`, 15, currentY);
-    doc.text(`Bill By: ${billBy}`, 158, currentY);
-
-    currentY += 10;
-    doc.text(`${table}`, 158, currentY);
-    currentY += 7;
-    doc.text(`${orderNumber}`, 158, currentY);
-    currentY += 7;
-    doc.text(`${thankYou}`, 105, currentY, { align: "center" });
-    currentY += 7;
-    doc.text(`${poweredBy}`, 105, currentY, { align: "center" });
-
-    doc.autoPrint();
-    doc.output("dataurlnewwindow");
+    window.open('/ordermanage/order/ongoingorder/posorderinvoice/19','_blank')
   };
+  // const generateInvoice = () => {
+  //   const restaurantName = "Demo Restaurant Your Slogan";
+  //   const location = "Egypt";
+  //   const date = new Date().toLocaleDateString();
+  //   const items = [
+  //     { name: "1 Chicken Butter", desc: "Fried", quantity: "1 Person", price: "2000 x 1" },
+  //     { name: "1 Piece", desc: "Fried", quantity: "1 Person", price: "LE 2" },
+  //   ];
+  //   const subtotal = "LE 230";
+  //   const vat = "LE 32.2";
+  //   const serviceCharge = "LE 13.11";
+  //   const discount = "LE 0";
+  //   const grandTotal = "LE 275.31";
+  //   const totalDue = "LE 275.31";
+  //   const changeDue = "LE 0";
+  //   const totalPayment = "LE 275.31";
+  //   const billingTo = "Christina VANCE";
+  //   const billBy = "Super Admin";
+  //   const table = "Table:";
+  //   const orderNumber = "Order No.: 12";
+  //   const thankYou = "Thank you very much";
+  //   const poweredBy = "Powered By: Brandmarks, www.brandmarks360.com";
+
+  //   const doc = new jsPDF({
+  //     orientation: "portrait",
+  //     unit: "mm",
+  //     format: "a4",
+  //   });
+  //   doc.addFileToVFS("Amiri-Regular.ttf", "Amiri-Regular.ttf");
+  //   doc.addFont("Amiri-Regular.ttf", "Amiri", "normal");
+  //   doc.setFont("Amiri");
+  //   doc.setFontSize(12);
+
+  //   doc.setFont("helvetica", "bold");
+  //   doc.text(restaurantName, 110, 20, { align: "center" });
+  //   doc.text(location, 105, 30, { align: "center" });
+
+  //   doc.setFont("helvetica", "normal");
+  //   doc.text(`Date: ${date}`, 15, 40, { align: "left" });
+
+  //   doc.setLineWidth(0.5);
+  //   doc.line(10, 45, 200, 45);
+
+  //   const columns = ["Item", "", "", "Total"];
+  //   const rows = items.map(item => [
+  //     item.name,
+  //     '',
+  //     '',
+  //     item.price
+  //   ]);
+
+  //   doc.autoTable({
+  //     startY: 50,
+  //     head: [columns],
+  //     body: rows,
+  //     theme: "plain",
+  //     columnStyles: {
+  //       0: { fontStyle: "bold" },
+  //       1: { fontStyle: "normal" },
+  //       2: { fontStyle: "normal" },
+  //       3: { fontStyle: "normal", align: "right" }
+  //     }
+  //   });
+
+  //   let currentY = doc.autoTable.previous.finalY + 10;
+  //   doc.setFont("helvetica", "bold");
+  //   doc.text("", 15, currentY);
+  //   doc.text("", 120, currentY);
+  //   doc.setLineWidth(0.5);
+  //   currentY += 7;
+  //   doc.text(`Subtotal:`, 15, currentY);
+  //   doc.text(subtotal, 158, currentY);
+
+  //   currentY += 7;
+  //   doc.text(`Vat(14.00%):`, 15, currentY);
+  //   doc.text(vat, 158, currentY);
+
+  //   currentY += 7;
+  //   doc.text(`Service Charge:`, 15, currentY);
+  //   doc.text(serviceCharge, 158, currentY);
+
+  //   currentY += 7;
+  //   doc.text(`Discount:`, 15, currentY);
+  //   doc.text(discount, 158, currentY);
+
+  //   currentY += 7;
+  //   doc.setFont("helvetica", "bold");
+  //   doc.text(`Grand Total:`, 15, currentY);
+  //   doc.text(grandTotal, 158, currentY);
+
+  //   currentY += 7;
+  //   doc.setFont("helvetica", "normal");
+  //   doc.text(`Total Due:`, 15, currentY);
+  //   doc.text(totalDue, 158, currentY);
+
+  //   currentY += 7;
+  //   doc.text(`Change Due:`, 15, currentY);
+  //   doc.text(changeDue, 158, currentY);
+
+  //   currentY += 7;
+  //   doc.text(`Total payment:`, 15, currentY);
+  //   doc.text(totalPayment, 158, currentY);
+
+  //   currentY += 20;
+  //   doc.text(`Billing To: ${billingTo}`, 15, currentY);
+  //   doc.text(`Bill By: ${billBy}`, 158, currentY);
+
+  //   currentY += 10;
+  //   doc.text(`${table}`, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`${orderNumber}`, 158, currentY);
+  //   currentY += 7;
+  //   doc.text(`${thankYou}`, 105, currentY, { align: "center" });
+  //   currentY += 7;
+  //   doc.text(`${poweredBy}`, 105, currentY, { align: "center" });
+
+  //   doc.autoPrint();
+  //   doc.output("dataurlnewwindow");
+  // };
 
 
   return (

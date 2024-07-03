@@ -73,6 +73,7 @@ const PaymentModal = ({ modalIsOpen, closeModal }) => {
   const handlePayNow = () => {
     // Implement payment logic here
     console.log("Paying amount:", payableAmount);
+    window.open('/ordermanage/order/posorderinvoice/19', '_blank');
     closeModal(); // Close modal after payment
   };
   const handleAddNewPaymentMethod = () => {

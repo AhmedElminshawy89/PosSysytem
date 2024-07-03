@@ -32,7 +32,7 @@ const Footer = () => {
 							</a>
 						</div>
 					</div>
-					<ul className="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+					<ul className="menu menu-gray-600 menu-hover-primary fw-semibold order-1 flex-wrap">
 						<li className="menu-item">
 							<a href="https://www.brandmarks360.com" target="_blank" className="menu-link px-2">
 								About

@@ -61,7 +61,7 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
       id="kt_app_header"
       className={`app-header d-flex flex-column flex-stack ${classes.stickyHeader}`}
     >
-      <div className="d-flex flex-stack flex-grow-1 flex-wrap">
+      <div className={`d-flex flex-stack flex-grow-1 flex-wrap ${classes.widthFull}`}>
         <div
           className="app-header-logo d-flex align-items-center ps-lg-12"
           id="kt_app_header_logo"

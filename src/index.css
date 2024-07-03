@@ -353,17 +353,17 @@ code {
     margin-left: 6rem;
     margin-top: 8px;
   }
-  .app-main{
+  .mt-appmain{
     margin-top: 40px;
   }
 }
 @media screen and (max-width:1216px) {
-  .app-main{
+  .mt-appmain{
     margin-top: 100px !important;
   }
 }
 @media screen and (max-width:992px) {
-  .app-main{
+  .mt-appmain{
     margin-top: 0px !important;
   }
 }
@@ -834,16 +834,55 @@ code {
   height: 56px !important;
 }
 
-.swal2-html-container,.swal2-title{
-  font-size: 20px !important;
+.swal2-title{
+  color: #575757 !important;
+  font-size: 25px !important;
+  text-align: center !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  position: relative !important;
+  margin: 25px 0 !important;
+  padding: 0 !important;
+  line-height: 40px !important;
+  display: block !important;
+}
+.swal2-html-container{
+  color: #797979 !important;
+  font-size: 16px !important;
+  text-align: center !important;
+  font-weight: 300 !important;
+  position: relative !important;
+  text-align: center !important;
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal !important;
 }
 .swal2-confirm {
   background-color: #1b84ff !important;
-  font-size: 20px !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  -webkit-border-radius: 4px !important;
+  border-radius: 5px !important;
+  padding: 10px 32px !important;
+  margin: 26px 5px 0 5px !important;
+  cursor: pointer !important;
 }
 .swal2-deny {
-  background-color: #999!important;
-  font-size: 20px !important;
+  background-color: #C1C1C1 !important;
+  color: white !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  -webkit-border-radius: 4px !important;
+  border-radius: 5px !important;
+  padding: 10px 32px !important;
+  margin: 26px 5px 0 5px !important;
+  cursor: pointer !important;
 }.Toastify__toast-body > div:last-child{
   font-size: 18px;
 }
@@ -1130,4 +1169,49 @@ code {
   .boxes-split-order-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+@media screen and (max-width:768px) {
+  .css-8ybdiu-MuiFormControl-root-MuiTextField-root,
+  .css-urr5ut-MuiFormControl-root-MuiTextField-root{
+    width: 100%;
+  }
+  .css-1anqmj6-MuiPopper-root-MuiPickersPopper-root{
+    width: 300px;
+    overflow: auto;
+  }
+  .app-sidebar-logo .logo-lg .logo {
+    max-height: 100%;
+    max-width: 100%;
+    height: 50px !important;
+    width: auto;
+    object-fit: fill;
+}
+.app-sidebar-logo {
+  display: block;
+  float: left;
+  height: 50px;
+  font-size: 20px;
+  line-height: 60px;
+  text-align: center;
+  font-weight: 300;
+  overflow: hidden;
+  color: #fff;
+  transition: width .3s ease-in-out;
+  margin-left: 10px;
+  width: 170px;
+}
+}
+
+
+.w-25percent{
+width: 25% !important;
+}
+@media screen and (max-width:768px) {
+  .w-full-mobile{
+    width: 100%;
+  }
+}
+.w-fit{
+  width: fit-content !important;
 }

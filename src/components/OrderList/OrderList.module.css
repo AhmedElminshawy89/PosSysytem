@@ -1,0 +1,90 @@
+ .overflowHidden{
+    overflow: hidden;
+ }
+ .activeBtn {
+     background-color: #007bff !important;
+     color: #fff !important;
+ }
+
+ .activeBtn:hover {
+     background-color: transparent !important;
+     color: #007bff !important;
+ }
+
+ .btnQrOrder {
+     margin-right: 5px;
+     padding: 5px 14px;
+     font-size: 14px;
+     border: 1px solid #007bff !important;
+     background-color: transparent;
+     color: #007bff;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     transition: all ease-in-out .2s;
+     -webkit-transition: all ease-in-out .2s;
+     -moz-transition: all ease-in-out .2s;
+     -ms-transition: all ease-in-out .2s;
+     -o-transition: all ease-in-out .2s;
+ }
+
+ .btnQrOrder:hover {
+     background-color: #007bff;
+     color: #fff;
+ }
+
+ .btnActionTable {
+     margin-right: 5px;
+     padding: 1px 8px;
+     font-size: 14px;
+     border: 1px solid #007bff !important;
+     background-color: transparent;
+     color: #007bff;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     transition: all ease-in-out .2s;
+     -webkit-transition: all ease-in-out .2s;
+     -moz-transition: all ease-in-out .2s;
+     -ms-transition: all ease-in-out .2s;
+     -o-transition: all ease-in-out .2s;
+ }
+
+ .btnActionTable:hover {
+     background-color: #007bff;
+     color: #fff;
+ }
+
+ .widthFull {
+     width: 100%;
+ }
+
+ .btnSearch {
+    margin-right: 5px;
+    padding: 6px 20px;
+    font-size: 14px;
+    border: 1px solid #007bff !important;
+    background-color: transparent;
+    color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all ease-in-out .2s;
+    -webkit-transition: all ease-in-out .2s;
+    -moz-transition: all ease-in-out .2s;
+    -ms-transition: all ease-in-out .2s;
+    -o-transition: all ease-in-out .2s;
+}
+
+.btnSearch:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+@media screen and (max-width:768px) {
+    .widthFullSearch{
+        width: 100%;
+    }
+    .mtSearch{
+        margin-top: 8px;
+    }
+}
