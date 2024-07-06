@@ -39,7 +39,7 @@ const OrderDetails = () => {
           >
             <div className="col-xl-12 mt-0">
               <div className="card card-flush">
-                <div className="card-body pt-6 ps-8 pe-8" style={{ overflowX: "auto" }}>
+                <div className="card-body pt-6 ps-8 pe-8 pos_invoiceDetailsOrder" style={{ overflowX: "auto" }}>
                   <h2 className="mb-5 text-end pe-8">Invoice</h2>
                   <div className="text-end pe-8">
                     <button

@@ -1295,3 +1295,12 @@ code {
   -ms-transform: translate(-210px, 350px);
   -o-transform: translate(-210px, 350px);
 }
+
+.pos_invoiceDetailsOrder{
+  overflow-x: auto;
+  max-width: 1000px;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, 20px);
+}
