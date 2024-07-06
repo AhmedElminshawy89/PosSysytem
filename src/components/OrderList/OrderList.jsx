@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import CancelOrder from "../../pages/POS/Tabs/OnGoingOrder/CancelOrder";
 import PaymentModal from "../../pages/POS/Tabs/OnGoingOrder/CompleteOrder";
 import DetailsInvoice from "../../pages/POS/Tabs/QROrder/DetailsInvoice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Flatpickr from "react-flatpickr";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
