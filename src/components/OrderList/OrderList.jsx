@@ -736,6 +736,7 @@ const OrderList = () => {
                                 </a>
                               </div> */}
                               <Link to='/ordermanage/order/posorderinvoice/19'
+                              target="_blank"
                                 class="menu-item px-3"
                               >
                                 <a
