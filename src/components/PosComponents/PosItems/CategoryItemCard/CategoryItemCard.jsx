@@ -2,12 +2,12 @@ import React from "react";
 
 const CategoryItemCard = ({ img, title, time, price }) => {
   return (
-    <div className="card p-3 max-w-200">
+    <div className="card p-3 max-w-200 cursor-pointer">
       <div className="card-body text-center">
         <img src={img} className="rounded-3 mb-3 overall-img-pos-card portrait-img" alt="" />
         <div className="mb-2">
           <div className="text-start">
-            <span className="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-4 fs-xl-3 two-line-title">
+            <span className="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-5 fs-xl-3 two-line-title">
               {title}
             </span>
             {/* <span className="text-gray-500 fw-semibold d-block fs-6 mt-n1">

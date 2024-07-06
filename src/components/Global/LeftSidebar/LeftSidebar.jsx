@@ -9,26 +9,31 @@ import {
 } from "../../../data/menu-data/dataMenu";
 import MenuItem from "./MenuItem/MenuItem";
 import Menu from "./Menu/Menu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MenuReports from "./Menu/MenuReports";
 import MenuFoodCategory from "./Menu/MenuFoodCategory";
 
 const LeftSidebar = ({ isMinimized, isSidebarActive }) => {
+  const location = useLocation();
+  
+  // Check if the current path is /ordermanage/order/pos_invoice
+  const isPosInvoicePath = location.pathname === "/ordermanage/order/pos_invoice";
   return (
     <>
-      <div
+      {/* <div
         style={{ zIndex: 105 }}
         className={`${isSidebarActive ? "drawer-overlay" : ""}`}
-      ></div>
+      ></div> */}
+        {/* ${
+          isSidebarActive
+            ? "app-sidebar flex-column drawer drawer-start drawer-on"
+            : ""
+        } */}
       <div
         id="kt_app_sidebar"
         className={`app-sidebar flex-column ${classes.leftSidebarStyle}
-          ${isMinimized ? ` app-sidebar-minimize` : ""}
-            ${
-              isSidebarActive
-                ? "app-sidebar flex-column drawer drawer-start drawer-on"
-                : ""
-            }`}
+          ${isMinimized || isPosInvoicePath ? "app-sidebar-minimize" : ""}
+            `}
         data-kt-drawer="true"
         data-kt-drawer-name="app-sidebar"
         data-kt-drawer-activate="{default: true, lg: false}"

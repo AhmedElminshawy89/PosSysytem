@@ -17,10 +17,10 @@ const StationDashboard = () => {
       >
         <div className="d-flex flex-column flex-column-fluid">
           <Toolbar
-            MainPage="Pre Order List"
+            MainPage="Station Dashboard"
             CurrentPage="Home"
             path={"/"}
-            TitlePage="Pre Order List"
+            TitlePage="Station Dashboard"
           />
           <div id="kt_app_content" className="app-content flex-column-fluid">
             <div

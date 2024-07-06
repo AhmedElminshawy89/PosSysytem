@@ -104,65 +104,7 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
           id="kt_app_header_navbar"
         >
           <div className="app-navbar-item d-flex align-items-center flex-lg-grow-1 ps-5">
-            {!POSPage ? (
-              <div
-                id="kt_header_search"
-                className="header-search d-flex align-items-center w-lg-350px"
-                data-kt-search-keypress="true"
-                data-kt-search-min-length="2"
-                data-kt-search-enter="enter"
-                data-kt-search-layout="menu"
-                data-kt-search-responsive="true"
-                data-kt-menu-trigger="auto"
-                data-kt-menu-permanent="true"
-                data-kt-menu-placement="bottom-start"
-              >
-                <div
-                  data-kt-search-element="toggle"
-                  className="search-toggle-mobile d-flex d-lg-none align-items-center"
-                >
-                  <div className="d-flex">
-                    <i className="ki-outline ki-magnifier fs-1 fs-1"></i>
-                  </div>
-                </div>
-                <form
-                  data-kt-search-element="form"
-                  className="d-none d-lg-block w-100 position-relative mb-5 mb-lg-0"
-                  autoComplete="off"
-                  onClick={() => {
-                    console.log("Hiii");
-                    setIsSearchMenuOpen((prev) => !prev);
-                  }}
-                >
-                  <input type="hidden" />
-                  <i className="ki-outline ki-magnifier search-icon fs-2 text-gray-500 position-absolute top-50 translate-middle-y ms-5"></i>
-                  <input
-                    type="text"
-                    className="search-input form-control form-control border h-lg-45px ps-13"
-                    name="search"
-                    value=""
-                    placeholder="Search..."
-                    data-kt-search-element="input"
-                  />
-                  <span
-                    className="search-spinner position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5"
-                    data-kt-search-element="spinner"
-                  >
-                    <span className="spinner-border h-15px w-15px align-middle text-gray-500"></span>
-                  </span>
-                  <span
-                    className="search-reset btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-4"
-                    data-kt-search-element="clear"
-                  >
-                    <i className="ki-outline ki-cross fs-2 fs-lg-1 me-0"></i>
-                  </span>
-                </form>
-                <SearchResultsMenu
-                  isSearchMenuOpen={isSearchMenuOpen}
-                  setIsSearchMenuOpen={setIsSearchMenuOpen}
-                />
-              </div>
-            ) : (
+            {POSPage &&(
               <div
                 className="d-flex align-items-center gap-2 gap-lg-3 tabs-pos-system flex-wrap
               special-style-today-order"

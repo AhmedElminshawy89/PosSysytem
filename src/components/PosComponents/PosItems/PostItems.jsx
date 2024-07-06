@@ -77,7 +77,8 @@ const PosItems = () => {
             autoComplete="off"
           >
             <input type="hidden" />
-            <i className="ki-outline ki-magnifier search-icon fs-2 text-gray-500 position-absolute top-50 translate-middle-y ms-5"></i>
+            <i className="ki-outline ki-magnifier search-icon fs-2
+             text-gray-500 position-absolute top-50 translate-middle-y ms-5"></i>
             <input
               type="text"
               className="search-input form-control form-control border h-lg-45px ps-13"
@@ -86,7 +87,7 @@ const PosItems = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search..."
               data-kt-search-element="input"
-              ref={searchInputRef} // تعيين المرجع لحقل البحث
+              ref={searchInputRef}
             />
             <span
               className="search-spinner position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5"

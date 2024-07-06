@@ -712,10 +712,7 @@ const PosOrder = () => {
                   <label htmlFor="cookingTime" className="form-label">
                     Cooking Time
                   </label>
-                  <input
-                    type="time"
-                    className="select-form-order-pos input-form-order"
-                  />
+                  <CookingTimeInput />
                 </div>
               )}
             </>
@@ -735,7 +732,7 @@ const PosOrder = () => {
                 fontSize: "1rem", // Font size 1rem
                 color: "red", // Text color red
                 padding: "10px",
-                height: "39px",
+                height: "26px",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -759,15 +756,15 @@ const PosOrder = () => {
                     Price
                   </th>
                   <th className="w-80px th-thead-pos-order text-center fw-bold fs-3">
-                    Quantity
+                  Count
                   </th>
-                  <th></th>
-                  <th className="w-60px fw-bold fs-3 text-start ps-0">Total</th>
+                  {/* <th></th> */}
+                  <th className="w-60px fw-bold fs-3 text-center ps-0">Total</th>
                 </tr>
               </thead>
               <tbody>
                 {items.map((item) => (
-                  <tr key={item.id} style={{ backgroundColor: "white" }}>
+                  <tr key={item.id} style={{ backgroundColor: "white",borderBottom:'1px dashed #eee' }}>
                     <td>
                       <MdDeleteOutline
                         className="posorder-trash-del"
@@ -781,12 +778,12 @@ const PosOrder = () => {
                           className="w-50px h-50px rounded-3 me-3"
                           alt=""
                         />
-                        <span className="fw-bold text-gray-800 fs-3 me-1">
-                          <span className="text-hover-primary cursor-pointer">
+                        <span className="fw-bold text-gray-800 fs-5 me-1">
+                          <span className="text-hover-primary cursor-default">
                             {item.name}
                           </span>
                           <FaStickyNote
-                            className="text-success cursor-pointer ml-1"
+                            className="text-success cursor-pointer ml-1 fs-6"
                             onClick={openModalPerson}
                           />{" "}
                           <br />
@@ -794,21 +791,21 @@ const PosOrder = () => {
                         </span>
                       </div>
                     </td>
-                    <td className="text-end">
+                    <td className="text-center">
                       <span
-                        className="fw-bold text-primary fs-2 d-flex gap-1"
+                        className="fw-bold text-primary fs-4 d-flex gap-1"
                         data-kt-pos-element="item-total"
                       >
-                        <p style={{ color: "darkgray" }} className="pe-1">
+                        {/* <p style={{ color: "darkgray" }} className="pe-1">
                           LE
-                        </p>
+                        </p> */}
                         <p style={{ color: "darkgray" }}>
                           {item.price.toFixed(2)}
                         </p>
                       </span>
                     </td>
                     <td className="pe-0">
-                      <div className="position-relative d-flex justify-content-center align-items-center flex-column">
+                      <div className="position-relative d-flex justify-content-center align-items-center flex-column pb-4">
                         <button
                           type="button"
                           className="btn btn-icon btn-sm btn-icon-gray-500 btn-icrease-decrease-order-table"
@@ -821,7 +818,7 @@ const PosOrder = () => {
                         </button>
                         <input
                           type="text"
-                          className="form-control border-0 text-center p-0 fs-2 fw-bold text-gray-800 w-30px"
+                          className="form-control border-0 text-center p-0 fs-4 fw-bold text-gray-800 w-30px"
                           placeholder="Amount"
                           value={item.quantity}
                           readOnly
@@ -838,17 +835,17 @@ const PosOrder = () => {
                         </button>
                       </div>
                     </td>
-                    <td className="text-center pe-3">
+                    {/* <td className="text-center pe-3 pt-0">
                       <span
                         className="fw-bold fs-2"
                         style={{ color: "darkgray" }}
                       >
                         LE
                       </span>
-                    </td>
-                    <td className="text-center">
+                    </td> */}
+                    <td className="text-center pt-0">
                       <span
-                        className="fw-bold text-primary fs-2 mr--15 text-nowrap"
+                        className="fw-bold text-primary fs-4 mr--15 text-nowrap"
                         data-kt-pos-element="item-total"
                       >
                         {(item.price * item.quantity).toFixed(2)}
@@ -859,8 +856,12 @@ const PosOrder = () => {
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+      <div className="card card-flush bg-body mt-10" id="kt_pos_form">
+        <div className="card-body pt-0">
 
-          <div className="table-responsive mb-8 mt--5px">
+        <div className="table-responsive mb-8 mt--5px">
             <table className="table align-middle gs-0 gy-4 my-0">
               <thead>
                 <tr>
@@ -868,7 +869,7 @@ const PosOrder = () => {
                   <th className="min-w-175px  fw-bold fs-3"></th>
                   <th className="w-60px  fw-bold fs-3 text-center"></th>
                   <th className="w-125px   text-center fw-bold fs-3"></th>
-                  <th></th>
+                  {/* <th></th> */}
                   <th className="w-60px fw-bold fs-3 text-start ps-0"></th>
                 </tr>
               </thead>
@@ -888,14 +889,14 @@ const PosOrder = () => {
                     </span>
                   </td>
                   <td className="pe-0 pb-0"></td>
-                  <td className="text-center pb-0 pe-3">
+                  {/* <td className="text-center pb-0 pe-3">
                     <span
                       className="fw-bold fs-2"
                       style={{ color: "darkgray" }}
                     >
                       LE
                     </span>
-                  </td>
+                  </td> */}
                   <td className="text-center pb-0">
                     <span
                       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
@@ -913,24 +914,25 @@ const PosOrder = () => {
                       className="fw-bold text-primary fs-2"
                       data-kt-pos-element="item-total"
                     >
-                      <p style={{ color: "darkgray" }}>Subtotal</p>
+                      <p style={{ color: "darkgray" }}>Discount</p>
                     </span>
                   </td>
                   <td className="pe-0 pb-0 pt-0"></td>
-                  <td className="text-center pb-0 pe-3 pt-0">
+                  {/* <td className="text-center pb-0 pe-3 pt-0">
                     <span
                       className="fw-bold fs-2"
                       style={{ color: "darkgray" }}
                     >
                       LE
                     </span>
-                  </td>
-                  <td className="text-center pb-0 pt-0">
+                  </td> */}
+                  <td className="text-center
+                   pb-0 pt-0">
                     <span
                       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
                       data-kt-pos-element="item-total"
                     >
-                      {subtotal}
+                      {discount}.00
                     </span>
                   </td>
                 </tr>
@@ -946,14 +948,14 @@ const PosOrder = () => {
                     </span>
                   </td>
                   <td className="pe-0  pb-0  pt-0"></td>
-                  <td className="text-center pe-3 pb-0  pt-0">
+                  {/* <td className="text-center pe-3 pb-0  pt-0">
                     <span
                       className="fw-bold fs-2"
                       style={{ color: "darkgray" }}
                     >
                       LE
                     </span>
-                  </td>
+                  </td> */}
                   <td className="text-center pb-0  pt-0">
                     <span
                       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
@@ -975,14 +977,14 @@ const PosOrder = () => {
                     </span>
                   </td>
                   <td className="pe-0 pb-0 pt-0"></td>
-                  <td className="text-center pe-3 pb-0 pt-0">
+                  {/* <td className="text-center pe-3 pb-0 pt-0">
                     <span
                       className="fw-bold fs-2"
                       style={{ color: "darkgray" }}
                     >
                       LE
                     </span>
-                  </td>
+                  </td> */}
                   <td className="text-center pb-0  pt-0">
                     <span
                       className="fw-bold text-primary fs-2  mr--15 text-nowrap"

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IoHomeOutline } from "react-icons/io5";
 
 const Toolbar = ({TitlePage,CurrentPage,MainPage,path}) => {
   return (
@@ -9,7 +10,9 @@ const Toolbar = ({TitlePage,CurrentPage,MainPage,path}) => {
         className="app-container container-fluid d-flex align-items-stretch"
       >
         <div className="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
-          <div className="page-title d-flex flex-column justify-content-center gap-1 me-3">
+          <div className="page-title d-flex align-items-center gap-3 me-3">
+          <IoHomeOutline  className="text-primary iconhome-bread-crumbs"/>
+          <div>
             <h1 className="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-2 m-0">
               {TitlePage}
             </h1>
@@ -24,6 +27,7 @@ const Toolbar = ({TitlePage,CurrentPage,MainPage,path}) => {
               </li>
               <li className="breadcrumb-item text-muted">{MainPage}</li>
             </ul>
+          </div>
           </div>
         </div>
       </div>

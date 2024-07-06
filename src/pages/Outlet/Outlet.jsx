@@ -9,6 +9,8 @@ import Footer from "../../components/Global/Footer/Footer";
 const PagesOutlet = () => {
   const [isSidebarMinimized, setIsSidebarMinimized] = useState(false);
   const [isSidebarActive, setIsSidebarActive] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const location = useLocation();
 
   const toggleSidebar = () => {
@@ -20,6 +22,7 @@ const PagesOutlet = () => {
   useEffect(() => {
     if (location.pathname === "/ordermanage/order/pos_invoice") {
       setIsSidebarMinimized(true);
+      setIsMenuOpen(false)
     }
   }, [location.pathname]);
 

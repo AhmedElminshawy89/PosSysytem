@@ -59,6 +59,7 @@ const CookingTimeInput = () => {
         value={`${selectedHour}:${selectedMinute}`}
         className="select-form-order-pos input-form-order"
         onClick={handleChooseTime}
+        style={{borderRadius:'.75rem'}}
       />
       <div ref={boxRef} className={`box-choose-time ${showChooseTime ? "" : "d-none"}`}>
         <h4>Choose Time</h4>
