@@ -714,7 +714,9 @@ const OrderList = () => {
                               <div class="menu-item px-3">
                                 <a class="menu-link px-3">Edit</a>
                               </div>
-                              <div class="menu-item px-3">
+                              <div class="menu-item px-3"
+                                onClick={handlePosInvoice}
+                                >
                                 <a
                                   class="menu-link px-3"
                                   data-kt-ecommerce-order-filter="delete_row"
@@ -733,9 +735,8 @@ const OrderList = () => {
                                   Make Payment
                                 </a>
                               </div> */}
-                              <div
+                              <Link to='/ordermanage/order/posorderinvoice/19'
                                 class="menu-item px-3"
-                                onClick={handlePosInvoice}
                               >
                                 <a
                                   class="menu-link px-3"
@@ -743,7 +744,7 @@ const OrderList = () => {
                                 >
                                   Pos Invoice
                                 </a>
-                              </div>
+                              </Link>
                             </div>
                           </td>
                         </tr>
