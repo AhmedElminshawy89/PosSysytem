@@ -13,6 +13,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Flatpickr from "react-flatpickr";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { AiFillEyeInvisible } from "react-icons/ai";
+import CountUp from "react-countup";
 
 const OrderList = () => {
   const [ShowList, setShowList] = useState(false);
@@ -43,7 +44,7 @@ const OrderList = () => {
       customer_name: "	Melody Macy",
       waiter: "Waiter1	",
       table: "Table1",
-      state: "Completed",
+      state: "Served",
       order_date: "23/11/2023",
       amount: 1500,
     },
@@ -70,6 +71,11 @@ const OrderList = () => {
   ]);
 
   const [columns, setColumns] = useState(initialColumns);
+  const [countStarted, setCountStarted] = useState(false);
+
+  useEffect(() => {
+    setCountStarted(true);
+  }, []);
 
   const toggleColumnVisibility = (columnLabel) => {
     const updatedColumns = columns.map((col) =>
@@ -111,6 +117,7 @@ const OrderList = () => {
     });
 
     setData(sortedData.reverse());
+    setCountStarted(false);
     setSortDirection({ ...sortDirection, [label]: direction });
     setShowMenu2(false);
   };
@@ -398,11 +405,11 @@ const OrderList = () => {
   }, []);
   const handleSortIcon = (label) => {
     if (sortDirection[label] === "asc") {
-      return <IoIosArrowUp />;
+      return <IoIosArrowUp className="text-primary"/>;
     } else if (sortDirection[label] === "desc") {
-      return <IoIosArrowDown />;
+      return <IoIosArrowDown className="text-primary"/>;
     }
-    return null;
+    return <IoIosArrowUp />;
   };
 
   return (
@@ -458,7 +465,7 @@ const OrderList = () => {
                         </div>
                         <button
                           type="button"
-                          className={`btn btn-light-primary width-full-invoices  ${
+                          className={`btn btn-light-primary width-full-invoices fs-6  ${
                             showMenu2 ? "show" : ""
                           }`}
                           onClick={handleShowMenu2}
@@ -474,7 +481,7 @@ const OrderList = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="copy"
                               onClick={handleCopy}
                             >
@@ -484,7 +491,7 @@ const OrderList = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="excel"
                               onClick={handleExcel}
                             >
@@ -494,7 +501,7 @@ const OrderList = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="csv"
                               onClick={handleCSV}
                             >
@@ -504,7 +511,7 @@ const OrderList = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="pdf"
                               onClick={handlePDF}
                             >
@@ -514,7 +521,7 @@ const OrderList = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="print"
                               onClick={handlePrint}
                             >
@@ -524,7 +531,7 @@ const OrderList = () => {
                         </div>
                         <button
                           type="button"
-                          className={`btn btn-primary width-full-invoices  ${
+                          className={`btn btn-primary width-full-invoices fs-6  ${
                             showMenu3 ? "show" : ""
                           }`}
                           onClick={handleShowMenu3}
@@ -547,11 +554,11 @@ const OrderList = () => {
                                   <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    checked={columns[column]}
+                                    checked={column.visible}
                                     onChange={() => handleChange(column.label)}
                                     id={column.label}
                                   />
-                                  <label htmlFor={column.label}>
+                                  <label htmlFor={column.label} className="fs-6">
                                     {column.label}
                                   </label>
                                 </div>
@@ -653,7 +660,7 @@ const OrderList = () => {
                                     {column.label === "State" && (
                                       <div
                                         className={`badge badge-light-${
-                                          item.state === "Completed"
+                                          item.state === "Served"
                                             ? "success"
                                             : item.state === "Pending"
                                             ? "primary"
@@ -669,9 +676,19 @@ const OrderList = () => {
                                       </span>
                                     )}
                                     {column.label === "Amount" && (
-                                      <span className="fw-bold text-gray-600">
-                                        {item.amount}
-                                      </span>
+                      <span className="fw-bold text-primary">
+                       { countStarted ?(
+                         <CountUp
+                           end={item.amount}
+                           duration={1}
+                           separator=","
+                           decimals={2}
+                           decimal="."
+                         />
+                       ):(
+                        item.amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                       )}
+                    </span>
                                     )}
                                     {column.label === "Action" && (
                                       <>
@@ -715,12 +732,12 @@ const OrderList = () => {
                                             className="menu-item px-3"
                                             onClick={handleAcceptReject}
                                           >
-                                            <a className="menu-link px-3">
+                                            <a className="menu-link px-3 fs-6">
                                               Cancel
                                             </a>
                                           </div>
                                           <div className="menu-item px-3">
-                                            <a className="menu-link px-3">
+                                            <a className="menu-link px-3 fs-6">
                                               Edit
                                             </a>
                                           </div>
@@ -731,7 +748,7 @@ const OrderList = () => {
                                             }
                                           >
                                             <a
-                                              className="menu-link px-3"
+                                              className="menu-link px-3 fs-6"
                                               data-kt-ecommerce-order-filter="delete_row"
                                             >
                                               View
@@ -745,7 +762,7 @@ const OrderList = () => {
                                             className="menu-item px-3"
                                           >
                                             <a
-                                              className="menu-link px-3"
+                                              className="menu-link px-3 fs-6"
                                               data-kt-ecommerce-order-filter="delete_row"
                                             >
                                               Pos Invoice
@@ -765,9 +782,10 @@ const OrderList = () => {
                   <div id="" class="row">
                     <div
                       id=""
-                      class="col-sm-12 col-md-7 d-flex align-items-end justify-content-end justify-content-md-end
+                      class="col-sm-12 col-md-7 d-flex align-items-end justify-content-between justify-content-md-between
                       w-full-title"
                     >
+                      <div className="fs-5">Showing 1 to 25 of 31 entries</div>
                       <div class="dt-paging paging_simple_numbers">
                         <ul class="pagination">
                           <li class="dt-paging-button page-item disabled">

@@ -1289,3 +1289,17 @@ code {
 .flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month{
 background-color: #ffff !important;
 }
+
+select option {
+  background-color: #fff !important; 
+}
+
+/* تغيير لون الخيار عند التمرير عليه */
+select option:hover {
+  background-color: #1b84ff !important; /* اللون عند التمرير */
+}
+.table:not(.table-bordered).table-row-dashed tr{
+  border-bottom-width: 1px;
+  border-bottom-style: dashed;
+  border-bottom-color: #ddd !important;
+}
