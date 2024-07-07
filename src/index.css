@@ -1303,3 +1303,8 @@ select option:hover {
   border-bottom-style: dashed;
   border-bottom-color: #ddd !important;
 }
+@media (min-width: 992px){
+  body:not([data-kt-app-aside-enabled=true]) .app-main {
+      margin-right: 0 !important;
+  }
+}

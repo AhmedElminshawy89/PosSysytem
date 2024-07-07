@@ -102,6 +102,7 @@ const OrderList = () => {
       document.removeEventListener("touchstart", listener);
     };
   }, [refList]);
+  const [currentSortedColumn, setCurrentSortedColumn] = useState(null);
 
   const handleSort = (label) => {
     const direction = sortDirection[label] === "asc" ? "desc" : "asc";
@@ -119,6 +120,7 @@ const OrderList = () => {
     setData(sortedData.reverse());
     setCountStarted(false);
     setSortDirection({ ...sortDirection, [label]: direction });
+    setCurrentSortedColumn(label);
     setShowMenu2(false);
   };
 
@@ -403,11 +405,20 @@ const OrderList = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   const handleSortIcon = (label) => {
     if (sortDirection[label] === "asc") {
-      return <IoIosArrowUp className="text-primary"/>;
+      return (
+        <IoIosArrowUp
+          className={label === currentSortedColumn ? "text-primary" : ""}
+        />
+      );
     } else if (sortDirection[label] === "desc") {
-      return <IoIosArrowDown className="text-primary"/>;
+      return (
+        <IoIosArrowDown
+          className={label === currentSortedColumn ? "text-primary" : ""}
+        />
+      );
     }
     return <IoIosArrowUp />;
   };
@@ -558,7 +569,10 @@ const OrderList = () => {
                                     onChange={() => handleChange(column.label)}
                                     id={column.label}
                                   />
-                                  <label htmlFor={column.label} className="fs-6">
+                                  <label
+                                    htmlFor={column.label}
+                                    className="fs-6"
+                                  >
                                     {column.label}
                                   </label>
                                 </div>
@@ -650,7 +664,9 @@ const OrderList = () => {
                                       </a>
                                     )}
                                     {column.label === "Waiter" && (
-                                     <span className="fw-bold text-gray-600">Waiter1</span>
+                                      <span className="fw-bold text-gray-600">
+                                        Waiter1
+                                      </span>
                                     )}
                                     {column.label === "Table" && (
                                       <span className="fw-bold text-gray-600">
@@ -676,19 +692,24 @@ const OrderList = () => {
                                       </span>
                                     )}
                                     {column.label === "Amount" && (
-                      <span className="fw-bold text-primary">
-                       { countStarted ?(
-                         <CountUp
-                           end={item.amount}
-                           duration={1}
-                           separator=","
-                           decimals={2}
-                           decimal="."
-                         />
-                       ):(
-                        item.amount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                       )}
-                    </span>
+                                      <span className="fw-bold text-primary">
+                                        {countStarted ? (
+                                          <CountUp
+                                            end={item.amount}
+                                            duration={1}
+                                            separator=","
+                                            decimals={2}
+                                            decimal="."
+                                          />
+                                        ) : (
+                                          item.amount
+                                            .toFixed(2)
+                                            .replace(
+                                              /\B(?=(\d{3})+(?!\d))/g,
+                                              ","
+                                            )
+                                        )}
+                                      </span>
                                     )}
                                     {column.label === "Action" && (
                                       <>
