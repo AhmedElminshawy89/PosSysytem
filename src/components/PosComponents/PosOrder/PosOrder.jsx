@@ -1,16 +1,16 @@
 import React, { useRef, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
-import FormOrder from "./FormOrder";
+import FormOrder from "./Modal/FormOrder";
 import { FaStickyNote } from "react-icons/fa";
 import { CgCalculator } from "react-icons/cg";
-import CalculatorModal from "./CalculatorModal"; // استيراد المودال
-import AddNote from "./AddNote";
-import PersonModal from "./PersonModal";
+import CalculatorModal from "./Modal/CalculatorModal"; // استيراد المودال
+import AddNote from "./Modal/AddNote";
+import PersonModal from "./Modal/PersonModal";
 import Select from "react-select";
 import Swal from "sweetalert2";
 import { TbWorld } from "react-icons/tb";
 import { toast } from "react-toastify";
-import CookingTimeInput from "./CookingTimeInput";
+import CookingTimeInput from "./Modal/CookingTimeInput";
 import jsPDF from "jspdf";
 import { useHotkeys } from "react-hotkeys-hook";
 import PaymentModal from "../../../pages/POS/Tabs/OnGoingOrder/CompleteOrder";
@@ -211,7 +211,7 @@ const PosOrder = () => {
   const openModalPerson2 = () => setModalPersonIsOpen2(true);
   const closeModalPerson2 = () => setModalPersonIsOpen2(false);
   const closeModalPayment2 = () => setModalPaymentIsOpen2(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // const generateInvoice = () => {
   //   const restaurantName = "Token NO:04";
   //   const location = "Diana Martin";
@@ -412,7 +412,10 @@ const PosOrder = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // generateInvoice();
-        window.open('/ordermanage/order/placeorder/posorderinvoice/19', '_blank');
+        window.open(
+          "/ordermanage/order/placeorder/posorderinvoice/19",
+          "_blank"
+        );
       }
     });
   };
@@ -756,15 +759,23 @@ const PosOrder = () => {
                     Price
                   </th>
                   <th className="w-80px th-thead-pos-order text-center fw-bold fs-3">
-                  Count
+                    Count
                   </th>
                   {/* <th></th> */}
-                  <th className="w-60px fw-bold fs-3 text-center ps-0">Total</th>
+                  <th className="w-60px fw-bold fs-3 text-center ps-0">
+                    Total
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {items.map((item) => (
-                  <tr key={item.id} style={{ backgroundColor: "white",borderBottom:'1px dashed #eee' }}>
+                  <tr
+                    key={item.id}
+                    style={{
+                      backgroundColor: "white",
+                      borderBottom: "1px dashed #eee",
+                    }}
+                  >
                     <td>
                       <MdDeleteOutline
                         className="posorder-trash-del"
@@ -778,7 +789,7 @@ const PosOrder = () => {
                           className="w-50px h-50px rounded-3 me-3"
                           alt=""
                         />
-                        <span className="fw-bold text-gray-800 fs-5 me-1">
+                        <span className="fw-bold text-gray-800 font-size-1rem me-1">
                           <span className="text-hover-primary cursor-default">
                             {item.name}
                           </span>
@@ -796,9 +807,6 @@ const PosOrder = () => {
                         className="fw-bold text-primary fs-4 d-flex gap-1"
                         data-kt-pos-element="item-total"
                       >
-                        {/* <p style={{ color: "darkgray" }} className="pe-1">
-                          LE
-                        </p> */}
                         <p style={{ color: "darkgray" }}>
                           {item.price.toFixed(2)}
                         </p>
@@ -860,8 +868,7 @@ const PosOrder = () => {
       </div>
       <div className="card card-flush bg-body mt-10" id="kt_pos_form">
         <div className="card-body pt-0">
-
-        <div className="table-responsive mb-8 mt--5px">
+          <div className="table-responsive mb-8 mt--5px">
             <table className="table align-middle gs-0 gy-4 my-0">
               <thead>
                 <tr>
@@ -926,8 +933,10 @@ const PosOrder = () => {
                       LE
                     </span>
                   </td> */}
-                  <td className="text-center
-                   pb-0 pt-0">
+                  <td
+                    className="text-center
+                   pb-0 pt-0"
+                  >
                     <span
                       className="fw-bold text-primary fs-2  mr--15 text-nowrap"
                       data-kt-pos-element="item-total"

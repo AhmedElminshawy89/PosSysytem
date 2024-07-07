@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import img from "../../../data/Img/006-terrace.png";
+import img from "../../../../data/Img/006-terrace.png";
 const customStyles = {
   content: {
     top: "50%",

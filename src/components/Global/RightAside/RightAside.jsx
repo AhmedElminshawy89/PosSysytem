@@ -1,6 +1,6 @@
 import {useState} from "react";
 import classes from "./RightAside.module.css";
-import CustomerModal from '../../../components/PosComponents/PosOrder/AddCustomer'
+import CustomerModal from '../../../components/PosComponents/PosOrder/Modal/AddCustomer'
 import { Link } from "react-router-dom";
 const RightAside = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);

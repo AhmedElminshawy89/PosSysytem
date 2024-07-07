@@ -219,41 +219,6 @@ code {
   height: 21px;
 }
 
-.table {
-  width: 100%;
-  margin-top: 20px;
-  border-collapse: collapse;
-}
-
-/* table {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: center;
-} */
-.table-order thead {
-  background-color: #f0f0f0;
-  color: #333;
-}
-
-.table-order .no-customer {
-  padding: 10px;
-}
-
-.table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.table-order {
-  width: 100%;
-  margin-bottom: 13px;
-  border: 1px solid #eee;
-}
-
-.table tbody tr.no-customer td {
-  grid-column: span 4;
-  text-align: center;
-  font-weight: bold;
-}
 
 @media screen and (min-width: 992px) {
   .ml-layout-pos-invoice {
@@ -270,7 +235,7 @@ code {
   -ms-transition: width 0.3s ease, transform 0.3s ease;
   -o-transition: width 0.3s ease, transform 0.3s ease;
 }
-.menu-accordion:hover .app-sidebar {
+.menu-item .menu-icon > svg:hover .app-sidebar-minimize {
   background: #000 !important;
 }
 .app-sidebar-minimize {
@@ -303,6 +268,9 @@ code {
 .app-sidebar-minimize .menu-title,
 .app-sidebar-minimize .menu-arrow {
   display: none !important;
+}
+.app-sidebar-minimize .menu-sub{
+  display: none !important
 }
 
 .app-sidebar-minimize .menu-icon {
@@ -1265,13 +1233,24 @@ code {
   position: fixed;
   inset: 0px 0px auto auto;
   margin: 0px;
-  transform: translate(-85px, 291.25px);
-  -webkit-transform: translate(-85px, 291.25px);
-  -moz-transform: translate(-85px, 291.25px);
-  -ms-transform: translate(-85px, 291.25px);
-  -o-transform: translate(-85px, 291.25px);
+  transform: translate(-270px, 291.2px);
+  -webkit-transform: translate(-270px, 291.2px);
+  -moz-transform: translate(-270px, 291.2px);
+  -ms-transform: translate(-270px, 291.2px);
+  -o-transform: translate(-270px, 291.2px);
 }
-
+.active-list-action-table-visibility{
+  display: block !important;
+  z-index: 107;
+  position: fixed;
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  transform: translate(-85px, 291.2px) !important;
+  -webkit-transform: translate(-85px, 291.2px) !important;
+  -moz-transform: translate(-85px, 291.2px) !important;
+  -ms-transform: translate(-85px, 291.2px) !important;
+  -o-transform: translate(-85px, 291.2px) !important;
+}
 .active-list-action-table-action {
   z-index: 107;
   position: fixed;
@@ -1303,4 +1282,10 @@ code {
   left: 50%;
   right: 50%;
   transform: translate(-50%, 20px);
+}
+.font-size-1rem{
+  font-size: 1rem !important;
+}
+.flatpickr-current-month .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month{
+background-color: #ffff !important;
 }

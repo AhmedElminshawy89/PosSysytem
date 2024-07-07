@@ -12,6 +12,7 @@ import DetailsInvoice from "../../pages/POS/Tabs/QROrder/DetailsInvoice";
 import { Link, useNavigate } from "react-router-dom";
 import Flatpickr from "react-flatpickr";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { AiFillEyeInvisible } from "react-icons/ai";
 
 const PendingOrder = () => {
   const [ShowList, setShowList] = useState(false);
@@ -23,21 +24,17 @@ const PendingOrder = () => {
   };
   const refList = useRef(null);
 
-  const show = () => {
-    setShowList(!ShowList);
-  };
-
   const initialColumns = [
     { label: "SL", visible: true },
-    { label: "Invoice No", visible: true },
+    { label: "Order Id", visible: true },
     { label: "Customer Name", visible: true },
     { label: "Customer Type", visible: true },
     { label: "Waiter", visible: true },
     { label: "Table", visible: true },
-    { label: "Order Date", visible: true },
     { label: "Pre-Order", visible: true },
     { label: "Pre Order Date", visible: true },
     { label: "Pre Order Time", visible: true },
+    { label: "Order Date", visible: true },
     { label: "Amount", visible: true },
     { label: "Action", visible: true },
   ];
@@ -45,14 +42,27 @@ const PendingOrder = () => {
   const [data, setData] = useState([
     {
       sl: 19,
-      invoice_no: 13757,
+      order_id: 13757,
       customer_name: "	Melody Macy",
-      customer_type: "",
+      customer_type: "Take Away / Pickup",
       waiter: "Waiter1	",
       table: "Table1",
-      pre: "",
-      pre_date: "",
-      pre_time: "",
+      pre_order: "N",
+      pre_order_date: "23/11/2023",
+      pre_order_time: "4:30",
+      order_date: "23/11/2023",
+      amount: 1500,
+    },
+    {
+      sl: 20,
+      order_id: 13760,
+      customer_name: "	Melody Macy",
+      customer_type: "Take Away / Pickup",
+      waiter: "Waiter2	",
+      table: "Table2",
+      pre_order: "N",
+      pre_order_date: "24/7/2024",
+      pre_order_time: "7:30",
       order_date: "23/11/2023",
       amount: 1500,
     },
@@ -60,10 +70,15 @@ const PendingOrder = () => {
 
   const [columns, setColumns] = useState(initialColumns);
 
-  const toggleColumnVisibility = (index) => {
-    const updatedColumns = [...columns];
-    updatedColumns[index].visible = !updatedColumns[index].visible;
+  const toggleColumnVisibility = (columnLabel) => {
+    const updatedColumns = columns.map((col) =>
+      col.label === columnLabel ? { ...col, visible: !col.visible } : col
+    );
     setColumns(updatedColumns);
+  };
+
+  const handleChange = (columnLabel) => {
+    toggleColumnVisibility(columnLabel);
   };
 
   useEffect(() => {
@@ -94,12 +109,11 @@ const PendingOrder = () => {
       return 0;
     });
 
-    setData(sortedData);
-
+    setData(sortedData.reverse());
     setSortDirection({ ...sortDirection, [label]: direction });
-
-    setShowList(false);
+    setShowMenu2(false);
   };
+
   const handleCopy = () => {
     if (data.length === 0) {
       toast.error("No Data Available to copy");
@@ -128,7 +142,7 @@ const PendingOrder = () => {
         console.error("Error copying to clipboard:", error);
         toast.error("Failed to copy data to clipboard. Please try again.");
       });
-    setShowMenu(false);
+    setShowMenu2(false);
   };
   const handleExcel = () => {
     const aoaData = data.map((row) => [
@@ -138,9 +152,9 @@ const PendingOrder = () => {
       row.customer_type,
       row.waiter,
       row.table,
-      row.pre,
-      row.pre_date,
-      row.pre_time,
+      row.pre_order,
+      row.pre_order_date,
+      row.pre_order_time,
       row.order_date,
       row.amount,
     ]);
@@ -154,7 +168,7 @@ const PendingOrder = () => {
       new Blob([wbout], { type: "application/octet-stream" }),
       "PendingOrder.xlsx"
     );
-    setShowMenu(false);
+    setShowMenu2(false);
   };
 
   const handleCSV = () => {
@@ -165,9 +179,9 @@ const PendingOrder = () => {
       row.customer_type,
       row.waiter,
       row.table,
-      row.pre,
-      row.pre_date,
-      row.pre_time,
+      row.pre_order,
+      row.pre_order_date,
+      row.pre_order_time,
       row.order_date,
       row.amount,
     ]);
@@ -185,7 +199,7 @@ const PendingOrder = () => {
     link.click();
 
     document.body.removeChild(link);
-    setShowMenu(false);
+    setShowMenu2(false);
   };
 
   const handlePDF = () => {
@@ -230,7 +244,7 @@ const PendingOrder = () => {
       },
     });
 
-    setShowMenu(false);
+    setShowMenu2(false);
     doc.save("PendingOrder.pdf");
   };
 
@@ -308,7 +322,7 @@ const PendingOrder = () => {
       "INSTASME F&B Management Application By Brandmarks::";
     printWindow.document.close();
     printWindow.print();
-    setShowMenu(false);
+    setShowMenu2(false);
   };
 
   const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
@@ -329,7 +343,7 @@ const PendingOrder = () => {
     setModalDetailsIsOpen(false);
   };
 
-  const handleAccept_Reject = () => {
+  const handleAcceptReject = () => {
     Swal.fire({
       icon: "success",
       title: "Order Confirmation",
@@ -345,26 +359,40 @@ const PendingOrder = () => {
         setModalCancelIsOpen(true);
       }
     });
-    setShowMenu(false);
+    setShowMenu2(false);
   };
   const navigate = useNavigate();
+  const handlePosInvoice = () => {
+    navigate("/ordermanage/order/orderdetails/19");
+    setShowMenu2(false);
+  };
   const menuRef = useRef(null);
   const menuRef2 = useRef(null);
-  const [showMenu, setShowMenu] = useState(false);
+  const menuRef3 = useRef(null);
+  const [showMenu3, setShowMenu3] = useState(false);
   const [showMenu2, setShowMenu2] = useState(false);
-  const handleShowMenu = () => {
-    setShowMenu(!showMenu);
+  const [menuIndex, setMenuIndex] = useState(null);
+
+  const handleShowMenu = (index) => {
+    setMenuIndex(index === menuIndex ? null : index);
   };
+
   const handleShowMenu2 = () => {
     setShowMenu2(!showMenu2);
+  };
+  const handleShowMenu3 = () => {
+    setShowMenu3(!showMenu3);
   };
 
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setShowMenu(false);
+      setMenuIndex(null);
     }
     if (menuRef2.current && !menuRef2.current.contains(event.target)) {
       setShowMenu2(false);
+    }
+    if (menuRef3.current && !menuRef3.current.contains(event.target)) {
+      setShowMenu3(false);
     }
   };
 
@@ -374,50 +402,13 @@ const PendingOrder = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  const [sort, setSort] = useState(false);
-  const handleSortIcon = () => {
-    setSort(!sort);
-  };
-  const [sort2, setSort2] = useState(false);
-  const handleSortIcon2 = () => {
-    setSort2(!sort2);
-  };
-  const [sort3, setSort3] = useState(false);
-  const handleSortIcon3 = () => {
-    setSort3(!sort3);
-  };
-  const [sort4, setSort4] = useState(false);
-  const handleSortIcon4 = () => {
-    setSort4(!sort4);
-  };
-  const [sort5, setSort5] = useState(false);
-  const handleSortIcon5 = () => {
-    setSort5(!sort5);
-  };
-  const [sort7, setSort7] = useState(false);
-  const handleSortIcon7 = () => {
-    setSort7(!sort7);
-  };
-  const [sort8, setSort8] = useState(false);
-  const handleSortIcon8 = () => {
-    setSort8(!sort8);
-  };
-  const [sort9, setSort9] = useState(false);
-  const handleSortIcon9 = () => {
-    setSort9(!sort9);
-  };
-
-  const [sort6, setSort6] = useState(false);
-  const handleSortIcon6 = () => {
-    setSort6(!sort6);
-  };
-  const [sort10, setSort10] = useState(false);
-  const handleSortIcon10 = () => {
-    setSort10(!sort10);
-  };
-  const [sort11, setSort11] = useState(false);
-  const handleSortIcon11 = () => {
-    setSort11(!sort11);
+  const handleSortIcon = (label) => {
+    if (sortDirection[label] === "asc") {
+      return <IoIosArrowUp />;
+    } else if (sortDirection[label] === "desc") {
+      return <IoIosArrowDown />;
+    }
+    return null;
   };
 
   return (
@@ -455,16 +446,16 @@ const PendingOrder = () => {
                         <button
                           type="button"
                           className={`btn btn-light-primary width-full-invoices  ${
-                            showMenu ? "show" : ""
+                            showMenu2 ? "show" : ""
                           }`}
-                          onClick={handleShowMenu}
+                          onClick={handleShowMenu2}
                         >
                           <i class="ki-outline ki-exit-up fs-2"></i>Export
                         </button>
                         <div
-                          ref={menuRef}
+                          ref={menuRef2}
                           className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
-                            showMenu ? "show active-list-action-table-ex" : ""
+                            showMenu2 ? "show active-list-action-table-ex" : ""
                           }`}
                         >
                           <div className="menu-item px-3">
@@ -518,6 +509,43 @@ const PendingOrder = () => {
                             </a>
                           </div>
                         </div>
+                        <button
+                          type="button"
+                          className={`btn btn-primary width-full-invoices  ${
+                            showMenu3 ? "show" : ""
+                          }`}
+                          onClick={handleShowMenu3}
+                        >
+                          <AiFillEyeInvisible className="fs-2" /> Column
+                          Visibility
+                        </button>
+                        <div
+                          ref={menuRef3}
+                          className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
+                            showMenu3
+                              ? "show active-list-action-table-visibility"
+                              : ""
+                          }`}
+                        >
+                          {columns.map((column) => (
+                            <div className="menu-item px-3" key={column}>
+                              <label className="menu-link px-3">
+                                <div className="form-check form-check-sm form-check-custom form-check-solid me-3 d-flex align-items-end gap-4">
+                                  <input
+                                    className="form-check-input"
+                                    type="checkbox"
+                                    checked={columns[column]}
+                                    onChange={() => handleChange(column.label)}
+                                    id={column.label}
+                                  />
+                                  <label htmlFor={column.label}>
+                                    {column.label}
+                                  </label>
+                                </div>
+                              </label>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -541,318 +569,281 @@ const PendingOrder = () => {
                               />
                             </div>
                           </th>
-                          <th
-                            className={`min-w-50px cursor-pointer text-hover-primary`}
-                            onClick={handleSortIcon}
-                          >
-                            SL
-                            {sort ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon2}
-                          >
-                            Invoice No{" "}
-                            {sort2 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="min-w-150px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon3}
-                          >
-                            Customer Name{" "}
-                            {sort3 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon7}
-                          >
-                            Customer Type{" "}
-                            {sort7 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="text-center pe-0 min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon4}
-                          >
-                            Waiter{" "}
-                            {sort4 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="text-center  pe-0 min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon5}
-                          >
-                            Table
-                            {sort5 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="text-center min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon8}
-                          >
-                            Order Date
-                            {sort8 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="text-center min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon8}
-                          >
-                            Pre-Order
-                            {sort8 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="text-center min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon8}
-                          >
-                            Pre Order Date
-                            {sort8 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="text-center min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon8}
-                          >
-                            Pre Order Time
-                            {sort8 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="text-center min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon9}
-                          >
-                            Amount
-                            {sort9 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
-                          <th
-                            className="text-center min-w-100px cursor-pointer text-hover-primary text-nowrap"
-                            onClick={handleSortIcon6}
-                          >
-                            Actions
-                            {sort6 ? (
-                              <IoIosArrowUp className="mb-2" />
-                            ) : (
-                              <IoIosArrowDown className="mb-2" />
-                            )}
-                          </th>
+                          {columns.map(
+                            (column, index) =>
+                              column.visible && (
+                                <th
+                                  key={index}
+                                  className={`${
+                                    column.label === "SL"
+                                      ? "min-w-50px"
+                                      : column.label === "Order Id"
+                                      ? "min-w-80px"
+                                      : column.label === "Customer Name"
+                                      ? "min-w-150px"
+                                      : column.label === "Customer Type"
+                                      ? "min-w-150px"
+                                      : "text-end pe-0 min-w-100px"
+                                  } cursor-pointer text-hover-primary`}
+                                  onClick={() => handleSort(column.label)}
+                                >
+                                  {column.label} {handleSortIcon(column.label)}
+                                </th>
+                              )
+                          )}
                         </tr>
                       </thead>
-                      <tbody className="fw-semibold text-gray-600">
-                        <tr className="bg-white">
-                          <td>
-                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                value="1"
-                              />
-                            </div>
-                          </td>
-                          <td data-kt-ecommerce-order-filter="order_id">
-                            <a class="text-gray-800 text-hover-primary fw-bold">
-                              19
-                            </a>
-                          </td>
-                          <td data-kt-ecommerce-order-filter="order_id">
-                            <a
-                              href="apps/ecommerce/sales/details.html"
-                              class="text-gray-800 text-hover-primary fw-bold"
-                            >
-                              13757
-                            </a>
-                          </td>
-                          <td>
-                            <a
-                              href="apps/user-management/users/view.html"
-                              class="text-gray-800 text-hover-primary fs-5 fw-bold"
-                            >
-                              Melody Macy
-                            </a>
-                          </td>
-                          <td></td>
-                          <td class="text-center pe-0">
-                            <span class="fw-bold">Waiter1</span>
-                          </td>
-                          <td class="text-center pe-0">
-                            <span class="fw-bold">Table1</span>
-                          </td>
-                          <td class="text-center" data-order="2023-11-23">
-                            <span class="fw-bold">23/11/2023</span>
-                          </td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td class="text-center" data-order="2023-11-19">
-                            <span class="fw-bold">1500</span>
-                          </td>
-                          <td class="text-center">
-                            <a
-                              className={`btn btn-sm btn-light btn-flex btn-center btn-active-light-primary  fs-6 ${
-                                showMenu2 ? "show" : ""
-                              }`}
-                              onClick={handleShowMenu2}
-                            >
-                              Actions
-                              <i class="ki-outline ki-down fs-5 ms-1"></i>
-                            </a>
-                            <div
-                              ref={menuRef2}
-                              className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
-                                showMenu2
-                                  ? "show active-list-action-table-action"
-                                  : ""
-                              }`}
-                            >
-                              <Link target="_blank" to='/ordermanage/order/orderdetails/19' class="menu-item px-3">
-                                <a
-                                  class="menu-link px-3"
-                                  data-kt-ecommerce-order-filter="delete_row"
-                                >
-                                  View
-                                </a>
-                              </Link>
-                              <Link target="_blank" to='/ordermanage/order/posorderinvoice/19'
-                                class="menu-item px-3"
-                              >
-                                <a
-                                  class="menu-link px-3"
-                                  data-kt-ecommerce-order-filter="delete_row"
-                                >
-                                  Pos Invoice
-                                </a>
-                              </Link>
-                            </div>
-                          </td>
-                        </tr>
+                      <tbody>
+                        {data.map((item, index) => (
+                          <tr key={index} className="bg-white">
+                            <td className="w-10px pe-2">
+                              <div className="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  value="1"
+                                />
+                              </div>
+                            </td>
+                            {columns.map(
+                              (column, idx) =>
+                                column.visible && (
+                                  <td
+                                    key={idx}
+                                    className={`${
+                                      column.label === "SL" ||
+                                      column.label === "Order Id" ||
+                                      column.label === "Customer Name" ||
+                                      column.label === "Customer Type"
+                                        ? ""
+                                        : "text-end pe-0"
+                                    }`}
+                                  >
+                                    {column.label === "SL" && item.sl}
+                                    {column.label === "Order Id" && (
+                                      <a className="text-gray-800 text-hover-primary fw-bold">
+                                        {item.order_id}
+                                      </a>
+                                    )}
+                                    {column.label === "Customer Name" && (
+                                      <a className="text-gray-800 text-hover-primary fs-5 fw-bold">
+                                        {item.customer_name}
+                                      </a>
+                                    )}
+                                    {column.label === "Customer Type" && (
+                                      <a className="text-gray-800 text-hover-primary fs-5 fw-bold">
+                                        {item.customer_name}
+                                      </a>
+                                    )}
+                                    {column.label === "Waiter" && (
+                                      <span className="fw-bold text-gray-600">
+                                        {item.waiter}
+                                      </span>
+                                    )}
+                                    {column.label === "Table" && (
+                                      <span className="fw-bold text-gray-600">
+                                        {item.table}
+                                      </span>
+                                    )}
+                                    {column.label === "Pre-Order" && (
+                                      <span className="fw-bold text-gray-600">
+                                        {item.pre_order}
+                                      </span>
+                                    )}
+                                    {column.label === "Pre Order Date" && (
+                                      <span className="fw-bold text-gray-600">
+                                        {item.pre_order_date}
+                                      </span>
+                                    )}
+                                    {column.label === "Pre Order Time" && (
+                                      <span className="fw-bold text-gray-600">
+                                        {item.pre_order_time}
+                                      </span>
+                                    )}
+                                    {column.label === "Order Date" && (
+                                      <span className="fw-bold text-gray-600">
+                                        {item.order_date}
+                                      </span>
+                                    )}
+                                    {column.label === "Amount" && (
+                                      <span className="fw-bold text-gray-600">
+                                        {item.amount}
+                                      </span>
+                                    )}
+                                    {column.label === "Action" && (
+                                      <>
+                                        <a
+                                          className={`btn btn-sm btn-light btn-flex btn-center btn-active-light-primary fs-6 ${
+                                            menuIndex === index ? "show" : ""
+                                          }`}
+                                          onClick={() => handleShowMenu(index)}
+                                        >
+                                          Actions
+                                          <i className="ki-outline ki-down fs-5 ms-1"></i>
+                                        </a>
+                                        <div
+                                          ref={menuRef}
+                                          className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
+                                            menuIndex === index ? "show" : ""
+                                          }`}
+                                          style={{
+                                            zIndex: 107,
+                                            position: "fixed",
+                                            inset: "0px 0px auto auto",
+                                            margin: "0px",
+                                            transform: `translate(-60px, ${
+                                              450 + index * 60
+                                            }px)`,
+                                            WebkitTransform: `translate(-60px, ${
+                                              450 + index * 60
+                                            }px)`,
+                                            MozTransform: `translate(-60px, ${
+                                              450 + index * 60
+                                            }px)`,
+                                            msTransform: `translate(-60px, ${
+                                              450 + index * 60
+                                            }px)`,
+                                            OTransform: `translate(-60px, ${
+                                              450 + index * 60
+                                            }px)`,
+                                          }}
+                                        >
+                                          <div
+                                            className="menu-item px-3"
+                                            onClick={() =>
+                                              handlePosInvoice(item.invoice_no)
+                                            }
+                                          >
+                                            <a
+                                              className="menu-link px-3"
+                                              data-kt-ecommerce-order-filter="delete_row"
+                                            >
+                                              View
+                                            </a>
+                                          </div>
+                                          <Link
+                                            to={
+                                              "/ordermanage/order/posorderinvoice/19"
+                                            }
+                                            target="_blank"
+                                            className="menu-item px-3"
+                                          >
+                                            <a
+                                              className="menu-link px-3"
+                                              data-kt-ecommerce-order-filter="delete_row"
+                                            >
+                                              Pos Invoice
+                                            </a>
+                                          </Link>
+                                        </div>
+                                      </>
+                                    )}
+                                  </td>
+                                )
+                            )}
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>
-                  <div className="row">
-                    <div className="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end w-full-title">
-                      <div
-                        className="dataTables_paginate paging_simple_numbers"
-                        id="kt_ecommerce_sales_table_paginate"
-                      >
-                        <ul className="pagination">
-                          <li
-                            className="paginate_button page-item previous disabled"
-                            id="kt_ecommerce_sales_table_previous"
-                          >
+                  <div id="" class="row ">
+                    <div
+                      id=""
+                      class="col-sm-12 col-md-7 d-flex align-items-center justify-content-between justify-between-md-end flex-column flex-sm-row
+                      w-full-title"
+                    >
+                      <div>
+                        <select
+                          name="kt_ecommerce_products_table_length"
+                          class="form-select form-select-solid form-select-sm mt-10"
+                        >
+                          <option value="10">10</option>
+                          <option value="25">25</option>
+                          <option value="50">50</option>
+                          <option value="100">100</option>
+                        </select>
+                        <label for="dt-length-0"></label>
+                      </div>
+                      <div class="dt-paging paging_simple_numbers">
+                        <ul class="pagination">
+                          <li class="dt-paging-button page-item disabled">
                             <a
-                              href="#"
-                              aria-controls="kt_ecommerce_sales_table"
-                              data-dt-idx="0"
-                              tabIndex="0"
-                              className="page-link"
+                              class="page-link previous"
+                              aria-controls="kt_ecommerce_products_table"
+                              aria-disabled="true"
+                              aria-label="Previous"
+                              data-dt-idx="previous"
+                              tabindex="-1"
                             >
-                              <i className="previous"></i>
+                              <i class="previous"></i>
                             </a>
                           </li>
-                          <li className="paginate_button page-item active">
+                          <li class="dt-paging-button page-item active">
                             <a
                               href="#"
-                              aria-controls="kt_ecommerce_sales_table"
-                              data-dt-idx="1"
-                              tabIndex="0"
-                              className="page-link"
+                              class="page-link"
+                              aria-controls="kt_ecommerce_products_table"
+                              aria-current="page"
+                              data-dt-idx="0"
+                              tabindex="0"
                             >
                               1
                             </a>
                           </li>
-                          <li className="paginate_button page-item">
+                          <li class="dt-paging-button page-item">
                             <a
                               href="#"
-                              aria-controls="kt_ecommerce_sales_table"
-                              data-dt-idx="2"
-                              tabIndex="0"
-                              className="page-link"
+                              class="page-link"
+                              aria-controls="kt_ecommerce_products_table"
+                              data-dt-idx="1"
+                              tabindex="0"
                             >
                               2
                             </a>
                           </li>
-                          <li className="paginate_button page-item">
+                          <li class="dt-paging-button page-item">
                             <a
                               href="#"
-                              aria-controls="kt_ecommerce_sales_table"
-                              data-dt-idx="3"
-                              tabIndex="0"
-                              className="page-link"
+                              class="page-link"
+                              aria-controls="kt_ecommerce_products_table"
+                              data-dt-idx="2"
+                              tabindex="0"
                             >
                               3
                             </a>
                           </li>
-                          <li className="paginate_button page-item">
+                          <li class="dt-paging-button page-item">
                             <a
                               href="#"
-                              aria-controls="kt_ecommerce_sales_table"
-                              data-dt-idx="4"
-                              tabIndex="0"
-                              className="page-link"
+                              class="page-link"
+                              aria-controls="kt_ecommerce_products_table"
+                              data-dt-idx="3"
+                              tabindex="0"
                             >
                               4
                             </a>
                           </li>
-                          <li className="paginate_button page-item">
+                          <li class="dt-paging-button page-item">
                             <a
                               href="#"
-                              aria-controls="kt_ecommerce_sales_table"
-                              data-dt-idx="5"
-                              tabIndex="0"
-                              className="page-link"
+                              class="page-link"
+                              aria-controls="kt_ecommerce_products_table"
+                              data-dt-idx="4"
+                              tabindex="0"
                             >
                               5
                             </a>
                           </li>
-                          <li
-                            className="paginate_button page-item next"
-                            id="kt_ecommerce_sales_table_next"
-                          >
+                          <li class="dt-paging-button page-item">
                             <a
                               href="#"
-                              aria-controls="kt_ecommerce_sales_table"
-                              data-dt-idx="6"
-                              tabIndex="0"
-                              className="page-link"
+                              class="page-link next"
+                              aria-controls="kt_ecommerce_products_table"
+                              aria-label="Next"
+                              data-dt-idx="next"
+                              tabindex="0"
                             >
-                              <i className="next"></i>
+                              <i class="next"></i>
                             </a>
                           </li>
                         </ul>

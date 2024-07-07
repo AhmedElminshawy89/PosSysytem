@@ -18,11 +18,12 @@ import { BsArrowsFullscreen } from "react-icons/bs";
 import { AiFillCloseSquare } from "react-icons/ai";
 import image from "../../../data/Img/logo.jpg";
 import { useHotkeys } from "react-hotkeys-hook";
-const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
+const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
   const [isQuickLinkMenuOpen, setIsQuickLinkMenuOpen] = useState(false);
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const location = useLocation();
   const POSPage = location.pathname === "/ordermanage/order/pos_invoice";
+  const stationDashboard = location.pathname === "/ordermanage/order/allkitchen";
   const dispatch = useDispatch();
   const isMiniProfileMenuOpen = useSelector(
     (state) => state.global.isMiniProfileMenuOpen
@@ -32,7 +33,11 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
   const handleTabClick = (tabName) => {
     dispatch(setActiveTab(tabName));
   };
+  const [activeTab2, setActiveTab2] = useState(1);
 
+  const handleTabClick2 = (tabName) => {
+    setActiveTab2(tabName);
+  };
   const handleFullScreen = () => {
     const element = document.documentElement;
     if (element.requestFullscreen) {
@@ -71,14 +76,11 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
             className="app-sidebar-toggle
              btn btn-sm btn-icon bg-body btn-color-gray-500 
              btn-active-color-primary w-40px h-40px ms-n2 me-4 d-none d-lg-flex"
-            data-kt-toggle="true"
-            data-kt-toggle-state="active"
-            data-kt-toggle-target="body"
-            data-kt-toggle-name="app-sidebar-minimize"
-            onClick={() => {
-              toggleSidebar();
-              toggleSidebarActive();
-            }}
+            // data-kt-toggle="true"
+            // data-kt-toggle-state="active"
+            // data-kt-toggle-target="body"
+            // data-kt-toggle-name="app-sidebar-minimize"
+            onClick={openSidebar}
           >
             <i className="ki-outline ki-abstract-14 fs-3 mt-1"></i>
           </div>
@@ -172,6 +174,50 @@ const MainHeader = ({ toggleSidebar, isMinimized, toggleSidebarActive }) => {
                   Today Order
                 </p>
               </div>
+            )}
+            {stationDashboard&&(
+                                  <div className="d-flex align-items-center justify-content-start gap-2 gap-lg-3 flex-wrap">
+                                  <p
+                                    className={`text-nowrap ${
+                                      activeTab2 === 1
+                                        ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                                        : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                                    }`}
+                                    onClick={() => handleTabClick2(1)}
+                                  >
+                                    BBQ
+                                  </p>
+                                  <p
+                                    className={`text-nowrap ${
+                                      activeTab2 === 2
+                                        ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                                        : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                                    }`}
+                                    onClick={() => handleTabClick2(2)}
+                                  >
+                                    Central Kitchen
+                                  </p>
+                                  <p
+                                    className={`text-nowrap ${
+                                      activeTab2 === 3
+                                        ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                                        : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                                    }`}
+                                    onClick={() => handleTabClick2(3)}
+                                  >
+                                    Pizza
+                                  </p>
+                                  <p
+                                    className={`position-relative text-nowrap ${
+                                      activeTab2 === 4
+                                        ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                                        : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                                    }`}
+                                    onClick={() => handleTabClick2(4)}
+                                  >
+                                    Sandwiches
+                                  </p>
+                                </div>
             )}
           </div>
           <div className="d-none-mobile-size-pos">

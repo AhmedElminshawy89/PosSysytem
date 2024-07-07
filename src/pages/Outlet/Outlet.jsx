@@ -8,48 +8,33 @@ import Footer from "../../components/Global/Footer/Footer";
 
 const PagesOutlet = () => {
   const [isSidebarMinimized, setIsSidebarMinimized] = useState(false);
-  const [isSidebarActive, setIsSidebarActive] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const location = useLocation();
-
-  const toggleSidebar = () => {
-    if (window.innerWidth > 992) {
-      setIsSidebarMinimized((prev) => !prev);
-      console.log(">992");
-    }
-  };
+  
   useEffect(() => {
     if (location.pathname === "/ordermanage/order/pos_invoice") {
       setIsSidebarMinimized(true);
-      setIsMenuOpen(false)
+    } else {
+      setIsSidebarMinimized(false);
     }
-  }, [location.pathname]);
-
-  const toggleSidebarActive = () => {
-    if (window.innerWidth < 992) {
-      setIsSidebarActive((prev) => !prev);
-      console.log("<992");
-    }
+  }, [location.pathname]); // تغيير هنا لاستخدام location.pathname مباشرة
+  
+  const handleToggleMinimize = () => {
+    setIsSidebarMinimized(!isSidebarMinimized);
   };
+  
+
 
   return (
     <div>
       <MainHeader
-        toggleSidebar={toggleSidebar}
-        toggleSidebarActive={toggleSidebarActive}
+        openSidebar={handleToggleMinimize}
         isMinimized={isSidebarMinimized}
       />
       <div
-        className={`app-wrapper flex-column flex-row-fluid ${
-          classes.globalStyle
-        } ${isSidebarMinimized ? "ml-layout-pos-invoice" : ""}`}
+        className={`app-wrapper flex-column flex-row-fluid ${classes.globalStyle} ${isSidebarMinimized ? "ml-layout-pos-invoice" : ""}`}
         id="kt_app_wrapper"
       >
-        <LeftSidebar
-          isMinimized={isSidebarMinimized}
-          isSidebarActive={isSidebarActive}
-        />
+        <LeftSidebar isMinimized={isSidebarMinimized} />
         <div style={{ marginTop: "99px" }}>
           <Outlet />
         </div>
