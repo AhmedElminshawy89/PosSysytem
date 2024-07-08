@@ -1343,13 +1343,19 @@ select option:hover {
 .ipad-mobile-view-pos{
   display: none;
 }
-@media screen and (max-width:1220px) {
+@media screen and (max-width:1441px) {
   .ipad-mobile-view-pos{
   display: block;
   padding-bottom: 10px;
+  margin-left: 100px;
   }
   .ipad-mobile-view-pos-tab-hidden{
     display: none !important;
+  }
+}
+@media screen and (max-width:1380px) {
+  .ipad-mobile-view-pos{
+  margin-left: 0px !important;
   }
 }
 /* 
