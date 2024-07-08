@@ -27,7 +27,7 @@ const PosSettings = () => {
             <div className="d-flex flex-column gap-7 gap-lg-10">
 
               <div className="d-flex flex-column flex-xl-row gap-7 gap-lg-10">
-              <div className="card card-flush py-0 flex-row-fluid w-400px">
+              <div className="card card-flush py-0 flex-row-fluid w-400pxx">
                 <div className="card-header mb-30">
                   <div className="card-title">
                     <h2> Place order</h2>
@@ -84,7 +84,7 @@ const PosSettings = () => {
                   </div>
                 </div>
               </div>
-                <div className="card card-flush py-0 flex-row-fluid w-400px">
+                <div className="card card-flush py-0 flex-row-fluid w-400pxx">
                 <div className="card-header mb--0">
                   <div className="card-title">
                     <h2> Quick order</h2>

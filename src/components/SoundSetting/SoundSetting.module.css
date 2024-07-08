@@ -30,7 +30,7 @@
     -o-transition: height 0.5s ease-in-out;
 }
 .autoCardBody {
-    height: 200px;
+    height: 500px;
     transition: height 0.5s ease-in-out;
     -webkit-transition: height 0.5s ease-in-out;
     -moz-transition: height 0.5s ease-in-out;

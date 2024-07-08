@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import {
   AiOutlineClose,
   AiOutlineFullscreen,
@@ -7,10 +7,35 @@ import {
 } from "react-icons/ai";
 import { FaEdit, FaSave } from "react-icons/fa";
 import Draggable from "react-draggable";
-import classes from "../../styles/global.module.css";
-import style from "./SoundSetting.module.css";
 import Toolbar from "../Global/ToolBar/Toolbar";
 import { IoMoveSharp } from "react-icons/io5";
+import { FaUpload } from "react-icons/fa";
+import styled from "styled-components";
+import style from "./SoundSetting.module.css";
+import classes from "../../styles/global.module.css";
+
+const UploadBoxContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border: 2px dashed #1b84ff;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+
+  &:hover {
+    background-color: #eee;
+    border-color: #1b84ff;
+  }
+`;
+
+const UploadIcon = styled(FaUpload)`
+  color: #1b84ff;
+  font-size: 50px;
+`;
 
 const SoundSetting = () => {
   const [isBoxVisible, setIsBoxVisible] = useState(true);
@@ -25,6 +50,7 @@ const SoundSetting = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [audioSrc, setAudioSrc] = useState(null);
   const audioRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false); // Define isDragging state
 
   const handleEditTitle = () => {
     setEditMode(true);
@@ -50,42 +76,45 @@ const SoundSetting = () => {
     }
   };
 
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
     if (file) {
-      const fileURL = URL.createObjectURL(file);
-      setAudioSrc(fileURL);
+      console.log("File selected:", file.name);
+      playUploadSound();
+    }
+  };
+
+  const playUploadSound = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
     }
   };
 
   const handleToggleCardBody = () => {
     setIsCardBodyVisible(!isCardBodyVisible);
   };
-  const [isDragging, setIsDragging] = useState(false);
 
   const handleDragStart = () => {
-    setIsDragging(true);
+    setIsDragging(true); // Set isDragging to true
   };
-  
+
   const handleDragStop = (e, data) => {
-    setIsDragging(false);
+    setIsDragging(false); // Set isDragging to false
     if (!isPinned) {
       setPosition({ x: data.x, y: data.y });
     }
   };
-  
+
   const handlePin = () => {
     setIsPinned(!isPinned);
     if (!isPinned) {
-      setOriginalPosition(position); // Save current position when pinned
-      setPosition({ x: 0, y: 0 }); // Reset position to allow free dragging
+      setOriginalPosition(position);
+      setPosition({ x: 0, y: 0 });
     } else {
-      setPosition(originalPosition); // Restore original position when unpinned
+      setPosition(originalPosition);
     }
   };
-  
-  
+
   return (
     <div
       className={`app-main flex-column flex-row-fluid" id="kt_app_main ${classes.mainApp}`}
@@ -104,11 +133,11 @@ const SoundSetting = () => {
           >
             {isBoxVisible && (
               <Draggable
-              position={position}
-              onStart={handleDragStart}
-              onStop={handleDragStop}
-              handle=".handle"
-              disabled={isPinned}
+                position={position}
+                onStart={handleDragStart}
+                onStop={handleDragStop}
+                handle=".handle"
+                disabled={isPinned}
               >
                 <div
                   className={`card p-8 ${
@@ -120,7 +149,7 @@ const SoundSetting = () => {
                   }`}
                   ref={cardRef}
                 >
-                  <div className="handle d-flex justify-content-between align-items-center mb-4">
+                  <div className="handle d-flex justify-content-between align-items-center flex-sm-row flex-column mb-4">
                     <div>
                       {editMode ? (
                         <input
@@ -138,69 +167,86 @@ const SoundSetting = () => {
                         className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px fw-bold fs-2"
                         onClick={handleCloseBox}
                       >
-                        <AiOutlineClose />
+                        <AiOutlineClose title="Close"/>
                       </button>
                       <button
                         className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px fw-bold fs-2"
                         onClick={handleToggleFullScreen}
                       >
-                        <AiOutlineFullscreen />
+                        <AiOutlineFullscreen title="Fullscreen"/>
                       </button>
                       <button
                         className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px fw-bold fs-2"
                         onClick={handleToggleCardBody}
                       >
-                        <AiOutlineMinus />
+                        <AiOutlineMinus title="Minimize"/>
                       </button>
-                      {isDragging?(
-                      <button
-                        className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px fw-bold fs-2"
-                        onClick={handlePin}
-                      >
-                        <AiOutlinePushpin />
-                      </button>
-                      ):(
+                      {isDragging ? (
                         <button
-                        className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px fw-bold fs-2"
-                        onClick={handlePin}
-                      >
-                        <IoMoveSharp />
-                      </button>
+                          className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px fw-bold fs-2"
+                          onClick={handlePin}
+                        >
+                          <AiOutlinePushpin title="Unpin"/>
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px fw-bold fs-2"
+                          onClick={handlePin}
+                        >
+                          <IoMoveSharp title="Pin"/>
+                        </button>
                       )}
                       {!editMode ? (
                         <button
                           className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px"
                           onClick={handleEditTitle}
                         >
-                          <FaEdit />
+                          <FaEdit title="Edit"/>
                         </button>
                       ) : (
                         <button
                           className="btn btn-icon btn-light btn-hover-primary me-3 w-40px h-40px "
                           onClick={handleSaveTitle}
                         >
-                          <FaSave />
+                          <FaSave title="Save"/>
                         </button>
                       )}
                     </div>
                   </div>
                   <div
-                    className={`card-body ${
+                    className={`card-body d-flex justify-content-center flex-column ${
                       isCardBodyVisible
                         ? style.showCardBody
                         : style.hiddenCardBody
                     }`}
                   >
-                    <input
-                      type="file"
-                      accept="audio/*"
-                      onChange={handleFileChange}
-                    />
-                    {audioSrc && (
-                      <audio controls ref={audioRef} src={audioSrc}>
-                        Your browser does not support the audio element.
-                      </audio>
-                    )}
+                    <div className="d-flex justify-content-center"> 
+                    <UploadBoxContainer>
+                      <label
+                        htmlFor="file-upload"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <div className="d-flex align-items-center gap-4 flex-column">
+                        <UploadIcon />
+                        <p className="fs-4 fw-bold">Upload Notification Sound</p>
+                        </div>
+                        <input
+                          id="file-upload"
+                          type="file"
+                          style={{ display: "none" }}
+                          onChange={handleFileUpload}
+                        />
+                      </label>
+                      <audio ref={audioRef} src="/path/to/upload-sound.mp3" />
+                    </UploadBoxContainer>
+                    </div>
+                    <div className="d-flex justify-content-end">
+<button className="btn btn-primary">Save</button>
+                    </div>
                   </div>
                 </div>
               </Draggable>

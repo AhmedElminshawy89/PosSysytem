@@ -14,64 +14,34 @@ import Flatpickr from "react-flatpickr";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import CountUp from "react-countup";
+import {
+  ColumnsOrderList,
+  DataOrderList,
+} from "../../data/dataTable/WrapperDataTable";
 
 const OrderList = () => {
-  const [ShowList, setShowList] = useState(false);
+  const [currentSortedColumn, setCurrentSortedColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState({});
   const [dates, setDates] = useState([]);
+  const [countStarted, setCountStarted] = useState(false);
+  const [columns, setColumns] = useState(ColumnsOrderList);
+  const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
+  const [modalPaymentOpen, setModalPaymentIsOpen] = useState(false);
+  const [modalDetailsOpen, setModalDetailsIsOpen] = useState(false);
+  const [showMenu3, setShowMenu3] = useState(false);
+  const [showMenu2, setShowMenu2] = useState(false);
+  const [menuIndex, setMenuIndex] = useState(null);
 
+  const menuRef = useRef(null);
+  const menuRef2 = useRef(null);
+  const menuRef3 = useRef(null);
+
+  const navigate = useNavigate();
   const handleDateChange = (selectedDates) => {
     setDates(selectedDates);
   };
-  const refList = useRef(null);
 
-  const initialColumns = [
-    { label: "SL", visible: true },
-    { label: "Invoice No", visible: true },
-    { label: "Customer Name", visible: true },
-    { label: "Waiter", visible: true },
-    { label: "Table", visible: true },
-    { label: "State", visible: true },
-    { label: "Order Date", visible: true },
-    { label: "Amount", visible: true },
-    { label: "Action", visible: true },
-  ];
-
-  const [data, setData] = useState([
-    {
-      sl: 19,
-      invoice_no: 13757,
-      customer_name: "	Melody Macy",
-      waiter: "Waiter1	",
-      table: "Table1",
-      state: "Served",
-      order_date: "23/11/2023",
-      amount: 1500,
-    },
-    {
-      sl: 20,
-      invoice_no: 13547,
-      customer_name: "Brian Cox",
-      waiter: "Waiter2",
-      table: "Table2",
-      state: "Pending",
-      order_date: "8/7/2024",
-      amount: 1750,
-    },
-    {
-      sl: 21,
-      invoice_no: 1546,
-      customer_name: "Olivia Wild",
-      waiter: "Waiter3",
-      table: "Table4",
-      state: "Cancelled",
-      order_date: "8/7/2024",
-      amount: 1750,
-    },
-  ]);
-
-  const [columns, setColumns] = useState(initialColumns);
-  const [countStarted, setCountStarted] = useState(false);
+  const [data, setData] = useState(DataOrderList);
 
   useEffect(() => {
     setCountStarted(true);
@@ -87,22 +57,6 @@ const OrderList = () => {
   const handleChange = (columnLabel) => {
     toggleColumnVisibility(columnLabel);
   };
-
-  useEffect(() => {
-    const listener = (event) => {
-      if (!refList.current || refList.current.contains(event.target)) {
-        return;
-      }
-      setShowList(false);
-    };
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
-    return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-    };
-  }, [refList]);
-  const [currentSortedColumn, setCurrentSortedColumn] = useState(null);
 
   const handleSort = (label) => {
     const direction = sortDirection[label] === "asc" ? "desc" : "asc";
@@ -329,19 +283,13 @@ const OrderList = () => {
     setShowMenu2(false);
   };
 
-  const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
-
   const closeModalCancel = () => {
     setModalCancelIsOpen(false);
   };
 
-  const [modalPaymentOpen, setModalPaymentIsOpen] = useState(false);
-
   const closeModalPayment = () => {
     setModalPaymentIsOpen(false);
   };
-
-  const [modalDetailsOpen, setModalDetailsIsOpen] = useState(false);
 
   const closeModalDetails = () => {
     setModalDetailsIsOpen(false);
@@ -364,17 +312,9 @@ const OrderList = () => {
       }
     });
   };
-  const navigate = useNavigate();
   const handlePosInvoice = () => {
     navigate("/ordermanage/order/orderdetails/19");
-    // setShowMenu2(false);
   };
-  const menuRef = useRef(null);
-  const menuRef2 = useRef(null);
-  const menuRef3 = useRef(null);
-  const [showMenu3, setShowMenu3] = useState(false);
-  const [showMenu2, setShowMenu2] = useState(false);
-  const [menuIndex, setMenuIndex] = useState(null);
 
   const handleShowMenu = (index) => {
     setMenuIndex(index === menuIndex ? null : index);

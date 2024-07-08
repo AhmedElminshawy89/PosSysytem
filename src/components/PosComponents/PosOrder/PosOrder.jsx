@@ -15,6 +15,7 @@ import jsPDF from "jspdf";
 import { useHotkeys } from "react-hotkeys-hook";
 import PaymentModal from "../../../pages/POS/Tabs/OnGoingOrder/CompleteOrder";
 import { useNavigate } from "react-router-dom";
+import { customStylesSelect } from "./Modal/AddCustomer";
 const PosOrder = () => {
   const [items, setItems] = useState([
     {
@@ -564,6 +565,7 @@ const PosOrder = () => {
               }`}
               onChange={handleCustomerName}
               ref={selectRef}
+              styles={customStylesSelect}
             />
           </div>
           <div className="form-group-form-order pl-form-group-pos-order">
@@ -579,6 +581,7 @@ const PosOrder = () => {
               className="select-form-order-pos"
               onChange={handleCustomerTypeChange}
               ref={selectRef2}
+              styles={customStylesSelect}
             />
           </div>
         </div>
@@ -598,6 +601,7 @@ const PosOrder = () => {
                     isSearchable={true}
                     placeholder={`Select...`}
                     className="select-form-order-pos"
+              styles={customStylesSelect}
                   />
                 </div>
                 <div className="form-group-form-order  pl-form-group-pos-order">
@@ -611,6 +615,7 @@ const PosOrder = () => {
                     isSearchable={true}
                     placeholder={`Select...`}
                     className="select-form-order-pos"
+              styles={customStylesSelect}
                   />
                 </div>
               </div>
@@ -633,6 +638,7 @@ const PosOrder = () => {
                     }`}
                     onChange={handleWaiter}
                     ref={selectRef3}
+              styles={customStylesSelect}
                   />
                 </div>
                 <div className="form-group-form-order  pl-form-group-pos-order">
@@ -656,6 +662,7 @@ const PosOrder = () => {
                         tableSelected ? "border-red-warn" : ""
                       }`}
                       onChange={handleTable}
+              styles={customStylesSelect}
                     />
                   </div>
                 </div>
@@ -679,6 +686,7 @@ const PosOrder = () => {
                     }`}
                     onChange={handleWaiter}
                     ref={selectRef3}
+              styles={customStylesSelect}
                   />
                 </div>
                 <div className="form-group-form-order pl-form-group-pos-order mt-3">
@@ -705,6 +713,7 @@ const PosOrder = () => {
               placeholder={`Select...`}
               className="select-form-order-pos"
               ref={selectRef4}
+              styles={customStylesSelect}
             />
           </div>
           {customerType && (

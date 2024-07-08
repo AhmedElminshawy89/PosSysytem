@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import "../CustomerModal.css";
+import Select from "react-select";
 
 const customStyles = {
   content: {
@@ -15,11 +16,23 @@ const customStyles = {
     height: "95vh",
   },
 };
+export const customStylesSelect = {
+  option: (provided, state) => ({
+    ...provided,
+    backgroundColor: state.isFocused ? "#eee" : "white",
+    color: state.isFocused ? "#007bffcc" : "#000",
+  }),
+  menu: (provided) => ({
+    ...provided,
+    zIndex: 9999,
+  }),
+};
 const CustomerModal = ({ modalIsOpen, closeModal }) => {
   const [chooseType, setChooseType] = useState("Apartment");
   const handleType = (text) => {
     setChooseType(text);
   };
+  const thirdPartyOrderOptions = [{ value: "option1", label: "Egypt" }];
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -36,13 +49,26 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
               <label htmlFor="firstName">
                 First Name<span className="required-field-form-order">*</span>
               </label>
-              <input type="text" id="firstName" name="firstName" required />
+              <input
+                className="select-form-order-pos input-form-order"
+                type="text"
+                id="firstName"
+                name="firstName"
+                style={{ borderRadius: ".75rem" }}
+              />
             </div>
             <div className="form-column">
               <label htmlFor="lastName">
                 Last Name<span className="required-field-form-order">*</span>
               </label>
-              <input type="text" id="lastName" name="lastName" required />
+              <input
+                className="select-form-order-pos input-form-order"
+                type="text"
+                id="lastName"
+                name="lastName"
+                required
+                style={{ borderRadius: ".75rem" }}
+              />
             </div>
           </div>
         </div>
@@ -54,17 +80,26 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
                 <span className="required-field-form-order">*</span>
               </label>
               <input
+                className="select-form-order-pos input-form-order"
                 type="email"
                 id="emailAddress"
                 name="emailAddress"
                 required
+                style={{ borderRadius: ".75rem" }}
               />
             </div>
             <div className="form-column">
               <label htmlFor="phone">
                 Phone<span className="required-field-form-order">*</span>
               </label>
-              <input type="tel" id="phone" name="phone" required />
+              <input
+                className="select-form-order-pos input-form-order"
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                style={{ borderRadius: ".75rem" }}
+              />
             </div>
             {/* <div className="form-column">
               <label htmlFor="phone"></label>
@@ -83,7 +118,14 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
             Create account password
             <span className="required-field-form-order">*</span>
           </label>
-          <input type="password" id="password" name="password" required />
+          <input
+            className="select-form-order-pos input-form-order"
+            type="password"
+            id="password"
+            name="password"
+            required
+            style={{ borderRadius: ".75rem" }}
+          />
         </div>
         <div>
           <h2>Account Details</h2>
@@ -101,19 +143,27 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
                 <span className="required-field-form-order">*</span>
               </label>
               <input
+                className="select-form-order-pos input-form-order"
                 type="text"
                 id="addressTitle"
                 name="addressTitle"
                 required
+                style={{ borderRadius: ".75rem" }}
               />
             </div>
             <div className="form-column">
               <label className="form-label mt-3" htmlFor="country">
                 Country
               </label>
-              <select id="country" name="country">
-                <option value="egypt">Egypt</option>
-              </select>
+              <Select
+                id="thirdPartyOrderID"
+                name="thirdPartyOrderID"
+                options={thirdPartyOrderOptions}
+                isSearchable={true}
+                placeholder={`Select...`}
+                className="select-form-order-pos"
+                styles={customStylesSelect}
+              />
             </div>
           </div>
         </div>
@@ -123,15 +173,29 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
               <label htmlFor="state" className="form-label">
                 State<span className="required-field-form-order">*</span>
               </label>
-              <select id="state" name="state">
-                <option value="giza">Giza</option>
-              </select>
+              <Select
+                id="thirdPartyOrderID"
+                name="thirdPartyOrderID"
+                options={[{ valeu: "", label: "Giza" }]}
+                isSearchable={true}
+                placeholder={`Select...`}
+                className="select-form-order-pos"
+                styles={customStylesSelect}
+              />
             </div>
             <div className="form-column">
               <label htmlFor="city" className="form-label mt-3">
                 Town / City
               </label>
-              <select id="city" name="city"></select>
+              <Select
+                id="thirdPartyOrderID"
+                name="thirdPartyOrderID"
+                options={[{ valeu: "", label: "Alexandria" }]}
+                isSearchable={true}
+                placeholder={`Select...`}
+                className="select-form-order-pos"
+                styles={customStylesSelect}
+              />
             </div>
           </div>
         </div>
@@ -178,14 +242,28 @@ const CustomerModal = ({ modalIsOpen, closeModal }) => {
                 Building
                 <span className="required-field-form-order">*</span>
               </label>
-              <input type="text" id="building" name="building" />
+              <input
+                className="select-form-order-pos input-form-order"
+                type="text"
+                id="building"
+                name="building"
+                required
+                style={{ borderRadius: ".75rem" }}
+              />
             </div>
             <div className="form-column">
               <label className="form-label" htmlFor="apartmentNo">
                 Apartment No.
                 <span className="required-field-form-order">*</span>
               </label>
-              <input type="text" id="apartmentNo" name="apartmentNo" />
+              <input
+                className="select-form-order-pos input-form-order"
+                type="text"
+                id="apartmentNo"
+                name="apartmentNo"
+                required
+                style={{ borderRadius: ".75rem" }}
+              />
             </div>
           </div>
         </div>

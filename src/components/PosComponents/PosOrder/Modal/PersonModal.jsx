@@ -109,7 +109,10 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                      <td
+                        colspan="4"
+                        className="text-center no-customer fs-2 fw-solid"
+                      >
                         No Customer
                       </td>
                     </tr>{" "}
@@ -117,10 +120,20 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" className="fs-2"/>{" "}
-                <p className="btn btn-primary py-2 mt-3">+</p>
+                <input
+                  className="select-form-order-pos input-form-order w-250px mb-1"
+                  type="text"
+                  placeholder="Person"
+                  style={{ borderRadius: ".75rem" }}
+                />
+                <p
+                  className="btn btn-primary py-3 mt-3"
+                  style={{ borderRadius: ".75rem" }}
+                >
+                  +
+                </p>
               </div>
-            </div>
+            </div>{" "}
             <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
@@ -162,7 +175,10 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                      <td
+                        colspan="4"
+                        className="text-center no-customer fs-2 fw-solid"
+                      >
                         No Customer
                       </td>
                     </tr>{" "}
@@ -170,10 +186,21 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" className="fs-2"/>{" "}
-                <p className="btn btn-primary py-2 mt-3">+</p>
+                <input
+                  className="select-form-order-pos input-form-order w-250px mb-1"
+                  type="text"
+                  placeholder="Person"
+                  style={{ borderRadius: ".75rem" }}
+                />
+                <p
+                  className="btn btn-primary py-3 mt-3"
+                  style={{ borderRadius: ".75rem" }}
+                >
+                  +
+                </p>
               </div>
-            </div>            <div>
+            </div>{" "}
+            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
                   <div className="d-flex gap-4 align-items-center mb-1">
@@ -214,7 +241,10 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                      <td
+                        colspan="4"
+                        className="text-center no-customer fs-2 fw-solid"
+                      >
                         No Customer
                       </td>
                     </tr>{" "}
@@ -222,10 +252,21 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" className="fs-2"/>{" "}
-                <p className="btn btn-primary py-2 mt-3">+</p>
+                <input
+                  className="select-form-order-pos input-form-order w-250px mb-1"
+                  type="text"
+                  placeholder="Person"
+                  style={{ borderRadius: ".75rem" }}
+                />
+                <p
+                  className="btn btn-primary py-3 mt-3"
+                  style={{ borderRadius: ".75rem" }}
+                >
+                  +
+                </p>
               </div>
-            </div>            <div>
+            </div>{" "}
+            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
                   <div className="d-flex gap-4 align-items-center mb-1">
@@ -266,7 +307,10 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                      <td
+                        colspan="4"
+                        className="text-center no-customer fs-2 fw-solid"
+                      >
                         No Customer
                       </td>
                     </tr>{" "}
@@ -274,10 +318,21 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" className="fs-2"/>{" "}
-                <p className="btn btn-primary py-2 mt-3">+</p>
+                <input
+                  className="select-form-order-pos input-form-order w-250px mb-1"
+                  type="text"
+                  placeholder="Person"
+                  style={{ borderRadius: ".75rem" }}
+                />
+                <p
+                  className="btn btn-primary py-3 mt-3"
+                  style={{ borderRadius: ".75rem" }}
+                >
+                  +
+                </p>
               </div>
-            </div>            <div>
+            </div>{" "}
+            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
                   <div className="d-flex gap-4 align-items-center mb-1">
@@ -318,7 +373,10 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                      <td
+                        colspan="4"
+                        className="text-center no-customer fs-2 fw-solid"
+                      >
                         No Customer
                       </td>
                     </tr>{" "}
@@ -326,8 +384,18 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" className="fs-2"/>{" "}
-                <p className="btn btn-primary py-2 mt-3">+</p>
+                <input
+                  className="select-form-order-pos input-form-order w-250px mb-1"
+                  type="text"
+                  placeholder="Person"
+                  style={{ borderRadius: ".75rem" }}
+                />
+                <p
+                  className="btn btn-primary py-3 mt-3"
+                  style={{ borderRadius: ".75rem" }}
+                >
+                  +
+                </p>
               </div>
             </div>
           </div>
@@ -368,7 +436,7 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
       {selectedTab === "secondFloor" && (
         <form>
           <div className="grid-person-modal">
-          <div>
+            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
                   <div className="d-flex gap-4 align-items-center mb-1">
@@ -409,7 +477,10 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                      <td
+                        colspan="4"
+                        className="text-center no-customer fs-2 fw-solid"
+                      >
                         No Customer
                       </td>
                     </tr>{" "}
@@ -417,10 +488,21 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" className="fs-2"/>{" "}
-                <p className="btn btn-primary py-2 mt-3">+</p>
+                <input
+                  className="select-form-order-pos input-form-order w-250px mb-1"
+                  type="text"
+                  placeholder="Person"
+                  style={{ borderRadius: ".75rem" }}
+                />
+                <p
+                  className="btn btn-primary py-3 mt-3"
+                  style={{ borderRadius: ".75rem" }}
+                >
+                  +
+                </p>
               </div>
-            </div>            <div>
+            </div>{" "}
+            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
                   <div className="d-flex gap-4 align-items-center mb-1">
@@ -461,7 +543,10 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                      <td
+                        colspan="4"
+                        className="text-center no-customer fs-2 fw-solid"
+                      >
                         No Customer
                       </td>
                     </tr>{" "}
@@ -469,10 +554,21 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" className="fs-2"/>{" "}
-                <p className="btn btn-primary py-2 mt-3">+</p>
+                <input
+                  className="select-form-order-pos input-form-order w-250px mb-1"
+                  type="text"
+                  placeholder="Person"
+                  style={{ borderRadius: ".75rem" }}
+                />
+                <p
+                  className="btn btn-primary py-3 mt-3"
+                  style={{ borderRadius: ".75rem" }}
+                >
+                  +
+                </p>
               </div>
-            </div>            <div>
+            </div>{" "}
+            <div>
               <div className="mb-5 d-flex align-items-center justify-content-between">
                 <div>
                   <div className="d-flex gap-4 align-items-center mb-1">
@@ -513,7 +609,10 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="4" className="text-center no-customer fs-2 fw-solid">
+                      <td
+                        colspan="4"
+                        className="text-center no-customer fs-2 fw-solid"
+                      >
                         No Customer
                       </td>
                     </tr>{" "}
@@ -521,8 +620,18 @@ const PersonModal = ({ modalIsOpen, closeModal }) => {
                 </table>
               </div>
               <div className="d-flex gap-2 align-items-center">
-                <input type="number" placeholder="Person" className="fs-2"/>{" "}
-                <p className="btn btn-primary py-2 mt-3">+</p>
+                <input
+                  className="select-form-order-pos input-form-order w-250px mb-1"
+                  type="text"
+                  placeholder="Person"
+                  style={{ borderRadius: ".75rem" }}
+                />
+                <p
+                  className="btn btn-primary py-3 mt-3"
+                  style={{ borderRadius: ".75rem" }}
+                >
+                  +
+                </p>
               </div>
             </div>
           </div>

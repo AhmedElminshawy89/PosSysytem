@@ -63,7 +63,7 @@ const CookingTimeInput = () => {
       />
       <div ref={boxRef} className={`box-choose-time ${showChooseTime ? "" : "d-none"}`}>
         <h4>Choose Time</h4>
-        <div>
+        {/* <div>
           <label htmlFor="time">Time</label>
           <input
             readOnly
@@ -72,7 +72,7 @@ const CookingTimeInput = () => {
             className="select-form-order-pos input-form-order"
             value={`${selectedHour}:${selectedMinute}`}
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="time">Hour</label>
           <input

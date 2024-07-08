@@ -18,12 +18,14 @@ import { BsArrowsFullscreen } from "react-icons/bs";
 import { AiFillCloseSquare } from "react-icons/ai";
 import image from "../../../data/Img/logo.jpg";
 import { useHotkeys } from "react-hotkeys-hook";
+import AddClosingBalance from "../../PosComponents/PosOrder/Modal/AddClosingBalance";
 const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
   const [isQuickLinkMenuOpen, setIsQuickLinkMenuOpen] = useState(false);
   const [isSearchMenuOpen, setIsSearchMenuOpen] = useState(false);
   const location = useLocation();
   const POSPage = location.pathname === "/ordermanage/order/pos_invoice";
-  const stationDashboard = location.pathname === "/ordermanage/order/allkitchen";
+  const stationDashboard =
+    location.pathname === "/ordermanage/order/allkitchen";
   const dispatch = useDispatch();
   const isMiniProfileMenuOpen = useSelector(
     (state) => state.global.isMiniProfileMenuOpen
@@ -40,33 +42,50 @@ const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
   };
   const handleFullScreen = () => {
     const element = document.documentElement;
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) {
-      element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) {
-      element.msRequestFullscreen();
+  
+    if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
     }
+  };
+  const [showClosingBalance,setShowClosingBalance] = useState(false)
+  const closeModalBalance = () => {
+    setShowClosingBalance(false);
   };
   const handleExitFullScreen = () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    }
+    setShowClosingBalance(true);
   };
-  useHotkeys('shift+n', () => handleTabClick('newOrder'));
-  useHotkeys('shift+g', () => handleTabClick('ongoingOrder'));
-  useHotkeys('shift+t', () => handleTabClick('TodayOrder'));
-  useHotkeys('shift+o', () => handleTabClick('OnlineOrder'));
-  useHotkeys('shift+u', () => handleTabClick('StationStatus'));
-  useHotkeys('shift+r', () => handleTabClick('QROrder'));
+  useHotkeys("shift+n", () => handleTabClick("newOrder"));
+  useHotkeys("shift+g", () => handleTabClick("ongoingOrder"));
+  useHotkeys("shift+t", () => handleTabClick("TodayOrder"));
+  useHotkeys("shift+o", () => handleTabClick("OnlineOrder"));
+  useHotkeys("shift+u", () => handleTabClick("StationStatus"));
+  useHotkeys("shift+r", () => handleTabClick("QROrder"));
   return (
     <div
       id="kt_app_header"
       className={`app-header d-flex flex-column flex-stack ${classes.stickyHeader}`}
     >
-      <div className={`d-flex flex-stack flex-grow-1 flex-wrap ${classes.widthFull}`}>
+      <div
+        className={`d-flex flex-stack flex-grow-1 flex-wrap ${classes.widthFull}`}
+      >
         <div
           className="app-header-logo d-flex align-items-center ps-lg-12"
           id="kt_app_header_logo"
@@ -106,7 +125,8 @@ const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
           id="kt_app_header_navbar"
         >
           <div className="app-navbar-item d-flex align-items-center flex-lg-grow-1 ps-5">
-            {POSPage &&(
+            <div className=" ipad-mobile-view-pos-tab-hidden">
+            {POSPage && (
               <div
                 className="d-flex align-items-center gap-2 gap-lg-3 tabs-pos-system flex-wrap
               special-style-today-order"
@@ -175,49 +195,50 @@ const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
                 </p>
               </div>
             )}
-            {stationDashboard&&(
-                                  <div className="d-flex align-items-center justify-content-start gap-2 gap-lg-3 flex-wrap">
-                                  <p
-                                    className={`text-nowrap ${
-                                      activeTab2 === 1
-                                        ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
-                                        : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
-                                    }`}
-                                    onClick={() => handleTabClick2(1)}
-                                  >
-                                    BBQ
-                                  </p>
-                                  <p
-                                    className={`text-nowrap ${
-                                      activeTab2 === 2
-                                        ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
-                                        : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
-                                    }`}
-                                    onClick={() => handleTabClick2(2)}
-                                  >
-                                    Central Kitchen
-                                  </p>
-                                  <p
-                                    className={`text-nowrap ${
-                                      activeTab2 === 3
-                                        ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
-                                        : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
-                                    }`}
-                                    onClick={() => handleTabClick2(3)}
-                                  >
-                                    Pizza
-                                  </p>
-                                  <p
-                                    className={`position-relative text-nowrap ${
-                                      activeTab2 === 4
-                                        ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
-                                        : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
-                                    }`}
-                                    onClick={() => handleTabClick2(4)}
-                                  >
-                                    Sandwiches
-                                  </p>
-                                </div>
+            </div>
+            {stationDashboard && (
+              <div className="d-flex align-items-center justify-content-start gap-2 gap-lg-3 flex-wrap">
+                <p
+                  className={`text-nowrap ${
+                    activeTab2 === 1
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick2(1)}
+                >
+                  BBQ
+                </p>
+                <p
+                  className={`text-nowrap ${
+                    activeTab2 === 2
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick2(2)}
+                >
+                  Central Kitchen
+                </p>
+                <p
+                  className={`text-nowrap ${
+                    activeTab2 === 3
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick2(3)}
+                >
+                  Pizza
+                </p>
+                <p
+                  className={`position-relative text-nowrap ${
+                    activeTab2 === 4
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick2(4)}
+                >
+                  Sandwiches
+                </p>
+              </div>
             )}
           </div>
           <div className="d-none-mobile-size-pos">
@@ -300,6 +321,77 @@ const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
               <i className="ki-outline ki-burger-menu-2 fs-2"></i>
             </div>
           </div>
+        </div> 
+        <div className="ipad-mobile-view-pos">
+        {POSPage && (
+              <div
+                className="d-flex align-items-center gap-2 gap-lg-3 tabs-pos-system flex-wrap
+              special-style-today-order "
+              >
+                <p
+                  className={`text-nowrap ${
+                    activeTab === "newOrder"
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick("newOrder")}
+                >
+                  New Order
+                </p>
+                <p
+                  className={`text-nowrap ${
+                    activeTab === "ongoingOrder"
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick("ongoingOrder")}
+                >
+                  On Going Order
+                </p>
+                <p
+                  className={`text-nowrap ${
+                    activeTab === "StationStatus"
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick("StationStatus")}
+                >
+                  Station Status
+                </p>
+                <p
+                  className={`position-relative text-nowrap ${
+                    activeTab === "QROrder"
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick("QROrder")}
+                >
+                  QR Order
+                  <p className="count-pos-tabs-sys">141</p>
+                </p>
+                <p
+                  className={`position-relative text-nowrap ${
+                    activeTab === "OnlineOrder"
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick("OnlineOrder")}
+                >
+                  Online Order
+                  <p className="count-pos-tabs-sys">0</p>
+                </p>
+                <p
+                  className={`text-nowrap ${
+                    activeTab === "TodayOrder"
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick("TodayOrder")}
+                >
+                  Today Order
+                </p>
+              </div>
+            )}
         </div>
       </div>
       <div
@@ -307,6 +399,8 @@ const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
           isMinimized ? "ml-layout-pos-invoice" : ""
         }`}
       ></div>
+      <AddClosingBalance closeModal={closeModalBalance}
+      modalIsOpen={showClosingBalance}/>
     </div>
   );
 };

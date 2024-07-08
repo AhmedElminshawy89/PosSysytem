@@ -438,7 +438,7 @@ code {
   }
 } */
 
-@media (max-width: 576px) {
+@media (max-width: 376px) {
   .category-items-grid {
     grid-template-columns: repeat(auto-fill, minmax(188px, 1fr));
   }
@@ -1086,7 +1086,7 @@ code {
 .box-choose-time {
   background-color: #fff;
   border: 1px solid #eee;
-  padding: 15px 10px;
+  padding: 10px 10px;
   margin-top: 10px;
   border-radius: 10px;
   box-shadow: 1px 2px 13px -2px #eee;
@@ -1095,10 +1095,11 @@ code {
 }
 .box-choose-time > h4 {
   text-align: center;
-  background-color: #eee;
+  /* background-color: #eee; */
   padding: 15px;
   border-radius: 10px;
   font-size: 18px;
+  text-align: end;
 }
 .box-choose-time label {
   font-size: 17px;
@@ -1239,6 +1240,30 @@ code {
   -ms-transform: translate(-270px, 291.2px);
   -o-transform: translate(-270px, 291.2px);
 }
+.active-list-action-table-balance{
+  display: block !important;
+  z-index: 107;
+  position: fixed;
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  transform: translate(-24px, 131.2px) !important;
+  -webkit-transform: translate(-24px, 131.2px) !important;
+  -moz-transform: translate(-24px, 131.2px) !important;
+  -ms-transform: translate(-24px, 131.2px) !important;
+  -o-transform: translate(-24px, 131.2px) !important;
+}
+.active-list-action-table-closing-balance{
+  display: block !important;
+  z-index: 107;
+  position: fixed;
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  transform: translate(-24px, 131.2px) !important;
+  -webkit-transform: translate(-150px, 131.2px) !important;
+  -moz-transform: translate(-24px, 131.2px) !important;
+  -ms-transform: translate(-24px, 131.2px) !important;
+  -o-transform: translate(-24px, 131.2px) !important;
+}
 .active-list-action-table-visibility{
   display: block !important;
   z-index: 107;
@@ -1294,9 +1319,8 @@ select option {
   background-color: #fff !important; 
 }
 
-/* تغيير لون الخيار عند التمرير عليه */
 select option:hover {
-  background-color: #1b84ff !important; /* اللون عند التمرير */
+  background-color: #1b84ff !important; 
 }
 .table:not(.table-bordered).table-row-dashed tr{
   border-bottom-width: 1px;
@@ -1308,3 +1332,27 @@ select option:hover {
       margin-right: 0 !important;
   }
 }
+
+.w-400pxx{
+  max-width: 400px;
+  width: 100% !important;
+}
+.fs-2rem{
+  font-size: 2rem !important;
+}
+.ipad-mobile-view-pos{
+  display: none;
+}
+@media screen and (max-width:1220px) {
+  .ipad-mobile-view-pos{
+  display: block;
+  padding-bottom: 10px;
+  }
+  .ipad-mobile-view-pos-tab-hidden{
+    display: none !important;
+  }
+}
+/* 
+.css-1nmdiq5-menu input:hover{
+  background-color: #eee !important;
+} */

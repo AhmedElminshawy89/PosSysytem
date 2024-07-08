@@ -15,7 +15,7 @@ const PosToolbar = () => {
           <div className="page-title d-flex align-items-center gap-3 me-3">
           <IoHomeOutline  className="text-primary iconhome-bread-crumbs"/>
           <div>
-            <h1 className="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-2 m-0">
+            <h1 className="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-2rem m-0">
             POS System
             </h1>
             <ul className="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">

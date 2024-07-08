@@ -5,70 +5,40 @@ import { toast } from "react-toastify";
 import { utils, write } from "xlsx";
 import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
-import Swal from "sweetalert2";
 import CancelOrder from "../../pages/POS/Tabs/OnGoingOrder/CancelOrder";
 import PaymentModal from "../../pages/POS/Tabs/OnGoingOrder/CompleteOrder";
 import DetailsInvoice from "../../pages/POS/Tabs/QROrder/DetailsInvoice";
 import { Link, useNavigate } from "react-router-dom";
-import Flatpickr from "react-flatpickr";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { AiFillEyeInvisible } from "react-icons/ai";
+import CountUp from "react-countup";
+import {
+  ColumnsPendingOrder,
+  DataPendingOrder,
+} from "../../data/dataTable/WrapperDataTable";
 
 const PendingOrder = () => {
-  const [ShowList, setShowList] = useState(false);
+  const [currentSortedColumn, setCurrentSortedColumn] = useState(null);
+  const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
+  const [modalPaymentOpen, setModalPaymentIsOpen] = useState(false);
+  const [modalDetailsOpen, setModalDetailsIsOpen] = useState(false);
+  const [countStarted, setCountStarted] = useState(false);
+  const [data, setData] = useState(DataPendingOrder);
+  const [columns, setColumns] = useState(ColumnsPendingOrder);
   const [sortDirection, setSortDirection] = useState({});
-  const [dates, setDates] = useState([]);
+  const [showMenu3, setShowMenu3] = useState(false);
+  const [showMenu2, setShowMenu2] = useState(false);
+  const [menuIndex, setMenuIndex] = useState(null);
 
-  const handleDateChange = (selectedDates) => {
-    setDates(selectedDates);
-  };
-  const refList = useRef(null);
+  const menuRef = useRef(null);
+  const menuRef2 = useRef(null);
+  const menuRef3 = useRef(null);
 
-  const initialColumns = [
-    { label: "SL", visible: true },
-    { label: "Order Id", visible: true },
-    { label: "Customer Name", visible: true },
-    { label: "Customer Type", visible: true },
-    { label: "Waiter", visible: true },
-    { label: "Table", visible: true },
-    { label: "Pre-Order", visible: true },
-    { label: "Pre Order Date", visible: true },
-    { label: "Pre Order Time", visible: true },
-    { label: "Order Date", visible: true },
-    { label: "Amount", visible: true },
-    { label: "Action", visible: true },
-  ];
+  const navigate = useNavigate();
 
-  const [data, setData] = useState([
-    {
-      sl: 19,
-      order_id: 13757,
-      customer_name: "	Melody Macy",
-      customer_type: "Take Away / Pickup",
-      waiter: "Waiter1	",
-      table: "Table1",
-      pre_order: "N",
-      pre_order_date: "23/11/2023",
-      pre_order_time: "4:30",
-      order_date: "23/11/2023",
-      amount: 1500,
-    },
-    {
-      sl: 20,
-      order_id: 13760,
-      customer_name: "	Melody Macy",
-      customer_type: "Take Away / Pickup",
-      waiter: "Waiter2	",
-      table: "Table2",
-      pre_order: "N",
-      pre_order_date: "24/7/2024",
-      pre_order_time: "7:30",
-      order_date: "23/11/2023",
-      amount: 1500,
-    },
-  ]);
-
-  const [columns, setColumns] = useState(initialColumns);
+  useEffect(() => {
+    setCountStarted(true);
+  }, []);
 
   const toggleColumnVisibility = (columnLabel) => {
     const updatedColumns = columns.map((col) =>
@@ -80,21 +50,6 @@ const PendingOrder = () => {
   const handleChange = (columnLabel) => {
     toggleColumnVisibility(columnLabel);
   };
-
-  useEffect(() => {
-    const listener = (event) => {
-      if (!refList.current || refList.current.contains(event.target)) {
-        return;
-      }
-      setShowList(false);
-    };
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
-    return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-    };
-  }, [refList]);
 
   const handleSort = (label) => {
     const direction = sortDirection[label] === "asc" ? "desc" : "asc";
@@ -110,8 +65,27 @@ const PendingOrder = () => {
     });
 
     setData(sortedData.reverse());
+    setCountStarted(false);
     setSortDirection({ ...sortDirection, [label]: direction });
+    setCurrentSortedColumn(label);
     setShowMenu2(false);
+  };
+
+  const handleSortIcon = (label) => {
+    if (sortDirection[label] === "asc") {
+      return (
+        <IoIosArrowUp
+          className={label === currentSortedColumn ? "text-primary" : ""}
+        />
+      );
+    } else if (sortDirection[label] === "desc") {
+      return (
+        <IoIosArrowDown
+          className={label === currentSortedColumn ? "text-primary" : ""}
+        />
+      );
+    }
+    return <IoIosArrowUp />;
   };
 
   const handleCopy = () => {
@@ -152,10 +126,10 @@ const PendingOrder = () => {
       row.customer_type,
       row.waiter,
       row.table,
+      row.order_date,
       row.pre_order,
       row.pre_order_date,
       row.pre_order_time,
-      row.order_date,
       row.amount,
     ]);
 
@@ -179,10 +153,10 @@ const PendingOrder = () => {
       row.customer_type,
       row.waiter,
       row.table,
+      row.order_date,
       row.pre_order,
       row.pre_order_date,
       row.pre_order_time,
-      row.order_date,
       row.amount,
     ]);
 
@@ -325,53 +299,21 @@ const PendingOrder = () => {
     setShowMenu2(false);
   };
 
-  const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
-
   const closeModalCancel = () => {
     setModalCancelIsOpen(false);
   };
-
-  const [modalPaymentOpen, setModalPaymentIsOpen] = useState(false);
 
   const closeModalPayment = () => {
     setModalPaymentIsOpen(false);
   };
 
-  const [modalDetailsOpen, setModalDetailsIsOpen] = useState(false);
-
   const closeModalDetails = () => {
     setModalDetailsIsOpen(false);
   };
 
-  const handleAcceptReject = () => {
-    Swal.fire({
-      icon: "success",
-      title: "Order Confirmation",
-      text: "Are you going to Accept or Reject this Order?",
-      showDenyButton: true,
-      showCancelButton: false,
-      denyButtonText: "Reject",
-      confirmButtonText: "Accept",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Accepted", "", "success");
-      } else if (result.isDenied) {
-        setModalCancelIsOpen(true);
-      }
-    });
-    setShowMenu2(false);
-  };
-  const navigate = useNavigate();
   const handlePosInvoice = () => {
     navigate("/ordermanage/order/orderdetails/19");
-    setShowMenu2(false);
   };
-  const menuRef = useRef(null);
-  const menuRef2 = useRef(null);
-  const menuRef3 = useRef(null);
-  const [showMenu3, setShowMenu3] = useState(false);
-  const [showMenu2, setShowMenu2] = useState(false);
-  const [menuIndex, setMenuIndex] = useState(null);
 
   const handleShowMenu = (index) => {
     setMenuIndex(index === menuIndex ? null : index);
@@ -402,14 +344,6 @@ const PendingOrder = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  const handleSortIcon = (label) => {
-    if (sortDirection[label] === "asc") {
-      return <IoIosArrowUp />;
-    } else if (sortDirection[label] === "desc") {
-      return <IoIosArrowDown />;
-    }
-    return null;
-  };
 
   return (
     <>
@@ -445,7 +379,7 @@ const PendingOrder = () => {
                       <div className="card-toolbar flex-row-fluid justify-content-end gap-5 flex-md-row flex-column-reverse width-full-invoices">
                         <button
                           type="button"
-                          className={`btn btn-light-primary width-full-invoices  ${
+                          className={`btn btn-light-primary width-full-invoices fs-6  ${
                             showMenu2 ? "show" : ""
                           }`}
                           onClick={handleShowMenu2}
@@ -461,7 +395,7 @@ const PendingOrder = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="copy"
                               onClick={handleCopy}
                             >
@@ -471,7 +405,7 @@ const PendingOrder = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="excel"
                               onClick={handleExcel}
                             >
@@ -481,7 +415,7 @@ const PendingOrder = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="csv"
                               onClick={handleCSV}
                             >
@@ -491,7 +425,7 @@ const PendingOrder = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="pdf"
                               onClick={handlePDF}
                             >
@@ -501,7 +435,7 @@ const PendingOrder = () => {
                           <div className="menu-item px-3">
                             <a
                               href="#"
-                              className="menu-link px-3"
+                              className="menu-link px-3 fs-6"
                               data-kt-ecommerce-export="print"
                               onClick={handlePrint}
                             >
@@ -511,7 +445,7 @@ const PendingOrder = () => {
                         </div>
                         <button
                           type="button"
-                          className={`btn btn-primary width-full-invoices  ${
+                          className={`btn btn-primary width-full-invoices fs-6  ${
                             showMenu3 ? "show" : ""
                           }`}
                           onClick={handleShowMenu3}
@@ -534,11 +468,14 @@ const PendingOrder = () => {
                                   <input
                                     className="form-check-input"
                                     type="checkbox"
-                                    checked={columns[column]}
+                                    checked={column.visible}
                                     onChange={() => handleChange(column.label)}
                                     id={column.label}
                                   />
-                                  <label htmlFor={column.label}>
+                                  <label
+                                    htmlFor={column.label}
+                                    className="fs-6"
+                                  >
                                     {column.label}
                                   </label>
                                 </div>
@@ -574,7 +511,7 @@ const PendingOrder = () => {
                               column.visible && (
                                 <th
                                   key={index}
-                                  className={`${
+                                  className={`text-nowrap ${
                                     column.label === "SL"
                                       ? "min-w-50px"
                                       : column.label === "Order Id"
@@ -632,7 +569,7 @@ const PendingOrder = () => {
                                     )}
                                     {column.label === "Customer Type" && (
                                       <a className="text-gray-800 text-hover-primary fs-5 fw-bold">
-                                        {item.customer_name}
+                                        {item.customer_type}
                                       </a>
                                     )}
                                     {column.label === "Waiter" && (
@@ -666,8 +603,23 @@ const PendingOrder = () => {
                                       </span>
                                     )}
                                     {column.label === "Amount" && (
-                                      <span className="fw-bold text-gray-600">
-                                        {item.amount}
+                                      <span className="fw-bold text-primary">
+                                        {countStarted ? (
+                                          <CountUp
+                                            end={item.amount}
+                                            duration={1}
+                                            separator=","
+                                            decimals={2}
+                                            decimal="."
+                                          />
+                                        ) : (
+                                          item.amount
+                                            .toFixed(2)
+                                            .replace(
+                                              /\B(?=(\d{3})+(?!\d))/g,
+                                              ","
+                                            )
+                                        )}
                                       </span>
                                     )}
                                     {column.label === "Action" && (
@@ -715,7 +667,7 @@ const PendingOrder = () => {
                                             }
                                           >
                                             <a
-                                              className="menu-link px-3"
+                                              className="menu-link px-3  fs-6"
                                               data-kt-ecommerce-order-filter="delete_row"
                                             >
                                               View
@@ -729,7 +681,7 @@ const PendingOrder = () => {
                                             className="menu-item px-3"
                                           >
                                             <a
-                                              className="menu-link px-3"
+                                              className="menu-link px-3  fs-6"
                                               data-kt-ecommerce-order-filter="delete_row"
                                             >
                                               Pos Invoice

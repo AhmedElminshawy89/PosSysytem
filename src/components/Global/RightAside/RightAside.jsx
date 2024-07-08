@@ -41,7 +41,7 @@ const RightAside = () => {
 				<a
 					className="btn btn-icon btn-color-warning bg-hover-body h-45px w-45px flex-shrink-0"
 					data-bs-toggle="tooltip"
-					title="Profile"
+					title="Add New Customer"
 					data-bs-custom-className="tooltip-inverse"
 					onClick={openModal}
 				>
@@ -51,7 +51,7 @@ const RightAside = () => {
 					to="/ordermanage/order/orderlist"
 					className="btn btn-icon btn-color-success bg-hover-body h-45px w-45px flex-shrink-0"
 					data-bs-toggle="tooltip"
-					title="Messages"
+					title="Order List"
 					data-bs-custom-className="tooltip-inverse"
 				>
 					<i className="ki-outline ki-tablet-ok fs-2x"></i>

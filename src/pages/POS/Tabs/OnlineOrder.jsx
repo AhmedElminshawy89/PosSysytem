@@ -4,65 +4,54 @@ import { utils, write } from "xlsx";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { toast } from "react-toastify";
-import { FaPrint, FaEye, FaTrash, FaEdit } from "react-icons/fa";
-import "../Tabs/QROrder/QROrder.css";
+import "./QROrder/QROrder.css";
 import Swal from "sweetalert2";
-import CancelOrder from "../Tabs/OnGoingOrder/CancelOrder";
-import DetailsInvoice from "../Tabs/QROrder/DetailsInvoice";
-import classesOrderList from "../../../components/OrderList/OrderList.module.css";
-import { Link } from "react-router-dom";
-import { TextField } from "@mui/material";
-import { TextFiedlStyles } from "../../../components/OrderList/StyleMuiField";
-import { FaSortUp } from "react-icons/fa";
-import { PiExclamationMarkBold } from "react-icons/pi";
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-
+import {
+  ColumnsOnlineOrder,
+  ColumnsQROrder,
+  DataOnlineOrder,
+  DataQROrder,
+} from "../../../data/dataTable/WrapperDataTable";
+import CountUp from "react-countup";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import CancelOrder from "./OnGoingOrder/CancelOrder";
+import DetailsInvoice from "./QROrder/DetailsInvoice";
 const OnlineOrder = () => {
-  const [ShowList, setShowList] = useState(false);
+  const [currentSortedColumn, setCurrentSortedColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState({});
+  const [countStarted, setCountStarted] = useState(false);
+  const [columns, setColumns] = useState(ColumnsOnlineOrder);
+  const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
+  const [modalPaymentOpen, setModalPaymentIsOpen] = useState(false);
+  const [modalDetailsOpen, setModalDetailsIsOpen] = useState(false);
+  const [showMenu3, setShowMenu3] = useState(false);
+  const [showMenu2, setShowMenu2] = useState(false);
+  const [menuIndex, setMenuIndex] = useState(null);
 
-  const refList = useRef(null);
+  const menuRef = useRef(null);
+  const menuRef2 = useRef(null);
+  const menuRef3 = useRef(null);
 
-  const show = () => {
-    setShowList(!ShowList);
-  };
-  const initialColumns = [
-    { label: "SL", visible: true },
-    { label: "Invoice", visible: true },
-    { label: "Customer Name", visible: true },
-    { label: "Delivery Method Name", visible: true },
-    { label: "Delivery Date & Time", visible: true },
-    { label: "Waiter", visible: true },
-    { label: "Table No", visible: true },
-    { label: "Payment Status", visible: true },
-    { label: "Order Date", visible: true },
-    { label: "Amount", visible: true },
-    { label: "Action", visible: true },
-  ];
-  const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
-  const [columns, setColumns] = useState(initialColumns);
+  const [data, setData] = useState(DataOnlineOrder);
 
-  const toggleColumnVisibility = (index) => {
-    const updatedColumns = [...columns];
-    updatedColumns[index].visible = !updatedColumns[index].visible;
+  useEffect(() => {
+    setCountStarted(true);
+  }, []);
+
+  const toggleColumnVisibility = (columnLabel) => {
+    const updatedColumns = columns.map((col) =>
+      col.label === columnLabel ? { ...col, visible: !col.visible } : col
+    );
     setColumns(updatedColumns);
   };
 
-  useEffect(() => {
-    const listener = (event) => {
-      if (!refList.current || refList.current.contains(event.target)) {
-        return;
-      }
-      setShowList(false);
-    };
-    document.addEventListener("mousedown", listener);
-    document.addEventListener("touchstart", listener);
-    return () => {
-      document.removeEventListener("mousedown", listener);
-      document.removeEventListener("touchstart", listener);
-    };
-  }, [refList]);
+  const handleChange = (columnLabel) => {
+    toggleColumnVisibility(columnLabel);
+  };
 
   const handleSort = (label) => {
     const direction = sortDirection[label] === "asc" ? "desc" : "asc";
@@ -77,12 +66,13 @@ const OnlineOrder = () => {
       return 0;
     });
 
-    setData(sortedData);
-
+    setData(sortedData.reverse());
+    setCountStarted(false);
     setSortDirection({ ...sortDirection, [label]: direction });
-
-    setShowList(false);
+    setCurrentSortedColumn(label);
+    setShowMenu2(false);
   };
+
   const handleCopy = () => {
     if (data.length === 0) {
       toast.error("No Data Available to copy");
@@ -97,6 +87,7 @@ const OnlineOrder = () => {
         (header) => row[columns.findIndex((col) => col.label === header)]
       )
     );
+
     const textToCopy = [headers.join(",")]
       .concat(rows.map((row) => row.join(",")))
       .join("\n");
@@ -110,16 +101,16 @@ const OnlineOrder = () => {
         console.error("Error copying to clipboard:", error);
         toast.error("Failed to copy data to clipboard. Please try again.");
       });
+    setShowMenu2(false);
   };
   const handleExcel = () => {
     const aoaData = data.map((row) => [
       row.sl,
-      row.Invoice,
+      row.invoice_no,
       row.customer_name,
-      row.customer_type,
       row.waiter,
       row.table,
-      row.Payment_Status,
+      row.state,
       row.order_date,
       row.amount,
     ]);
@@ -133,17 +124,19 @@ const OnlineOrder = () => {
       new Blob([wbout], { type: "application/octet-stream" }),
       "OnlineOrder.xlsx"
     );
+    setShowMenu2(false);
   };
 
   const handleCSV = () => {
     const csvData = data.map((row) => [
       row.sl,
-      row.Invoice,
+      row.invoice,
       row.customer_name,
-      row.customer_type,
+      row.delivery_method_name,
+      row.delivery_date_time,
       row.waiter,
-      row.table,
-      row.Payment_Status,
+      row.table_no,
+      row.payment_status,
       row.order_date,
       row.amount,
     ]);
@@ -161,13 +154,18 @@ const OnlineOrder = () => {
     link.click();
 
     document.body.removeChild(link);
+    setShowMenu2(false);
   };
 
   const handlePDF = () => {
     const doc = new jsPDF();
 
     doc.setFontSize(16);
-    doc.text("INSTASME F&B Management Application By Brandmarks ::", 14, 15);
+    doc.text(
+      "INSTASME F&B Management Application By Brandmarks::posinvoiceloading",
+      14,
+      15
+    );
 
     const tableHead = columns
       .filter((col) => col.visible && col.label !== "Action")
@@ -201,6 +199,7 @@ const OnlineOrder = () => {
       },
     });
 
+    setShowMenu2(false);
     doc.save("OnlineOrder.pdf");
   };
 
@@ -275,26 +274,25 @@ const OnlineOrder = () => {
 	  </html>
 	`);
     printWindow.document.title =
-      "INSTASME F&B Management Application By Brandmarks ::";
+      "INSTASME F&B Management Application By Brandmarks::";
     printWindow.document.close();
     printWindow.print();
+    setShowMenu2(false);
   };
-
-  const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
 
   const closeModalCancel = () => {
     setModalCancelIsOpen(false);
   };
 
-  const [modalPaymentOpen, setModalPaymentIsOpen] = useState(false);
-
-  const [modalDetailsOpen, setModalDetailsIsOpen] = useState(false);
+  const closeModalPayment = () => {
+    setModalPaymentIsOpen(false);
+  };
 
   const closeModalDetails = () => {
     setModalDetailsIsOpen(false);
   };
 
-  const handleAccept_Reject = () => {
+  const handleAcceptReject = () => {
     Swal.fire({
       icon: "success",
       title: "Order Confirmation",
@@ -311,23 +309,30 @@ const OnlineOrder = () => {
       }
     });
   };
-  const menuRef = useRef(null);
-  const menuRef2 = useRef(null);
-  const [showMenu, setShowMenu] = useState(false);
-  const [showMenu2, setShowMenu2] = useState(false);
-  const handleShowMenu = () => {
-    setShowMenu(!showMenu);
+  const handlePosInvoice = () => {
+    navigate("/ordermanage/order/orderdetails/19");
   };
+
+  const handleShowMenu = (index) => {
+    setMenuIndex(index === menuIndex ? null : index);
+  };
+
   const handleShowMenu2 = () => {
     setShowMenu2(!showMenu2);
+  };
+  const handleShowMenu3 = () => {
+    setShowMenu3(!showMenu3);
   };
 
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setShowMenu(false);
+      setMenuIndex(null);
     }
     if (menuRef2.current && !menuRef2.current.contains(event.target)) {
       setShowMenu2(false);
+    }
+    if (menuRef3.current && !menuRef3.current.contains(event.target)) {
+      setShowMenu3(false);
     }
   };
 
@@ -337,43 +342,24 @@ const OnlineOrder = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  const [sort, setSort] = useState(false);
-  const handleSortIcon = () => {
-    setSort(!sort);
-  };
-  const [sort2, setSort2] = useState(false);
-  const handleSortIcon2 = () => {
-    setSort2(!sort2);
-  };
-  const [sort3, setSort3] = useState(false);
-  const handleSortIcon3 = () => {
-    setSort3(!sort3);
-  };
-  const [sort4, setSort4] = useState(false);
-  const handleSortIcon4 = () => {
-    setSort4(!sort4);
-  };
-  const [sort5, setSort5] = useState(false);
-  const handleSortIcon5 = () => {
-    setSort5(!sort5);
-  };
-  const [sort7, setSort7] = useState(false);
-  const handleSortIcon7 = () => {
-    setSort7(!sort7);
-  };
-  const [sort8, setSort8] = useState(false);
-  const handleSortIcon8 = () => {
-    setSort8(!sort8);
-  };
-  const [sort9, setSort9] = useState(false);
-  const handleSortIcon9 = () => {
-    setSort9(!sort9);
+
+  const handleSortIcon = (label) => {
+    if (sortDirection[label] === "asc") {
+      return (
+        <IoIosArrowUp
+          className={label === currentSortedColumn ? "text-primary" : ""}
+        />
+      );
+    } else if (sortDirection[label] === "desc") {
+      return (
+        <IoIosArrowDown
+          className={label === currentSortedColumn ? "text-primary" : ""}
+        />
+      );
+    }
+    return <IoIosArrowUp />;
   };
 
-  const [sort6, setSort6] = useState(false);
-  const handleSortIcon6 = () => {
-    setSort6(!sort6);
-  };
   return (
     <>
       <div className="card card-flush">
@@ -392,23 +378,23 @@ const OnlineOrder = () => {
               <div className="card-toolbar flex-row-fluid justify-content-end gap-5 flex-md-row flex-column-reverse width-full-invoices">
                 <button
                   type="button"
-                  className={`btn btn-light-primary width-full-invoices  ${
-                    showMenu ? "show" : ""
+                  className={`btn btn-light-primary width-full-invoices fs-6  ${
+                    showMenu2 ? "show" : ""
                   }`}
-                  onClick={handleShowMenu}
+                  onClick={handleShowMenu2}
                 >
                   <i class="ki-outline ki-exit-up fs-2"></i>Export
                 </button>
                 <div
-                  ref={menuRef}
+                  ref={menuRef2}
                   className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
-                    showMenu ? "show active-list-action-table-ex" : ""
+                    showMenu2 ? "show active-list-action-table-ex" : ""
                   }`}
                 >
                   <div className="menu-item px-3">
                     <a
                       href="#"
-                      className="menu-link px-3"
+                      className="menu-link px-3 fs-6"
                       data-kt-ecommerce-export="copy"
                       onClick={handleCopy}
                     >
@@ -418,7 +404,7 @@ const OnlineOrder = () => {
                   <div className="menu-item px-3">
                     <a
                       href="#"
-                      className="menu-link px-3"
+                      className="menu-link px-3 fs-6"
                       data-kt-ecommerce-export="excel"
                       onClick={handleExcel}
                     >
@@ -428,7 +414,7 @@ const OnlineOrder = () => {
                   <div className="menu-item px-3">
                     <a
                       href="#"
-                      className="menu-link px-3"
+                      className="menu-link px-3 fs-6"
                       data-kt-ecommerce-export="csv"
                       onClick={handleCSV}
                     >
@@ -438,7 +424,7 @@ const OnlineOrder = () => {
                   <div className="menu-item px-3">
                     <a
                       href="#"
-                      className="menu-link px-3"
+                      className="menu-link px-3 fs-6"
                       data-kt-ecommerce-export="pdf"
                       onClick={handlePDF}
                     >
@@ -448,13 +434,47 @@ const OnlineOrder = () => {
                   <div className="menu-item px-3">
                     <a
                       href="#"
-                      className="menu-link px-3"
+                      className="menu-link px-3 fs-6"
                       data-kt-ecommerce-export="print"
                       onClick={handlePrint}
                     >
                       Export as Print
                     </a>
                   </div>
+                </div>
+                <button
+                  type="button"
+                  className={`btn btn-primary width-full-invoices fs-6  ${
+                    showMenu3 ? "show" : ""
+                  }`}
+                  onClick={handleShowMenu3}
+                >
+                  <AiFillEyeInvisible className="fs-2" /> Column Visibility
+                </button>
+                <div
+                  ref={menuRef3}
+                  className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
+                    showMenu3 ? "show active-list-action-table-visibility" : ""
+                  }`}
+                >
+                  {columns.map((column) => (
+                    <div className="menu-item px-3" key={column}>
+                      <label className="menu-link px-3">
+                        <div className="form-check form-check-sm form-check-custom form-check-solid me-3 d-flex align-items-end gap-4">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            checked={column.visible}
+                            onChange={() => handleChange(column.label)}
+                            id={column.label}
+                          />
+                          <label htmlFor={column.label} className="fs-6">
+                            {column.label}
+                          </label>
+                        </div>
+                      </label>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -479,240 +499,318 @@ const OnlineOrder = () => {
                       />
                     </div>
                   </th>
-                  <th
-                    className={`min-w-50px cursor-pointer text-hover-primary`}
-                    onClick={handleSortIcon}
-                  >
-                    SL
-                    {sort ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="min-w-100px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon2}
-                  >
-                    Invoice No{" "}
-                    {sort2 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="min-w-150px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon3}
-                  >
-                    Customer Name{" "}
-                    {sort3 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="min-w-150px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon3}
-                  >
-                    DELIVERY METHOD NAME{" "}
-                    {sort3 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="min-w-150px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon3}
-                  >
-                    DELIVERY DATE & TIME
-                    {sort3 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="text-center min-w-100px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon4}
-                  >
-                    Waiter{" "}
-                    {sort4 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="text-center min-w-100px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon5}
-                  >
-                    Table No
-                    {sort5 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="text-center min-w-70px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon7}
-                  >
-                    Payment Status
-                    {sort7 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="text-center min-w-100px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon8}
-                  >
-                    Order Date
-                    {sort8 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="text-center min-w-100px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon9}
-                  >
-                    Amount
-                    {sort9 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
-                  <th
-                    className="text-center min-w-100px cursor-pointer text-hover-primary"
-                    onClick={handleSortIcon6}
-                  >
-                    Actions
-                    {sort6 ? (
-                      <IoIosArrowUp className="mb-2" />
-                    ) : (
-                      <IoIosArrowDown className="mb-2" />
-                    )}
-                  </th>
+                  {columns.map(
+                    (column, index) =>
+                      column.visible && (
+                        <th
+                          key={index}
+                          className={`${
+                            column.label === "SL"
+                              ? "min-w-50px"
+                              : column.label === "Invoice"
+                              ? "min-w-80px"
+                              : column.label === "Customer Name"
+                              ? "min-w-150px"
+                              : column.label === "Delivery Method Name"
+                              ? "min-w-150px"
+                              : column.label === "Delivery Date & Time"
+                              ? "min-w-150px"
+                              : column.label === "Payment Status"
+                              ? "min-w-70px text-end pe-0"
+                              : "text-end pe-0 min-w-100px"
+                          } cursor-pointer text-hover-primary`}
+                          onClick={() => handleSort(column.label)}
+                        >
+                          {column.label} {handleSortIcon(column.label)}
+                        </th>
+                      )
+                  )}
                 </tr>
               </thead>
-              <tbody className="fw-semibold text-gray-600">
+              <tbody>
+                {data.map((item, index) => (
+                  <tr key={index} className="bg-white">
+                    <td className="w-10px pe-2">
+                      <div className="form-check form-check-sm form-check-custom form-check-solid me-3">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value="1"
+                        />
+                      </div>
+                    </td>
+                    {columns.map(
+                      (column, idx) =>
+                        column.visible && (
+                          <td
+                            key={idx}
+                            className={`${
+                              column.label === "SL" ||
+                              column.label === "Invoice" ||
+                              column.label === "Customer Name" ||
+                              column.label === "Delivery Method Name" ||
+                              column.label === "Delivery Date & Time"
+                                ? ""
+                                : "text-end pe-0"
+                            }`}
+                          >
+                            {column.label === "SL" && item.sl}
+                            {column.label === "Invoice" && (
+                              <a className="text-gray-800 text-hover-primary fw-bold">
+                                {item.invoice}
+                              </a>
+                            )}
+                            {column.label === "Customer Name" && (
+                              <a className="text-gray-800 text-hover-primary fs-5 fw-bold">
+                                {item.customer_name}
+                              </a>
+                            )}
+                            {column.label === "Delivery Method Name" && (
+                              <a className="text-gray-800 text-hover-primary fs-5 fw-bold">
+                                {item.delivery_method_name}
+                              </a>
+                            )}
+                                                        {column.label === "Delivery Date & Time" && (
+                              <a className="text-gray-800 text-hover-primary fs-5 fw-bold">
+                                {item.delivery_date_time}
+                              </a>
+                            )}
+                            {column.label === "Waiter" && (
+                              <span className="fw-bold text-gray-600">
+                                Waiter1
+                              </span>
+                            )}
+                            {column.label === "Table No" && (
+                              <span className="fw-bold text-gray-600">
+                                {item.table_no}
+                              </span>
+                            )}
+                            {column.label === "Payment Status" && (
+                              <div
+                                className={`badge badge-light-${
+                                  item.payment_status === "Paid"
+                                            ? "success"
+                                            : item.payment_status === "Pending"
+                                            ? "primary"
+                                            : "danger"
+                                } fs-6`}
+                              >
+                                {item.payment_status}
+                              </div>
+                            )}
+                            {column.label === "Order Date" && (
+                              <span className="fw-bold text-gray-600">
+                                {item.order_date}
+                              </span>
+                            )}
+                            {column.label === "Amount" && (
+                              <span className="fw-bold text-primary">
+                                {countStarted ? (
+                                  <CountUp
+                                    end={item.amount}
+                                    duration={1}
+                                    separator=","
+                                    decimals={2}
+                                    decimal="."
+                                  />
+                                ) : (
+                                  item.amount
+                                    .toFixed(2)
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                                )}
+                              </span>
+                            )}
+                            {column.label === "Action" && (
+                              <>
+                                <a
+                                  className={`btn btn-sm btn-light btn-flex btn-center btn-active-light-primary fs-6 ${
+                                    menuIndex === index ? "show" : ""
+                                  }`}
+                                  onClick={() => handleShowMenu(index)}
+                                >
+                                  Actions
+                                  <i className="ki-outline ki-down fs-5 ms-1"></i>
+                                </a>
+                                <div
+                                  ref={menuRef}
+                                  className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
+                                    menuIndex === index ? "show" : ""
+                                  }`}
+                                  style={{
+                                    zIndex: 107,
+                                    position: "fixed",
+                                    inset: "0px 0px auto auto",
+                                    margin: "0px",
+                                    transform: `translate(-60px, ${
+                                      450 + index * 60
+                                    }px)`,
+                                    WebkitTransform: `translate(-60px, ${
+                                      450 + index * 60
+                                    }px)`,
+                                    MozTransform: `translate(-60px, ${
+                                      450 + index * 60
+                                    }px)`,
+                                    msTransform: `translate(-60px, ${
+                                      450 + index * 60
+                                    }px)`,
+                                    OTransform: `translate(-60px, ${
+                                      450 + index * 60
+                                    }px)`,
+                                  }}
+                                >
+                                  <div
+                                    className="menu-item px-3"
+                                    onClick={handleAcceptReject}
+                                  >
+                                    <a className="menu-link px-3 fs-6">
+                                      Cancel
+                                    </a>
+                                  </div>
+                                  <div
+                                    className="menu-item px-3"
+                                    onClick={() => setModalCancelIsOpen(true)}
+                                  >
+                                    <a className="menu-link px-3 fs-6">
+                                      Delete
+                                    </a>
+                                  </div>
+                                  <div className="menu-item px-3">
+                                    <a className="menu-link px-3 fs-6">Edit</a>
+                                  </div>
+                                  <div
+                                    className="menu-item px-3"
+                                    onClick={() => setModalDetailsIsOpen(true)}
+                                  >
+                                    <a
+                                      className="menu-link px-3 fs-6"
+                                      data-kt-ecommerce-order-filter="delete_row"
+                                    >
+                                      View
+                                    </a>
+                                  </div>
+                                  <Link
+                                    to={
+                                      "/ordermanage/order/placeorder/posorderinvoice/19"
+                                    }
+                                    target="_blank"
+                                    className="menu-item px-3"
+                                  >
+                                    <a
+                                      className="menu-link px-3 fs-6"
+                                      data-kt-ecommerce-order-filter="delete_row"
+                                    >
+                                      Pos Invoice
+                                    </a>
+                                  </Link>
+                                </div>
+                              </>
+                            )}
+                          </td>
+                        )
+                    )}
+                  </tr>
+                ))}
                 <tr>
-                  <td colSpan={12} className="text-center">
-                    No Data Available in Table
-                  </td>
-                </tr>
-                <tr className="bg-white">
-                  <th
-                    colSpan={10}
-                    className="text-center min-w-70px cursor-pointer text-hover-primary"
-                  >
+                  <td colSpan={10} className="text-end fw-bold fs-5">
                     Total
-                  </th>
-                  <th
+                  </td>
+                  <td
                     colSpan={2}
-                    className="text-center min-w-70px cursor-pointer text-hover-primary"
+                    className="text-center text-primary fw-bold fs-5"
                   >
-                    0.00 ( 0.00 total)
-                  </th>
+                    83.79 ( 83.79 total)
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div className="row">
-            <div className="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end w-full-title">
-              <div
-                className="dataTables_paginate paging_simple_numbers"
-                id="kt_ecommerce_sales_table_paginate"
-              >
-                <ul className="pagination">
-                  <li
-                    className="paginate_button page-item previous disabled"
-                    id="kt_ecommerce_sales_table_previous"
-                  >
+          <div id="" class="row">
+            <div
+              id=""
+              class="col-sm-12 col-md-7 d-flex align-items-end justify-content-between justify-content-md-between
+                      w-full-title"
+            >
+              <div className="fs-5">Showing 1 to 25 of 31 entries</div>
+              <div class="dt-paging paging_simple_numbers">
+                <ul class="pagination">
+                  <li class="dt-paging-button page-item disabled">
                     <a
-                      href="#"
-                      aria-controls="kt_ecommerce_sales_table"
-                      data-dt-idx="0"
-                      tabIndex="0"
-                      className="page-link"
+                      class="page-link previous"
+                      aria-controls="kt_ecommerce_products_table"
+                      aria-disabled="true"
+                      aria-label="Previous"
+                      data-dt-idx="previous"
+                      tabindex="-1"
                     >
-                      <i className="previous"></i>
+                      <i class="previous"></i>
                     </a>
                   </li>
-                  <li className="paginate_button page-item active">
+                  <li class="dt-paging-button page-item active">
                     <a
                       href="#"
-                      aria-controls="kt_ecommerce_sales_table"
-                      data-dt-idx="1"
-                      tabIndex="0"
-                      className="page-link"
+                      class="page-link"
+                      aria-controls="kt_ecommerce_products_table"
+                      aria-current="page"
+                      data-dt-idx="0"
+                      tabindex="0"
                     >
                       1
                     </a>
                   </li>
-                  <li className="paginate_button page-item">
+                  <li class="dt-paging-button page-item">
                     <a
                       href="#"
-                      aria-controls="kt_ecommerce_sales_table"
-                      data-dt-idx="2"
-                      tabIndex="0"
-                      className="page-link"
+                      class="page-link"
+                      aria-controls="kt_ecommerce_products_table"
+                      data-dt-idx="1"
+                      tabindex="0"
                     >
                       2
                     </a>
                   </li>
-                  <li className="paginate_button page-item">
+                  <li class="dt-paging-button page-item">
                     <a
                       href="#"
-                      aria-controls="kt_ecommerce_sales_table"
-                      data-dt-idx="3"
-                      tabIndex="0"
-                      className="page-link"
+                      class="page-link"
+                      aria-controls="kt_ecommerce_products_table"
+                      data-dt-idx="2"
+                      tabindex="0"
                     >
                       3
                     </a>
                   </li>
-                  <li className="paginate_button page-item">
+                  <li class="dt-paging-button page-item">
                     <a
                       href="#"
-                      aria-controls="kt_ecommerce_sales_table"
-                      data-dt-idx="4"
-                      tabIndex="0"
-                      className="page-link"
+                      class="page-link"
+                      aria-controls="kt_ecommerce_products_table"
+                      data-dt-idx="3"
+                      tabindex="0"
                     >
                       4
                     </a>
                   </li>
-                  <li className="paginate_button page-item">
+                  <li class="dt-paging-button page-item">
                     <a
                       href="#"
-                      aria-controls="kt_ecommerce_sales_table"
-                      data-dt-idx="5"
-                      tabIndex="0"
-                      className="page-link"
+                      class="page-link"
+                      aria-controls="kt_ecommerce_products_table"
+                      data-dt-idx="4"
+                      tabindex="0"
                     >
                       5
                     </a>
                   </li>
-                  <li
-                    className="paginate_button page-item next"
-                    id="kt_ecommerce_sales_table_next"
-                  >
+                  <li class="dt-paging-button page-item">
                     <a
                       href="#"
-                      aria-controls="kt_ecommerce_sales_table"
-                      data-dt-idx="6"
-                      tabIndex="0"
-                      className="page-link"
+                      class="page-link next"
+                      aria-controls="kt_ecommerce_products_table"
+                      aria-label="Next"
+                      data-dt-idx="next"
+                      tabindex="0"
                     >
-                      <i className="next"></i>
+                      <i class="next"></i>
                     </a>
                   </li>
                 </ul>
