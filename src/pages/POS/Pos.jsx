@@ -33,11 +33,11 @@ const Pos = () => {
                 </>
               )}
             </div>
-            {activeTab === "ongoingOrder" && <OnGoingOrder/>}
-            {activeTab === "StationStatus" && <StationStatus/>}
-            {activeTab === "QROrder" && <QROrder/>}
-            {activeTab === "OnlineOrder" && <OnlineOrder/>}
-            {activeTab === "TodayOrder" && <TodayOrder/>}
+            {activeTab === "ongoingOrder" && <OnGoingOrder />}
+            {activeTab === "StationStatus" && <StationStatus />}
+            {activeTab === "QROrder" && <QROrder />}
+            {activeTab === "OnlineOrder" && <OnlineOrder />}
+            {activeTab === "TodayOrder" && <TodayOrder />}
           </div>
         </div>
       </div>

@@ -597,7 +597,6 @@ code {
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  border-radius: 10px;
 }
 
 .calculator-input {
@@ -1038,6 +1037,10 @@ code {
 
 .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(3) {
   transform: rotate(90deg) translateY(0.8em);
+  -webkit-transform: rotate(90deg) translateY(0.8em);
+  -moz-transform: rotate(90deg) translateY(0.8em);
+  -ms-transform: rotate(90deg) translateY(0.8em);
+  -o-transform: rotate(90deg) translateY(0.8em);
 }
 
 .theme__toggle:checked ~ .theme__icon .theme__icon-part:nth-child(4) {
@@ -1362,3 +1365,37 @@ select option:hover {
 .css-1nmdiq5-menu input:hover{
   background-color: #eee !important;
 } */
+.tableCalculation-mobile {
+  display: none
+}
+
+@media screen and (max-width:768px) {
+  .tableCalculation-mobile {
+    display: block !important
+  }
+  .tableCalculation-base {
+    display: none !important
+  }
+}
+
+.ReactModal__Content{
+  border: 1px solid #f1f1f4 !important;
+  border-radius: 13px !important;
+  -webkit-border-radius: 13px !important;
+  -moz-border-radius: 13px !important;
+  -ms-border-radius: 13px !important;
+  -o-border-radius: 13px !important;
+}
+.LeftSidebar_leftSidebarStyle__trJmR {
+  position: absolute !important;
+  display: block !important;
+  bottom: 0 !important;
+  height: 100vh !important;
+  top: 0 !important;
+  left: -100% !important;
+  transition: all ease-in .5s;
+  -webkit-transition: all ease-in .5s;
+  -moz-transition: all ease-in .5s;
+  -ms-transition: all ease-in .5s;
+  -o-transition: all ease-in .5s;
+}

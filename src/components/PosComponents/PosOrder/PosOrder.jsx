@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
 import FormOrder from "./Modal/FormOrder";
 import { FaStickyNote } from "react-icons/fa";
-import { CgCalculator } from "react-icons/cg";
 import CalculatorModal from "./Modal/CalculatorModal"; // استيراد المودال
 import AddNote from "./Modal/AddNote";
 import PersonModal from "./Modal/PersonModal";
@@ -16,6 +15,8 @@ import { useHotkeys } from "react-hotkeys-hook";
 import PaymentModal from "../../../pages/POS/Tabs/OnGoingOrder/CompleteOrder";
 import { useNavigate } from "react-router-dom";
 import { customStylesSelect } from "./Modal/AddCustomer";
+import TableCalculation from "./TableCalculation";
+import TableCalculationMobile from "./TableCalculationMobile";
 const PosOrder = () => {
   const [items, setItems] = useState([
     {
@@ -601,7 +602,7 @@ const PosOrder = () => {
                     isSearchable={true}
                     placeholder={`Select...`}
                     className="select-form-order-pos"
-              styles={customStylesSelect}
+                    styles={customStylesSelect}
                   />
                 </div>
                 <div className="form-group-form-order  pl-form-group-pos-order">
@@ -615,7 +616,7 @@ const PosOrder = () => {
                     isSearchable={true}
                     placeholder={`Select...`}
                     className="select-form-order-pos"
-              styles={customStylesSelect}
+                    styles={customStylesSelect}
                   />
                 </div>
               </div>
@@ -638,7 +639,7 @@ const PosOrder = () => {
                     }`}
                     onChange={handleWaiter}
                     ref={selectRef3}
-              styles={customStylesSelect}
+                    styles={customStylesSelect}
                   />
                 </div>
                 <div className="form-group-form-order  pl-form-group-pos-order">
@@ -662,7 +663,7 @@ const PosOrder = () => {
                         tableSelected ? "border-red-warn" : ""
                       }`}
                       onChange={handleTable}
-              styles={customStylesSelect}
+                      styles={customStylesSelect}
                     />
                   </div>
                 </div>
@@ -686,7 +687,7 @@ const PosOrder = () => {
                     }`}
                     onChange={handleWaiter}
                     ref={selectRef3}
-              styles={customStylesSelect}
+                    styles={customStylesSelect}
                   />
                 </div>
                 <div className="form-group-form-order pl-form-group-pos-order mt-3">
@@ -877,184 +878,24 @@ const PosOrder = () => {
       </div>
       <div className="card card-flush bg-body mt-10" id="kt_pos_form">
         <div className="card-body pt-0">
-          <div className="table-responsive mb-8 mt--5px">
-            <table className="table align-middle gs-0 gy-4 my-0">
-              <thead>
-                <tr>
-                  <th className="w-20px"></th>
-                  <th className="min-w-175px  fw-bold fs-3"></th>
-                  <th className="w-60px  fw-bold fs-3 text-center"></th>
-                  <th className="w-125px   text-center fw-bold fs-3"></th>
-                  {/* <th></th> */}
-                  <th className="w-60px fw-bold fs-3 text-start ps-0"></th>
-                </tr>
-              </thead>
-              <tfoot>
-                <tr
-                  style={{ backgroundColor: "white" }}
-                  className="line-seperate-calc-price-table"
-                >
-                  <td className="pb-0"></td>
-                  <td className="pe-0 pb-0"></td>
-                  <td className="text-end pb-0">
-                    <span
-                      className="fw-bold text-primary fs-2"
-                      data-kt-pos-element="item-total"
-                    >
-                      <p style={{ color: "darkgray" }}>Subtotal</p>
-                    </span>
-                  </td>
-                  <td className="pe-0 pb-0"></td>
-                  {/* <td className="text-center pb-0 pe-3">
-                    <span
-                      className="fw-bold fs-2"
-                      style={{ color: "darkgray" }}
-                    >
-                      LE
-                    </span>
-                  </td> */}
-                  <td className="text-center pb-0">
-                    <span
-                      className="fw-bold text-primary fs-2  mr--15 text-nowrap"
-                      data-kt-pos-element="item-total"
-                    >
-                      {subtotal}
-                    </span>
-                  </td>
-                </tr>
-                <tr style={{ backgroundColor: "white" }}>
-                  <td className="pb-0 pt-0"></td>
-                  <td className="pe-0 pb-0 pt-0"></td>
-                  <td className="text-end pb-0 pt-0">
-                    <span
-                      className="fw-bold text-primary fs-2"
-                      data-kt-pos-element="item-total"
-                    >
-                      <p style={{ color: "darkgray" }}>Discount</p>
-                    </span>
-                  </td>
-                  <td className="pe-0 pb-0 pt-0"></td>
-                  {/* <td className="text-center pb-0 pe-3 pt-0">
-                    <span
-                      className="fw-bold fs-2"
-                      style={{ color: "darkgray" }}
-                    >
-                      LE
-                    </span>
-                  </td> */}
-                  <td
-                    className="text-center
-                   pb-0 pt-0"
-                  >
-                    <span
-                      className="fw-bold text-primary fs-2  mr--15 text-nowrap"
-                      data-kt-pos-element="item-total"
-                    >
-                      {discount}.00
-                    </span>
-                  </td>
-                </tr>
-                <tr style={{ backgroundColor: "white" }}>
-                  <td className="pb-0  pt-0"></td>
-                  {/* <td className="pe-0"></td> */}
-                  <td className="text-end pb-0  pt-0" colSpan={"2"}>
-                    <span
-                      className="fw-bold text-primary fs-2"
-                      data-kt-pos-element="item-total"
-                    >
-                      <p style={{ color: "darkgray" }}>Service Charge (15%)</p>
-                    </span>
-                  </td>
-                  <td className="pe-0  pb-0  pt-0"></td>
-                  {/* <td className="text-center pe-3 pb-0  pt-0">
-                    <span
-                      className="fw-bold fs-2"
-                      style={{ color: "darkgray" }}
-                    >
-                      LE
-                    </span>
-                  </td> */}
-                  <td className="text-center pb-0  pt-0">
-                    <span
-                      className="fw-bold text-primary fs-2  mr--15 text-nowrap"
-                      data-kt-pos-element="item-total"
-                    >
-                      {serviceCharge}
-                    </span>
-                  </td>
-                </tr>
-                <tr style={{ backgroundColor: "white" }}>
-                  <td className="pb-0 pt-0"></td>
-                  {/* <td className="pe-0"></td> */}
-                  <td className="text-end pb-0 pt-0" colSpan={"2"}>
-                    <span
-                      className="fw-bold text-primary fs-2"
-                      data-kt-pos-element="item-total"
-                    >
-                      <p style={{ color: "darkgray" }}>Tax Charge (12%)</p>
-                    </span>
-                  </td>
-                  <td className="pe-0 pb-0 pt-0"></td>
-                  {/* <td className="text-center pe-3 pb-0 pt-0">
-                    <span
-                      className="fw-bold fs-2"
-                      style={{ color: "darkgray" }}
-                    >
-                      LE
-                    </span>
-                  </td> */}
-                  <td className="text-center pb-0  pt-0">
-                    <span
-                      className="fw-bold text-primary fs-2  mr--15 text-nowrap"
-                      data-kt-pos-element="item-total"
-                    >
-                      {tax}
-                    </span>
-                  </td>
-                </tr>
-                <tr style={{ backgroundColor: "#17c653" }}>
-                  <td className=" all-total-words-pos-order"></td>
-                  <td className="text-end" colSpan={2}>
-                    <span className="fw-bold text-white d-block fs-2qx lh-1 text-nowrap">
-                      Grand Total:
-                    </span>
-                  </td>
-                  <td className=" all-total-pos-order text-center" colSpan={3}>
-                    <span className="fw-bold text-white d-block fs-2qx lh-1 text-nowrap">
-                      LE {subtotal}
-                    </span>
-                  </td>
-                </tr>
-                <tr style={{ backgroundColor: "#fff" }}>
-                  <td className=" all-total-words-pos-order"></td>
-                  <td className="d-flex justify-content-end">
-                    <p
-                      className="btn-quick-order-pos btn-calculator-pos-order"
-                      onClick={() => setIsCalculatorOpen(true)}
-                    >
-                      <CgCalculator className="fs-1" />
-                    </p>
-                  </td>
-                  <td className="text-end max-w-210px pe-1 ps-0" colSpan={1}>
-                    <p
-                      className="btn-quick-order-pos "
-                      onClick={handleQuickOrder}
-                    >
-                      Quick Order
-                    </p>
-                  </td>
-                  <td className="text-center pe-0 ps-0" colSpan={3}>
-                    <p
-                      className="btn-place-order-pos"
-                      onClick={handlePlaceOrder}
-                    >
-                      Place Order
-                    </p>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+          <TableCalculation
+            subtotal={subtotal}
+            discount={discount}
+            serviceCharge={serviceCharge}
+            tax={tax}
+            handleQuickOrder={handleQuickOrder}
+            handlePlaceOrder={handlePlaceOrder}
+            setIsCalculatorOpen={setIsCalculatorOpen}
+          />
+          <TableCalculationMobile
+            subtotal={subtotal}
+            discount={discount}
+            serviceCharge={serviceCharge}
+            tax={tax}
+            handleQuickOrder={handleQuickOrder}
+            handlePlaceOrder={handlePlaceOrder}
+            setIsCalculatorOpen={setIsCalculatorOpen}
+          />
         </div>
       </div>
       <CalculatorModal

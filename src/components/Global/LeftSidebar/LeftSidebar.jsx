@@ -21,13 +21,11 @@ const LeftSidebar = ({ isMinimized, isSidebarActive }) => {
       <div
         id="kt_app_sidebar"
         className={`app-sidebar flex-column ${classes.leftSidebarStyle} ${
-          isMinimized ? "app-sidebar-minimize" : ""
+          isMinimized ? "app-sidebar-minimize LeftSidebar_leftSidebarStyle__trJmR" : ""
         }`}
       >
         <div id="kt_app_sidebar_wrapper" className="app-sidebar-wrapper">
-          <div
-            className="hover-scroll-y my-5 my-lg-2 mx-4"
-          >
+          <div className="hover-scroll-y my-5 my-lg-2 mx-4">
             <div
               id="#kt_app_sidebar_menu"
               className="app-sidebar-menu-primary menu menu-column menu-rounded menu-sub-indention menu-state-bullet-primary px-3 mb-5"

@@ -21,7 +21,7 @@ const CalculatorModal = ({ isOpen, onRequestClose }) => {
   const [history, setHistory] = useState("");
   const [resultShown, setResultShown] = useState(false);
   const [lastResult, setLastResult] = useState(null);
-  const [darkTheme, setDarkTheme] = useState(false); // State for theme toggle
+  const [darkTheme, setDarkTheme] = useState(false);
 
   const handleButtonClick = (value) => {
     if (value === "=") {
@@ -81,7 +81,6 @@ const CalculatorModal = ({ isOpen, onRequestClose }) => {
 
   const toggleTheme = () => {
     setDarkTheme(!darkTheme);
-    // Implement logic to change theme here
   };
 
   return (
