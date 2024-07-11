@@ -1386,7 +1386,7 @@ select option:hover {
   -ms-border-radius: 13px !important;
   -o-border-radius: 13px !important;
 }
-.LeftSidebar_leftSidebarStyle__trJmR {
+/* .LeftSidebar_leftSidebarStyle__trJmR {
   position: absolute !important;
   display: block !important;
   bottom: 0 !important;
@@ -1398,4 +1398,4 @@ select option:hover {
   -moz-transition: all ease-in .5s;
   -ms-transition: all ease-in .5s;
   -o-transition: all ease-in .5s;
-}
+} */

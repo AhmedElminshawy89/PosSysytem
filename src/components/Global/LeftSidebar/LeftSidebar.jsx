@@ -21,7 +21,7 @@ const LeftSidebar = ({ isMinimized, isSidebarActive }) => {
       <div
         id="kt_app_sidebar"
         className={`app-sidebar flex-column ${classes.leftSidebarStyle} ${
-          isMinimized ? "app-sidebar-minimize LeftSidebar_leftSidebarStyle__trJmR" : ""
+          isMinimized ? "app-sidebar-minimize" : ""
         }`}
       >
         <div id="kt_app_sidebar_wrapper" className="app-sidebar-wrapper">
