@@ -163,8 +163,12 @@ const PreOrderDateList = () => {
                                   key={index}
                                   className={`text-nowrap ${
                                     column.label === "SL"
-                                      ? "min-w-50px"
-                                      : "text-end pe-0 min-w-100px"
+                                      ? "min-w-100px":
+                                      column.label === "Pre Date"
+                                      ? "min-w-200px":
+                                      column.label === "Time Slots"
+                                      ? "min-w-100px"
+                                      : "text-end pe-0 min-w-150px"
                                   } cursor-pointer text-hover-primary`}
                                   onClick={() => handleSort(column.label)}
                                 >
@@ -192,7 +196,9 @@ const PreOrderDateList = () => {
                                   <td
                                     key={idx}
                                     className={`${
-                                      column.label === "SL"
+                                      column.label === "SL"||
+                                      column.label === "Pre Date"||
+                                      column.label === "Time Slots"
                                         ? ""
                                         : "text-end pe-0"
                                     }`}

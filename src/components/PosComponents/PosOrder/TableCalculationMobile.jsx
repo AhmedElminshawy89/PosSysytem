@@ -20,7 +20,7 @@ const TableCalculationMobile = ({
           >
             <div className="text-end pb-0">
               <span
-                className="fw-bold text-primary fs-2"
+                className="fw-bold text-primary  fs-3"
                 data-kt-pos-element="item-total"
               >
                 <p style={{ color: "darkgray" }}>Subtotal</p>
@@ -28,7 +28,7 @@ const TableCalculationMobile = ({
             </div>
             <div className="text-center pb-0">
               <span
-                className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                className="fw-bold text-primary fs-3  mr--15 text-nowrap"
                 data-kt-pos-element="item-total"
               >
                 {subtotal}
@@ -41,7 +41,7 @@ const TableCalculationMobile = ({
           >
             <div className="text-end pb-0">
               <span
-                className="fw-bold text-primary fs-2"
+                className="fw-bold text-primary fs-3"
                 data-kt-pos-element="item-total"
               >
                 <p style={{ color: "darkgray" }}>Discount</p>
@@ -49,7 +49,7 @@ const TableCalculationMobile = ({
             </div>
             <div className="text-center pb-0">
               <span
-                className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                className="fw-bold text-primary fs-3  mr--15 text-nowrap"
                 data-kt-pos-element="item-total"
               >
                 {discount}.00
@@ -62,7 +62,7 @@ const TableCalculationMobile = ({
           >
             <div className="text-end pb-0">
               <span
-                className="fw-bold text-primary fs-2"
+                className="fw-bold text-primary fs-3"
                 data-kt-pos-element="item-total"
               >
                 <p style={{ color: "darkgray" }} className="text-nowrap">Service Charge (15%)</p>
@@ -70,7 +70,7 @@ const TableCalculationMobile = ({
             </div>
             <div className="text-center pb-0">
               <span
-                className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                className="fw-bold text-primary fs-3  mr--15 text-nowrap"
                 data-kt-pos-element="item-total"
               >
                 {serviceCharge}
@@ -83,7 +83,7 @@ const TableCalculationMobile = ({
           >
             <div className="text-end pb-0">
               <span
-                className="fw-bold text-primary fs-2"
+                className="fw-bold text-primary fs-3"
                 data-kt-pos-element="item-total"
               >
                 <p style={{ color: "darkgray" }} className="text-nowrap">Tax Charge (12%)</p>
@@ -91,7 +91,7 @@ const TableCalculationMobile = ({
             </div>
             <div className="text-center pb-0">
               <span
-                className="fw-bold text-primary fs-2  mr--15 text-nowrap"
+                className="fw-bold text-primary fs-3  mr--15 text-nowrap"
                 data-kt-pos-element="item-total"
               >
                 {tax}
@@ -105,31 +105,34 @@ const TableCalculationMobile = ({
               </span>
             </div>
             <div className=" all-total-pos-order text-center">
-              <span className="fw-bold text-white text-center d-block fs-2qx lh-1  mt-2">
+              <span className="fw-bold text-white text-center d-block fs-3 lh-1  mt-2">
                 LE {subtotal}
               </span>
             </div>
           </div>
-          <div>
-            <div>
+          <div className="d-flex align-items-center gap-4  flex-row-reverse flex-wrap">
+            {/* <div> */}
               <button
-                className="btn btn-primary mt-4 py-5"
-                style={{width:'100%'}}
+                className="btn btn-primary  py-5"
                 onClick={() => setIsCalculatorOpen(true)}
               >
                 <CgCalculator className="fs-1" />
               </button>
-            </div>
-            <div>
-              <p className="btn-quick-order-pos " onClick={handleQuickOrder}>
+            {/* </div> */}
+            {/* <div> */}
+              <p className="btn-quick-order-pos mt-4 me-0 ms-0 text-nowrap fs-2" onClick={handleQuickOrder}
+                style={{flex:'1'}}
+                >
                 Quick Order
               </p>
-            </div>
-            <div>
-              <p className="btn-place-order-pos" onClick={handlePlaceOrder}>
+            {/* </div> */}
+            {/* <div> */}
+              <p className="btn-place-order-pos mt-4 me-0 ms-0 text-nowrap fs-2" onClick={handlePlaceOrder}
+                style={{flex:'1'}}
+                >
                 Place Order
               </p>
-            </div>
+            {/* </div> */}
           </div>
         </div>
       </div>

@@ -24,6 +24,14 @@ import OnGoingOrderInvoice from "./components/Invoices/OnGoingOrderInvoice/OnGoi
 import SignIn from "./pages/Auth/Signin";
 import SignUp from "./pages/Auth/Signup";
 import PasswordReset from "./pages/Auth/ForgetPassword";
+import Reservations from "./pages/Reservation/Reservations/Reservations";
+import UnavailableDay from "./pages/Reservation/Reservations/UnavailableDay";
+import CateringInquiry from "./pages/Reservation/Reservations/CateringInquiry";
+import PurchaseItem from "./pages/Purchase/PurchaseItem";
+import ReturnInvoice from "./pages/Purchase/ReturnInvoice";
+import Supplier_List from "./pages/Purchase/Supplier_List";
+import AddBooking from "./pages/Reservation/Reservations/AddBooking";
+import ReservationSetting from "./pages/Reservation/Reservations/ReservationSetting";
 
 function App() {
   return (
@@ -50,6 +58,14 @@ function App() {
           <Route path="/ordermanage/order/counterlist" element={<CounterList />} />
           <Route path="/ordermanage/order/possetting" element={<PosSetting />} />
           <Route path="/ordermanage/order/soundsetting" element={<SoundSetting />} />
+          <Route path="/reservation/reservation/index" element={<Reservations />} />
+          <Route path="/reservation/reservation/unavailablelist" element={<UnavailableDay />} />
+          <Route path="/reservation/reservation/cateringinquiry" element={<CateringInquiry />} />
+          <Route path="/purchase/purchase/index" element={<PurchaseItem />} />
+          <Route path="/purchase/purchase/return_invoice" element={<ReturnInvoice />} />
+          <Route path="/purchase/supplierlist/index" element={<Supplier_List />} />
+          <Route path="/reservation/reservation/tablebooking" element={<AddBooking />} />
+          <Route path="/reservation/reservation/setting" element={<ReservationSetting />} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}

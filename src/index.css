@@ -172,7 +172,7 @@ code {
 }
 
 .input-form-order {
-  border: 1px solid #5555;
+  border: 1px solid #DBDFE9;
   width: 100%;
   padding: 6px 8px !important;
   border-radius: 6px;
@@ -1096,6 +1096,9 @@ code {
   position: absolute;
   z-index: 55;
 }
+.box-choose-time-reserve{
+  position: fixed !important;
+}
 .box-choose-time > h4 {
   text-align: center;
   /* background-color: #eee; */
@@ -1399,3 +1402,20 @@ select option:hover {
   -ms-transition: all ease-in .5s;
   -o-transition: all ease-in .5s;
 } */
+.me-100{
+  margin-right: 100px !important;
+}
+@media screen and (min-width:768px) {
+  .ml-85{
+    margin-left:85px;
+  }
+  .ml-75{
+    margin-left:75px;
+  }
+  .mr-90{
+    margin-right: 90px;
+  }
+}
+.booking-reserve>input{
+  
+}

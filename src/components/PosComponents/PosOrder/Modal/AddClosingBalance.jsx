@@ -12,7 +12,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import CountUp from "react-countup";
 import { AiFillEyeInvisible } from "react-icons/ai";
-import { ColumnsClosingBalance, ColumnsQROrder, DataClosingBalance, DataQROrder } from "../../../../data/dataTable/WrapperDataTable";
+import {
+  ColumnsClosingBalance,
+  ColumnsQROrder,
+  DataClosingBalance,
+  DataQROrder,
+} from "../../../../data/dataTable/WrapperDataTable";
+import { format } from "date-fns";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -38,192 +45,184 @@ export const customStylesSelect = {
   }),
 };
 const ClosingBalance = ({ modalIsOpen, closeModal }) => {
-    const [currentSortedColumn, setCurrentSortedColumn] = useState(null);
-    const [sortDirection, setSortDirection] = useState({});
-    const [countStarted, setCountStarted] = useState(false);
-    const [columns, setColumns] = useState(ColumnsClosingBalance);
-    const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
-    const [modalPaymentOpen, setModalPaymentIsOpen] = useState(false);
-    const [modalDetailsOpen, setModalDetailsIsOpen] = useState(false);
-    const [showMenu3, setShowMenu3] = useState(false);
-    const [showMenu2, setShowMenu2] = useState(false);
-    const [menuIndex, setMenuIndex] = useState(null);
-  
-    const menuRef = useRef(null);
-    const menuRef2 = useRef(null);
-    const menuRef3 = useRef(null);
-  
-    const navigate = useNavigate();
-  
-    const [data, setData] = useState(DataClosingBalance);
-  
-    useEffect(() => {
-      setCountStarted(true);
-    }, []);
-  
-    const toggleColumnVisibility = (columnLabel) => {
-      const updatedColumns = columns.map((col) =>
-        col.label === columnLabel ? { ...col, visible: !col.visible } : col
-      );
-      setColumns(updatedColumns);
-    };
-  
-    const handleChange = (columnLabel) => {
-      toggleColumnVisibility(columnLabel);
-    };
-  
-    const handleSort = (label) => {
-      const direction = sortDirection[label] === "asc" ? "desc" : "asc";
-      const sortedData = [...data].sort((a, b) => {
-        if (direction === "asc") {
-          if (a[label] < b[label]) return -1;
-          if (a[label] > b[label]) return 1;
-        } else {
-          if (a[label] > b[label]) return -1;
-          if (a[label] < b[label]) return 1;
-        }
-        return 0;
-      });
-  
-      setData(sortedData.reverse());
-      setCountStarted(false);
-      setSortDirection({ ...sortDirection, [label]: direction });
-      setCurrentSortedColumn(label);
-      setShowMenu2(false);
-    };
-  
-    const handleCopy = () => {
-      if (data.length === 0) {
-        toast.error("No Data Available to copy");
-        return;
+  const [currentSortedColumn, setCurrentSortedColumn] = useState(null);
+  const [sortDirection, setSortDirection] = useState({});
+  const [countStarted, setCountStarted] = useState(false);
+  const [columns, setColumns] = useState(ColumnsClosingBalance);
+  const [modalCancelIsOpen, setModalCancelIsOpen] = useState(false);
+  const [modalPaymentOpen, setModalPaymentIsOpen] = useState(false);
+  const [modalDetailsOpen, setModalDetailsIsOpen] = useState(false);
+  const [showMenu3, setShowMenu3] = useState(false);
+  const [showMenu2, setShowMenu2] = useState(false);
+  const [menuIndex, setMenuIndex] = useState(null);
+
+  const menuRef = useRef(null);
+  const menuRef2 = useRef(null);
+  const menuRef3 = useRef(null);
+
+  const navigate = useNavigate();
+
+  const [data, setData] = useState(DataClosingBalance);
+
+  useEffect(() => {
+    setCountStarted(true);
+  }, []);
+
+  const toggleColumnVisibility = (columnLabel) => {
+    const updatedColumns = columns.map((col) =>
+      col.label === columnLabel ? { ...col, visible: !col.visible } : col
+    );
+    setColumns(updatedColumns);
+  };
+
+  const handleChange = (columnLabel) => {
+    toggleColumnVisibility(columnLabel);
+  };
+
+  const handleSort = (label) => {
+    const direction = sortDirection[label] === "asc" ? "desc" : "asc";
+    const sortedData = [...data].sort((a, b) => {
+      if (direction === "asc") {
+        if (a[label] < b[label]) return -1;
+        if (a[label] > b[label]) return 1;
+      } else {
+        if (a[label] > b[label]) return -1;
+        if (a[label] < b[label]) return 1;
       }
-  
-      const headers = columns
-        .filter((col) => col.visible)
-        .map((col) => col.label);
-      const rows = data.map((row) =>
-        headers.map(
-          (header) => row[columns.findIndex((col) => col.label === header)]
-        )
-      );
-  
-      const textToCopy = [headers.join(",")]
-        .concat(rows.map((row) => row.join(",")))
-        .join("\n");
-  
-      navigator.clipboard
-        .writeText(textToCopy)
-        .then(() => {
-          toast.success("Data copied to clipboard");
-        })
-        .catch((error) => {
-          console.error("Error copying to clipboard:", error);
-          toast.error("Failed to copy data to clipboard. Please try again.");
-        });
-      setShowMenu2(false);
-    };
-    const handleExcel = () => {
-      const aoaData = data.map((row) => [
-        row.sl,
-        row.payment_type,
-        row.amount,
-      ]);
-  
-      const ws = utils.aoa_to_sheet(aoaData);
-      const wb = utils.book_new();
-      utils.book_append_sheet(wb, ws, "Sheet1");
-  
-      const wbout = write(wb, { bookType: "xlsx", type: "array" });
-      saveAs(
-        new Blob([wbout], { type: "application/octet-stream" }),
-        "QROrder.xlsx"
-      );
-      setShowMenu2(false);
-    };
-  
-    const handleCSV = () => {
-      const csvData = data.map((row) => [
-        row.sl,
-        row.payment_type,
-        row.amount,
-      ]);
-  
-      const csvContent =
-        "data:text/csv;charset=utf-8," +
-        csvData.map((e) => e.join(",")).join("\n");
-  
-      const encodedUri = encodeURI(csvContent);
-      const link = document.createElement("a");
-      link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "OrderList.csv");
-  
-      document.body.appendChild(link);
-      link.click();
-  
-      document.body.removeChild(link);
-      setShowMenu2(false);
-    };
-  
-    const handlePDF = () => {
-      const doc = new jsPDF();
-  
-      doc.setFontSize(16);
-      doc.text(
-        "INSTASME F&B Management Application By Brandmarks::posinvoiceloading",
-        14,
-        15
-      );
-  
-      const tableHead = columns
-        .filter((col) => col.visible && col.label !== "Action")
-        .map((col) => col.label);
-  
-      const tableBody = data.map((row) => {
-        return tableHead.map(
-          (label) => row[label.toLowerCase().replace(" ", "_")]
-        );
+      return 0;
+    });
+
+    setData(sortedData.reverse());
+    setCountStarted(false);
+    setSortDirection({ ...sortDirection, [label]: direction });
+    setCurrentSortedColumn(label);
+    setShowMenu2(false);
+  };
+
+  const handleCopy = () => {
+    if (data.length === 0) {
+      toast.error("No Data Available to copy");
+      return;
+    }
+
+    const headers = columns
+      .filter((col) => col.visible)
+      .map((col) => col.label);
+    const rows = data.map((row) =>
+      headers.map(
+        (header) => row[columns.findIndex((col) => col.label === header)]
+      )
+    );
+
+    const textToCopy = [headers.join(",")]
+      .concat(rows.map((row) => row.join(",")))
+      .join("\n");
+
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        toast.success("Data copied to clipboard");
+      })
+      .catch((error) => {
+        console.error("Error copying to clipboard:", error);
+        toast.error("Failed to copy data to clipboard. Please try again.");
       });
-  
-      doc.autoTable({
-        head: [tableHead],
-        body: tableBody,
-        startY: 25,
-        styles: {
-          font: "Arial",
-          fontSize: 10,
-          halign: "center",
-          valign: "middle",
-          // lineWidth: 0.5,
-          // lineColor: [238, 238, 238], // #eee for border color
-        },
-        headStyles: {
-          fillColor: [0, 123, 255], // #007bff for background color
-          textColor: [255, 255, 255],
-        },
-        columnStyles: {
-          0: { fontStyle: "bold" },
-          8: { halign: "right" },
-        },
-      });
-  
-      setShowMenu2(false);
-      doc.save("QROrder.pdf");
-    };
-  
-    const handlePrint = () => {
-      const tableHead = columns
-        .filter((col) => col.visible && col.label !== "Action")
-        .map((col) => col.label);
-  
-      const tableBody = data.map((row) => {
-        return tableHead.map(
-          (label) => row[label.toLowerCase().replace(" ", "_")]
-        );
-      });
-  
-      const printWindow = window.open("", "_blank");
-      printWindow.document.open();
-      printWindow.document.write(`
+    setShowMenu2(false);
+  };
+  const handleExcel = () => {
+    const aoaData = data.map((row) => [row.sl, row.payment_type, row.amount]);
+
+    const ws = utils.aoa_to_sheet(aoaData);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, "Sheet1");
+
+    const wbout = write(wb, { bookType: "xlsx", type: "array" });
+    saveAs(
+      new Blob([wbout], { type: "application/octet-stream" }),
+      "QROrder.xlsx"
+    );
+    setShowMenu2(false);
+  };
+
+  const handleCSV = () => {
+    const csvData = data.map((row) => [row.sl, row.payment_type, row.amount]);
+
+    const csvContent =
+      "data:text/csv;charset=utf-8," +
+      csvData.map((e) => e.join(",")).join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "OrderList.csv");
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+    setShowMenu2(false);
+  };
+
+  const handlePDF = () => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text(
+      "INSTASME F&B Management Application By Brandmarks::posinvoiceloading",
+      14,
+      15
+    );
+
+    const tableHead = columns
+      .filter((col) => col.visible && col.label !== "Action")
+      .map((col) => col.label);
+
+    const tableBody = data.map((row) => {
+      return tableHead.map(
+        (label) => row[label.toLowerCase().replace(" ", "_")]
+      );
+    });
+
+    doc.autoTable({
+      head: [tableHead],
+      body: tableBody,
+      startY: 25,
+      styles: {
+        font: "Arial",
+        fontSize: 10,
+        halign: "center",
+        valign: "middle",
+        // lineWidth: 0.5,
+        // lineColor: [238, 238, 238], // #eee for border color
+      },
+      headStyles: {
+        fillColor: [0, 123, 255], // #007bff for background color
+        textColor: [255, 255, 255],
+      },
+      columnStyles: {
+        0: { fontStyle: "bold" },
+        8: { halign: "right" },
+      },
+    });
+
+    setShowMenu2(false);
+    doc.save("QROrder.pdf");
+  };
+
+  const handlePrint = () => {
+    const tableHead = columns
+      .filter((col) => col.visible && col.label !== "Action")
+      .map((col) => col.label);
+
+    const tableBody = data.map((row) => {
+      return tableHead.map(
+        (label) => row[label.toLowerCase().replace(" ", "_")]
+      );
+    });
+
+    const printWindow = window.open("", "_blank");
+    printWindow.document.open();
+    printWindow.document.write(`
         <html>
           <head>
             <style>
@@ -263,16 +262,18 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
               </thead>
               <tbody>
                 ${tableBody
-            .map(
-              (row) => `
+                  .map(
+                    (row) => `
                   <tr>
                     ${row.map((cell) => `<td>${cell}</td>`).join("")}
                   </tr>
                 `
-            )
-            .join("")}
+                  )
+                  .join("")}
                 <tr class="total-row">
-                  <td colspan="${tableHead.length - 1}" style="text-align: center;">Total:</td>
+                  <td colspan="${
+                    tableHead.length - 1
+                  }" style="text-align: center;">Total:</td>
                   <td style="text-align: center;">LE 20</td>
                 </tr>
               </tbody>
@@ -280,92 +281,95 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
           </body>
         </html>
       `);
-      printWindow.document.title =
-        "INSTASME F&B Management Application By Brandmarks::";
-      printWindow.document.close();
-      printWindow.print();
+    printWindow.document.title =
+      "INSTASME F&B Management Application By Brandmarks::";
+    printWindow.document.close();
+    printWindow.print();
+    setShowMenu2(false);
+  };
+
+  const closeModalCancel = () => {
+    setModalCancelIsOpen(false);
+  };
+
+  const closeModalPayment = () => {
+    setModalPaymentIsOpen(false);
+  };
+
+  const closeModalDetails = () => {
+    setModalDetailsIsOpen(false);
+  };
+
+  const handleAcceptReject = () => {
+    Swal.fire({
+      icon: "success",
+      title: "Order Confirmation",
+      text: "Are you going to Accept or Reject this Order?",
+      showDenyButton: true,
+      showCancelButton: false,
+      denyButtonText: "Reject",
+      confirmButtonText: "Accept",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Accepted", "", "success");
+      } else if (result.isDenied) {
+        setModalCancelIsOpen(true);
+      }
+    });
+  };
+  const handlePosInvoice = () => {
+    navigate("/ordermanage/order/orderdetails/19");
+  };
+
+  const handleShowMenu = (index) => {
+    setMenuIndex(index === menuIndex ? null : index);
+  };
+
+  const handleShowMenu2 = () => {
+    setShowMenu2(!showMenu2);
+  };
+  const handleShowMenu3 = () => {
+    setShowMenu3(!showMenu3);
+  };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setMenuIndex(null);
+    }
+    if (menuRef2.current && !menuRef2.current.contains(event.target)) {
       setShowMenu2(false);
+    }
+    if (menuRef3.current && !menuRef3.current.contains(event.target)) {
+      setShowMenu3(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  
-    const closeModalCancel = () => {
-      setModalCancelIsOpen(false);
-    };
-  
-    const closeModalPayment = () => {
-      setModalPaymentIsOpen(false);
-    };
-  
-    const closeModalDetails = () => {
-      setModalDetailsIsOpen(false);
-    };
-  
-    const handleAcceptReject = () => {
-      Swal.fire({
-        icon: "success",
-        title: "Order Confirmation",
-        text: "Are you going to Accept or Reject this Order?",
-        showDenyButton: true,
-        showCancelButton: false,
-        denyButtonText: "Reject",
-        confirmButtonText: "Accept",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire("Accepted", "", "success");
-        } else if (result.isDenied) {
-          setModalCancelIsOpen(true);
-        }
-      });
-    };
-    const handlePosInvoice = () => {
-      navigate("/ordermanage/order/orderdetails/19");
-    };
-  
-    const handleShowMenu = (index) => {
-      setMenuIndex(index === menuIndex ? null : index);
-    };
-  
-    const handleShowMenu2 = () => {
-      setShowMenu2(!showMenu2);
-    };
-    const handleShowMenu3 = () => {
-      setShowMenu3(!showMenu3);
-    };
-  
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuIndex(null);
-      }
-      if (menuRef2.current && !menuRef2.current.contains(event.target)) {
-        setShowMenu2(false);
-      }
-      if (menuRef3.current && !menuRef3.current.contains(event.target)) {
-        setShowMenu3(false);
-      }
-    };
-  
-    useEffect(() => {
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, []);
-  
-    const handleSortIcon = (label) => {
-      if (sortDirection[label] === "asc") {
-        return (
-          <IoIosArrowUp
-            className={label === currentSortedColumn ? "text-primary" : ""}
-          />
-        );
-      } else if (sortDirection[label] === "desc") {
-        return (
-          <IoIosArrowDown
-            className={label === currentSortedColumn ? "text-primary" : ""}
-          />
-        );
-      }
-      return <IoIosArrowUp />;
-    };
+  }, []);
+
+  const handleSortIcon = (label) => {
+    if (sortDirection[label] === "asc") {
+      return (
+        <IoIosArrowUp
+          className={label === currentSortedColumn ? "text-primary" : ""}
+        />
+      );
+    } else if (sortDirection[label] === "desc") {
+      return (
+        <IoIosArrowDown
+          className={label === currentSortedColumn ? "text-primary" : ""}
+        />
+      );
+    }
+    return <IoIosArrowUp />;
+  };
+  const startDate = new Date("2024-06-22T19:08:00");
+  const endDate = new Date("2024-07-28T05:08:00");
+  const currentDate = format(new Date(), "dd MMM, yyyy HH:mm");
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -374,9 +378,11 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
       contentLabel="Add Customer Modal"
       ariaHideApp={true}
     >
-      <h2 className="mb-5">Current Register ( 22 Jun, 2024 19:08 - 09 Jul, 2024 05:08 )
+      <h2 className="mb-5">
+        Current Register ( {format(currentDate, "dd MMM, yyyy HH:mm")} -{" "}
+        {format(endDate, "dd MMM, yyyy HH:mm")} )
       </h2>
-      <div className="card" style={{border:'none',boxShadow:'none'}}>
+      <div className="card" style={{ border: "none", boxShadow: "none" }}>
         <div className="card-header align-items-center py-5 gap-2 gap-md-5">
           <div className="card-title d-flex flex-column w-full-title">
             <div className="d-flex justify-content-between align-items-center w-full-title flex-md-row flex-column-reverse width-full-invoices">
@@ -386,7 +392,7 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
                   type="text"
                   data-kt-ecommerce-order-filter="search"
                   className="form-control form-control-solid w-250ppx ps-12 width-full-invoices"
-                  placeholder="Search Order"
+                  placeholder="Search..."
                 />
               </div>
               <div className="card-toolbar flex-row-fluid justify-content-end gap-5 flex-md-row flex-column-reverse width-full-invoices">
@@ -402,7 +408,9 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
                 <div
                   ref={menuRef2}
                   className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
-                    showMenu2 ? "show active-list-action-table-closing-balance" : ""
+                    showMenu2
+                      ? "show active-list-action-table-closing-balance"
+                      : ""
                   }`}
                 >
                   {/* <div className="menu-item px-3">
@@ -468,7 +476,9 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
                 <div
                   ref={menuRef3}
                   className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
-                    showMenu3 ? "show show active-list-action-table-balance" : ""
+                    showMenu3
+                      ? "show show active-list-action-table-balance"
+                      : ""
                   }`}
                 >
                   {columns.map((column) => (
@@ -509,9 +519,9 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
                           key={index}
                           className={`${
                             column.label === "SL No."
-                              ? "min-w-50px"
-                              : column.label === "Invoice"
-                              ? "min-w-80px"
+                              ? "min-w-150px"
+                              : column.label === "Payment Type"
+                              ? "min-w-200px"
                               : column.label === "Customer Name"
                               ? "min-w-150px"
                               : column.label === "Customer Type"
@@ -537,7 +547,8 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
                           <td
                             key={idx}
                             className={`${
-                              column.label === "SL No."
+                              column.label === "SL No." ||
+                              column.label === "Payment Type"
                                 ? ""
                                 : "text-end pe-0"
                             }`}
@@ -571,13 +582,25 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
                   </tr>
                 ))}
                 <tr>
-                  <td colSpan={2} className="text-end fw-bold fs-5">Total</td>
-                  <td colSpan={1} className="text-end text-primary fw-bold fs-5">1,371.940
+                  <td colSpan={2} className="text-end fw-bold fs-3">
+                    Total
+                  </td>
+                  <td
+                    colSpan={1}
+                    className="text-end text-primary fw-bold fs-3"
+                  >
+                    300.00
                   </td>
                 </tr>
                 <tr>
-                  <td colSpan={2} className="text-end fw-bold fs-5">Opening Balance	</td>
-                  <td colSpan={1} className="text-end text-primary fw-bold fs-5">50.000
+                  <td colSpan={2} className="text-end fw-bold fs-3">
+                    Opening Balance{" "}
+                  </td>
+                  <td
+                    colSpan={1}
+                    className="text-end text-primary fw-bold fs-3"
+                  >
+                    20000.000
                   </td>
                 </tr>
               </tbody>
@@ -678,44 +701,53 @@ const ClosingBalance = ({ modalIsOpen, closeModal }) => {
           </div>
         </div>
       </div>
-      <div className="d-flex justify-content-end flex-column" style={{maxWidth:'600px',width:'100%',position:'absolute',right:'45px'}}>
-      <div className="d-flex gap-5 mb-5">
-              <label htmlFor="Total Amount" className="fs-4 fw-bold">
-              Total
-              </label>
-              <input
-                className="select-form-order-pos input-form-order"
-                type="text"
-                id="Total Amount"
-                name="Total Amount"
-                placeholder="Total Amount"
-                required
-                style={{ borderRadius: ".75rem" }}
-              />
-            </div>
-            <div className="d-flex gap-5 mb-5">
-              <label htmlFor="Total Amount" className="fs-4 fw-bold">
-              Note
-              </label>
-              <textarea
-                className="select-form-order-pos input-form-order h-100px"
-                type="text"
-                id="Total Amount"
-                name="Total Amount"
-                placeholder="Closing Note"
-                required
-                style={{ borderRadius: ".75rem" }}
-              />
-            </div>
-            <div className="d-flex justify-content-end">
-        <button
-          type="submit"
-          onClick={closeModal}
-          className="btn-form-pos-add-customer w-fit"style={{position:'absolute',right:0}}
-        >
-          Save
-        </button>
-            </div>
+      <div
+        className="d-flex justify-content-end flex-column"
+        style={{
+          maxWidth: "600px",
+          width: "100%",
+          position: "absolute",
+          right: "45px",
+        }}
+      >
+        <div className="d-flex gap-5 mb-5">
+          <label htmlFor="Total Amount" className="fs-4 fw-bold">
+            Total
+          </label>
+          <input
+            className="select-form-order-pos input-form-order"
+            type="text"
+            id="Total Amount"
+            name="Total Amount"
+            placeholder="Total Amount"
+            required
+            style={{ borderRadius: ".75rem" }}
+          />
+        </div>
+        <div className="d-flex gap-5 mb-5">
+          <label htmlFor="Total Amount" className="fs-4 fw-bold">
+            Note
+          </label>
+          <textarea
+            className="select-form-order-pos input-form-order h-100px"
+            type="text"
+            id="Total Amount"
+            name="Total Amount"
+            placeholder="Closing Note"
+            required
+            style={{ borderRadius: ".75rem" }}
+          />
+        </div>
+        <div className="d-flex justify-content-end">
+          <button
+            type="submit"
+            onClick={closeModal}
+            className="btn-form-pos-add-customer w-fit"
+            style={{ position: "absolute", right: 0 }}
+          >
+            Add Closing Balance
+          </button>
+        </div>
       </div>
     </Modal>
   );

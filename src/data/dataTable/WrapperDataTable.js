@@ -61,7 +61,6 @@ export const ColumnsQROrder = [
   { label: "Action", visible: true },
 ];
 
-
 export const ColumnsOnlineOrder = [
   { label: "SL", visible: true },
   { label: "Invoice", visible: true },
@@ -93,6 +92,55 @@ export const ColumnsClosingBalance = [
   { label: "Payment Type", visible: true },
   { label: "Total Price", visible: true },
 ];
+
+export const ColumnsReservation = [
+  { label: "SL", visible: true },
+  { label: "Customer Name", visible: true },
+  { label: "Table No.", visible: true },
+  { label: "No.of Person", visible: true },
+  { label: "Start Time", visible: true },
+  { label: "End Time", visible: true },
+  { label: "Date", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsUnavailableList = [
+  { label: "SL", visible: true },
+  { label: "Unavailable Date", visible: true },
+  { label: "Available Time", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsCateringInquiry = [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "No.of Person", visible: true },
+  { label: "Contact No", visible: true },
+  { label: "Date", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsPurchase = [
+  { label: "SL", visible: true },
+  { label: "Invoice no.", visible: true },
+  { label: "Supplier Name", visible: true },
+  { label: "Date", visible: true },
+  { label: "Price", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsSupplier = [
+  { label: "SL", visible: true },
+  { label: "Supplier Name", visible: true },
+  { label: "Email Address", visible: true },
+  { label: "Mobile", visible: true },
+  { label: "Address", visible: true },
+  { label: "Balance", visible: true },
+  { label: "Action", visible: true },
+];
+
 // all data
 export const DataPendingOrder = [
   {
@@ -160,12 +208,12 @@ export const DataPreOrderDateList = [
   {
     sl: 19,
     Pre_date: "23/11/2023",
-    time_slots: '4:30',
+    time_slots: "4:30",
   },
   {
     sl: 20,
     Pre_date: "23/11/2024",
-    time_slots: '7:58',
+    time_slots: "7:58",
   },
 ];
 
@@ -177,7 +225,7 @@ export const DataQROrder = [
     customer_type: "QR Customer",
     waiter: "Waiter1",
     table: "Table1",
-    payment_status:"Unpaid",
+    payment_status: "Unpaid",
     order_date: "2024-07-09	",
     amount: 1500,
   },
@@ -188,7 +236,7 @@ export const DataQROrder = [
     customer_type: "Dine In",
     waiter: "Waiter2",
     table: "Table3",
-    payment_status:"Paid",
+    payment_status: "Paid",
     order_date: "2023-08-01",
     amount: 1250,
   },
@@ -199,7 +247,7 @@ export const DataQROrder = [
     customer_type: "QR Customer",
     waiter: "Waiter4",
     table: "Table5",
-    payment_status:"Unpaid",
+    payment_status: "Unpaid",
     order_date: "2024-06-08	",
     amount: 850,
   },
@@ -216,7 +264,7 @@ export const DataOnlineOrder = [
     table_no: "N/A",
     payment_status: "Paid",
     order_date: "24/7/2024",
-    amount: 120.00,
+    amount: 120.0,
   },
   {
     sl: 2,
@@ -228,7 +276,7 @@ export const DataOnlineOrder = [
     table_no: "N/A",
     payment_status: "Pending",
     order_date: "24/7/2024",
-    amount: 75.50,
+    amount: 75.5,
   },
   {
     sl: 3,
@@ -240,7 +288,7 @@ export const DataOnlineOrder = [
     table_no: "N/A",
     payment_status: "Unpaid",
     order_date: "24/7/2024",
-    amount: 750.10,
+    amount: 750.1,
   },
 ];
 
@@ -253,7 +301,7 @@ export const DataTodayOrder = [
     waiter: "Waiter1",
     table_no: "N/A",
     order_date: "24/7/2024",
-    amount: 120.00,
+    amount: 120.0,
   },
   {
     sl: 2,
@@ -263,7 +311,7 @@ export const DataTodayOrder = [
     waiter: "Waiter2",
     table_no: "N/A",
     order_date: "24/7/2024",
-    amount: 75.50,
+    amount: 75.5,
   },
   {
     sl: 3,
@@ -273,7 +321,7 @@ export const DataTodayOrder = [
     waiter: "Waiter3",
     table_no: "N/A",
     order_date: "24/7/2024",
-    amount: 750.10,
+    amount: 750.1,
   },
 ];
 
@@ -281,10 +329,98 @@ export const DataClosingBalance = [
   {
     sl: 1,
     payment_type: "QR Customer",
-    amount: 120.00,
-  },  {
+    amount: 120.0,
+  },
+  {
     sl: 2,
     payment_type: "QR Customer",
-    amount: 180.00,
+    amount: 180.0,
+  },
+];
+
+export const DataReservation = [
+  {
+    sl: 19,
+    customer_name: "	Melody Macy",
+    table: "4",
+    NoPerson: "2",
+    start_time: "22:00:00",
+    end_time: "22:30:00",
+    date: "23/11/2023",
+    status: "Booked",
+  },
+  {
+    sl: 20,
+    customer_name: "John Doe",
+    table: "1",
+    NoPerson: "6",
+    start_time: "12:00:00",
+    end_time: "13:58:00",
+    date: "23/11/2023",
+    status: "Free",
+  },
+];
+
+export const DataUnavailableDate = [
+  {
+    sl: 19,
+    time: "22:00:00 - 22:30:00",
+    date: "23/11/2023",
+  },
+];
+
+export const DataCateringInquiry = [
+  {
+    sl: 1,
+    name: "Ahmed",
+    noPerson: "3",
+    contact: "0112654654",
+    Date: "2024-09-13",
+    status: "Active",
+  },
+  {
+    sl: 2,
+    name: "Mohamed",
+    noPerson: "2",
+    contact: "0102654654",
+    Date: "2024-07-17",
+    status: "InActive",
+  },
+];
+
+
+export const DataPurchase = [
+  {
+    sl: 19,
+    invoice_no: 56235,
+    customer_name: "Carrefour Dandy",
+    date: "23/11/2023",
+    price: 5000,
+  },
+  {
+    sl: 20,
+    invoice_no: 66124,
+    customer_name: "John Doe",
+    date: "24/7/2024",
+    price: 3800,
+  },
+];
+
+export const DataSupplier = [
+  {
+    sl: 19,
+    customer_name: "Carrefour Dandy",
+    email: "Carrefour98@gmail.com",
+    mobile: "0123456789",
+    address: "Attaba",
+    balance: 7500,
+  },
+  {
+    sl: 20,
+    customer_name: "John Doe",
+    email: "John45@gmail.com",
+    mobile: "0101234567",
+    address: "Faisal",
+    balance: 6150,
   },
 ];
