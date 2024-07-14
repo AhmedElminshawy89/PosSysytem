@@ -32,6 +32,10 @@ import ReturnInvoice from "./pages/Purchase/ReturnInvoice";
 import Supplier_List from "./pages/Purchase/Supplier_List";
 import AddBooking from "./pages/Reservation/Reservations/AddBooking";
 import ReservationSetting from "./pages/Reservation/Reservations/ReservationSetting";
+import AddPurchase from "./pages/Purchase/AddPurchase";
+import PurchaseReturn from "./pages/Purchase/PurchaseReturn";
+import SupplierLedger from "./pages/Purchase/SupplierLedger";
+import OutofStockIngredients from "./pages/Purchase/OutofStockIngredients";
 
 function App() {
   return (
@@ -61,11 +65,15 @@ function App() {
           <Route path="/reservation/reservation/index" element={<Reservations />} />
           <Route path="/reservation/reservation/unavailablelist" element={<UnavailableDay />} />
           <Route path="/reservation/reservation/cateringinquiry" element={<CateringInquiry />} />
+          <Route path="/reservation/reservation/tablebooking" element={<AddBooking />} />
+          <Route path="/reservation/reservation/setting" element={<ReservationSetting />} />
           <Route path="/purchase/purchase/index" element={<PurchaseItem />} />
           <Route path="/purchase/purchase/return_invoice" element={<ReturnInvoice />} />
           <Route path="/purchase/supplierlist/index" element={<Supplier_List />} />
-          <Route path="/reservation/reservation/tablebooking" element={<AddBooking />} />
-          <Route path="/reservation/reservation/setting" element={<ReservationSetting />} />
+          <Route path="/purchase/purchase/create" element={<AddPurchase />} />
+          <Route path="/purchase/purchase/return_form" element={<PurchaseReturn />} />
+          <Route path="/purchase/supplierlist/supplier_ledger_report" element={<SupplierLedger />} />
+          <Route path="/purchase/purchase/stock_out_ingredients" element={<OutofStockIngredients />} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}

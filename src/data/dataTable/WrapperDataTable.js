@@ -141,6 +141,13 @@ export const ColumnsSupplier = [
   { label: "Action", visible: true },
 ];
 
+
+export const ColumnsOutOfIngredient = [
+  { label: "Ingredients", visible: true },
+  { label: "Qnty", visible: true },
+];
+
+
 // all data
 export const DataPendingOrder = [
   {
@@ -422,5 +429,25 @@ export const DataSupplier = [
     mobile: "0101234567",
     address: "Faisal",
     balance: 6150,
+  },
+];
+
+
+export const DataOutOf = [
+  {
+    int: "Ziti Pasta",
+    qyt: 2.00,
+  },
+  {
+    int: "Worcester Sauce",
+    qyt: 0.00,
+  },
+  {
+    int: "Wooden Chopstick",
+    qyt: 3.00,
+  },
+  {
+    int: "White Vinegar",
+    qyt: 5.00,
   },
 ];

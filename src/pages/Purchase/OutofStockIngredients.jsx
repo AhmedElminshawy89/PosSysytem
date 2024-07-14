@@ -1,5 +1,5 @@
-import Toolbar from "../../../components/Global/ToolBar/Toolbar";
-import classesOrderList from "../../../components/OrderList/OrderList.module.css";
+import Toolbar from "../../components/Global/ToolBar/Toolbar";
+import classesOrderList from "../../components/OrderList/OrderList.module.css";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { utils, write } from "xlsx";
@@ -7,23 +7,21 @@ import { saveAs } from "file-saver";
 import jsPDF from "jspdf";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { AiFillEyeInvisible } from "react-icons/ai";
-import {
-  ColumnsReservation,
-  ColumnsUnavailableList,
-  DataReservation,
-  DataUnavailableDate,
-} from "../../../data/dataTable/WrapperDataTable";
-import DeleteAlertModal from "../../../components/DeleteAlert/DeleteAlert";
-import UpdateReservation from "../../../components/Reservation/Modal/udpate";
 import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
-import AddUnavailability from "../../../components/Reservation/Modal/AddUnavalability";
+import {
+    ColumnsOutOfIngredient,
+  ColumnsPurchase,
+  DataOutOf,
+  DataPurchase,
+} from "../../data/dataTable/WrapperDataTable";
+import CountUp from "react-countup";
 
-const UnavailableDay = () => {
+const OutofStockIngredients = () => {
   const [currentSortedColumn, setCurrentSortedColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState({});
   const [countStarted, setCountStarted] = useState(false);
-  const [columns, setColumns] = useState(ColumnsUnavailableList);
+  const [columns, setColumns] = useState(ColumnsOutOfIngredient);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalOpenReserve, setIsModalOpenReserve] = useState(false);
   const [showMenu3, setShowMenu3] = useState(false);
@@ -34,21 +32,11 @@ const UnavailableDay = () => {
   const menuRef2 = useRef(null);
   const menuRef3 = useRef(null);
 
-  const [data, setData] = useState(DataUnavailableDate);
+  const [data, setData] = useState(DataOutOf);
 
   useEffect(() => {
     setCountStarted(true);
   }, []);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const openModalResrve = () => setIsModalOpenReserve(true);
-  const closeModalReserve = () => setIsModalOpenReserve(false);
-
-  const handleDeleteConfirm = () => {
-    console.log("Item deleted");
-  };
 
   const toggleColumnVisibility = (columnLabel) => {
     const updatedColumns = columns.map((col) =>
@@ -114,8 +102,10 @@ const UnavailableDay = () => {
   const handleExcel = () => {
     const aoaData = data.map((row) => [
       row.sl,
+      row.invoice_no,
+      row.customer_name,
+      row.price,
       row.date,
-      row.time,
     ]);
 
     const ws = utils.aoa_to_sheet(aoaData);
@@ -125,7 +115,7 @@ const UnavailableDay = () => {
     const wbout = write(wb, { bookType: "xlsx", type: "array" });
     saveAs(
       new Blob([wbout], { type: "application/octet-stream" }),
-      "UnavailableDay.xlsx"
+      "Purchase.xlsx"
     );
     setShowMenu2(false);
   };
@@ -133,8 +123,10 @@ const UnavailableDay = () => {
   const handleCSV = () => {
     const csvData = data.map((row) => [
       row.sl,
+      row.invoice_no,
+      row.customer_name,
+      row.price,
       row.date,
-      row.time,
     ]);
 
     const csvContent =
@@ -144,7 +136,7 @@ const UnavailableDay = () => {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "UnavailableDay.csv");
+    link.setAttribute("download", "Purchase.csv");
 
     document.body.appendChild(link);
     link.click();
@@ -196,7 +188,7 @@ const UnavailableDay = () => {
     });
 
     setShowMenu2(false);
-    doc.save("UnavailableDay.pdf");
+    doc.save("Purchase.pdf");
   };
 
   const handlePrint = () => {
@@ -331,19 +323,19 @@ const UnavailableDay = () => {
       >
         <div className="d-flex flex-column flex-column-fluid">
           <div className="d-flex justify-content-between bg-white flex-sm-row flex-column">
-            <Toolbar
-              MainPage="Reservation On Off"
-              CurrentPage="Home"
-              path={"/"}
-              TitlePage="Reservation"
-            />
-            <button
-            onClick={openModalResrve}
+          <Toolbar
+            MainPage="Out-of-Stock Ingredients"
+            CurrentPage="Home"
+            path={"/"}
+            TitlePage="Purchase"
+          />
+            <Link
+              to="/purchase/purchase/create"
               className={`btn btn-primary fs-5 h-40px me-12 ms-12 mt-6`}
             >
               <FaPlus className="fs-6 me-2" />
-              Add Unavailability
-            </button>
+              Add Purchase
+            </Link>
           </div>
           <div id="kt_app_content" className="app-content flex-column-fluid">
             <div
@@ -499,11 +491,10 @@ const UnavailableDay = () => {
                                 <th
                                   key={index}
                                   className={`text-nowrap ${
-                                    column.label === "SL"
-                                      ? "w-50px": column.label === "Action"?"text-end"
-                                      : column.label === "Unavailable Date"?"text-end w-100px"
-                                      : "text-end  min-w-100px"
-                                  } cursor-pointer text-hover-primary min-w-150px`}
+                                    column.label === "Ingredients"
+                                      ? "min-w-250px"
+                                      : "text-start pe-0 min-w-150px"
+                                  } cursor-pointer text-hover-primary`}
                                   onClick={() => handleSort(column.label)}
                                 >
                                   {column.label} {handleSortIcon(column.label)}
@@ -530,81 +521,35 @@ const UnavailableDay = () => {
                                   <td
                                     key={idx}
                                     className={`${
-                                      column.label === "SL"
-                                        ? "":
-                                        column.label === "Action"?"text-end":
-                                        column.label === "Unavailable Date"?"text-end":
-                                        column.label === "Available Time"?"text-end"
-                                        : "text-end pe-0"
+                                      column.label === "Ingredients"
+                                        ? ""
+                                        : "text-start pe-0"
                                     }`}
                                   >
-                                    {column.label === "SL" && item.sl}
-                                    {column.label === "Unavailable Date" && (
-                                      <a className="fw-bold text-gray-600">
-                                        {item.date}
+                                    {column.label === "Ingredients" &&(
+                                        <a className="text-gray-800 text-hover-primary fs-5 fw-bold">
+                                        {item.int}
                                       </a>
-                                    )}
-                                    {column.label === "Available Time" && (
-                                      <span className="fw-bold text-gray-600">
-                                        {item.time}
-                                      </span>
-                                    )}
-                                    {column.label === "Action" && (
-                                      <>
-                                        <a
-                                          className={`btn btn-sm btn-light btn-flex btn-center btn-active-light-primary fs-6 ${
-                                            menuIndex === index ? "show" : ""
-                                          }`}
-                                          onClick={() => handleShowMenu(index)}
-                                        >
-                                          Actions
-                                          <i className="ki-outline ki-down fs-5 ms-1"></i>
-                                        </a>
-                                        <div
-                                          ref={menuRef}
-                                          className={`menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4 ${
-                                            menuIndex === index ? "show" : ""
-                                          }`}
-                                          style={{
-                                            zIndex: 107,
-                                            position: "fixed",
-                                            inset: "0px 0px auto auto",
-                                            margin: "0px",
-                                            transform: `translate(-60px, ${
-                                              450 + index * 60
-                                            }px)`,
-                                            WebkitTransform: `translate(-60px, ${
-                                              450 + index * 60
-                                            }px)`,
-                                            MozTransform: `translate(-60px, ${
-                                              450 + index * 60
-                                            }px)`,
-                                            msTransform: `translate(-60px, ${
-                                              450 + index * 60
-                                            }px)`,
-                                            OTransform: `translate(-60px, ${
-                                              450 + index * 60
-                                            }px)`,
-                                          }}
-                                        >
-                                          <div
-                                            className="menu-item px-3"
-                                            onClick={openModal}
-                                          >
-                                            <a className="menu-link px-3 fs-6">
-                                              Delete
-                                            </a>
-                                          </div>
-                                          <div
-                                            className="menu-item px-3"
-                                            onClick={openModalResrve}
-                                          >
-                                            <a className="menu-link px-3 fs-6">
-                                              Update
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </>
+                                    ) }
+                                    {column.label === "Qnty" && (
+                                         <span className="fw-bold text-primary">
+                                         {countStarted ? (
+                                           <CountUp
+                                             end={item.qyt}
+                                             duration={1}
+                                             separator=","
+                                             decimals={2}
+                                             decimal="."
+                                           />
+                                         ) : (
+                                           item.qyt
+                                             .toFixed(2)
+                                             .replace(
+                                               /\B(?=(\d{3})+(?!\d))/g,
+                                               ","
+                                             )
+                                         )}
+                                       </span>
                                     )}
                                   </td>
                                 )
@@ -713,17 +658,8 @@ const UnavailableDay = () => {
           </div>
         </div>
       </div>
-      <DeleteAlertModal
-        isOpen={isModalOpen}
-        closeModal={closeModal}
-        onDeleteConfirm={handleDeleteConfirm}
-      />
-      <AddUnavailability
-        isOpen={isModalOpenReserve}
-        closeModal={closeModalReserve}
-      />
     </>
   );
 };
 
-export default UnavailableDay;
+export default OutofStockIngredients;

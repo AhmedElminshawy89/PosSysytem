@@ -1416,6 +1416,7 @@ select option:hover {
     margin-right: 90px;
   }
 }
-.booking-reserve>input{
-  
+
+.border-red-warn-date .form-control {
+  border: 1px solid red !important;
 }
