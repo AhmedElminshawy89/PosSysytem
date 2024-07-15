@@ -12,12 +12,11 @@ import TodayOrder from "./TodayOrder";
 import AddOpeningBalance from "../../components/PosComponents/PosOrder/Modal/AddOpeningBalance";
 
 const Pos = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false); // State to control modal visibility
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
-    // Code to open modal on page reload
     setModalIsOpen(true);
-  }, []); // Empty dependency array ensures this effect runs only once on mount
+  }, []);
 
   const activeTab = useSelector((state) => state.activeTabPos.activeTab);
 

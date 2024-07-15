@@ -148,6 +148,71 @@ export const ColumnsOutOfIngredient = [
 ];
 
 
+export const ColumnsPurchaseReport = [
+  { label: "Invoice no.", visible: true },
+  { label: "Supplier Name", visible: true },
+  { label: "Purchase Date", visible: true },
+  { label: "Total Amount", visible: true },
+];
+
+export const ColumnsStockReport = [
+  { label: "Food Name", visible: true },
+  { label: "In Quantity", visible: true },
+  { label: "Out Quantity", visible: true },
+  { label: "Stock", visible: true },
+];
+
+export const ColumnsStockReportStation = [
+  { label: "Ingredient Name", visible: true },
+  { label: "In Quantity", visible: true },
+  { label: "Out Quantity", visible: true },
+  { label: "Stock", visible: true },
+];
+
+export const ColumnsSalesReport = [
+  { label: "Invoice No.", visible: true },
+  { label: "Customer Name", visible: true },
+  { label: "Sale Date", visible: true },
+  { label: "Payment Method", visible: true },
+  { label: "Total Order", visible: true },
+  { label: "Vat/Tax", visible: true },
+  { label: "Service Charge", visible: true },
+  { label: "Discount", visible: true },
+  { label: "Total Amount", visible: true },
+];
+
+
+export const ColumnsItemSalesReport = [
+  { label: "Items Name", visible: true },
+  { label: "Variant Name", visible: true },
+  { label: "Quantity", visible: true },
+  { label: "Total Amount", visible: true },
+];
+
+
+export const ColumnsItemServiceCharge = [
+  { label: "Order Id", visible: true },
+  { label: "Service Charge", visible: true },
+];
+export const ColumnsWaiter = [
+  { label: "Waiter Name", visible: true },
+  { label: "Total Amount", visible: true },
+];
+export const ColumnsStation = [
+  { label: "Kitchen Name", visible: true },
+  { label: "Total Amount", visible: true },
+];
+
+export const ColumnsDeliveryType = [
+  { label: "Delivery Type", visible: true },
+  { label: "Total Amount", visible: true },
+];
+
+export const ColumnsCashier = [
+  { label: "Cashier Name", visible: true },
+  { label: "Total Amount", visible: true },
+];
+
 // all data
 export const DataPendingOrder = [
   {
@@ -450,4 +515,127 @@ export const DataOutOf = [
     int: "White Vinegar",
     qyt: 5.00,
   },
+];
+
+export const DataPurchaseReport = [
+  {
+    invoice: 19,
+    customer_name: "Carrefour Dandy",
+    Date:"25-5-2024",
+    total: 7500,
+  },
+  {
+    invoice: 20,
+    customer_name: "John Doe",
+    Date:"8-7-2024",
+    total: 15000,
+  },
+];
+
+export const DataStockReport = [
+  {
+    food_name: "Oreo Milkshake - ميلك شيك أوريو",
+    inqty:15,
+    outaty:12,
+    stock: 500,
+  },
+  {
+    food_name: "White Basmati Rice - أرز بسمتي سادة",
+    inqty:17,
+    outaty:20,
+    stock: 500,
+  },
+];
+export const DataStockReportStation = [
+  {
+    food_name: "Basmati Rice",
+    inqty:15,
+    outaty:12,
+    stock: 500,
+  },
+  {
+    food_name: "Egyptian White Rice",
+    inqty:17,
+    outaty:20,
+    stock: 500,
+  },
+];
+
+export const DataSalesReport = [
+  {
+    invoice: 13757,
+    customer_name: "Melody Macy",
+    payment_method: "Cash Payment",
+    order_date: "2024-07-09	",
+    total_order: 1500,
+    vat: 50,
+    Service_charge: 80,
+    Discount: 180,
+    total_amount: 1450,
+  },
+  {
+    invoice: 14878,
+    customer_name: "John",
+    payment_method: "Due Payment",
+    order_date: "2024-01-08	",
+    total_order: 3500,
+    vat: 50,
+    Service_charge: 80,
+    Discount: 200,
+    total_amount: 3430,
+  },
+];
+
+export const DataItemsSalesReport = [
+  {
+    item: "item",
+    variant_name: "variant_name",
+    qty: "50",
+    total_amount: 1450,
+  }
+];
+
+export const DataItemsServiceChargeReport = [
+  {
+    order_id: 2,
+    Service_charge: 80,
+  },
+  {
+    order_id: 3,
+    Service_charge: 120,
+  }
+];
+
+export const DataItemsWaiter = [
+  {
+    order_id: "John",
+    Service_charge: 1180,
+  },
+  {
+    order_id: "Marco",
+    Service_charge: 1220,
+  }
+];
+
+
+export const DataItemStation = [
+  {
+    order_id: "Sandwiches",
+    Service_charge: 1180,
+  },
+  {
+    order_id: "BBQ",
+    Service_charge: 1220,
+  }
+];
+
+export const DataDeliveryType = [
+  {
+    order_id: "Pickup",
+    Service_charge: 1180,
+  },
+  {
+    order_id: "",
+    Service_charge: 1220,
+  }
 ];

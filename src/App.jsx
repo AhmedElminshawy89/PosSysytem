@@ -36,6 +36,16 @@ import AddPurchase from "./pages/Purchase/AddPurchase";
 import PurchaseReturn from "./pages/Purchase/PurchaseReturn";
 import SupplierLedger from "./pages/Purchase/SupplierLedger";
 import OutofStockIngredients from "./pages/Purchase/OutofStockIngredients";
+import PurchaseReport from "./components/Report/PurchaseReport";
+import StockReport from "./components/Report/StockReport";
+import StockReportStation from "./components/Report/StockReportStation";
+import SalesReport from "./components/Report/SalesReport";
+import ItemsSalesReport from "./components/Report/ItemsSalesReport";
+import ServiceChargeReport from "./components/Report/ServiceChargeReport";
+import WaiterSalesReport from "./components/Report/WaiterSalesReport";
+import StationSalesReport from "./components/Report/StationSalesReport";
+import DeliveryType from "./components/Report/DeliveryType";
+import SalesReportCashier from "./components/Report/SaleReportCashier";
 
 function App() {
   return (
@@ -74,6 +84,16 @@ function App() {
           <Route path="/purchase/purchase/return_form" element={<PurchaseReturn />} />
           <Route path="/purchase/supplierlist/supplier_ledger_report" element={<SupplierLedger />} />
           <Route path="/purchase/purchase/stock_out_ingredients" element={<OutofStockIngredients />} />
+          <Route path="/report/reports/index" element={<PurchaseReport />} />
+          <Route path="/report/reports/productwise" element={<StockReport />} />
+          <Route path="/report/reports/ingredientwise" element={<StockReportStation />} />
+          <Route path="/report/reports/sellrpt" element={<SalesReport />} />
+          <Route path="/report/reports/sellrptItems" element={<ItemsSalesReport />} />
+          <Route path="/report/reports/servicerpt" element={<ServiceChargeReport />} />
+          <Route path="/report/reports/sellrptwaiter" element={<WaiterSalesReport />} />
+          <Route path="/report/reports/kichansrpt" element={<StationSalesReport />} />
+          <Route path="/report/reports/sellrptdelvirytype" element={<DeliveryType />} />
+          <Route path="/report/reports/sellrptCasher" element={<SalesReportCashier />} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}

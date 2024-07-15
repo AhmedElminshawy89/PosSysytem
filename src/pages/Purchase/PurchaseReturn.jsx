@@ -188,8 +188,7 @@ const PurchaseReturn = () => {
                   </div>
                   <div className="d-flex">
                   <div
-                      style={{ flex: .5 }}
-                      className="d-flex flex-column align-items-start position-relative"
+                      className="d-flex flex-column align-items-start position-relative w-100 mw-400px"
                     >
                       <label htmlFor="waiter" className="form-label">
                       Return Date

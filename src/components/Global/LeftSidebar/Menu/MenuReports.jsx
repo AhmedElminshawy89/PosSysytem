@@ -27,11 +27,12 @@ const MenuReports = () => {
 
   const menuItems = [
     { title: "Purchase Report", link: "/report/reports/index" },
-    { title: "Stock Report (Food Items)", link: "/purchase/purchase/create" },
+    { title: "Stock Report (Food Items)", link: "/report/reports/productwise" },
     { title: "Stock Report (Station)", link: "/report/reports/ingredientwise" },
     {
       title: "Sales Report",
       nestedItems: [
+        { title: "Sales Report", link: "/report/reports/sellrpt" },
         { title: "Items Sales Report", link: "/report/reports/sellrptItems" },
         { title: "Service Charge Report", link: "/report/reports/servicerpt" },
         {
