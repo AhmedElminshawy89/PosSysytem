@@ -189,6 +189,28 @@ export const ColumnsItemSalesReport = [
   { label: "Total Amount", visible: true },
 ];
 
+export const ColumnsItemSalesReportFiltering = [
+  { label: "Invoice No.", visible: true },
+  { label: "Customer Name", visible: true },
+  { label: "Waiter", visible: true },
+  { label: "Sales Type", visible: true },
+  { label: "Sale Date", visible: true },
+  { label: "Total Discount", visible: true },
+  { label: "Third Party Commission", visible: true },
+  { label: "Total Amount", visible: true },
+];
+
+
+export const ColumnsItemCahier = [
+  { label: "SL", visible: true },
+  { label: "User", visible: true },
+  { label: "Date", visible: true },
+  { label: "Counter Number", visible: true },
+  { label: "Opening Balance", visible: true },
+  { label: "Closing Balance", visible: true },
+  { label: "Action", visible: true },
+];
+
 
 export const ColumnsItemServiceCharge = [
   { label: "Order Id", visible: true },
@@ -211,6 +233,27 @@ export const ColumnsDeliveryType = [
 export const ColumnsCashier = [
   { label: "Cashier Name", visible: true },
   { label: "Total Amount", visible: true },
+];
+
+export const ColumnsSaleByTable = [
+  { label: "Table", visible: true },
+  { label: "Total", visible: true },
+  { label: "View", visible: true },
+];
+
+export const ColumnsSalesReportByDate = [
+  { label: "Food Name", visible: true },
+  { label: "Variant Name", visible: true },
+  { label: "Date", visible: true },
+  { label: "Quantity", visible: true },
+  { label: "Price", visible: true },
+  { label: "Total Amount", visible: true },
+];
+
+export const ColumnsCommission = [
+  { label: "Waiter", visible: true },
+  { label: "Commission", visible: true },
+  { label: "Total", visible: true },
 ];
 
 // all data
@@ -617,6 +660,17 @@ export const DataItemsWaiter = [
   }
 ];
 
+export const DataItemsSalesByTable = [
+  {
+    order_id: "table 1",
+    Service_charge: 225,
+  },
+  {
+    order_id: "table 2",
+    Service_charge: 125,
+  }
+];
+
 
 export const DataItemStation = [
   {
@@ -637,5 +691,78 @@ export const DataDeliveryType = [
   {
     order_id: "",
     Service_charge: 1220,
+  }
+];
+
+
+export const DataItemsSalesReportByDate = [
+  {
+    food_name: 'Biryani Rice - أرز برياني',
+    variant_name: '1 Person',
+    date:'03-7-2024',
+    Quantity:'1',
+    price:80.00,
+    total:80
+  },
+  {
+    food_name: "Fettuccini Alfredo - فيتوشيني ألفريدو	",
+    variant_name: '3 Person',
+    date:'03-7-2024',
+    Quantity:'2',
+    price:195.00,
+    total:195
+  },
+];
+
+
+export const DataCommission = [
+  {
+    waiter: "John",
+    total: 275,
+    Commission:0
+  },
+  {
+    waiter: "wiater 2",
+    total: 255,
+    Commission:0
+  },
+  {
+    waiter: "wiater 3",
+    total: 200,
+    Commission:0
+  },
+];
+
+export const DataItemsSalesReportFiltering = [
+  {
+    id: "0027",
+    customer_name: "AL Fardous",
+    waiter: "waiter",
+    sales: "Online Customer",
+    date: "2024-7-3",
+    total_discount: 0,
+    third_party: 0,
+    total_amount: 95.76,
+  },
+  {
+    id: "0028",
+    customer_name: "AL Fardous",
+    waiter: "waiter 2",
+    sales: "Christina VANCE	",
+    date: "2024-7-4",
+    total_discount: 20,
+    third_party: 0,
+    total_amount: 212.30,
+  },
+];
+
+export const DataItemsCashier = [
+  {
+    id: "0027",
+    customer_name: "Super Admin",
+    counter: "25",
+    date: "2024-7-3",
+    total_discount: 2000,
+    third_party: 20000,
   }
 ];

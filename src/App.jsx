@@ -46,6 +46,11 @@ import WaiterSalesReport from "./components/Report/WaiterSalesReport";
 import StationSalesReport from "./components/Report/StationSalesReport";
 import DeliveryType from "./components/Report/DeliveryType";
 import SalesReportCashier from "./components/Report/SaleReportCashier";
+import SalesByDate from "./components/Report/SalesByDate";
+import Commision from "./components/Report/Commision";
+import SaleByTable from "./components/Report/SaleByTable";
+import SalesReportFiltering from "./components/Report/SalesReportFiltering";
+import CashRegisterReport from "./components/Report/CashRegisterReport";
 
 function App() {
   return (
@@ -94,6 +99,11 @@ function App() {
           <Route path="/report/reports/kichansrpt" element={<StationSalesReport />} />
           <Route path="/report/reports/sellrptdelvirytype" element={<DeliveryType />} />
           <Route path="/report/reports/sellrptCasher" element={<SalesReportCashier />} />
+          <Route path="/report/reports/sellrptbydate" element={<SalesByDate />} />
+          <Route path="/report/reports/payroll_commission" element={<Commision />} />
+          <Route path="/report/reports/table_sale" element={<SaleByTable />} />
+          <Route path="/report/reports/sellrpt2" element={<SalesReportFiltering />} />
+          <Route path="/report/reports/cashregister" element={<CashRegisterReport />} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}
