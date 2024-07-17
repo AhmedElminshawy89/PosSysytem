@@ -131,6 +131,14 @@ export const ColumnsPurchase = [
   { label: "Action", visible: true },
 ];
 
+export const ColumnsProduction = [
+  { label: "SL", visible: true },
+  { label: "Food Name", visible: true },
+  { label: "Variant Name", visible: true },
+  { label: "Price", visible: true },
+  { label: "Action", visible: true },
+];
+
 export const ColumnsSupplier = [
   { label: "SL", visible: true },
   { label: "Supplier Name", visible: true },
@@ -537,6 +545,16 @@ export const DataSupplier = [
     mobile: "0101234567",
     address: "Faisal",
     balance: 6150,
+  },
+];
+
+
+export const DataProduction = [
+  {
+    sl: 19,
+    food_name: "Biryani Rice - أرز برياني	",
+    variant_name: "1 person",
+    price: 5000,
   },
 ];
 

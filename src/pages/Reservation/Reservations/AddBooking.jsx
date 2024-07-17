@@ -28,7 +28,7 @@ const AddBooking = () => {
               id="kt_app_content_container"
               className="app-container container-fluid"
             >
-              <div className="card card-flush">
+              <div className="card card-flush py-0 flex-row-fluid w-400pxx">
                 <div className="card-header align-items-center py-5 gap-2 gap-md-5">
                   <div className="card-title d-flex flex-column w-full-title">
                     {/* <div className="d-flex justify-content-between align-items-center w-full-title flex-md-row flex-column-reverse width-full-invoices">
@@ -42,15 +42,15 @@ const AddBooking = () => {
                         />
                       </div>
                     </div> */}
-                    <h1>Book a Table</h1>
+                    <h2>Book a Table</h2>
                   </div>
                 </div>
                 <div className="card-body pt-0">
-                    <div className="d-flex align-items-md-center gap-5 flex-md-row flex-column">
+                    <div className="d-flex  gap-5 flex-column">
                   <div style={{flex:1}} className="d-flex flex-column align-items-start position-relative my-1 booking-reserve">
-                    <label htmlFor="" className="fw-bold fs-3">Date</label>
+                    <label htmlFor="" className="mb-2 fs-3 text-black">Date</label>
                     <Flatpickr
-                      className="form-control width-full-invoices"
+                      className="form-control form-control-solid border-0 ps-4"
                       options={{
                         mode: "single",
                         dateFormat: "Y-m-d",
@@ -61,15 +61,15 @@ const AddBooking = () => {
                     />
                   </div>
                   <div style={{flex:1}} className="d-flex flex-column align-items-start position-relative my-1 Flatpickr width-full-invoices">
-                    <label htmlFor="" className="fw-bold fs-3">Time</label>
+                    <label htmlFor="" className="mb-2 fs-3 text-black">Time</label>
                     <CookingTimeInput/>
                   </div>
                   <div style={{flex:1}} className="d-flex flex-column align-items-start position-relative my-1 width-full-invoices">
-                    <label htmlFor="" className="fw-bold fs-3">People</label>
+                    <label htmlFor="" className="mb-2 fs-3 text-black">People</label>
                     <input
         type="text"
         placeholder="No.of People"
-        className="select-form-order-pos input-form-order"
+        className="form-control form-control-solid border-0 ps-4"
         style={{borderRadius:'.75rem'}}
       />
                   </div>

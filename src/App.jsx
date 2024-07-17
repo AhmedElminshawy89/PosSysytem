@@ -51,6 +51,10 @@ import Commision from "./components/Report/Commision";
 import SaleByTable from "./components/Report/SaleByTable";
 import SalesReportFiltering from "./components/Report/SalesReportFiltering";
 import CashRegisterReport from "./components/Report/CashRegisterReport";
+import SetProductionUnit from "./pages/Production/SetProductionUnit";
+import ProductionSetList from './pages/Production/ProductionSetList';
+import AddProduction from "./pages/Production/AddProduction";
+import ProductionSettings from "./pages/Production/ProductionSetting";
 
 function App() {
   return (
@@ -104,6 +108,10 @@ function App() {
           <Route path="/report/reports/table_sale" element={<SaleByTable />} />
           <Route path="/report/reports/sellrpt2" element={<SalesReportFiltering />} />
           <Route path="/report/reports/cashregister" element={<CashRegisterReport />} />
+          <Route path="/production/production/productionunit" element={<SetProductionUnit />} />
+          <Route path="/production/production/index" element={<ProductionSetList />} />
+          <Route path="/production/production/create" element={<AddProduction />} />
+          <Route path="/production/production/possetting" element={<ProductionSettings />} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}

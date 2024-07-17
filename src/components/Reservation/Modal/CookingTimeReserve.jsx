@@ -58,8 +58,8 @@ const CookingTimeInput = () => {
         readOnly
         type="text"
         placeholder="00:00:00"
-        value={`${selectedHour}:${selectedMinute}`}
-        className="select-form-order-pos input-form-order"
+        value={`${selectedHour||0}:${selectedMinute||0}`}
+        className="form-control form-control-solid border-0 ps-4"
         onClick={handleChooseTime}
         style={{borderRadius:'.75rem'}}
       />
