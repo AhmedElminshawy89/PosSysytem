@@ -1420,3 +1420,34 @@ select option:hover {
 .border-red-warn-date .form-control {
   border: 1px solid red !important;
 }
+
+.ant-upload-list{
+  display: flex !important;
+  justify-content: center !important;
+  margin-bottom: 10px;
+}
+/* .ant-upload{
+  border: 3px solid var(--bs-body-bg) !important;
+  box-shadow: var(--bs-box-shadow) !important;
+}
+.ant-upload-list-item-container{
+  width: 100% !important;
+  height: 100% !important;
+} */
+.img-thubnail-category-food{
+  border: 3px solid var(--bs-body-bg) !important;
+  box-shadow: var(--bs-box-shadow) !important;
+  border-radius: .75rem;
+  -webkit-border-radius: .75rem;
+  -moz-border-radius: .75rem;
+  -ms-border-radius: .75rem;
+  -o-border-radius: .75rem;
+  /* max-height: 180px;
+  max-width: 280px; */
+}
+
+.ant-select-focused:where(.css-dev-only-do-not-override-p8b6i)
+.ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer)
+ .ant-select-selector{
+  border: none !important;
+}

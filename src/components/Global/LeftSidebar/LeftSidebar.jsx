@@ -11,18 +11,27 @@ import Menu from "./Menu/Menu";
 import { Link, useLocation } from "react-router-dom";
 import MenuReports from "./Menu/MenuReports";
 import MenuFoodCategory from "./Menu/MenuFoodCategory";
-
-const LeftSidebar = ({ isMinimized, isSidebarActive }) => {
+import { useWindowWidth } from "@react-hook/window-size";
+const LeftSidebar = ({ isMinimized,setIsSidebarMinimized }) => {
   const location = useLocation();
-
+const width = useWindowWidth()
   return (
     <>
-      <div className={`${isSidebarActive ? "drawer-overlay" : ""}`}></div>
+      {isMinimized && width <= 992 && (
+				<div
+					style={{ zIndex: 105 }}
+					className="drawer-overlay"
+					onClick={() => {
+						setIsSidebarMinimized(!isMinimized )
+					}}
+				></div>
+			)}
       <div
         id="kt_app_sidebar"
-        className={`app-sidebar flex-column ${classes.leftSidebarStyle} ${
-          isMinimized ? "app-sidebar-minimize" : ""
-        }`}
+        className={`app-sidebar flex-column ${classes.leftSidebarStyle}
+         ${isMinimized && width > 992 ? "app-sidebar-minimize" : ""}
+          ${width<=992?'drawer drawer-start ':''} 
+          ${isMinimized &&width<=992?' drawer-on':''}`}
       >
         <div id="kt_app_sidebar_wrapper" className="app-sidebar-wrapper">
           <div className="hover-scroll-y my-5 my-lg-2 mx-4">

@@ -55,6 +55,15 @@ import SetProductionUnit from "./pages/Production/SetProductionUnit";
 import ProductionSetList from './pages/Production/ProductionSetList';
 import AddProduction from "./pages/Production/AddProduction";
 import ProductionSettings from "./pages/Production/ProductionSetting";
+import AddCategory from "./pages/Food/AddCategory";
+import CategoryList from "./pages/Food/CategoryList";
+import AddFood from "./pages/Food/AddFood";
+import FoodList from "./pages/Food/FoodList";
+import FoodVariant from "./pages/Food/FoodVariant";
+import FoodAvailability from "./pages/Food/FoodAvailability";
+import MenuType from "./pages/Food/MenuType";
+import AddOnsList from "./pages/Food/AddOnsList";
+import AddAddOns from "./pages/Food/AddAddOns";
 
 function App() {
   return (
@@ -112,6 +121,16 @@ function App() {
           <Route path="/production/production/index" element={<ProductionSetList />} />
           <Route path="/production/production/create" element={<AddProduction />} />
           <Route path="/production/production/possetting" element={<ProductionSettings />} />
+          <Route path="/itemmanage/item_category/create" element={<AddCategory />} />
+          <Route path="/itemmanage/item_category/index" element={<CategoryList />} />
+          <Route path="/itemmanage/item_food/create" element={<AddFood />} />
+          <Route path="/itemmanage/item_food/index" element={<FoodList />} />
+          <Route path="/itemmanage/item_food/addgroupfood" element={<AddFood />} />
+          <Route path="/itemmanage/item_food/foodvarientlist" element={<FoodVariant />} />
+          <Route path="/itemmanage/item_food/availablelist" element={<FoodAvailability />} />
+          <Route path="/itemmanage/item_food/todaymenutype" element={<MenuType />} />
+          <Route path="/itemmanage/menu_addons/index" element={<AddOnsList />} />
+          <Route path="/itemmanage/menu_addons/create" element={<AddAddOns />} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}

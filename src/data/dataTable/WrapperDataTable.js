@@ -1,3 +1,7 @@
+import { Icon } from '@mui/material';
+import img from '../Img/default.jpg'
+
+
 // all columns
 export const ColumnsPendingOrder = [
   { label: "SL", visible: true },
@@ -11,6 +15,60 @@ export const ColumnsPendingOrder = [
   { label: "Pre Order Time", visible: true },
   { label: "Order Date", visible: true },
   { label: "Amount", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsCategoryList = [
+  { label: "SL", visible: true },
+  { label: "Image", visible: true },
+  { label: "Category Name", visible: true },
+  { label: "Parent Menu", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsFoodList = [
+  { label: "SL", visible: true },
+  { label: "Image", visible: true },
+  { label: "Category Name", visible: true },
+  { label: "Food Name", visible: true },
+  { label: "Components", visible: true },
+  { label: "Vat", visible: true },
+  { label: "Status", visible: true },
+  { label: "Change Status", visible: true },
+  { label: "Pre Order", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsFoodVariant = [
+  { label: "SL", visible: true },
+  { label: "Variant Name", visible: true },
+  { label: "Food Name", visible: true },
+  { label: "Price", visible: true },
+  { label: "Status", visible: true },
+  { label: "Status Action", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsFoodavailable = [
+  { label: "SL", visible: true },
+  { label: "Food Name", visible: true },
+  { label: "Available Day", visible: true },
+  { label: "Available Time", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsMenuType = [
+  { label: "SL", visible: true },
+  { label: "Menu Type", visible: true },
+  { label: "Icon", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsAddOnsList = [
+  { label: "SL", visible: true },
+  { label: "Group Name", visible: true },
+  { label: "Status", visible: true },
   { label: "Action", visible: true },
 ];
 
@@ -293,6 +351,99 @@ export const DataPendingOrder = [
     amount: 1500,
   },
 ];
+
+export const DataCategoryList = [
+  {
+    sl: 19,
+    img: img,
+    categoryr_type: "Signature Dishes	",
+    parent_menu: "parent_menu 1",
+    status: "Active",
+  },
+  {
+    sl: 20,
+    img: img,
+    categoryr_type: "Signature Dishes	",
+    parent_menu: "parent_menu 2",
+    status: "Inactive",
+  },
+];
+
+export const DataFoodList = [
+  {
+    sl: 19,
+    img: img,
+    categoryr_type: "Signature Dishes	",
+    parent_menu: "2 BBQ Lamb Chops	",
+    comp: "Components 1",
+    ChangStatus: "",
+    pre: "No",
+    status: "Inactive",
+    vat:0
+  },
+  {
+    sl: 20,
+    img: img,
+    categoryr_type: "Signature Dishes	",
+    parent_menu: "1 BBQ Lamb Chops	",
+    comp: "Components 1",
+    ChangStatus: "",
+    pre: "Yes",
+    status: "Active",
+    vat:50
+  },
+];
+
+export const DataFoodavailable = [
+  {
+    sl: 19,
+    parent_menu: "2 BBQ Lamb Chops	",
+    time:'12:00:00-23:00:00',
+    day:'Tuesday	'
+  },
+];
+
+export const DataMenuType = [
+  {
+    sl: 19,
+    parent_menu: "BBQ	",
+    Icon:'./application/modules/itemmanage/assets/images/2023-02-08/e.jpg	',
+  },
+];
+
+export const DataAddOnsList = [
+  {
+    sl: 19,
+    parent_menu: "Foul & Falafel		",
+    status:'Active',
+  },
+];
+
+export const DataFoodVariant = [
+  {
+    sl: 19,
+    img: img,
+    categoryr_type: "Signature Dishes	",
+    parent_menu: "2 BBQ Lamb Chops	",
+    comp: "Components 1",
+    ChangStatus: "",
+    pre: "No",
+    status: "Inactive",
+    vat:390
+  },
+  {
+    sl: 20,
+    img: img,
+    categoryr_type: "Signature Dishes	",
+    parent_menu: "1 BBQ Lamb Chops	",
+    comp: "Components 1",
+    ChangStatus: "",
+    pre: "Yes",
+    status: "Active",
+    vat:390
+  },
+];
+
 
 export const DataOrderList = [
   {

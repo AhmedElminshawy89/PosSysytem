@@ -16,7 +16,7 @@ const PagesOutlet = () => {
     } else {
       setIsSidebarMinimized(false);
     }
-  }, [location.pathname]); // تغيير هنا لاستخدام location.pathname مباشرة
+  }, [location.pathname]);
   
   const handleToggleMinimize = () => {
     setIsSidebarMinimized(!isSidebarMinimized);
@@ -34,7 +34,7 @@ const PagesOutlet = () => {
         className={`app-wrapper flex-column flex-row-fluid ${classes.globalStyle} ${isSidebarMinimized ? "ml-layout-pos-invoice" : ""}`}
         id="kt_app_wrapper"
       >
-        <LeftSidebar isMinimized={isSidebarMinimized} />
+        <LeftSidebar isMinimized={isSidebarMinimized} setIsSidebarMinimized={setIsSidebarMinimized}/>
         <div style={{ marginTop: "99px" }}>
           <Outlet />
         </div>
