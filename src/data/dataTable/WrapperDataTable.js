@@ -1,5 +1,6 @@
-import { Icon } from '@mui/material';
+import  icon  from '../../data/Img/7.png';
 import img from '../Img/default.jpg'
+import img2 from '../Img/c.jpg'
 
 
 // all columns
@@ -24,6 +25,148 @@ export const ColumnsCategoryList = [
   { label: "Category Name", visible: true },
   { label: "Parent Menu", visible: true },
   { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsPaymentMethodList = [
+  { label: "SL", visible: true },
+  { label: "Payment Method Name", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsTableList = [
+  { label: "SL", visible: true },
+  { label: "Table Name", visible: true },
+  { label: "Icon", visible: true },
+  { label: "Capacity", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsPaymentMethodSetup = [
+  { label: "SL", visible: true },
+  { label: "Payment Method Name", visible: true },
+  { label: "Email Address/Location ID", visible: true },
+  { label: "Merchant ID/Application ID", visible: true },
+  { label: "Currency", visible: true },
+  { label: "Mode", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsShippingMethod = [
+  { label: "SL", visible: true },
+  { label: "Shipping Method Name", visible: true },
+  { label: "City", visible: true },
+  { label: "Shipping Rate", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsCustomerList= [
+  { label: "SL", visible: true },
+  { label: "Customer Name", visible: true },
+  { label: "Email Address", visible: true },
+  { label: "Address", visible: true },
+  { label: "Mobile", visible: true },
+  { label: "Country", visible: true },
+  { label: "State", visible: true },
+  { label: "City", visible: true },
+  { label: "Street", visible: true },
+  { label: "Building", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsUnitMeasurement= [
+  { label: "SL", visible: true },
+  { label: "Unit Name", visible: true },
+  { label: "Short Name", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsIngredients= [
+  { label: "SL", visible: true },
+  { label: "Ingredients Name", visible: true },
+  { label: "Unit Name", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsThirdPartyCustomers= [
+  { label: "SL", visible: true },
+  { label: "Company Name", visible: true },
+  { label: "Address", visible: true },
+  { label: "Commission", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsCardTerminal_l= [
+  { label: "SL", visible: true },
+  { label: "Card Terminal Name", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsBankList= [
+  { label: "SL", visible: true },
+  { label: "Bank Name", visible: true },
+  { label: "A/C Name", visible: true },
+  { label: "A/C Number", visible: true },
+  { label: "Branch", visible: true },
+  { label: "Balance", visible: true },
+  { label: "Signature Picture", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsHotels= [
+  { label: "SL", visible: true },
+  { label: "Signature Picture", visible: true },
+  { label: "Name", visible: true },
+  { label: "Service Charge", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsCurrency= [
+  { label: "SL", visible: true },
+  { label: "Currency Name", visible: true },
+  { label: "Currency Icon", visible: true },
+  { label: "Designation", visible: true },
+  { label: "Conversion Rate", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsCountry= [
+  { label: "SL", visible: true },
+  { label: "Country", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsCity= [
+  { label: "SL", visible: true },
+  { label: "Country", visible: true },
+  { label: "State", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsArea= [
+  { label: "SL", visible: true },
+  { label: "State", visible: true },
+  { label: "City", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsStationList= [
+  { label: "SL", visible: true },
+  { label: "Station Name", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsStationAssign= [
+  { label: "SL", visible: true },
+  { label: "Station Name", visible: true },
+  { label: "User", visible: true },
+];
+
+export const ColumnsCustomerType= [
+  { label: "SL", visible: true },
+  { label: "Type Name", visible: true },
   { label: "Action", visible: true },
 ];
 
@@ -366,6 +509,252 @@ export const DataCategoryList = [
     categoryr_type: "Signature Dishes	",
     parent_menu: "parent_menu 2",
     status: "Inactive",
+  },
+];
+
+export const DataPaymentMethodList = [
+  {
+    sl: 19,
+    patment_method_name: "Two Checkout",
+    parent_menu: "parent_menu 1",
+    status: "Active",
+  },
+  {
+    sl: 20,
+    patment_method_name: "Stripe Payment",
+    parent_menu: "parent_menu 2",
+    status: "Inactive",
+  },
+];
+export const DataTableList = [
+  {
+    sl: 19,
+    table_name: "G8-A	",
+    icon: icon, 
+    capacity: 8,
+  },
+  {
+    sl: 20,
+    table_name: "G8-B	",
+    icon: icon,
+    capacity: 4,
+  },
+];
+
+export const DataPaymentMethodSetup = [
+  {
+    sl: 19,
+    patment_method_name: "Two Checkout",
+    email:'	ainalcse@gmail.com',
+    id:'sandbox-5rd4uUC2yAz7LWDaalyJAOEsH2rxrqVB	',
+    currency:'BDT	',
+    mode: "Test Mode	",
+    status: "Active",
+  },
+  {
+    sl: 19,
+    patment_method_name: "Paytm Payments	",
+    email:'karmadorji@gmail.com	',
+    id:'002020000000001	',
+    currency:'USD		',
+    mode: "Test Mode	",
+    status: "Inactive",
+  },
+];
+
+export const DataShippingMethod = [
+  {
+    sl: 19,
+    shipping_method_name: "Locanda Museum Hotel	",
+    City:'Steigenberger Hotel Cairo Alex Rd	',
+    Sipping_Rate:16.00,
+    status: "Active",
+  },
+  {
+    sl: 19,
+    shipping_method_name: "Locanda Museum Hotel	",
+    City:'Locanda Museum Hotel',
+    Sipping_Rate:10.00,
+    status: "Inactive",
+  },
+];
+
+export const DataCustomerList = [
+  {
+    sl: 19,
+    customer_name: "Antony Polack	",
+    email:'demo@customer.com	',
+    mobile:"123456789	",
+    Address: "Begining - Cario Alexandria Desert Rd 12556 Oasis Hotel Reception	",
+    country:'Egypt',
+    state:'Giza	',
+    city:'Oasis Hotel	',
+    street:'',
+    Building:'',
+  },
+  {
+    sl: 20,
+    customer_name: "Hazem Ismaiel	",
+    email:'Ahmd5555@gmail.com	',
+    mobile:"123456789	",
+    Address: "Cairo alexandria desert road Steinberg hote cairo pyramids 1313	",
+    country:'Egypt',
+    state:'Giza	',
+    city:'Cairo Pyramids Hotel	',
+    street:'',
+    Building:'',
+  },
+];
+
+export const DataUnitMeasurement= [
+  {
+    sl: 19,
+    Unit_name: "Grams	",
+    short_name: "Grams	",
+  },
+  {
+    sl: 20,
+    Unit_name: "Piece		",
+    short_name: "Pcs.		",
+  },
+];
+
+export const DataIngredients= [
+  {
+    sl: 19,
+    Ingredients_name: "Red Bull		",
+    Unit_name: "Piece		",
+  },
+  {
+    sl: 20,
+    Ingredients_name: "Fanta",
+    Unit_name: "Piece		",
+  },
+];
+
+export const DataThirdPartyCustomers= [
+  {
+    sl: 19,
+    customer_name: "Antony Polack	",
+    Address: "Begining - Cario Alexandria Desert",
+    Commission:18.00,
+  },
+];
+
+export const DataCardTerminal= [
+  {
+    sl: 19,
+    Card: "Visa-Master Terminal	",
+  },
+];
+
+export const DataBankList= [
+  {
+    sl: 19,
+    bank_name: "Brac Bank",
+    ac_name:"	Ainal Haque",
+    ac_num:"110535764655",
+    branch:"Mirpur 10	",
+    balance:"0",
+    singature_pic:img2,
+  },
+  {
+    sl: 19,
+    bank_name: "City Bank",
+    ac_name:"Kamal Hassan	",
+    ac_num:"3869583	",
+    branch:"Uttara	",
+    balance:"0",
+    singature_pic:img2,
+  },
+];
+
+export const DataHotels= [
+  {
+    sl: 19,
+    singature_pic:img2,
+    bank_name: "Grand Museum Pyramids Inn	",
+    ac_name:"50",
+  },
+  {
+    sl: 19,
+    singature_pic:img2,
+    bank_name: "Grand Museum Pyramids Inn	",
+    ac_name:"50",
+  },
+];
+
+export const DataCurrency= [
+  {
+    sl: 19,
+    currency_name: "EGP",
+    currency_icon: "LE	",
+    Designation: "Left	",
+    Conversion:1.0,
+  },
+];
+
+export const DataCountry= [
+  {
+    sl: 19,
+    currency_name: "Egypt",
+  },
+];
+
+export const DataCity= [
+  {
+    sl: 19,
+    currency_name: "Egypt",
+    state: "Giza",
+  },
+];
+
+export const DataArea= [
+  {
+    sl: 19,
+    state: "Giza",
+    city: "Locanda Museum Hotel	",
+  },
+];
+export const DataStationList= [
+  {
+    sl: 19,
+    Card: "Sandwiches	",
+  },
+  {
+    sl: 20,
+    Card: "Central Kitchen		",
+  },
+];
+export const DataStationAssign= [
+  {
+    sl: 19,
+    StationName: "Sandwiches	",
+    User: "Mostafa	",
+  },
+  {
+    sl: 20,
+    StationName: "Central Kitchen		",
+    User: "Mostafa	",
+  },
+];
+
+export const DataCustomerType = [
+  {
+    sl: 19,
+    type_name: "QR Customer	",
+  },
+  {
+    sl: 20,
+    type_name: "Third Party Platform	",
+  },
+  {
+    sl: 21,
+    type_name: "Online Customer	",
+  },
+  {
+    sl: 22,
+    type_name: "Dine In		",
   },
 ];
 

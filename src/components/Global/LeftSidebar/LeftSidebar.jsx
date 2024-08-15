@@ -12,6 +12,7 @@ import { Link, useLocation } from "react-router-dom";
 import MenuReports from "./Menu/MenuReports";
 import MenuFoodCategory from "./Menu/MenuFoodCategory";
 import { useWindowWidth } from "@react-hook/window-size";
+import MenuSetting from "./Menu/MenuSetting";
 const LeftSidebar = ({ isMinimized,setIsSidebarMinimized }) => {
   const location = useLocation();
 const width = useWindowWidth()
@@ -68,6 +69,7 @@ const width = useWindowWidth()
               <MenuReports />
               <MenuFoodCategory />
               <Menu menuItems={Production_Management} title="Production" />
+              <MenuSetting/>
             </div>
           </div>
         </div>

@@ -1219,6 +1219,23 @@ code {
   transition: color 0.2s ease;
   width: 250px;
 }
+.Flatpickr-bank{
+  width: 100% !important;
+}
+.Flatpickr-bank > input {
+  background-color: var(--bs-gray-100);
+  border-color: var(--bs-gray-100);
+  color: var(--bs-gray-700);
+  transition: color 0.2s ease;
+  width: 100%;
+}
+.Flatpickr-bank > input:focus {
+  background-color: var(--bs-gray-200);
+  border-color: var(--bs-gray-200);
+  color: var(--bs-gray-700);
+  transition: color 0.2s ease;
+  width: 100%;
+}
 .mb--30 {
   margin-bottom: -30px !important;
 }

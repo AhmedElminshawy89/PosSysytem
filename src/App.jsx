@@ -64,7 +64,34 @@ import FoodAvailability from "./pages/Food/FoodAvailability";
 import MenuType from "./pages/Food/MenuType";
 import AddOnsList from "./pages/Food/AddOnsList";
 import AddAddOns from "./pages/Food/AddAddOns";
-
+import Paymentmethod from "./pages/Setting/Setting";
+import PaymentSetup from "./pages/Setting/PaymentSetUp";
+import ShippingMethods from "./pages/Setting/ShippingMethod";
+import TableList from "./pages/Setting/TableList";
+import TableSetting from "./pages/Setting/TableSetting";
+import CustomerList from "./pages/Setting/CustomerList";
+import CustomerType from "./pages/Setting/CustomerType";
+import ThirdPartyCustomer from "./pages/Setting/ThirdPartyCutsomer";
+import CardTerminal from "./pages/Setting/CardTerminal";
+import StationList from "./pages/Setting/StationList";
+import StationAssign from "./pages/Setting/StationAssign";
+import StationDashboardSetting from "./pages/Setting/StationDashboard";
+import UnitMeasurement from "./pages/Setting/Unit Measurement";
+import Ingredients from "./pages/Setting/Ingredients";
+import SmsConfiguration from "./pages/Setting/SmsConfiguration";
+import SmsSetting from "./pages/Setting/SmsSetting";
+import BankList from "./pages/Setting/BankList";
+import BankTransaction from "./pages/Setting/BankTransaction";
+import Language from "./pages/Setting/Language";
+import ApplicationSetting from "./pages/Setting/ApplicationSetting";
+import AppSetting from "./pages/Setting/AppSetting";
+import FactoryReset from "./pages/Setting/FactoryReset";
+import Currency from "./pages/Setting/Currency";
+import Country from "./pages/Setting/Country";
+import City from "./pages/Setting/City";
+import Area from "./pages/Setting/Area";
+import Hotels from "./pages/Setting/Hotels";
+import Commssion from "./pages/Setting/Commision";
 function App() {
   return (
     <>
@@ -131,6 +158,34 @@ function App() {
           <Route path="/itemmanage/item_food/todaymenutype" element={<MenuType />} />
           <Route path="/itemmanage/menu_addons/index" element={<AddOnsList />} />
           <Route path="/itemmanage/menu_addons/create" element={<AddAddOns />} />
+          <Route path="/setting/paymentmethod/index" element={<Paymentmethod/>} />
+          <Route path="/setting/paymentmethod/paymentsetup" element={<PaymentSetup/>} />
+          <Route path="/setting/shippingmethod/index" element={<ShippingMethods/>} />
+          <Route path="/setting/restauranttable/index" element={<TableList/>} />
+          <Route path="/setting/restauranttable/tablesetting" element={<TableSetting/>} />
+          <Route path="/setting/customerlist/index" element={<CustomerList/>} />
+          <Route path="/setting/customertype/index" element={<CustomerType/>} />
+          <Route path="/setting/thirdpratycustomer/index" element={<ThirdPartyCustomer/>} />
+          <Route path="/setting/card_terminal/index" element={<CardTerminal/>} />
+          <Route path="/setting/kitchensetting/index" element={<StationList/>} />
+          <Route path="/setting/kitchensetting/assignkitchen" element={<StationAssign/>} />
+          <Route path="/setting/kitchensetting/kitchen_dashboardsetting" element={<StationDashboardSetting/>} />
+          <Route path="/setting/unitmeasurement/index" element={<UnitMeasurement/>} />
+          <Route path="/setting/ingradient/index" element={<Ingredients/>} />
+          <Route path="/setting/smsetting/sms_configuration" element={<SmsConfiguration/>} />
+          <Route path="/setting/smsetting/sms_template" element={<SmsSetting/>} />
+          <Route path="/setting/bank_list/index" element={<BankList/>} />
+          <Route path="/setting/bank_list/bank_transaction" element={<BankTransaction/>} />
+          <Route path="/setting/language" element={<Language/>} />
+          <Route path="/setting/setting/index" element={<ApplicationSetting/>} />
+          <Route path="/setting/serversetting/index" element={<AppSetting/>} />
+          <Route path="/setting/setting/factoryreset" element={<FactoryReset/>} />
+          <Route path="/setting/currency/index" element={<Currency/>} />
+          <Route path="/setting/country_city_list/index" element={<Country/>} />
+          <Route path="/setting/country_city_list/statelist" element={<City/>} />
+          <Route path="/setting/country_city_list/citylist" element={<Area/>} />
+          <Route path="/setting/hotels/index" element={<Hotels/>} />
+          <Route path="/setting/Commissionsetting/payroll_commission" element={<Commssion/>} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}
