@@ -1468,3 +1468,61 @@ select option:hover {
  .ant-select-selector{
   border: none !important;
 }
+
+
+.ant-picker{
+  width: 100% !important;
+}
+
+
+
+
+
+
+
+
+.themeboxTheme {
+  position: relative;
+  overflow: hidden;
+}
+
+.img_partTheme {
+  position: relative;
+  overflow: hidden;
+}
+
+.img_partTheme img {
+  transition: transform 0.5s ease;
+  width: 100%;
+}
+
+.themeboxTheme:hover .img_partTheme img {
+  transform: scale(1.1);
+}
+
+.btn-dtlsTheme {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+.themeboxTheme:hover .btn-dtlsTheme {
+  opacity: 1;
+}
+
+.caption_btnTheme {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.activatedTheme {
+  text-align: center;
+}
+
+.caption_partTheme h4 {
+  text-align: center;
+  margin-top: 10px;
+}

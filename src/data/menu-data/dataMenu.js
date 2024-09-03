@@ -40,4 +40,30 @@ const Production_Management = [
     { title: "Add Production", link: "/production/production/create" },
     { title: "Production Setting", link: "/production/production/possetting" },
 ]
-export { Order_Management,Reservation,Purchases_Management,Reports,Production_Management};
+const Role_Permission = [
+    { title: "Permission Setup", link: "/dashboard/permission_setup" },
+    { title: "Add Role", link: "/dashboard/role/create_system_role" },
+    { title: "Role List", link: "/dashboard/role/role_list" },
+    { title: "User Access Role", link: "/dashboard/role/user_access_role" },
+]
+
+const WebSetting = [
+    { title: "Common Setting", link: "/dashboard/web_setting/" },
+    { title: "Manage Store Time", link: "/dashboard/web_setting/storetime" },
+    { title: "Banner Setting", link: "/dashboard/web_setting/bannersetting" },
+    { title: "Menu Setting", link: "/dashboard/web_setting/menusetting" },
+    { title: "SEO Setting", link: "/dashboard/web_setting/seosetting" },
+    { title: "Social Setting", link: "/dashboard/web_setting/socialtting" },
+    { title: "Widget Setting", link: "/dashboard/web_setting/widgetsetting" },
+    { title: "Email Setting", link: "/dashboard/web_setting/email_config_setup" },
+    { title: "Customer Rating", link: "/dashboard/rating" },
+    { title: "Coupon List", link: "/dashboard/couponlist" },
+    { title: "Subscribe List", link: "/dashboard/web_setting/subscribeList" },
+]
+const Message = [
+    { title: "New", link: "/dashboard/message/new_message" },
+    { title: "Inbox", link: "/dashboard/message/index" },
+    { title: "Sent", link: "/dashboard/message/sent" },
+]
+export { Order_Management,Reservation,Purchases_Management,Reports,Production_Management,Role_Permission,
+    Message,WebSetting};

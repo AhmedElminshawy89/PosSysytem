@@ -1,18 +1,31 @@
 import React from "react";
 import classes from "./LeftSidebar.module.css";
 import {
+  Message,
   Order_Management,
   Production_Management,
   Purchases_Management,
   Reports,
   Reservation,
+  Role_Permission,
+  WebSetting,
+
 } from "../../../data/menu-data/dataMenu";
+import { MdOutlineViewModule } from "react-icons/md";
+import { GrUpdate } from "react-icons/gr";
 import Menu from "./Menu/Menu";
 import { Link, useLocation } from "react-router-dom";
 import MenuReports from "./Menu/MenuReports";
 import MenuFoodCategory from "./Menu/MenuFoodCategory";
 import { useWindowWidth } from "@react-hook/window-size";
 import MenuSetting from "./Menu/MenuSetting";
+import MenuAccounts from "./Menu/MenuAccounts";
+import MenuHR from "./Menu/MenuHR";
+import MenuWhatsappSetting from "./Menu/MenuWhatsappSetting";
+import MenuQRApp from "./Menu/MenuQRApp";
+import MenuShiftManagement from "./Menu/MenuShiftManagement";
+import MenuWasteTracking from "./Menu/MenuWasteTracking";
+import MenuUser from "./Menu/MenuUser";
 const LeftSidebar = ({ isMinimized,setIsSidebarMinimized }) => {
   const location = useLocation();
 const width = useWindowWidth()
@@ -70,7 +83,87 @@ const width = useWindowWidth()
               <MenuFoodCategory />
               <Menu menuItems={Production_Management} title="Production" />
               <MenuSetting/>
-            </div>
+              <MenuAccounts/>
+              <MenuHR/>
+              <MenuWhatsappSetting/>
+              <MenuQRApp/>
+              <MenuShiftManagement/>
+              <MenuWasteTracking/>
+              <MenuUser/>
+              <Link
+                to="/addon/module/index"
+                style={{
+                  fontSize: "1.15rem",
+                  color: "#252F4A",
+                  fontWeight: "600",
+                }}
+              >
+                <div
+                  data-kt-menu-trigger="click"
+                  className={`menu-item ${
+                    location.pathname === "/addon/module/index" ? "here" : ""
+                  } menu-accordion`}
+                >
+                  <span className="menu-link">
+                    <span className="menu-icon">
+                      <MdOutlineViewModule className="fs-3"/>
+                    </span>
+                    <span className="menu-title">Modules</span>
+                  </span>
+                  <div className={`menu-sub menu-sub-accordion`}></div>
+                </div>
+              </Link>   
+              <Link
+                to="/addon/theme/index"
+                style={{
+                  fontSize: "1.15rem",
+                  color: "#252F4A",
+                  fontWeight: "600",
+                }}
+              >
+                <div
+                  data-kt-menu-trigger="click"
+                  className={`menu-item ${
+                    location.pathname === "/addon/theme/index" ? "here" : ""
+                  } menu-accordion`}
+                >
+                  <span className="menu-link">
+                    <span className="menu-icon">
+                      <MdOutlineViewModule className="fs-3"/>
+                    </span>
+                    <span className="menu-title">Theme</span>
+                  </span>
+                  <div className={`menu-sub menu-sub-accordion`}></div>
+                </div>
+              </Link>  
+              <Menu menuItems={Role_Permission} title="Role Permission" />
+              <Menu menuItems={WebSetting} title="Web Setting" />
+              <Link
+                to="/dashboard/autoupdate"
+                style={{
+                  fontSize: "1.15rem",
+                  color: "#252F4A",
+                  fontWeight: "600",
+                }}
+              >
+                <div
+                  data-kt-menu-trigger="click"
+                  className={`menu-item ${
+                    location.pathname === "/dashboard/autoupdate" ? "here" : ""
+                  } menu-accordion`}
+                >
+                  <span className="menu-link">
+                    <span className="menu-icon">
+                      <GrUpdate className="fs-3"/>
+                    </span>
+                    <span className="menu-title">Auto Update</span>
+                  </span>
+                  <div className={`menu-sub menu-sub-accordion`}></div>
+                </div>
+              </Link> 
+              <Menu menuItems={Message} title="Message" />
+
+          </div>
           </div>
         </div>
       </div>

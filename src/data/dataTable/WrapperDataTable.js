@@ -28,6 +28,99 @@ export const ColumnsCategoryList = [
   { label: "Action", visible: true },
 ];
 
+export const ColumnsCustomerRating = [
+  { label: "SL", visible: true },
+  { label: "Title", visible: true },
+  { label: "Name", visible: true },
+  { label: "Review Text", visible: true },
+  { label: "Rating", visible: true },
+  { label: "Email Address", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsCoponList = [
+  { label: "SL", visible: true },
+  { label: "Coupon Code", visible: true },
+  { label: "Coupon Value", visible: true },
+  { label: "Start Date", visible: true },
+  { label: "End Date", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsSubscribeList = [
+  { label: "SL", visible: true },
+  { label: "Email Address", visible: true },
+];
+
+export const ColumnsBannerSetting = [
+  { label: "SL", visible: true },
+  { label: "Image", visible: true },
+  { label: "Title", visible: true },
+  { label: "Banner Size", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsUserList = [
+  { label: "SL", visible: true },
+  { label: "Image", visible: true },
+  { label: "User Name", visible: true },
+  { label: "Email Address", visible: true },
+  { label: "About", visible: true },
+  { label: "Last Login", visible: true },
+  { label: "Last Logout", visible: true },
+  { label: "IP Address", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsManageEmployee= [
+  { label: "SL No", visible: true },
+  { label: "Image", visible: true },
+  { label: "First Name", visible: true },
+  { label: "Last Name", visible: true },
+  { label: "Designation", visible: true },
+  { label: "Phone", visible: true },
+  { label: "Email Address", visible: true },
+  { label: "Division", visible: true },
+  { label: "Duty Type", visible: true },
+  { label: "Hire Date", visible: true },
+  { label: "Original Hire Date", visible: true },
+  { label: "Termination Reason", visible: true },
+  { label: "Voluntary Termination", visible: true },
+  { label: "Re Hire Date", visible: true },
+  { label: "Rate Type", visible: true },
+  { label: "Pay Frequency", visible: true },
+  { label: "Pay Frequency Text", visible: true },
+  { label: "Hourly Rate 2", visible: true },
+  { label: "Hourly Rate 3", visible: true },
+  { label: "Home Department", visible: true },
+  { label: "Department Text", visible: true },
+  { label: "Supervisor Name", visible: true },
+  { label: "Is Supervisor", visible: true },
+  { label: "Supervisor Report", visible: true },
+  { label: "Date of Birth", visible: true },
+  { label: "Gender", visible: true },
+  { label: "Material Status", visible: true },
+  { label: "Ethnic Group", visible: true },
+  { label: "EEO Class", visible: true },
+  { label: "SSN", visible: true },
+  { label: "Work in State", visible: true },
+  { label: "Live in State", visible: true },
+  { label: "Home Email", visible: true },
+  { label: "Business Email", visible: true },
+  { label: "Home Phone", visible: true },
+  { label: "Business Phone", visible: true },
+  { label: "Call Phone", visible: true },
+  { label: "Emergency Contact", visible: true },
+  { label: "Emergency Home Phone", visible: true },
+  { label: "Emergency Work Phone", visible: true },
+  { label: "Emergency Contact Relation", visible: true },
+  { label: "Alter Emergency Contact", visible: true },
+  { label: "Alter Emergency Home Phone", visible: true },
+  { label: "Alter Emergency Work Phone", visible: true },
+  { label: "Action", visible: true },
+
+];
+
 export const ColumnsPaymentMethodList = [
   { label: "SL", visible: true },
   { label: "Payment Method Name", visible: true },
@@ -50,6 +143,16 @@ export const ColumnsPaymentMethodSetup = [
   { label: "Merchant ID/Application ID", visible: true },
   { label: "Currency", visible: true },
   { label: "Mode", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsInboxMessage = [
+  { label: "SL", visible: true },
+  { label: "Sender Name", visible: true },
+  { label: "Subject", visible: true },
+  { label: "Message", visible: true },
+  { label: "Date", visible: true },
   { label: "Status", visible: true },
   { label: "Action", visible: true },
 ];
@@ -115,6 +218,116 @@ export const ColumnsBankList= [
   { label: "Signature Picture", visible: true },
   { label: "Action", visible: true },
 ];
+export const ColumnsShiftManagement= [
+  { label: "SL", visible: true },
+  { label: "Title", visible: true },
+  { label: "Start Time", visible: true },
+  { label: "End Time", visible: true },
+  { label: "Last Date", visible: true },
+  { label: "From", visible: true },
+  { label: "Action", visible: true },
+];
+
+
+export const ColumnsAssignShiftManagement= [
+  { label: "SL", visible: true },
+  { label: "Title", visible: true },
+  { label: "Total Employee", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsChartOfAccount= [
+  { label: "Head Code", visible: true },
+  { label: "Head Name", visible: true },
+  { label: "Parent Head", visible: true },
+  { label: "Head Type", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsManageStoreTime= [
+  { label: "SL", visible: true },
+  { label: "Day", visible: true },
+  { label: "Available On", visible: true },
+  { label: "Closing Time", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsMenuSetting= [
+  { label: "SL", visible: true },
+  { label: "Menu Name", visible: true },
+  { label: "Menu Slug", visible: true },
+  { label: "Parent Menu", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsSeoSetting= [
+  { label: "SL", visible: true },
+  { label: "Title", visible: true },
+  { label: "Keyword", visible: true },
+  { label: "Description", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsSocialSetting= [
+  { label: "SL", visible: true },
+  { label: "Title", visible: true },
+  { label: "URL", visible: true },
+  { label: "Select Icon", visible: true },
+  { label: "Status", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsWidgetSetting= [
+  { label: "SL", visible: true },
+  { label: "Widget Name", visible: true },
+  { label: "Widget Title", visible: true },
+  { label: "Description", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsManageEmployeeSalary= [
+  { label: "SL", visible: true },
+  { label: "Employee Name", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Total Salary", visible: true },
+  { label: "Working Hour", visible: true },
+  { label: "Working Period", visible: true },
+  { label: "Payment Type", visible: true },
+  { label: "Date", visible: true },
+  { label: "Paid By", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsBasicInformation= [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Photograph", visible: true },
+  { label: "Email Address", visible: true },
+  { label: "SSN", visible: true },
+  { label: "Phone", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsPastExp= [
+  { label: "SL", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Company Name", visible: true },
+  { label: "Work Period", visible: true },
+  { label: "Duties", visible: true },
+  { label: "Supervisor", visible: true },
+];
+export const ColumnsEducationInfo= [
+  { label: "SL", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Obtained Degree", visible: true },
+  { label: "University", visible: true },
+  { label: "CGPA", visible: true },
+  { label: "Comments", visible: true },
+];
+
+export const ColumnsManageExpenses= [
+  { label: "SL", visible: true },
+  { label: "Expense Item Name", visible: true },
+  { label: "Action", visible: true },
+];
 
 export const ColumnsHotels= [
   { label: "SL", visible: true },
@@ -162,6 +375,15 @@ export const ColumnsStationAssign= [
   { label: "SL", visible: true },
   { label: "Station Name", visible: true },
   { label: "User", visible: true },
+];
+
+export const ColumnsVoucherApproval= [
+  { label: "SL No.", visible: true },
+  { label: "Voucher No", visible: true },
+  { label: "Remark", visible: true },
+  { label: "Debit", visible: true },
+  { label: "Credit", visible: true },
+  { label: "Action", visible: true },
 ];
 
 export const ColumnsCustomerType= [
@@ -306,6 +528,145 @@ export const ColumnsReservation = [
   { label: "Action", visible: true },
 ];
 
+export const ColumnsInterview= [
+  { label: "SL No", visible: true },
+  { label: "Name", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Job Position", visible: true },
+  { label: "Interview Date", visible: true },
+  { label: "Viva Marks", visible: true },
+  { label: "Written Total Marks", visible: true },
+  { label: "MCQ Total Marks", visible: true },
+  { label: "Total Marks", visible: true },
+  { label: "Selection", visible: true },
+];
+
+export const ColumnsDepartment= [
+  { label: "SL No", visible: true },
+  { label: "Department Name", visible: true },
+];
+export const ColumnsLeaveApp= [
+  { label: "SL No", visible: true },
+  { label: "Name", visible: true },
+  { label: "Leave Type", visible: true },
+  { label: "Application Start Date", visible: true },
+  { label: "Application End Date", visible: true },
+  { label: "Approved Start Date", visible: true },
+  { label: "Approved End Date", visible: true },
+  { label: "Days", visible: true },
+  { label: "Approved Day", visible: true },
+];
+export const ColumnsGrantLoan= [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "Permitted By", visible: true },
+  { label: "Loan No.", visible: true },
+  { label: "Amount", visible: true },
+  { label: "Interest Percentage", visible: true },
+  { label: "Installment Period", visible: true },
+  { label: "Repayment Total", visible: true },
+  { label: "Approved Date", visible: true },
+  { label: "Repayment Form", visible: true },
+];
+export const ColumnsManageGrantLoan= [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "Permitted By", visible: true },
+  { label: "Loan No.", visible: true },
+  { label: "Amount", visible: true },
+  { label: "Interest Percentage", visible: true },
+  { label: "Installment Period", visible: true },
+  { label: "Repayment Total", visible: true },
+  { label: "Approved Date", visible: true },
+  { label: "Repayment Form", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsLoanInstallment= [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Loan No.", visible: true },
+  { label: "Installment Amount", visible: true },
+  { label: "Payment", visible: true },
+  { label: "Date", visible: true },
+  { label: "Receiver", visible: true },
+  { label: "Install No", visible: true },
+  { label: "Notes", visible: true },
+];
+export const ColumnsManageLoanInstallment= [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Loan No.", visible: true },
+  { label: "Installment Amount", visible: true },
+  { label: "Payment", visible: true },
+  { label: "Date", visible: true },
+  { label: "Receiver", visible: true },
+  { label: "Install No", visible: true },
+  { label: "Notes", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsManageLeaveApp= [
+  { label: "SL No", visible: true },
+  { label: "Name", visible: true },
+  { label: "Leave Type", visible: true },
+  { label: "Application Start Date", visible: true },
+  { label: "Application End Date", visible: true },
+  { label: "Approved Start Date", visible: true },
+  { label: "Approved End Date", visible: true },
+  { label: "Days", visible: true },
+  { label: "Approved Day", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsWeeklyLeave= [
+  { label: "SL", visible: true },
+  { label: "Weekly Leave Day", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsHoliday= [
+  { label: "SL", visible: true },
+  { label: "Holiday Name", visible: true },
+  { label: "From", visible: true },
+  { label: "To", visible: true },
+  { label: "Numbers of Days", visible: true },
+];
+
+export const ColumnsLeaveType= [
+  { label: "ID", visible: true },
+  { label: "Type Name", visible: true },
+  { label: "Total Leave Days", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsManageHoliday= [
+  { label: "SL", visible: true },
+  { label: "Holiday Name", visible: true },
+  { label: "From", visible: true },
+  { label: "To", visible: true },
+  { label: "Numbers of Days", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsManageDepartment= [
+  { label: "SL No", visible: true },
+  { label: "Department Name", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsManageInterview= [
+  { label: "SL No", visible: true },
+  { label: "Name", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Job Position", visible: true },
+  { label: "Interview Date", visible: true },
+  { label: "Viva Marks", visible: true },
+  { label: "Written Total Marks", visible: true },
+  { label: "MCQ Total Marks", visible: true },
+  { label: "Total Marks", visible: true },
+  { label: "Selection", visible: true },
+  { label: "Action", visible: true },
+];
+
 export const ColumnsUnavailableList = [
   { label: "SL", visible: true },
   { label: "Unavailable Date", visible: true },
@@ -332,11 +693,106 @@ export const ColumnsPurchase = [
   { label: "Action", visible: true },
 ];
 
+export const ColumnsNewAward= [
+  { label: "SL No", visible: true },
+  { label: "Award Name", visible: true },
+  { label: "Award Description", visible: true },
+  { label: "Gift Item", visible: true },
+  { label: "Date", visible: true },
+  { label: "Employee Name", visible: true },
+  { label: "Award By", visible: true },
+];
+
+export const ColumnsCandidateShortlist= [
+  { label: "SL No", visible: true },
+  { label: "Name", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Job Position", visible: true },
+  { label: "Shortlist Date", visible: true },
+  { label: "Interview Date", visible: true },
+];
+
+export const ColumnsCandidateSelection= [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Position", visible: true },
+  { label: "Selection Terms", visible: true },
+];
+
+export const ColumnsManageCandidateSelection= [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Position", visible: true },
+  { label: "Selection Terms", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsManageCandidateShortlist= [
+  { label: "SL No", visible: true },
+  { label: "Name", visible: true },
+  { label: "Candidate Id", visible: true },
+  { label: "Job Position", visible: true },
+  { label: "Shortlist Date", visible: true },
+  { label: "Interview Date", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsAwardController= [
+  { label: "SL No", visible: true },
+  { label: "Award Name", visible: true },
+  { label: "Award Description", visible: true },
+  { label: "Gift Item", visible: true },
+  { label: "Date", visible: true },
+  { label: "Employee Name", visible: true },
+  { label: "Award By", visible: true },
+  { label: "Action", visible: true },
+];
+
+
+export const ColumnsExpenses = [
+  { label: "Supplier Name", visible: true },
+  { label: "Type", visible: true },
+  { label: "Date", visible: true },
+  { label: "Amount", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsExpenses22 = [
+  { label: "Expense Item Name", visible: true },
+  { label: "Date", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsLoanReport = [
+  { label: "SL", visible: true },
+  { label: "Name", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Total Loan", visible: true },
+  { label: "Total Amount", visible: true },
+  { label: "Repayment Total", visible: true },
+];
+
 export const ColumnsProduction = [
   { label: "SL", visible: true },
   { label: "Food Name", visible: true },
   { label: "Variant Name", visible: true },
   { label: "Price", visible: true },
+  { label: "Action", visible: true },
+];
+
+export const ColumnsRoleList = [
+  { label: "SL", visible: true },
+  { label: "Role Name", visible: true },
+  { label: "Description", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsAssignRole = [
+  { label: "SL", visible: true },
+  { label: "User Name", visible: true },
+  { label: "Role Name", visible: true },
   { label: "Action", visible: true },
 ];
 
@@ -348,6 +804,80 @@ export const ColumnsSupplier = [
   { label: "Address", visible: true },
   { label: "Balance", visible: true },
   { label: "Action", visible: true },
+];
+
+
+export const ColumnsDesignation = [
+  { label: "SL", visible: true },
+  { label: "Position", visible: true },
+  { label: "Details", visible: true },
+];
+
+export const ColumnsSalaryType = [
+  { label: "SL No", visible: true },
+  { label: "Salary Type", visible: true },
+  { label: "", visible: true },
+];
+
+export const ColumnsPackageFood = [
+  { label: "SL", visible: true },
+  { label: "Used Items", visible: true },
+  { label: "Qnty", visible: true },
+  { label: "Lost Price", visible: true },
+  { label: "Note", visible: true },
+];
+export const ColumnsPurchaseFood = [
+  { label: "SL", visible: true },
+  { label: "Checked By", visible: true },
+  { label: "Used Items", visible: true },
+  { label: "Qnty", visible: true },
+  { label: "Lost Price", visible: true },
+  { label: "Note", visible: true },
+  { label: "Date", visible: true },
+];
+export const ColumnsFoodName = [
+  { label: "SL", visible: true },
+  { label: "Checked By", visible: true },
+  { label: "Used Items", visible: true },
+  { label: "Variant Name", visible: true },
+  { label: "Qnty", visible: true },
+  { label: "Lost Price", visible: true },
+  { label: "Note", visible: true },
+  { label: "Date", visible: true },
+];
+export const ColumnsSalarySetup = [
+  { label: "SL No", visible: true },
+  { label: "Employee Name", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Salary Type", visible: true },
+  { label: "Date", visible: true },
+];
+export const ColumnsManageSalarySetup = [
+  { label: "SL No", visible: true },
+  { label: "Employee Name", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Salary Type", visible: true },
+  { label: "Date", visible: true },
+  { label: "Action", visible: true },
+];
+export const ColumnsManageSalaryType = [
+  { label: "SL No", visible: true },
+  { label: "Salary Type", visible: true },
+  { label: "", visible: true },
+  { label: "Action", visible: true },
+  
+];
+
+export const ColumnsManageGenerate = [
+  { label: "SL No", visible: true },
+  { label: "Employee Name", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Name", visible: true },
+  { label: "Generate Date", visible: true },
+  { label: "Start Date", visible: true },
+  { label: "End Date", visible: true },
+  { label: "Generated By", visible: true },
+  
 ];
 
 
@@ -363,6 +893,42 @@ export const ColumnsPurchaseReport = [
   { label: "Purchase Date", visible: true },
   { label: "Total Amount", visible: true },
 ];
+
+export const ColumnsVoucherReport = [
+  { label: "Voucher No", visible: true },
+  { label: "Description", visible: true },
+  { label: "Date", visible: true },
+  { label: "Amount", visible: true },
+];
+
+export const ColumnsSalaryManageGenerate = [
+  { label: "SL No", visible: true },
+  { label: "Employee Name", visible: true },
+  { label: "Employee Id", visible: true },
+  { label: "Name", visible: true },
+  { label: "Generate Date", visible: true },
+  { label: "Start Date", visible: true },
+  { label: "End Date", visible: true },
+  { label: "Generated By", visible: true },
+  { label: "Action", visible: true },
+  
+];
+export const ColumnsProfitLoss = [
+  { label: "Head Name", visible: true },
+  { label: "Amount", visible: true },
+];
+
+export const ColumnsCashBook = [
+  { label: "SL", visible: true },
+  { label: "Voucher No", visible: true },
+  { label: "Voucher Type", visible: true },
+  { label: "Head Name", visible: true },
+  { label: "Date", visible: true },
+  { label: "Debit", visible: true },
+  { label: "Credit", visible: true },
+  { label: "Balance", visible: true },
+];
+
 
 export const ColumnsStockReport = [
   { label: "Food Name", visible: true },
@@ -509,6 +1075,55 @@ export const DataCategoryList = [
     categoryr_type: "Signature Dishes	",
     parent_menu: "parent_menu 2",
     status: "Inactive",
+  },
+];
+
+export const DataManageEmployee = [
+  {
+    sl: 19,
+    img: img,
+    categoryr_type: "Walid",
+    parent_menu: "Shalaby	",
+    Desgination: "Delivery	",
+    phone: "012345679	",
+    email: "demochef1@instasme.com		",
+    divison: "Delivery Driver	",
+    duty_type: "Full Time	",
+    hire_date: "2023-06-13	",
+    original_date: "2023-06-13	",
+    terminaton_date: "2023-06-13	",
+    terminaton_reason: "2023-06-13	",
+    voulntary_terminaton: "1",
+    re_hire_date: "2023-06-13	",
+    rate_type: "2023-06-13	",
+    rate: 1000,
+    pay_freq: 'Monthly',
+    pay_freq_text: 'Monthly',
+    Hourly_rate2: '0',
+    Hourly_rate3: '0',
+    home_dep: '',
+    dep_text: '',
+    super_name: '1',
+    is: '',
+    report: '',
+    date_of_birth: "2023-06-13	",
+    gender: "Male",
+    material: "Single",
+    ethnic_group: "",
+    eeo_class: "",
+    ssn: "",
+    work_in_state: "",
+    live_in_state: "",
+    home_email: "",
+    business_email: "",
+    home_phone: "123546789",
+    business_phone: "123546789",
+    call_phone: "123546789", 
+    emergency_contact: "123546789", 
+    emergency_tel: "123546789", 
+    emergency_tel2: "123546789", 
+    emergency_tel_rel: "123546789", 
+  
   },
 ];
 
@@ -669,6 +1284,50 @@ export const DataBankList= [
   },
 ];
 
+export const DataChartOfAccounts= [
+  {
+    sl: 1,
+    bank_name: "Assets	",
+    ac_name:"	COA	",
+    ac_num:"A",
+  },
+  {
+    sl: 2,
+    bank_name: "Expense	",
+    ac_name:"	Assets	",
+    ac_num:"E",
+  },
+];
+
+
+export const DataManageEmployeeSalary= [
+  {
+    sl: 1,
+    bank_name: "Mostafa	",
+    ac_name:"	EZYN3GVJ		",
+    ac_num:"0",
+    ac_num2:"0:00",
+  },
+];
+
+
+export const DataBasicInformation= [
+  {
+    sl: 1,
+    bank_name: "Eihab Salem		",
+    ac_name:"	16304688503269L			",
+    ac_num:"Salem@gmail.com	",
+    ac_num2:"123456789",
+  },
+];
+
+export const DataManageExpenses= [
+  {
+    sl: 1,
+    bank_name: "Transportation	",
+  },
+];
+
 export const DataHotels= [
   {
     sl: 19,
@@ -736,6 +1395,16 @@ export const DataStationAssign= [
     sl: 20,
     StationName: "Central Kitchen		",
     User: "Mostafa	",
+  },
+];
+
+export const DataVoucherApproval= [
+  {
+    sl: 19,
+    StationName: "6555654",
+    User: "Remark	",
+    Debit: 75.00,
+    Credit: 105.00,
   },
 ];
 
@@ -1069,6 +1738,18 @@ export const DataPurchase = [
   },
 ];
 
+export const DataNewAward= [
+  {
+    sl: 19,
+    customer_name: "Award Name",
+    customer_des: "Award Description",
+    g_name: "2",
+    date: "23/11/2023",
+    emp_name: 'Mostafa',
+    award: 'Ahmed',
+  },
+];
+
 export const DataSupplier = [
   {
     sl: 19,
@@ -1088,6 +1769,18 @@ export const DataSupplier = [
   },
 ];
 
+export const DataDesignation= [
+  {
+    sl: 19,
+    customer_name: "Operations Assistant	",
+    email: "Coordinates orders, pos, expenses, menu, ingredients",
+  },
+  {
+    sl: 20,
+    customer_name: "Waiter	",
+    email: "Most waiters and waitresses, also called servers, work in full-service restaurants. They greet customers, take food orders, bring food and drinks to the tables and take payment and make change.",
+  },
+];
 
 export const DataProduction = [
   {
@@ -1131,6 +1824,38 @@ export const DataPurchaseReport = [
     Date:"8-7-2024",
     total: 15000,
   },
+];
+export const DataVoucherReport = [
+  {
+    invoice: 'CV-BAC-2024-08-20',
+    customer_name: "Aggregated Cash Credit Voucher of 2024-08-20	",
+    Date:"25-5-2024",
+    total: 1500,
+  }
+];
+export const DataProfitLoss = [
+  {
+    customer_name: "Income",
+    total: 84.56
+    ,
+  },
+  {
+    customer_name: "Expense",
+    total: 888.00,
+  }
+];
+
+export const DataCashBook = [
+  {
+    sl: '1',
+    voucher_no: "56235",
+    voucher_type: "PO",
+    head: "Cash In Hand",
+    Date:"25-5-2024",
+    debit: 0,
+    credit: 5000.00,
+    balance: -5000.00,
+  }
 ];
 
 export const DataStockReport = [

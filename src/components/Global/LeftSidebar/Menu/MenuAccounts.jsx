@@ -3,9 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import { CiSettings } from "react-icons/ci";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import classes from "../LeftSidebar.module.css";
-import { TbReportAnalytics } from "react-icons/tb";
+import { MdAccountBalance } from "react-icons/md";
 
-const MenuSetting = () => {
+const MenuAccounts = () => {
   const [isMenuOpen111, setIsMenuOpen111] = useState(false);
   const [nestedMenuState, setNestedMenuState] = useState({});
   const location = useLocation();
@@ -29,79 +29,31 @@ const MenuSetting = () => {
   }, [location.pathname]);
 
   const menuItems = [
+    { id: "Chart of Accounts", title: "Chart of Accounts", link: "/accounts/accounts/show_tree" },
+    { id: "Supplier Payment", title: "Supplier Payment", link: "/accounts/accounts/supplier_payments" },
+    { id: "Cash Adjustment", title: "Cash Adjustment", link: "/accounts/accounts/cash_adjustment" },
+    { id: "Debit Voucher", title: "Debit Voucher", link: "/accounts/accounts/debit_voucher" },
+    { id: "Credit Voucher", title: "Credit Voucher", link: "/accounts/accounts/credit_voucher" },
+    { id: "Contra Voucher", title: "Contra Voucher", link: "/accounts/accounts/contra_voucher" },
+    { id: "Journal Voucher", title: "Journal Voucher", link: "/accounts/accounts/journal_voucher" },
+    { id: "Voucher approval", title: "Voucher approval", link: "/accounts/accounts/aprove_v" },
     {
-      id: "paymentMethod",
-      title: "Payment Method",
+      id: "Account Report",
+      title: "Account Report",
       nestedItems: [
-        { title: "Payment Method List", link: "/setting/paymentmethod/index" },
-        { title: "Payment Setup", link: "/setting/paymentmethod/paymentsetup" },
-        { title: "Shipping Method Setting", link: "/setting/shippingmethod/index" },
-      ],
-    },
-    {
-      id: "manageTable",
-      title: "Manage Table",
-      nestedItems: [
-        { title: "Table List", link: "/setting/restauranttable/index" },
-        { title: "Table Setting", link: "/setting/restauranttable/tablesetting" },
-      ],
-    },
-    {
-      id: "CustomerType",
-      title: "Customer Type",
-      nestedItems: [
-        { title: "Customer List", link: "/setting/customerlist/index" },
-        { title: "Customer Type List", link: "/setting/customertype/index" },
-        { title: "Third-Party Customers", link: "/setting/thirdpratycustomer/index" },
-        { title: "Card Terminal List", link: "/setting/card_terminal/index" },
-      ],
-    },
-    {
-      id: "Station",
-      title: "Station Setting",
-      nestedItems: [
-        { title: "Station List", link: "/setting/kitchensetting/index" },
-        { title: "Station Assign", link: "/setting/kitchensetting/assignkitchen" },
-        { title: "Station Dashboard Setting", link: "/setting/kitchensetting/kitchen_dashboardsetting" },
-      ],
-    },
-    {
-      id: "Unit",
-      title: "Unit Measurement",
-      nestedItems: [
-        { title: "Unit Measurement List", link: "/setting/unitmeasurement/index" },
-        { title: "Ingredient List", link: "/setting/ingradient/index" },
+        { title: "Voucher Report", link: "/accounts/accounts/voucher_report" },
+        { title: "Cash Book", link: "/accounts/accounts/cash_book" },
+        { title: "Bank Book", link: "/accounts/accounts/bank_book" },
+        { title: "General Ledger", link: "/accounts/accounts/general_ledger" },
+        { title: "Trial Balance ", link: "/accounts/accounts/trial_balance" },
+        { title: "Profit Loss", link: "/accounts/accounts/profit_loss_report" },
+        { title: "Cash Flow", link: "/accounts/accounts/cash_flow_report" },
+        { title: "Coa Print", link: "/accounts/accounts/coa_print" },
+        { title: "Balance Sheet", link: "/accounts/accounts/balance_sheet" },
       
       ],
     },
-    {
-      id: "sms",
-      title: "SMS Setting",
-      nestedItems: [
-        { title: "SMS Configuration", link: "/setting/smsetting/sms_configuration" },
-        { title: "SMS Template", link: "/setting/smsetting/sms_template" },
-      
-      ],
-    },
-    {
-      id: "Bank",
-      title: "Bank",
-      nestedItems: [
-        { title: "Bank List", link: "/setting/bank_list/index" },
-        { title: "Bank Transaction", link: "/setting/bank_list/bank_transaction" },
-      ],
-    },
-    { id: "lang", title: "Language", link: "/setting/language" },
-    { id: "app-set", title: "Application Setting", link: "/setting/setting/index" },
-    { id: "app-set2", title: "App Setting", link: "/setting/serversetting/index" },
-    { id: "Currency", title: "Currency", link: "/setting/currency/index" },
-    { id: "Country", title: "Country", link: "/setting/country_city_list/index" },
-    { id: "City", title: "City", link: "/setting/country_city_list/statelist" },
-    { id: "City", title: "Area", link: "/setting/country_city_list/citylist" },
-    { id: "Hotels", title: "Hotels", link: "/setting/hotels/index" },
-    { id: "Commission", title: "Commission", link: "/setting/Commissionsetting/payroll_commission" },
-  
-  ];
+];
 
   return (
     <div
@@ -112,9 +64,9 @@ const MenuSetting = () => {
     >
       <span className="menu-link">
         <span className="menu-icon">
-          <CiSettings className="fs-3" />
+          <MdAccountBalance className="fs-3" />
         </span>
-        <span className="menu-title">Setting</span>
+        <span className="menu-title">Accounts</span>
         <span className="menu-arrow"></span>
       </span>
       <div
@@ -175,4 +127,4 @@ const MenuSetting = () => {
   );
 };
 
-export default MenuSetting;
+export default MenuAccounts;

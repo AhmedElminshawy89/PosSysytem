@@ -26,6 +26,8 @@ const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
   const POSPage = location.pathname === "/ordermanage/order/pos_invoice";
   const stationDashboard =
     location.pathname === "/ordermanage/order/allkitchen";
+    const Candidate    =
+    location.pathname === "/hrm/Candidate/candidateinfo_view";
   const dispatch = useDispatch();
   const isMiniProfileMenuOpen = useSelector(
     (state) => state.global.isMiniProfileMenuOpen
@@ -245,6 +247,40 @@ const MainHeader = ({ openSidebar, isMinimized, toggleSidebarActive }) => {
                   onClick={() => handleTabClick2(4)}
                 >
                   Sandwiches
+                </p>
+              </div>
+            )}
+             {Candidate && (
+              <div className="d-flex align-items-center justify-content-start gap-2 gap-lg-3 flex-wrap">
+                <p
+                  className={`text-nowrap ${
+                    activeTab === 1
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick(1)}
+                >
+                  Basic Information
+                </p>
+                <p
+                  className={`text-nowrap ${
+                    activeTab === 2
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick(2)}
+                >
+                  Past Experience
+                </p>
+                <p
+                  className={`text-nowrap ${
+                    activeTab === 3
+                      ? "btn btn-flex btn-primary h-40px fs-7 fw-bold"
+                      : "btn btn-flex btn-outline btn-color-gray-700 btn-active-color-primary bg-body h-40px fs-7 fw-bold"
+                  }`}
+                  onClick={() => handleTabClick(3)}
+                >
+                  Education Information
                 </p>
               </div>
             )}

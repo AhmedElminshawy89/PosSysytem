@@ -92,6 +92,92 @@ import City from "./pages/Setting/City";
 import Area from "./pages/Setting/Area";
 import Hotels from "./pages/Setting/Hotels";
 import Commssion from "./pages/Setting/Commision";
+import ChartOfAccount from "./pages/Setting/ChartOfAccount";
+import SupplierPayment from "./pages/Setting/SupplierPayment";
+import CashAdjustment from "./pages/Setting/CashAdjustment";
+import DebitVouchr from "./pages/Setting/DebitVouchr";
+import CreditVoucher from "./pages/Setting/CreditVoucher";
+import ContratVoucher from "./pages/Setting/ContraVoucher";
+import VoucherApproval from "./pages/Setting/VoucherApproval";
+import VoucherReport from "./pages/Setting/VoucherReport";
+import CashBook from "./pages/Setting/CashBook";
+import BankBook from "./pages/Setting/BankBook";
+import GeneralAccounts from "./pages/Setting/GeneralAccounts";
+import TrialBalance from "./pages/Setting/TrialBalance";
+import ProfitLoss from "./pages/Setting/ProfitLoss";
+import CashFlow from "./pages/Setting/CashFlow";
+import BalanceSheet from './pages/Setting/BalanceSheet';
+import JournalVoucher from "./pages/Setting/JournalVoucher";
+import Designation from "./components/HR/Designation";
+import AddEmployee from "./components/HR/AddEmolyee";
+import ManageEmployee from "./components/HR/ManageEmployee";
+import ManageEmployeeSalary from "./components/HR/ManageEmployeeSalary";
+import AddExpensesItem from "./components/HR/AddExpensesItem";
+import ManageExpenses from "./components/HR/ManageExpenses";
+import AddExpense from "./components/HR/AddExpense";
+import ManageExoenses2 from "./components/HR/ManageExoenses2";
+import ExpensesStatement from "./components/HR/ExpenseStatement";
+import NewAward from "./components/HR/NewAward";
+import AwardController from "./components/HR/AwardController";
+import AddCandidate from "./components/HR/AddCandidate";
+import ManageCandidate from "./components/HR/ManageCandidate";
+import CandidateShortList from "./components/HR/CandidateShortList";
+import ManageCandidateShortList from "./components/HR/ManageCandidateShortlist";
+import Interview from './components/HR/Interview';
+import ManageInterview from "./components/HR/ManageInterview";
+import CandidateSelection from "./components/HR/CandidateSelection";
+import ManageCandidateSelection from './components/HR/ManageCandidateSelection';
+import Department from "./components/HR/Department";
+import ManageDepartment from "./components/HR/ManageDepartment";
+import AddDivision from "./components/HR/AddDevision";
+import WeeklyHoliday from "./components/HR/WeeklyHoliday";
+import HolidaySelection from "./components/HR/HolidaySelectiona";
+import ManageHolidaySelection from "./components/HR/ManageHolidaySelection";
+import AddLeaveType from "./components/HR/AddLeaveType";
+import LeaveApplication from "./components/HR/LeaveApplication";
+import ManageLeaveApplication from "./components/HR/ManageLeaveApplication";
+import GrantLoan from './components/HR/GrantLoan';
+import ManageGrantLoan from "./components/HR/ManageGrantLoan";
+import LoanInstallment from "./components/HR/LoanInstallment";
+import ManageLoanInstallment from "./components/HR/ManageLoanInstallment";
+import LoanReport from "./components/HR/LoanReport";
+import SalaryType from "./components/HR/SalaryType";
+import ManageSalaryType from "./components/HR/ManageSalaryType";
+import SalarySetup from "./components/HR/SalarySetup";
+import ManageSalarySetup from "./components/HR/ManageSalarySetup";
+import SalaryGenerate from "./components/HR/SalaryGenerate";
+import ManageSalaryGenerate from "./components/HR/ManageSalaryGenerate";
+import WhatsappSetting from "./components/WhatsappSetting/WhatsappSetting";
+import QROrderList from "./components/QRApp/QROrderList";
+import AlltableQr from "./components/QRApp/AlltableQr";
+import QRPaymentSetting from "./components/QRApp/QRPaymentSetting";
+import ShiftManagement from "./components/ShiftManagement/ShiftManagement";
+import Assignshift from "./components/ShiftManagement/Assignshift";
+import PackageFood from "./components/WasteTrcking/PackageFood";
+import PurchaseFoodWaste from "./components/WasteTrcking/PurchaseFoodWaste";
+import MakingFoodWaste from "./components/WasteTrcking/MakingFoodWaste";
+import AddUser from "./components/User/AddUser";
+import UserList from "./components/User/UserList";
+import Modules from "./components/Modules/Modules";
+import Themes from "./components/Modules/Themes";
+import Role_Permission from "./components/Role/Role_Permission";
+import RoleList from "./components/Role/RoleList";
+import AssignRole from "./components/Role/AssignRole";
+import AutoUpdate from "./components/WhatsappSetting/AutoUpdate";
+import NewMessage from "./components/WhatsappSetting/NewMessage";
+import InboxMessage from "./components/WhatsappSetting/InboxMessage";
+import SentMessage from "./components/WhatsappSetting/SentMessage";
+import CommonSetting from "./components/WebSetting/CommonSetting";
+import ManageStoreTime from "./components/WebSetting/ManageStoreTime";
+import BannerSetting from "./components/WebSetting/BannerSetting";
+import MenuSetting from "./components/WebSetting/MenuSetting";
+import SeoSetting from "./components/WebSetting/SeoSetting";
+import SocialSetting from "./components/WebSetting/SocialSetting";
+import WidgetSetting from "./components/WebSetting/WidgetSetting";
+import EmailSetting from "./components/WebSetting/EmailSetting";
+import CustomerRating from "./components/WebSetting/Customerrate";
+import CoponList from "./components/WebSetting/CoponList";
+import SubscribeList from "./components/WebSetting/SubscribeList";
 function App() {
   return (
     <>
@@ -103,7 +189,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/reset-password" element={<PasswordReset />} />
         <Route path="/" element={<PagesOutlet />}>
-          {/* <Route path="/" element={<MainPage />} /> */}
+          <Route path="/" element={<MainPage />} />
           <Route path="/ordermanage/order/pos_invoice" element={<Pos />} />
           <Route path="/ordermanage/order/orderlist" element={<OrderList />} />
           <Route path="/ordermanage/order/pendingorder" element={<PendingOrder />} />
@@ -186,6 +272,93 @@ function App() {
           <Route path="/setting/country_city_list/citylist" element={<Area/>} />
           <Route path="/setting/hotels/index" element={<Hotels/>} />
           <Route path="/setting/Commissionsetting/payroll_commission" element={<Commssion/>} />
+          <Route path="/accounts/accounts/show_tree" element={<ChartOfAccount/>} />
+          <Route path="/accounts/accounts/supplier_payments" element={<SupplierPayment/>} />
+          <Route path="/accounts/accounts/cash_adjustment" element={<CashAdjustment/>} />
+          <Route path="/accounts/accounts/debit_voucher" element={<DebitVouchr/>} />
+          <Route path="/accounts/accounts/credit_voucher" element={<CreditVoucher/>} />
+          <Route path="/accounts/accounts/contra_voucher" element={<ContratVoucher/>} />
+          <Route path="/accounts/accounts/aprove_v" element={<VoucherApproval/>} />
+          <Route path="/accounts/accounts/voucher_report" element={<VoucherReport/>} />
+          <Route path="/accounts/accounts/cash_book" element={<CashBook/>} />
+          <Route path="/accounts/accounts/bank_book" element={<BankBook/>} />
+          <Route path="/accounts/accounts/general_ledger" element={<GeneralAccounts/>} />
+          <Route path="/accounts/accounts/trial_balance" element={<TrialBalance/>} />
+          <Route path="/accounts/accounts/profit_loss_report" element={<ProfitLoss/>} />
+          <Route path="/accounts/accounts/cash_flow_report" element={<CashFlow/>} />
+          <Route path="/accounts/accounts/balance_sheet" element={<BalanceSheet/>} />
+          <Route path="/accounts/accounts/journal_voucher" element={<JournalVoucher/>} />
+          <Route path="/hrm/Employees/create_position" element={<Designation/>} />
+          <Route path="/hrm/Employees/viewEmhistory" element={<AddEmployee/>} />
+          <Route path="/hrm/Employees/manageemployee" element={<ManageEmployee/>} />
+          <Route path="/hrm/Employees/emp_payment_view" element={<ManageEmployeeSalary/>} />
+          <Route path="/hrm/Cexpense/add_expense_item" element={<AddExpensesItem/>} />
+          <Route path="/hrm/Cexpense/manage_expense_item" element={<ManageExpenses/>} />
+          <Route path="/hrm/Cexpense/add_expense" element={<AddExpense/>} />
+          <Route path="/hrm/Cexpense/manage_expense" element={<ManageExoenses2/>} />
+          <Route path="/hrm/Cexpense/expense_statement_form" element={<ExpensesStatement/>} />
+          <Route path="/hrm/Award_controller/create_award" element={<NewAward/>} />
+          <Route path="/hrm/Award_controller/award_view" element={<AwardController/>} />
+          <Route path="/hrm/Candidate/caninfo_create" element={<AddCandidate/>} />
+          <Route path="/hrm/Candidate/candidateinfo_view" element={<ManageCandidate/>} />
+          <Route path="/hrm/Candidate_select/create_shortlist" element={<CandidateShortList/>} />
+          <Route path="/hrm/Candidate_select/candidate_shortlist_view" element={<ManageCandidateShortList/>} />
+          <Route path="/hrm/Candidate_select/create_interview" element={<Interview/>} />
+          <Route path="/hrm/Candidate_select/candidate_interview_view" element={<ManageInterview/>} />
+          <Route path="/hrm/Candidate_select/create_selection" element={<CandidateSelection/>} />
+          <Route path="/hrm/Candidate_select/candidate_selection_view" element={<ManageCandidateSelection/>} />
+          <Route path="/hrm/Department_controller/create_dept" element={<Department/>} />
+          <Route path="/hrm/Department_controller/dept_view" element={<ManageDepartment/>} />
+          <Route path="/hrm/Division_controller/division_form" element={<AddDivision/>} />
+          <Route path="/hrm/Division_controller/index" element={<ManageDepartment/>} />
+          <Route path="/hrm/Leave/create_weekleave" element={<WeeklyHoliday/>} />
+          <Route path="/hrm/Leave/holiday_view" element={<HolidaySelection/>} />
+          <Route path="/hrm/Leave/manage_holiday" element={<ManageHolidaySelection/>} />
+          <Route path="/hrm/Leave/add_leave_type" element={<AddLeaveType/>} />
+          <Route path="/hrm/Leave/others_leave" element={<LeaveApplication/>} />
+          <Route path="/hrm/Leave/application_view" element={<ManageLeaveApplication/>} />
+          <Route path="/hrm/Loan/create_grandloan" element={<GrantLoan/>} />
+          <Route path="/hrm/Loan/loan_view" element={<ManageGrantLoan/>} />
+          <Route path="/hrm/Loan/create_installment" element={<LoanInstallment/>} />
+          <Route path="/hrm/Loan/installmentView" element={<ManageLoanInstallment/>} />
+          <Route path="/hrm/Loan/loan_report" element={<LoanReport/>} />
+          <Route path="/hrm/Payroll/create_salary_setup" element={<SalaryType/>} />
+          <Route path="/hrm/Payroll/emp_salary_setup_view" element={<ManageSalaryType/>} />
+          <Route path="/hrm/Payroll/create_s_setup" element={<SalarySetup/>} />
+          <Route path="/hrm/Payroll/salary_setup_view" element={<ManageSalarySetup/>} />
+          <Route path="/hrm/Payroll/create_salary_generate" element={<SalaryGenerate/>} />
+          <Route path="/hrm/Payroll/salary_generate_view" element={<ManageSalaryGenerate/>} />
+          <Route path="/whatsapp/whatsappback/showsetting" element={<WhatsappSetting/>} />
+          <Route path="/qrapp/qrmodule/index" element={<QROrderList/>} />
+          <Route path="/qrapp/qrmodule/tableqrcode" element={<AlltableQr/>} />
+          <Route path="/qrapp/qrmodule/qrpaymentsetting" element={<QRPaymentSetting/>} />
+          <Route path="/shiftmangment/shiftmangmentback/addeditshift" element={<ShiftManagement/>} />
+          <Route path="/shiftmangment/shiftmangmentback/assign_shift" element={<Assignshift/>} />
+          <Route path="/wastemangment/wastetracking/addpackagingfood" element={<PackageFood/>} />
+          <Route path="/wastemangment/wastetracking/addpurchasfoodwaste" element={<PurchaseFoodWaste/>} />
+          <Route path="/wastemangment/wastetracking/makeingfoodwaste" element={<MakingFoodWaste/>} />
+          <Route path="/dashboard/user/form" element={<AddUser/>} />
+          <Route path="/dashboard/user/index" element={<UserList/>} />
+          <Route path="/addon/module/index" element={<Modules/>} />
+          <Route path="/addon/theme/index" element={<Themes/>} />
+          <Route path="/dashboard/permission_setup" element={<Role_Permission/>} />
+          <Route path="/dashboard/role/role_list" element={<RoleList/>} />
+          <Route path="/dashboard/role/user_access_role" element={<AssignRole/>} />
+          <Route path="/dashboard/autoupdate" element={<AutoUpdate/>} />
+          <Route path="/dashboard/message/new_message" element={<NewMessage/>} />
+          <Route path="/dashboard/message/index" element={<InboxMessage/>} />
+          <Route path="/dashboard/message/sent" element={<SentMessage/>} />
+          <Route path="/dashboard/web_setting/" element={<CommonSetting/>} />
+          <Route path="/dashboard/web_setting/storetime" element={<ManageStoreTime/>} />
+          <Route path="/dashboard/web_setting/bannersetting" element={<BannerSetting/>} />
+          <Route path="/dashboard/web_setting/menusetting" element={<MenuSetting/>} />
+          <Route path="/dashboard/web_setting/seosetting" element={<SeoSetting/>} />
+          <Route path="/dashboard/web_setting/socialtting" element={<SocialSetting/>} />
+          <Route path="/dashboard/web_setting/widgetsetting" element={<WidgetSetting/>} />
+          <Route path="/dashboard/web_setting/email_config_setup" element={<EmailSetting/>} />
+          <Route path="/dashboard/rating" element={<CustomerRating/>} />
+          <Route path="/dashboard/couponlist" element={<CoponList/>} />
+          <Route path="/dashboard/couponlist" element={<SubscribeList/>} />
           {/* <Route
             path="/accounting/create-expense"
             element={<CreateExpense />}

@@ -5,6 +5,10 @@ import { FaFirstOrder, FaTags } from "react-icons/fa6";
 import { IoCartOutline } from "react-icons/io5";
 import { FaProductHunt } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
+import { CiLock } from "react-icons/ci";
+import { MdOutlineMessage } from "react-icons/md";
+import { CiSettings } from "react-icons/ci";
+
 const Menu = ({ title, menuItems, NestedMenu, NestedTitle }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
@@ -34,6 +38,9 @@ const Menu = ({ title, menuItems, NestedMenu, NestedTitle }) => {
             <IoCartOutline className="fs-2" />
           )}
           {title === "Production" && <FaProductHunt className="fs-2" />}
+          {title === "Role Permission" && <CiLock className="fs-2" />}
+          {title === "Message" && <MdOutlineMessage className="fs-2" />}
+          {title === "Web Setting" && <CiSettings className="fs-2" />}
         </span>
         <span className="menu-title">{title}</span>
         <span className="menu-arrow"></span>

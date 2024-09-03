@@ -3,9 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import { CiSettings } from "react-icons/ci";
 import { MdKeyboardArrowUp } from "react-icons/md";
 import classes from "../LeftSidebar.module.css";
-import { TbReportAnalytics } from "react-icons/tb";
+import { MdAccountBalance } from "react-icons/md";
+import { PiUsersThreeBold } from "react-icons/pi";
 
-const MenuSetting = () => {
+const MenuHR = () => {
   const [isMenuOpen111, setIsMenuOpen111] = useState(false);
   const [nestedMenuState, setNestedMenuState] = useState({});
   const location = useLocation();
@@ -30,78 +31,84 @@ const MenuSetting = () => {
 
   const menuItems = [
     {
-      id: "paymentMethod",
-      title: "Payment Method",
+      id: "Staff",
+      title: "Staff",
       nestedItems: [
-        { title: "Payment Method List", link: "/setting/paymentmethod/index" },
-        { title: "Payment Setup", link: "/setting/paymentmethod/paymentsetup" },
-        { title: "Shipping Method Setting", link: "/setting/shippingmethod/index" },
-      ],
-    },
-    {
-      id: "manageTable",
-      title: "Manage Table",
-      nestedItems: [
-        { title: "Table List", link: "/setting/restauranttable/index" },
-        { title: "Table Setting", link: "/setting/restauranttable/tablesetting" },
-      ],
-    },
-    {
-      id: "CustomerType",
-      title: "Customer Type",
-      nestedItems: [
-        { title: "Customer List", link: "/setting/customerlist/index" },
-        { title: "Customer Type List", link: "/setting/customertype/index" },
-        { title: "Third-Party Customers", link: "/setting/thirdpratycustomer/index" },
-        { title: "Card Terminal List", link: "/setting/card_terminal/index" },
-      ],
-    },
-    {
-      id: "Station",
-      title: "Station Setting",
-      nestedItems: [
-        { title: "Station List", link: "/setting/kitchensetting/index" },
-        { title: "Station Assign", link: "/setting/kitchensetting/assignkitchen" },
-        { title: "Station Dashboard Setting", link: "/setting/kitchensetting/kitchen_dashboardsetting" },
-      ],
-    },
-    {
-      id: "Unit",
-      title: "Unit Measurement",
-      nestedItems: [
-        { title: "Unit Measurement List", link: "/setting/unitmeasurement/index" },
-        { title: "Ingredient List", link: "/setting/ingradient/index" },
+        { title: "Designation", link: "/hrm/Employees/create_position" },
+        { title: "Add Employee", link: "/hrm/Employees/viewEmhistory" },
+        { title: "Manege Employee", link: "/hrm/Employees/manageemployee" },
+        { title: "Manege Employee Salary", link: "/hrm/Employees/emp_payment_view" },
       
       ],
     },
     {
-      id: "sms",
-      title: "SMS Setting",
+      id: "Expenses",
+      title: "Expenses",
       nestedItems: [
-        { title: "SMS Configuration", link: "/setting/smsetting/sms_configuration" },
-        { title: "SMS Template", link: "/setting/smsetting/sms_template" },
+        { title: "Add Expense Item", link: "/hrm/Cexpense/add_expense_item" },
+        { title: "Manage Expense Item", link: "/hrm/Cexpense/manage_expense_item" },
+        { title: "Add Expense", link: "/hrm/Cexpense/add_expense" },
+        { title: "Manage Expense", link: "/hrm/Cexpense/manage_expense" },
+        { title: "Expense Statement", link: "/hrm/Cexpense/expense_statement_form" },
       
       ],
     },
     {
-      id: "Bank",
-      title: "Bank",
+      id: "Award",
+      title: "Award",
       nestedItems: [
-        { title: "Bank List", link: "/setting/bank_list/index" },
-        { title: "Bank Transaction", link: "/setting/bank_list/bank_transaction" },
+        { title: "New Award", link: "/hrm/Award_controller/create_award" },
       ],
     },
-    { id: "lang", title: "Language", link: "/setting/language" },
-    { id: "app-set", title: "Application Setting", link: "/setting/setting/index" },
-    { id: "app-set2", title: "App Setting", link: "/setting/serversetting/index" },
-    { id: "Currency", title: "Currency", link: "/setting/currency/index" },
-    { id: "Country", title: "Country", link: "/setting/country_city_list/index" },
-    { id: "City", title: "City", link: "/setting/country_city_list/statelist" },
-    { id: "City", title: "Area", link: "/setting/country_city_list/citylist" },
-    { id: "Hotels", title: "Hotels", link: "/setting/hotels/index" },
-    { id: "Commission", title: "Commission", link: "/setting/Commissionsetting/payroll_commission" },
-  
-  ];
+    {
+      id: "Recruitment",
+      title: "Recruitment",
+      nestedItems: [
+        { title: "Add New Candidate", link: "/hrm/Candidate/caninfo_create" },
+        { title: "Manage Candidate", link: "/hrm/Candidate/candidateinfo_view" },
+        { title: "Candidate ShortList", link: "/hrm/Candidate_select/create_shortlist" },
+        { title: "Interview", link: "/hrm/Candidate_select/create_interview" },
+        { title: "Candidate Selection", link: "/hrm/Candidate_select/create_selection" },
+      ],
+    },
+    {
+      id: "Department",
+      title: "Department",
+      nestedItems: [
+        { title: "Department", link: "/hrm/Department_controller/create_dept" },
+        { title: "Add Division", link: "/hrm/Division_controller/division_form" },
+        { title: "Manage Division", link: "/hrm/Division_controller/index" },
+      ],
+    },
+    {
+      id: "Leave",
+      title: "Leave",
+      nestedItems: [
+        { title: "Weekly Holiday", link: "/hrm/Leave/create_weekleave" },
+        { title: "Holiday", link: "/hrm/Leave/holiday_view" },
+        { title: "Add leave Type", link: "/hrm/Leave/add_leave_type" },
+        { title: "leave Application", link: "/hrm/Leave/others_leave" },
+      ],
+    },
+    {
+      id: "Loan",
+      title: "Loan",
+      nestedItems: [
+        { title: "Grant Loan", link: "/hrm/Loan/create_grandloan" },
+        { title: "Loan Installment", link: "/hrm/Loan/create_installment" },
+        { title: "Loan Report", link: "/hrm/Loan/loan_report" },
+      ],
+    },
+    {
+      id: "Payroll",
+      title: "Payroll",
+      nestedItems: [
+        { title: "Salary Type Setup", link: "/hrm/Payroll/create_salary_setup" },
+        { title: "Salary Setup", link: "/hrm/Payroll/create_s_setup" },
+        { title: "Salary Generate", link: "/hrm/Payroll/create_salary_generate" },
+      ],
+    },
+];
 
   return (
     <div
@@ -112,9 +119,9 @@ const MenuSetting = () => {
     >
       <span className="menu-link">
         <span className="menu-icon">
-          <CiSettings className="fs-3" />
+          <PiUsersThreeBold className="fs-3" />
         </span>
-        <span className="menu-title">Setting</span>
+        <span className="menu-title">Hr Management</span>
         <span className="menu-arrow"></span>
       </span>
       <div
@@ -175,4 +182,4 @@ const MenuSetting = () => {
   );
 };
 
-export default MenuSetting;
+export default MenuHR;
